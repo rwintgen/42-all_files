@@ -1,0 +1,212 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    cheat_sheet_fr                                     :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: rwintgen <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/11/27 09:26:52 by rwintgen          #+#    #+#              #
+#    Updated: 2023/11/28 16:04:22 by rwintgen         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+Vue d'ensemble du projet
+
+
+Le fonctionnement basique de sa machine virtuelle
+	Une VM est comme un ordinateur virtuel qui utilise les ressources de l'hote
+	pour fonctionner, on peut y mettre l'OS que l'on veut. Cette machine 
+	virtuelle est totalement independante de l'ordinateur physique.
+
+Son choix de système d'exploitation
+	Debian est une version de Linux Open Source assez repandue, ce qui la rend 
+	stable et securisee. C'est aussi une version peu gourmande en ressources.
+
+Les différences basiques entre Rocky et Debian
+	Rocky est le successeur de CentOS, cree en 2020 et focalise sur un usage
+	entreprise. Debian est une ancienne version, plus basique et accessible a
+	tous.
+
+L'intérêt des machines virtuelles
+	Les VMs sont independantes du systeme hote, ce qui permet de tester de 
+	maniere securisee. Elles utilisent egalement des ressources distinctes pour 
+	plus de stabilite. Elles sont aussi faciles a cloner, supprimer ou modifier,
+	et a migrer d'un hote a un autre.
+
+Si le système d'exploitation choisi est Debian, elle doit vous expliquer la 
+différence entre aptitude et apt, et ce qu'est APPArmor. Durant la soutenance, 
+un script doit afficher des informations toutes les 10 minutes. Son fonction-
+nement sera vérifié en détails plus tard. Si les explications ne sont pas 
+claires, l'évaluation s'arrête ici.
+	- aptitude vs apt : aptitude est plus user-friendly grace a son UI et permet
+	plus de libertes sur la gestion des packages, aptitude laisse plus de 
+	liberte.
+	- APPArmor : Permet de gerer les permissions utilisateur pour les 
+	applications.
+
+================================================================================
+
+Utilisateur
+
+
+La personne évaluée doit maintenant vous expliquer comment elle a pu mettre en 
+place les règles demandées dans le sujet sur sa machine virtuelle.
+	- chage -l <user>
+	- /etc/login.defs
+	- /etc/pam.d/common-password
+
+Maintenant que vous avez un nouvel utilisateur, demandez à la personne évaluée 
+de créer un groupe nommé "evaluating" devant vous et de l'assigner à cet 
+utilisateur.
+	- adduser <user>
+	- groupadd <group>
+	- adduser <user> <group>
+	
+Enfin, vérifiez que cet utilisateur appartient bien au groupe
+"evaluating".
+	- getent group <group>
+
+Pour finir, demandez à la personne évaluée de vous exposer l'intérêtde cette 
+politique de mot de passe, ainsi que les avantages et les inconvénients de sa 
+mise en place.
+	- Une fort politique de mots de passe permet de renforcer la securite
+
+================================================================================
+
+Hostname et partitions
+
+
+Vérifiez que le hostname de la machine est bien formatté ainsi : login42 (login
+de la personne évaluée).
+	- hostname
+
+Modifiez ce hostname en remplaçant le login par le vôtre, puis relancez la
+machine. Si au redémarrage, le hostname n'a pas été mis à jour, l'évaluation 
+s'arrête ici.
+	- /etc/hostname
+	
+Demandez à la personne évaluée comment afficher les partitions de sa machine 
+virtuelle.
+	- lsblk
+
+Cette partie est l'occasion de discuter des partitions ! La personne évaluée 
+doit vous donner une petite explication sur le fonctionnement et l'intérêt de 
+LVM.
+	LVM permet d'organiser comme souhaite l'espace disque, ce qui simplifie la 
+	gestion. Cela fonctionne en reservant une certaine quantite d'espace sur 
+	les disques physiques, outrepassant l'espace reserve par defaut.
+
+================================================================================
+
+SUDO
+
+
+Vérifiez que le programme "sudo" est bien installé sur la machine virtuelle.
+La personne évaluée doit maintenant assigner votre nouvel utilisateur 
+au groupe "sudo".
+	 - adduser <user> sudo
+
+Le sujet impose des règles strictes pour sudo. La personne évaluée doit, dans un
+premier temps, expliquer l'intérêt et le fonctionnement de sudo par des exemples
+de son choix. 
+	Sudo permet a un utilisateur avec des permissions restreintes d'executer des
+	commandes en tant que root.
+
+Dans un second temps, elle doit vous démontrer la mise en place 
+des règles imposées par le sujet.
+	- /etc/sudoers.d/sudoconfig
+
+================================================================================
+
+UFW / Firewalld
+
+
+Vérifiez que le programme "UFW" (ou "Firewalld" pour rocky) est bien installé 
+sur la machine virtuelle.
+	- dpkg -l | grep ufw
+
+Vérifiez qu'il fonctionne correctement.
+	- systemctl status ufw
+
+La personne évaluée doit vous expliquer basiquement ce qu'est UFW (ou 
+"Firewalld") et l'intérêt de l'utiliser.
+	Permet d'etablir des regles de pare-feu pour controler le traffic reseau et
+	ameliorer la securite du systeme.
+
+Listez les règles actives dans UFW (ou "Firewalld"). Une règle doit exister pour
+le port 4242.
+	- ufw status numbered
+
+Ajoutez une nouvelle règle pour ouvrir le port 8080. Vérifiez que celle-ci a
+bien été ajoutée en listant les règles actives.
+	- ufw allow 8080
+
+Pour finir, supprimez cette nouvelle règle avec l'aide de la personne évaluée.
+Si quelque chose ne fonctionne pas comme prévu ou n'est pas clairement expliqué
+l'évaluation s'arrête ici.
+	- ufw delete <rule number>
+
+================================================================================
+
+SSH
+
+
+Vérifiez que le service SSH est bien installé sur la machine virtuelle.
+	- dpkg -l | grep ssh
+
+Vérifiez qu'il fonctionne correctement.
+	- systemctl status ssh
+
+La personne évaluée doit vous expliquer basiquement ce qu'est SSH et l'intérêt
+de l'utiliser.
+	SSH permet de se connecter a distance a une VM en utilisant un port
+	predefini.
+
+Vérifiez que le service SSH utilise uniquement le port 4242.
+	- systemctl status ssh
+
+================================================================================
+
+Script monitoring
+
+
+La personne évaluée doit vous expliquer simplement :
+
+Le fonctionnement de son script en affichant le code de celui-ci
+	- /home/script/monitoring.sh
+
+Ce qu'est "cron"
+	cron permet de lancer des scripts bash a intervalles predefinis dans crontab
+	-e
+
+Comment elle a mis en place son script afin qu'il s'exécute toutes les 10 
+minutes dès le lancement du serveur. Une fois le bon fonctionnement du script 
+vérifié, la personne évaluée doit faire en sorte que ce script s'exécute toutes 
+les minutes. Vous pouvez lancer ce que vous souhaitez afin de vous assurer que 
+le script s'exécute correctement avec des valeurs dynamiques.
+	- crontab -e
+
+Enfin, la personne évaluée doit faire en sorte que le script cesse de s'exécuter
+au lancement du serveur, sans toutefois modifier le script en lui-même. Pour 
+vérifier ce point, il faudra redémarrer le serveur une dernière fois. 
+Au démarrage, il faudra bien vérifier que le script existe toujours au même 
+endroit, que ses droits sont restés inchangés, et qu'il n'a pas subi de modifi-
+cation. Si un des points ci-dessus n'est pas correct, l'évaluation s'arrête ici.
+	- crontab -e
+
+================================================================================
+
+Bonus
+
+
+La mise en place des partitions vaudra 2 points
+	- lsblk
+
+La mise en place de WordPress, avec les services listés dans le sujet 
+uniquement, vaudra 2 points
+	- systemctl status mariadb
+	- systemctl status lighttpd
+	- dpkg -l | grep php
+	- /var/www/html/wp-config.phpa
+
+================================================================================
