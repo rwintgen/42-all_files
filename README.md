@@ -54,7 +54,7 @@ __My FdF passed with final grade of 100/100. Check out my work [here](https://gi
 #### pipex
 Pipex is a program designed to replicate the behaviour of unix pipes "|". Features include interprocess communication, multi-pipes and heredocs in addition to the classic executable commands.
 
-__I haven't completed this project yet, but you can check out what I did so far [here](https://github.com/rwintgen/42/tree/main/pipex).__
+__My pipex passed with final grade of 108/100. Check out my work [here](https://github.com/rwintgen/42/tree/main/pipex).__
 
 -----
 
