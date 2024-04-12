@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 16:19:12 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/04/08 16:06:29 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/12 15:24:39 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ int	main(int argc, char **argv, char **envp)
 		err_msg(ERR_INFILE);
 	if (ft_open(argv[4], &filefd[1], FLAG_WRITE) < 0)
 	{
-		close(filefd[0]);
+		if (filefd[0] > -1)
+			close(filefd[0]);
 		return (err_msg(ERR_OUTFILE));
 	}
 	if (pipe(pipefd) < 0)
