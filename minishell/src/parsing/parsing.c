@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:28:53 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/20 13:46:28 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/20 15:28:41 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,61 +85,65 @@ void    set_arg(t_arg *elem)
 
 void    lexer_v2(t_arg *head)
 {
-    while (head->prev)
-        head = head->prev;
     set_spec(head);
     set_file(head);
     set_cmd(head);
     set_arg(head);
-
 }
 
-int fill_t_arg_struct(t_sh *sh, char *input)
+void	append_arg_node(t_arg **arg_cpy, char *arg)
 {
-    char **tmp;
-    t_arg *ptr;
-    t_arg *new;
-    int i;
+	t_arg *new_node;
+	t_arg *tmp;
+	
+	new_node = malloc(sizeof(t_arg));
+	if (!new_node)
+	{
+		ft_putstr_fd("minishell: malloc error\n", STDERR_FILENO);
+		// free
+		exit(1);
+	}
+	new_node->str_command = ft_strdup(arg);
+	new_node->type = -1;
+	new_node->next = NULL;
+	new_node->prev = NULL;
+	if (*arg_cpy == NULL)
+		*arg_cpy = new_node;
+	else
+	{
+		tmp = *arg_cpy;
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = new_node;
+		new_node->prev = tmp;
+	}
+}
 
-    i = 0;
-    tmp = ft_split(input, ' ');
-    ptr = NULL;
-    while (tmp[i])
-    {
-        new = malloc(sizeof(t_arg));
-        if (!new)
-        {
-            ft_putstr_fd("minishell: malloc error\n", STDERR_FILENO);
-            return (-1);
-        }
-        new->str_command = ft_strdup(tmp[i]);
-        new->prev = NULL;
-        new->next = NULL;
-        new->type = -1;
 
-        if (sh->arg == NULL)
-        {
-            sh->arg = new;
-            ptr = sh->arg;
-        }
-        else
-        {
-            ptr->next = new;
-            new->prev = ptr;
-            ptr = ptr->next;
-        }
-        i++;
-    }
-    lexer_v2(ptr);
-    free_tab(tmp);
-    return (0);
+t_arg	*copy_args(char *input)
+{
+	t_arg	*arg_cpy;
+    char    **args;
+	int		i;
+
+    args = ft_split(input, ' ');
+	arg_cpy = NULL;
+	i = 0;
+	while (args[i])
+	{
+		append_arg_node(&arg_cpy, args[i]);
+		i++;
+	}
+    lexer_v2(arg_cpy);
+    ft_free_char_tab(args);
+	return (arg_cpy);
 }
 
 void	parse_input(char *input, t_sh *sh)
 {
 	printf("\n\nPARSING\n\n");
 	input = true_line(input, sh);
-	fill_t_arg_struct(sh, input);
+	sh->arg = copy_args(input);
 	free(input);
 	print_t_arg_struct(sh->arg);
 }

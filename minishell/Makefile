@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: deymons <deymons@student.42.fr>            +#+  +:+       +#+         #
+#    By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/10 16:32:07 by deymons           #+#    #+#              #
-#    Updated: 2024/04/17 18:06:41 by deymons          ###   ########.fr        #
+#    Updated: 2024/04/20 14:42:23 by rwintgen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,11 +26,11 @@ LIBFT_EX    =   $(LIBFT_LIB) $(FLAG)
 
 C_FILE      =   main.c								\
 				debug_print.c						\
-				builtin/builtin_handling.c			\
-				builtin/ft_cd.c						\
-				builtin/ft_pwd.c					\
-				builtin/ft_echo.c					\
-				builtin/isbuiltin.c					\
+				builtins/builtin_handling.c			\
+				builtins/ft_cd.c					\
+				builtins/ft_pwd.c					\
+				builtins/ft_echo.c					\
+				builtins/isbuiltin.c				\
 				exec/exec_commands.c				\
 				exec/exec_handling.c				\
 				exec/prep_for_exec.c				\

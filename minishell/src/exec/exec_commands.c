@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 14:18:05 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/20 14:19:54 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/20 14:32:38 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,16 @@ int	ft_exec(t_sh *sh)
 	char	*path_to_cmd;
 	char	**envp_c;
 
+	// if only 1 command & builtin
+	/*
+	if (sh->cmd->is_builtin && count_commands(sh->cmd) == 1)
+	{
+		redirect_io(sh->cmd);
+		exit_code = exec_builtin(sh->cmd, sh->envp);
+		// free some stuff but not all the struct
+		return (exit_code);
+	}
+	*/
 	pid = fork();
 	if (pid == -1)
 	{
@@ -56,7 +66,7 @@ int	ft_exec(t_sh *sh)
 	}
 	if (pid != 0)
 		return (pid);
-	printf("errno: %d\n\n", errno);
+	// printf("errno: %d\n\n", errno);
 	if (sh->cmd->input_fd < 0)
 		exit(free_sh(sh));
 	else if (sh->cmd->output_fd < 0)

@@ -37,6 +37,7 @@ ls < Makefile | << eof		=> cmd writes to stdout
 
 Quotes not working
 
+
 ----ERR MGMT-----
 
 - Invalid command		=> OK
@@ -45,3 +46,8 @@ Quotes not working
 - Protect mallocs		=> OK
 - Protect pipes			=> OK
 - Protect forks			=> OK
+
+
+----VALGRIND-----
+
+FDs 3 & 4 not closed when ctrlD right after ./minishell

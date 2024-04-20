@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:11:52 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/20 14:19:45 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/20 15:28:39 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ void	print_t_cmd_struct(t_cmd *cmd);
 // parsing
 char	*get_var(char *key, t_envp *envp);
 int		empty_line(char *input);
-int fill_t_arg_struct(t_sh *sh, char *input);
+t_arg	*copy_args(char *input);
 int		open_quote(char *input);
 char	*replace_dollar(char *input, t_envp *envp, int exit_code);
 void	free_tab(char **tab);
@@ -133,7 +133,9 @@ void	parse_input(char *input, t_sh *sh);
 void	sig_quit_state(int sig);
 void	sig_int_state(int sig);
 int		ft_echo(t_cmd *cmd, t_envp *envp);
-int	ft_cd(t_cmd *cmd, t_envp *envp);
+int		ft_cd(t_cmd *cmd, t_envp *envp);
+int		ft_pwd(void);
+
 
 // exec de chameau
 char	*get_path(t_cmd *cmd, t_envp *envp);
@@ -181,7 +183,7 @@ int		set_exit_code(int error_code);
 void	free_arg(t_arg *arg);
 void	free_cmd(t_cmd *cmd);
 void	free_envp(t_envp *envp);
-void print_err(const char *format, ...);
+void	 print_err(const char *format, ...);
 
 extern int g_sig;
 

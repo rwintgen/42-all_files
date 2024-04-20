@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 13:45:29 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/20 14:20:40 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/20 15:29:44 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int	free_sh(t_sh *sh)
 	// close_saved_fds(sh->saved_stdfd);
 
 	// memory freeing
-	printf("errno: %d\n\n", errno);
 	free_arg(sh->arg);
 	free_cmd(sh->cmd);
 	free_envp(sh->envp);

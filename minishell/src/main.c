@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:59:56 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/20 14:23:54 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/20 15:27:52 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ int g_sig;
 // fix quotes					=> Arthur
 // fix varaible expansion		=> Arthur
 // Makefile no libft			=> Arthur
+// make builtins
 // modif exec for builtins
 // fix ctrl+C heredoc
-// make builtins
 // valgrind (open FDs, leaks)
 // fix error msg char by char
 // reorganisation
@@ -34,13 +34,11 @@ valgrind --trace-children=yes --track-fds=yes --leak-check=full  --track-origins
 void init_sh(t_sh *sh, char **envp)
 {
 	sh->arg = malloc(sizeof(t_arg));
-	sh->arg = NULL;
 	sh->cmd = malloc(sizeof(t_cmd));
-	sh->cmd = NULL;
 	sh->envp = malloc(sizeof(t_envp));
-	sh->envp = NULL;
+	sh->cmd = NULL;
 	sh->saved_stdfd[0] = dup(STDIN_FILENO);
-	sh->saved_stdfd[1] = dup(STDIN_FILENO);
+	sh->saved_stdfd[1] = dup(STDOUT_FILENO);
 	sh->pipefd[0] = -1;
 	sh->pipefd[1] = -1;
 	sh->exit_code = 0;
@@ -54,7 +52,6 @@ int	main(int argc, char **argv, char **envp)
 
 	(void) argc;
 	(void) argv;
-
 	sh = malloc(sizeof(t_sh));
 	init_sh(sh, envp);
 	while (true)
@@ -77,6 +74,7 @@ int	main(int argc, char **argv, char **envp)
 		sh->arg = NULL;
 		ft_wait_all();
 	}
+	close_saved_fds(sh->saved_stdfd);
 	free_sh(sh);
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deymons <deymons@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 21:01:13 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/19 16:55:01 by deymons          ###   ########.fr       */
+/*   Updated: 2024/04/20 14:38:44 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ int	ft_pwd(void)
 	buffer = getcwd(NULL, 0);
 	if (buffer)
 	{
-		ft_putstr_fd(buffer, 1);
-		ft_putstr_fd("\n", 1);
+		ft_putstr_fd(buffer, STDOUT_FILENO);
+		ft_putstr_fd("\n", STDOUT_FILENO);
 		exit(0);
 	}
 	return (0);
