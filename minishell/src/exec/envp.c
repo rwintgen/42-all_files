@@ -1,0 +1,140 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   envp.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/10 13:44:40 by deymons           #+#    #+#             */
+/*   Updated: 2024/04/20 11:33:32 by rwintgen         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../../include/minishell.h"
+
+int ft_strcmp(const char *s1, const char *s2) {
+    while (*s1 && (*s1 == *s2)) {
+        s1++;
+        s2++;
+    }
+    return *(const unsigned char *)s1 - *(const unsigned char *)s2;
+}
+
+void	append_env_node(t_envp **env_cpy, char *env_var)
+{
+	t_envp *new_node;
+	t_envp *tmp;
+	
+	new_node = ft_calloc(1, sizeof(t_envp));
+	if (!new_node)
+	{
+		ft_putstr_fd("minishell: malloc error\n", STDERR_FILENO);
+		// free
+		exit(1);
+	}
+	new_node->envar = ft_strdup(env_var);
+	new_node->key = NULL; // Initialize key to NULL
+	new_node->value = NULL; // Initialize value to NULL
+	new_node->next = NULL;
+	new_node->prev = NULL;
+	if (*env_cpy == NULL)
+		*env_cpy = new_node;
+	else
+	{
+		tmp = *env_cpy;
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = new_node;
+		new_node->prev = tmp;
+	}
+}
+
+void	set_key(t_envp **env_cpy, char *env_var)
+{
+	t_envp *tmp;
+	char *key;
+	int i;
+
+	tmp = *env_cpy;
+	i = 0;
+	while (env_var[i] != '=')
+		i++;
+	key = ft_substr(env_var, 0, i);
+	while (tmp)
+	{
+		if (ft_strcmp(tmp->envar, env_var) == 0) // Corrected comparison
+		{
+			free(tmp->key); // Free previous key if exists
+			tmp->key = key;
+			break ;
+		}
+		tmp = tmp->next;
+	}
+}
+
+void	set_value(t_envp **env_cpy, char *env_var)
+{
+	t_envp *tmp;
+	char *value;
+	int i;
+
+	tmp = *env_cpy;
+	i = 0;
+	while (env_var[i] != '=')
+		i++;
+	value = ft_substr(env_var, i + 1, ft_strlen(env_var) - i - 1); // Corrected substring indices
+	while (tmp)
+	{
+		if (ft_strcmp(tmp->envar, env_var) == 0) // Corrected comparison
+		{
+			free(tmp->value); // Free previous value if exists
+			tmp->value = value;
+			break ;
+		}
+		tmp = tmp->next;
+	}
+}
+
+t_envp	*copy_envp(char **env)
+{
+	t_envp	*env_cpy;
+	int		i;
+
+	env_cpy = NULL; // Initialize env_cpy to NULL
+	i = 0;
+	while (env[i])
+	{
+		append_env_node(&env_cpy, env[i]);
+		set_key(&env_cpy, env[i]);
+		set_value(&env_cpy, env[i]);
+		i++;
+	}
+	return (env_cpy);
+}
+
+
+char	**t_envp_to_envp(t_envp *envp)
+{
+	t_envp	*head;
+	char	**result;
+	int		i;
+
+	head = envp;
+	i = 0;
+	while (envp)
+	{
+		i++;
+		envp = envp->next;
+	}
+	result = ft_calloc(i + 1, sizeof(char *));
+	envp = head;
+	i = 0;
+	while (envp)
+	{
+		result[i] = ft_strdup(envp->envar);
+		i++;
+		envp = envp->next;
+	}
+	result[i] = NULL;
+	return (result);
+}

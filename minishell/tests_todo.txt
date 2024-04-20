@@ -1,0 +1,47 @@
+------EXEC-------
+
+TESTS PIPE
+
+ls | ls | ls | ls | ls		=> OK
+cat Makefile | wc -l 		=> OK
+
+
+TESTS INFILE
+
+cat < Makefile | wc -l			=> OK
+ls | < Makefile ls				=> OK
+ls < in | ls < in | ls < in		=> OK
+
+
+TESTS OUTFILE
+
+ls > out1 | ls > out2 | ls > out3	=> OK
+
+
+TESTS BOTH
+
+ls > out | < Makefile cat -e | wc -l	=> OK
+
+
+TESTS HEREDOC
+
+<< eof > out				=> OK
+ls < Makefile | << eof		=> cmd writes to stdout
+<< eof cat | wc -l			=> OK
+<< eof | ls					=> OK
+<< eof cat | << eof			=> cmd writes to stdout
+<< eof | << eof				=> OK
+
+
+-----PARSING-----
+
+Quotes not working
+
+----ERR MGMT-----
+
+- Invalid command		=> OK
+- rights in/outfile		=> OK
+- Ctrl+D heredoc		=> OK
+- Protect mallocs		=> OK
+- Protect pipes			=> OK
+- Protect forks			=> OK
