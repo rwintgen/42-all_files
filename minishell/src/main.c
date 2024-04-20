@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:59:56 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/20 14:21:43 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/20 14:23:54 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void init_sh(t_sh *sh, char **envp)
 	sh->cmd = malloc(sizeof(t_cmd));
 	sh->cmd = NULL;
 	sh->envp = malloc(sizeof(t_envp));
+	sh->envp = NULL;
 	sh->saved_stdfd[0] = dup(STDIN_FILENO);
 	sh->saved_stdfd[1] = dup(STDIN_FILENO);
 	sh->pipefd[0] = -1;
