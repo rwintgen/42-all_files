@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deymons <deymons@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 14:36:32 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/19 15:59:34 by deymons          ###   ########.fr       */
+/*   Updated: 2024/04/20 13:47:03 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	check_eof(char *line, char *delimiter)
 	{
 		ft_putstr_fd("minishell: warning: here-document delimited by end-of-file (wanted '", STDERR_FILENO);
 		ft_putstr_fd(delimiter, STDERR_FILENO);
-		ft_putendl_fd("')", STDERR_FILENO);
+		ft_putendl_fd("')\n", STDERR_FILENO);
 		return (1);
 	}
 	else if (!ft_strncmp(line, delimiter, INT_MAX))

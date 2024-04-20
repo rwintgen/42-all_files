@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 14:18:05 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/20 11:56:18 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/20 14:19:54 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ int	ft_exec(t_sh *sh)
 	{
 		ft_putstr_fd("minishell: command not found: ", 2);
 		ft_putendl_fd(sh->cmd->cmd_and_args[0], STDERR_FILENO);
+		ft_free_char_tab(envp_c);
 		exit(free_sh(sh));
 	}
 	return (-1);

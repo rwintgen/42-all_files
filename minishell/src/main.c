@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:59:56 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/20 11:57:31 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/20 14:21:43 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,15 @@
 int g_sig;
 
 ///////// TODO //////////
+// fix quotes					=> Arthur
+// fix varaible expansion		=> Arthur
+// Makefile no libft			=> Arthur
+// modif exec for builtins
+// fix ctrl+C heredoc
 // make builtins
-// modif exec for builtins (no fork)
-// make superstruct t_sh
 // valgrind (open FDs, leaks)
+// fix error msg char by char
+// reorganisation
 // norme
 /////////////////////////
 

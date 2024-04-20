@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 15:38:25 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/19 18:27:26 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/20 14:02:35 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,12 @@ char *var_getkey(char *str, int i)
 // does not work if chars following variable
 // ex: $?qwerty must return <exitcode>qwerty VS <exitcode> now
 // ex: $USERqwerty must return ""
+
+// TODO
+// prints quotes and double quotes
+// ex: echo "test" 'test' must return <test test> VS <"test" 'test'> now
+// variable expansion does not work in double quotes
+// ex: echo "$USER" '$USER' must return <rwintgen $USER> VS <"$USER" '$USER'> now
 char *replace_dollar(char *input, t_envp *envp, int exit_code)
 {
 	int i;
