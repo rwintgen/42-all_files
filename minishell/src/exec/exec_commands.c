@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 14:18:05 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/22 14:04:24 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/22 15:01:27 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,19 +99,19 @@ void	exec_commands(t_sh *sh)
 	t_cmd 		*tmp;
 	int			status;
 	int			last_pid;
-
-	// TODO fix this part without fucking shit up
+	
+	tmp = sh->cmd;
 	while (sh->cmd)
 	{
-		tmp = sh->cmd;
 		if (sh->cmd->skip_cmd == false) // TODO handle builtin exec here without forking
 			last_pid = ft_exec(sh);
 		if (sh->cmd->input_fd != sh->saved_stdfd[0] && sh->cmd->input_fd != STDIN_FILENO)
 			close(sh->cmd->input_fd);
 		if (sh->cmd->output_fd != sh->saved_stdfd[1] && sh->cmd->output_fd != STDOUT_FILENO)
 			close(sh->cmd->output_fd);
-		sh->cmd = tmp->next;
+		sh->cmd = sh->cmd->next;
 	}
+	sh->cmd = tmp;
 	waitpid(last_pid, &status, 0);
 	sh->exit_code = exit_code_handler(errno, status);
 }

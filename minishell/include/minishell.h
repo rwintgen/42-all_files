@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:11:52 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/22 13:50:00 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/22 15:01:57 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,7 +183,7 @@ int		set_exit_code(int error_code);
 void	free_arg(t_arg *arg);
 void	free_cmd(t_cmd *cmd);
 void	free_envp(t_envp *envp);
-void	 print_err(const char *format, ...);
+void	close_if_valid(int fd);
 
 extern int g_sig;
 

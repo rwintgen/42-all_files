@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 13:45:29 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/20 15:29:44 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/22 15:02:46 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,6 @@
 int	free_sh(t_sh *sh)
 {
 	int	exit_code;
-
-	// FD closing
-	// printf("errno: %d\n\n", errno);
-	// close_all_fds(sh->cmd);
-	// close_saved_fds(sh->saved_stdfd);
 
 	// memory freeing
 	free_arg(sh->arg);
@@ -80,6 +75,12 @@ void	free_envp(t_envp *envp)
 	}
 }
 
+void	close_if_valid(int fd)
+{
+	if (fd > 0)
+		close(fd);
+}
+
 void	close_all_fds(t_cmd *cmd)
 {
 	t_cmd	*current;
@@ -89,8 +90,8 @@ void	close_all_fds(t_cmd *cmd)
 		current = current->prev;
 	while (current)
 	{
-		close(current->input_fd);
-		close(current->output_fd);
+		close_if_valid(current->input_fd);
+		close_if_valid(current->output_fd);
 		current = current->next;
 	}
 }
