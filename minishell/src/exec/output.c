@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 16:08:10 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/22 15:01:27 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/22 16:44:39 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ Output priority order:
 	cmd 
 */
 
-int	check_outf_outfile(t_arg *cmd, t_arg **true_outfile)
+bool	check_outf_outfile(t_arg *cmd, t_arg **true_outfile)
 {
-	int fd;
+	int	fd;
 
 	fd = -1;
 	go_to_start_of_block(&cmd);
@@ -38,7 +38,6 @@ int	check_outf_outfile(t_arg *cmd, t_arg **true_outfile)
 				ft_open(cmd->str_command, &fd, FLAG_APPEND);
 			if (fd == -1)
 			{
-				// errno = EBADF; tmp solver for exit code of invalid out
 				ft_putstr_fd("minishell: permission denied: ", STDERR_FILENO);
 				ft_putendl_fd(cmd->str_command, STDERR_FILENO);
 				return (false);

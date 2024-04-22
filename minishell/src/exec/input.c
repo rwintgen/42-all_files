@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 16:07:33 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/22 15:01:27 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/22 16:43:43 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ bool	last_inf(t_arg *cmd)
 
 bool	infiles_ok(t_arg *cmd)
 {
-	int fd;
+	int	fd;
 
 	while (cmd && cmd->type != PIPE)
 	{
@@ -61,7 +61,7 @@ bool	infiles_ok(t_arg *cmd)
 	return (true);
 }
 
-int	prev_cmd_out(t_arg *cmd)
+bool	prev_cmd_out(t_arg *cmd)
 {
 	while (cmd && cmd->type != PIPE)
 		cmd = cmd->prev;
@@ -70,10 +70,10 @@ int	prev_cmd_out(t_arg *cmd)
 	while (cmd && cmd->type != PIPE)
 	{
 		if (cmd->type == OUTFILE)
-			return (1);
+			return (true);
 		cmd = cmd->prev;
 	}
-	return (0);
+	return (false);
 }
 
 void	go_to_start_of_block(t_arg **cmd)
@@ -88,14 +88,14 @@ void	check_inf_pipe(t_arg *to_check, t_arg **true_infile)
 		*true_infile = to_check;
 }
 
-int	check_inf_delim(t_arg *to_check, char **heredoc_file)
+bool	check_inf_delim(t_arg *to_check, char **heredoc_file)
 {
 	if (to_check && to_check->type == DELIM)
 	{
 		*heredoc_file = heredoc_handler(to_check->str_command);
-		return (1);
+		return (true);
 	}
-	return (0);
+	return (false);
 }
 
 void	check_inf_infile(t_arg *to_check, t_arg **true_infile)

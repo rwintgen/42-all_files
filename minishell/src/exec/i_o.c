@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 13:47:42 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/22 16:17:37 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/22 16:42:50 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ int	ft_open(char *file, int *fd, int flag)
 }
 
 // opens and assigns all FDs
-void save_stdfd(int saved_stdfd[2])
+void	save_stdfd(int saved_stdfd[2])
 {
-	int stdin_fd;
+	int	stdin_fd;
 	int	stdout_fd;
 
 	stdin_fd = STDIN_FILENO;
@@ -69,9 +69,9 @@ void	restore_io_nofork(t_sh *sh, t_cmd *cmd)
 // finds right infile and opens it for current cmd
 int	set_infile(t_arg *cmd, int stdfd_in, int pipefd_in)
 {
-	int			fd;
+	int		fd;
 	t_arg	*true_infile;
-	char		*heredoc_file;
+	char	*heredoc_file;
 
 	heredoc_file = NULL;
 	true_infile = NULL;
@@ -85,7 +85,7 @@ int	set_infile(t_arg *cmd, int stdfd_in, int pipefd_in)
 		if (!check_inf_delim(cmd, &heredoc_file))
 			check_inf_infile(cmd, &true_infile);
 		cmd = cmd->next;
-	}	
+	}
 	fd = set_inf_fd(heredoc_file, true_infile, pipefd_in, stdfd_in);
 	if ((heredoc_file || !true_infile || true_infile->type != PIPE) && pipefd_in != -1)
 		close(pipefd_in);
@@ -94,7 +94,7 @@ int	set_infile(t_arg *cmd, int stdfd_in, int pipefd_in)
 
 int	set_outfile(t_arg *cmd, int stdfd_out, int pipefd_out)
 {
-	int			fd;
+	int		fd;
 	t_arg	*true_outfile;
 
 	true_outfile = NULL;

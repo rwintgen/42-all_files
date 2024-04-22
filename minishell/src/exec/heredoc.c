@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 14:36:32 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/22 16:37:11 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/22 16:40:37 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,21 @@ int	check_eof(char *line, char *delimiter)
 		return (0);
 }
 
+bool	try_file(char *base_filename, char *id_str, int *fd, char **file)
+{
+	static char	filename[200];
+
+	ft_strlcpy(filename, base_filename, sizeof(filename));
+	ft_strlcat(filename, id_str, sizeof(filename));
+	ft_open(filename, fd, FLAG_TMP);
+	if (*fd >= 0)
+	{
+		*file = strdup(filename);
+		return (true);
+	}
+	return (false);
+}
+
 // creates a temp file with new name
 int	create_tmp_file(char **file)
 {
@@ -46,14 +61,6 @@ int	create_tmp_file(char **file)
 		{
 			if (try_file(filename, id_str, &fd, file))
 				return (fd);
-			// ft_strlcat(filename + 11, id_str, sizeof(filename) - 14);
-			// free(id_str);
-			// ft_open(filename, &fd, FLAG_TMP);
-			// if (fd >= 0)
-			// {
-			// 	*file = strdup(filename);
-			// 	return (fd);
-			// }
 		}
 		else
 			break ;

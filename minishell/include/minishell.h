@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:11:52 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/22 16:18:58 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/22 16:47:21 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,8 +142,8 @@ int		ft_pwd(void);
 // exec de chameau
 char	*get_path(t_cmd *cmd, t_envp *envp);
 void	exec_handler(t_sh *sh);
-int	    ft_open(char *file, int *fd, int flag);
-void 	save_stdfd(int saved_stdfd[2]);
+int		ft_open(char *file, int *fd, int flag);
+void	save_stdfd(int saved_stdfd[2]);
 void	save_commands(t_sh *sh);
 int		set_infile(t_arg *cmd, int stdfd_in, int pipefd_in);
 int		set_outfile(t_arg *cmd, int stdfd_out, int pipefd_out);
@@ -153,7 +153,7 @@ int		count_commands(t_cmd *cmd);
 int		current_command(t_cmd *cmd);
 int		last_cmd(t_arg *arg);
 bool	is_builtin(char *cmd);
-int 	create_tmp_file(char **file);
+int		create_tmp_file(char **file);
 char	*heredoc_handler(char *delimiter);
 char	*empty_heredoc_handler(char *delimiter, int fd);
 int		check_eof(char *line, char *delimiter);
@@ -161,22 +161,22 @@ void	free_node(t_cmd *node);
 void	redirect_io(t_cmd *cmd);
 void	close_all_fds(t_cmd *cmd);
 char	**add_delimiter(t_arg *cmd);
-bool		missing_heredoc_cmd(t_arg *arg);
+bool	missing_heredoc_cmd(t_arg *arg);
 void	create_heredoc_cmd(t_arg *elem);
 void	set_exit_status(int sig, t_envp **envp);
-int 	is_not_found_cmd(char *str_command, t_envp *envp);
+int		is_not_found_cmd(char *str_command, t_envp *envp);
 void	go_to_start_of_block(t_arg **cmd);
 void	check_inf_pipe(t_arg *to_check, t_arg **true_infile);
-int		check_inf_delim(t_arg *to_check, char **heredoc_file);
+bool	check_inf_delim(t_arg *to_check, char **heredoc_file);
 void	check_inf_infile(t_arg *to_check, t_arg **true_infile);
 int		set_inf_fd(char *hd_file, t_arg *true_infile, int pfd_in, int stdfd_in);
 int		count_redir_out(t_arg *cmd);
 void	create_outfiles(t_arg *cmd);
-int		check_outf_outfile(t_arg *cmd, t_arg **true_outfile);
+bool	check_outf_outfile(t_arg *cmd, t_arg **true_outfile);
 void	check_outf_pipe(t_arg *cmd, t_arg **true_outfile);
 int		set_outf_fd(t_arg	*true_outfile, int pfd_out, int stdfd_out);
 void	append_env_node(t_envp **env_cpy, char *env_var);
-int 	exec_builtin(t_cmd *cmd, t_envp *envp);
+int		exec_builtin(t_cmd *cmd, t_envp *envp);
 void	close_saved_fds(int saved_stdfd[2]);
 bool	infiles_ok(t_arg *cmd);
 void	sigint_muted(int signal);
@@ -188,6 +188,5 @@ void	free_envp(t_envp *envp);
 void	close_if_valid(int fd);
 void	redirect_io_nofork(t_sh *sh, t_cmd *cmd);
 void	restore_io_nofork(t_sh *sh, t_cmd *cmd);
-
 
 #endif
