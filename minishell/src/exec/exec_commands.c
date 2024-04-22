@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 14:18:05 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/22 16:22:56 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/22 16:27:35 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,17 +123,18 @@ int	ft_exec(t_sh *sh)
 
 void	exec_commands(t_sh *sh)
 {
-	t_cmd 		*tmp;
+	t_cmd		*tmp;
 	int			status;
 	int			last_pid;
+
 	tmp = sh->cmd;
 	while (sh->cmd)
 	{
-		if (sh->cmd->skip_cmd == false) // TODO handle builtin exec here without forking
+		if (sh->cmd->skip_cmd == false)
 			last_pid = ft_exec(sh);
-		if (sh->cmd->input_fd != sh->saved_stdfd[0] && sh->cmd->input_fd != STDIN_FILENO)
+		if (sh->cmd->input_fd != sh->saved_stdfd[0]/*&& sh->cmd->input_fd != STDIN_FILENO*/)
 			close_if_valid(sh->cmd->input_fd);
-		if (sh->cmd->output_fd != sh->saved_stdfd[1] && sh->cmd->output_fd != STDOUT_FILENO)
+		if (sh->cmd->output_fd != sh->saved_stdfd[1]/*&& sh->cmd->output_fd != STDOUT_FILENO*/)
 			close_if_valid(sh->cmd->output_fd);
 		sh->cmd = sh->cmd->next;
 	}
@@ -141,4 +142,3 @@ void	exec_commands(t_sh *sh)
 	waitpid(last_pid, &status, 0);
 	sh->exit_code = exit_code_handler(errno, status);
 }
-

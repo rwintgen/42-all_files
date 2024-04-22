@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_path.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deymons <deymons@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 17:23:03 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/18 16:29:39 by deymons          ###   ########.fr       */
+/*   Updated: 2024/04/22 16:29:22 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,30 +38,27 @@ static char	*fetch_path_from_envp(t_envp *envp)
 
 char	*get_path(t_cmd *cmd, t_envp *envp)
 {
-		char	**sep_env_paths;
-		char	*tmp_path;
-		char	*cmd_path;
-		int		i;
+	char	**sep_env_paths;
+	char	*tmp_path;
+	char	*cmd_path;
+	int		i;
 
-		sep_env_paths = ft_split(fetch_path_from_envp(envp), ':');
-		if (!sep_env_paths || !sep_env_paths[0])
+	sep_env_paths = ft_split(fetch_path_from_envp(envp), ':');
+	if (!sep_env_paths || !sep_env_paths[0])
+		return (NULL);
+	i = 0;
+	while (sep_env_paths[i])
+	{
+		tmp_path = ft_strjoin(sep_env_paths[i], "/");
+		cmd_path = ft_strjoin(tmp_path, cmd->cmd_and_args[0]);
+		free(tmp_path);
+		if (access(cmd_path, F_OK | X_OK) == 0)
 		{
-			printf("\t\tminishell: PATH not found in envp\n");
-			return (NULL);
+			printf("\t\tcommand found at: %s\n", cmd_path);
+			ft_free_char_tab(sep_env_paths);
+			return (cmd_path);
 		}
-		i = 0;
-		while (sep_env_paths[i])
-		{
-			tmp_path = ft_strjoin(sep_env_paths[i], "/");
-			cmd_path = ft_strjoin(tmp_path, cmd->cmd_and_args[0]);
-			free(tmp_path);
-			if (access(cmd_path, F_OK | X_OK) == 0)
-			{
-				printf("\t\tcommand found at: %s\n", cmd_path);
-				ft_free_char_tab(sep_env_paths);
-				return (cmd_path);
-			}
-			i++;
-		}
+		i++;
+	}
 	return (cmd->cmd_and_args[0]);
 }

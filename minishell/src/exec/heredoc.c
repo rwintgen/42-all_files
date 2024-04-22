@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 14:36:32 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/22 15:01:27 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/22 16:37:11 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	check_eof(char *line, char *delimiter)
 }
 
 // creates a temp file with new name
-int create_tmp_file(char **file)
+int	create_tmp_file(char **file)
 {
 	static char	filename[200];
 	char		*id_str;
@@ -44,17 +44,19 @@ int create_tmp_file(char **file)
 		id_str = ft_itoa(i++);
 		if (ft_strlen(filename) + ft_strlen(id_str) + 1 < sizeof(filename))
 		{
-			ft_strlcat(filename + 11, id_str, sizeof(filename) - 14);
-			free(id_str);
-			ft_open(filename, &fd, FLAG_TMP);
-			if (fd >= 0)
-			{
-				*file = strdup(filename);
+			if (try_file(filename, id_str, &fd, file))
 				return (fd);
-			}
+			// ft_strlcat(filename + 11, id_str, sizeof(filename) - 14);
+			// free(id_str);
+			// ft_open(filename, &fd, FLAG_TMP);
+			// if (fd >= 0)
+			// {
+			// 	*file = strdup(filename);
+			// 	return (fd);
+			// }
 		}
 		else
-			break;
+			break ;
 	}
 	free(id_str);
 	return (-1);

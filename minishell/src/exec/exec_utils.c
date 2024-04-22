@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 16:11:44 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/20 11:30:25 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/22 16:26:15 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	current_command(t_cmd *cmd)
 {
 	t_cmd	*current;
-	int	i;
+	int		i;
 
 	current = cmd;
 	i = 0;
@@ -62,9 +62,13 @@ int	last_cmd(t_arg *arg)
 
 bool	is_builtin(char *cmd)
 {
-	if (!ft_strncmp(cmd, "echo", 5) || !ft_strncmp(cmd, "cd", 3) || !ft_strncmp(cmd, "pwd", 4) ||
-		!ft_strncmp(cmd, "export", 7) || !ft_strncmp(cmd, "unset", 6) ||
-		!ft_strncmp(cmd, "env", 4) || !ft_strncmp(cmd, "exit", 5))
+	if (!ft_strncmp(cmd, "echo", 5)
+		|| !ft_strncmp(cmd, "cd", 3)
+		|| !ft_strncmp(cmd, "pwd", 4)
+		|| !ft_strncmp(cmd, "export", 7)
+		|| !ft_strncmp(cmd, "unset", 6)
+		|| !ft_strncmp(cmd, "env", 4)
+		|| !ft_strncmp(cmd, "exit", 5))
 		return (true);
 	return (false);
 }
