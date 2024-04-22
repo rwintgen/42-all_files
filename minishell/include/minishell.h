@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:11:52 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/20 15:28:39 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/22 13:50:00 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ void    free_s_cmd_line(t_arg *data);
 int		lexer(char **str, int i, t_arg *data);
 int		is_special_char(char c);
 char	*true_line(char *str, t_sh *sh);
-t_envp	*copy_envp(char **env);
+t_envp	*save_envp(char **env);
 char	**t_envp_to_envp(t_envp *env);
 void	parse_input(char *input, t_sh *sh);
 
@@ -142,7 +142,7 @@ char	*get_path(t_cmd *cmd, t_envp *envp);
 void	exec_handler(t_sh *sh);
 int	    ft_open(char *file, int *fd, int flag);
 void 	save_stdfd(int saved_stdfd[2]);
-void	t_arg_to_t_cmd(t_sh *sh);
+void	save_commands(t_sh *sh);
 int		set_infile(t_arg *cmd, int stdfd_in, int pipefd_in);
 int		set_outfile(t_arg *cmd, int stdfd_out, int pipefd_out);
 void	exec_commands(t_sh *sh);

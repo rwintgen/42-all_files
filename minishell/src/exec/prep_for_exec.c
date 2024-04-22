@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 12:31:29 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/20 13:46:33 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/22 14:00:44 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,37 +97,27 @@ void	reset_pipefd(int pipefd[2])
 	pipefd[1] = -1;
 }
 
-void free_t_arg(t_arg *input)
-{
-	t_arg *tmp;
-
-	while (input)
-	{
-		tmp = input;
-		input = input->next;
-		free(tmp->str_command);
-		free(tmp);
-	}
-}
-
 // converts t_arg to t_cmd linked list
-void	t_arg_to_t_cmd(t_sh *sh)
+// TODO fix increment loop that loses ptr
+void	save_commands(t_sh *sh)
 {
 	char		**cmd_and_args;
 	int			fd[2];
 	int			prev_fd_in;
 	bool		skip;
+	t_arg		*tmp;
 
-	while (sh->arg)
+	tmp = sh->arg;
+	while (tmp)
 	{
 		skip = false;
-		if (sh->arg->type == DELIM && missing_heredoc_cmd(sh->arg))
-			create_heredoc_cmd(sh->arg);
-		if (sh->arg->type == CMD)
+		if (tmp->type == DELIM && missing_heredoc_cmd(tmp))
+			create_heredoc_cmd(tmp);
+		if (tmp->type == CMD)
 		{
 			prev_fd_in = sh->pipefd[0];
 			reset_pipefd(sh->pipefd);
-			if (!(last_cmd(sh->arg)))
+			if (!(last_cmd(tmp)))
 			{
 				if (pipe(sh->pipefd) == -1)
 				{
@@ -136,12 +126,12 @@ void	t_arg_to_t_cmd(t_sh *sh)
 					return ;
 				}
 			}
-			cmd_and_args = fetch_cmd_args(sh->arg);
-			fd[0] = set_infile(sh->arg, sh->saved_stdfd[0], prev_fd_in);
-			fd[1] = set_outfile(sh->arg, sh->saved_stdfd[1], sh->pipefd[1]);
+			cmd_and_args = fetch_cmd_args(tmp);
+			fd[0] = set_infile(tmp, sh->saved_stdfd[0], prev_fd_in);
+			fd[1] = set_outfile(tmp, sh->saved_stdfd[1], sh->pipefd[1]);
 			add_to_list(sh, cmd_and_args, fd, skip);
 			ft_memset(fd, -1, sizeof(int) * 2);
 		}
-		sh->arg = sh->arg->next;
+		tmp = tmp->next;
 	}
 }

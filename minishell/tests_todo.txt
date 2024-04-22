@@ -40,14 +40,9 @@ Quotes not working
 
 ----ERR MGMT-----
 
-- Invalid command		=> OK
-- rights in/outfile		=> OK
-- Ctrl+D heredoc		=> OK
-- Protect mallocs		=> OK
-- Protect pipes			=> OK
-- Protect forks			=> OK
+- Fix exit codes when inexistant/restricted in/out file
 
 
 ----VALGRIND-----
 
-FDs 3 & 4 not closed when ctrlD right after ./minishell
+Open FDs if cmd w invalid in/out file

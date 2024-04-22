@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 13:44:40 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/20 13:47:24 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/22 13:36:56 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	set_value(t_envp **env_cpy, char *env_var)
 	}
 }
 
-t_envp	*copy_envp(char **env)
+t_envp	*save_envp(char **env)
 {
 	t_envp	*env_cpy;
 	int		i;

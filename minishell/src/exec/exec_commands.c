@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 14:18:05 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/20 14:32:38 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/22 14:04:24 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ void	exec_commands(t_sh *sh)
 	int			status;
 	int			last_pid;
 
+	// TODO fix this part without fucking shit up
 	while (sh->cmd)
 	{
 		tmp = sh->cmd;
@@ -110,7 +111,6 @@ void	exec_commands(t_sh *sh)
 		if (sh->cmd->output_fd != sh->saved_stdfd[1] && sh->cmd->output_fd != STDOUT_FILENO)
 			close(sh->cmd->output_fd);
 		sh->cmd = tmp->next;
-
 	}
 	waitpid(last_pid, &status, 0);
 	sh->exit_code = exit_code_handler(errno, status);
