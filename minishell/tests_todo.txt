@@ -45,4 +45,4 @@ Quotes not working
 
 ----VALGRIND-----
 
-Open FDs if cmd w invalid in/out file
+Leaks if invalid command
