@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:11:52 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/22 16:47:21 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/22 18:18:52 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ void	print_t_cmd_struct(t_cmd *cmd);
 // parsing
 char	*get_var(char *key, t_envp *envp);
 int		empty_line(char *input);
-t_arg	*copy_args(char *input);
+t_arg	*copy_args(char *input, t_sh *sh);
 int		open_quote(char *input);
 char	*replace_dollar(char *input, t_envp *envp, int exit_code);
 void	free_tab(char **tab);
@@ -159,7 +159,7 @@ char	*empty_heredoc_handler(char *delimiter, int fd);
 int		check_eof(char *line, char *delimiter);
 void	free_node(t_cmd *node);
 void	redirect_io(t_cmd *cmd);
-void	close_all_fds(t_cmd *cmd);
+void	close_cmd_fds(t_cmd *cmd);
 char	**add_delimiter(t_arg *cmd);
 bool	missing_heredoc_cmd(t_arg *arg);
 void	create_heredoc_cmd(t_arg *elem);
@@ -188,5 +188,6 @@ void	free_envp(t_envp *envp);
 void	close_if_valid(int fd);
 void	redirect_io_nofork(t_sh *sh, t_cmd *cmd);
 void	restore_io_nofork(t_sh *sh, t_cmd *cmd);
+void	close_all_fds(void);
 
 #endif

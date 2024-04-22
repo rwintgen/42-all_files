@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:59:56 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/22 15:18:07 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/22 18:09:08 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,8 @@
 int g_sig;
 
 ///////// TODO //////////
-// fix quotes					=> Arthur
-// fix varaible expansion		=> Arthur
 // Makefile no libft			=> Arthur
 // make builtins
-// modif exec for builtins
 // fix ctrl+C heredoc
 // valgrind (open FDs, leaks)
 // fix error msg char by char
@@ -28,7 +25,7 @@ int g_sig;
 /////////////////////////
 
 /*
-valgrind --trace-children=yes --track-fds=yes --leak-check=full  --track-origins=yes --show-leak-kinds=all --suppressions=.vsupp ./minishell
+valgrind --trace-children=yes --track-fds=yes --leak-check=full --track-origins=yes --show-leak-kinds=all --suppressions=.vsupp ./minishell
 */
 
 void init_sh(t_sh *sh, char **envp)

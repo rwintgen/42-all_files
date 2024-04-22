@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 13:45:29 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/22 16:28:28 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/22 18:11:32 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,15 @@ int	free_sh(t_sh *sh)
 	free(sh);
 	exit_code = set_exit_code(errno);
 	return (exit_code);
+}
+
+void	close_all_fds(void)
+{
+	int	i;
+
+	i = 3;
+	while (i < 1024)
+		close(i++);
 }
 
 void	free_arg(t_arg *arg)
@@ -77,7 +86,7 @@ void	close_if_valid(int fd)
 		close(fd);
 }
 
-void	close_all_fds(t_cmd *cmd)
+void	close_cmd_fds(t_cmd *cmd)
 {
 	t_cmd	*current;
 

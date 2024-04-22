@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 14:18:05 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/22 16:27:35 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/22 18:18:32 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	exec_current_cmd(char *path_to_cmd, t_sh *sh, char **envp_c)
 		ft_putstr_fd("minishell: command not found: ", 2);
 		ft_putendl_fd(sh->cmd->cmd_and_args[0], STDERR_FILENO);
 		ft_free_char_tab(envp_c);
+		close_all_fds();
 		exit(free_sh(sh));
 	}
 }
@@ -67,10 +68,16 @@ int	ft_fork(t_sh *sh)
 
 void	check_valid_fds(t_sh *sh)
 {
-	if (sh->cmd->input_fd < 0) // TODO close FDs
+	if (sh->cmd->input_fd < 0)
+	{
+		close_all_fds();
 		exit(free_sh(sh));
-	else if (sh->cmd->output_fd < 0) // TODO close FDs
+	}
+	else if (sh->cmd->output_fd < 0)
+	{
+		close_all_fds();
 		exit(free_sh(sh));
+	}
 }
 
 bool	solo_builtin_exec(t_sh *sh, t_cmd *cmd, int *exit_code)
@@ -85,12 +92,13 @@ bool	solo_builtin_exec(t_sh *sh, t_cmd *cmd, int *exit_code)
 	return (false);
 }
 
-void	exec_heredoc(t_cmd *cmd)
+void	exec_heredoc(t_cmd *cmd, t_sh *sh)
 {
 	if (!ft_strncmp(cmd->cmd_and_args[0], "chibron", 7))
 	{
 		redirect_io(cmd);
-		// TODO free & close fds?
+		free_sh(sh);
+		close_all_fds();
 		exit(0);
 	}
 }
@@ -108,11 +116,12 @@ int	ft_exec(t_sh *sh)
 	if (pid != 0)
 		return (pid);
 	check_valid_fds(sh);
-	exec_heredoc(sh->cmd);
+	exec_heredoc(sh->cmd, sh);
 	redirect_io(sh->cmd);
 	if (sh->cmd->is_builtin)
 	{
 		exit_code = exec_builtin(sh->cmd, sh->envp);
+		close_all_fds();
 		exit(free_sh(sh));
 	}
 	path_to_cmd = get_path(sh->cmd, sh->envp);
