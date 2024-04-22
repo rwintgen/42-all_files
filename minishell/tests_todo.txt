@@ -40,9 +40,11 @@ Quotes not working
 
 ----ERR MGMT-----
 
-- Fix exit codes when inexistant/restricted in/out file
+- Fix exit code when command not found
 
 
 ----VALGRIND-----
 
-Leaks if invalid command
+- Leaks if invalid command
+- leaks heredoc
+- leaks builtins

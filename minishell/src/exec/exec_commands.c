@@ -6,31 +6,31 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 14:18:05 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/22 18:18:32 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/22 18:51:24 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int exit_code_handler(int error_code, int status)
+int	exit_code_handler(int error_code, int status)
 {
-    if (WIFEXITED(status))
-        return (WEXITSTATUS(status));
-    else if (WIFSIGNALED(status))
-        return (128 + WTERMSIG(status));
-    else if (WIFSTOPPED(status))
-        return (128 + WSTOPSIG(status));
-    else if (WIFCONTINUED(status))
-        return (0);
-    else if (error_code == ENOENT)
-        return (127);
-    else if (error_code == EACCES)
-        return (126);
-    else
-        return (1);
+	if (WIFEXITED(status))
+		return (WEXITSTATUS(status));
+	else if (WIFSIGNALED(status))
+		return (128 + WTERMSIG(status));
+	else if (WIFSTOPPED(status))
+		return (128 + WSTOPSIG(status));
+	else if (WIFCONTINUED(status))
+		return (0);
+	else if (error_code == ENOENT)
+		return (127);
+	else if (error_code == EACCES)
+		return (126);
+	else
+		return (1);
 }
 
-int set_exit_code(int error_code)
+int	set_exit_code(int error_code)
 {
 	if (error_code == ENOENT)
 		return (127);
@@ -48,13 +48,14 @@ void	exec_current_cmd(char *path_to_cmd, t_sh *sh, char **envp_c)
 		ft_putendl_fd(sh->cmd->cmd_and_args[0], STDERR_FILENO);
 		ft_free_char_tab(envp_c);
 		close_all_fds();
+		// free(path_to_cmd); // useless askip
 		exit(free_sh(sh));
 	}
 }
 
 int	ft_fork(t_sh *sh)
 {
-	int pid;
+	int	pid;
 
 	pid = fork();
 	if (pid == -1)

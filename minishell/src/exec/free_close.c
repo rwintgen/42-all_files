@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 13:45:29 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/22 18:11:32 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/22 19:06:39 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,10 @@ void	close_all_fds(void)
 
 	i = 3;
 	while (i < 1024)
-		close(i++);
+	{
+		close(i);
+		i++;
+	}
 }
 
 void	free_arg(t_arg *arg)
@@ -84,21 +87,6 @@ void	close_if_valid(int fd)
 {
 	if (fd > 0)
 		close(fd);
-}
-
-void	close_cmd_fds(t_cmd *cmd)
-{
-	t_cmd	*current;
-
-	current = cmd;
-	while (current && current->prev)
-		current = current->prev;
-	while (current)
-	{
-		close_if_valid(current->input_fd);
-		close_if_valid(current->output_fd);
-		current = current->next;
-	}
 }
 
 void	close_saved_fds(int saved_stdfd[2])

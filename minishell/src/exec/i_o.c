@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 13:47:42 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/22 18:10:22 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/22 19:06:52 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	redirect_io(t_cmd *cmd)
 {
 	dup2(cmd->input_fd, STDIN_FILENO);
 	dup2(cmd->output_fd, STDOUT_FILENO);
-	close_cmd_fds(cmd);
+	close_all_fds();
 }
 
 void	redirect_io_nofork(t_sh *sh, t_cmd *cmd)
