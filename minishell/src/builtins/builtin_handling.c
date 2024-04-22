@@ -6,15 +6,15 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 06:15:08 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/20 14:39:14 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/22 16:07:48 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int exec_builtin(t_cmd *cmd, t_envp *envp)
+int	exec_builtin(t_cmd *cmd, t_envp *envp)
 {
-	int exit_code;
+	int	exit_code;
 
 	exit_code = 0;
 	if (!ft_strncmp(cmd->cmd_and_args[0], "echo", 4))
@@ -31,5 +31,7 @@ int exec_builtin(t_cmd *cmd, t_envp *envp)
 	// 	exit_code = ft_env(envp);
 	// else if (!ft_strncmp(cmd->cmd_and_args[0], "exit", 4))
 	// 	exit_code = ft_exit(cmd);
+	if (count_commands(cmd) == 1)
+		return (exit_code);
 	exit(exit_code);
 }

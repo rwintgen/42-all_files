@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 15:38:25 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/20 14:02:35 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/22 15:38:31 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,9 @@ char *var_getkey(char *str, int i)
 	int j;
 
 	j = i;
-	while (str[j] && str[j] != ' ' && str[j] != '$')
+	while (str[j] && ft_isalpha(str[j]))
+		j++;
+	if (str[j] == '?')
 		j++;
 	key = ft_substr(str, i - 1, j - i + 1);
 	return (key);
@@ -103,6 +105,10 @@ char *replace_dollar(char *input, t_envp *envp, int exit_code)
 			else if (input[i + 1] && input[i + 1] == '?')
 			{
 				input = ft_str_replace(input, key, ft_itoa(exit_code));
+			}
+			else
+			{
+				input = ft_str_replace(input, key, "");
 			}
 		}
 		i++;

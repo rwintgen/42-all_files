@@ -6,25 +6,17 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 13:44:40 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/22 13:36:56 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/22 16:12:51 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int ft_strcmp(const char *s1, const char *s2) {
-    while (*s1 && (*s1 == *s2)) {
-        s1++;
-        s2++;
-    }
-    return *(const unsigned char *)s1 - *(const unsigned char *)s2;
-}
-
 void	append_env_node(t_envp **env_cpy, char *env_var)
 {
-	t_envp *new_node;
-	t_envp *tmp;
-	
+	t_envp	*new_node;
+	t_envp	*tmp;
+
 	new_node = ft_calloc(1, sizeof(t_envp));
 	if (!new_node)
 	{
@@ -33,8 +25,8 @@ void	append_env_node(t_envp **env_cpy, char *env_var)
 		exit(1);
 	}
 	new_node->envar = ft_strdup(env_var);
-	new_node->key = NULL; // Initialize key to NULL
-	new_node->value = NULL; // Initialize value to NULL
+	new_node->key = NULL;
+	new_node->value = NULL;
 	new_node->next = NULL;
 	new_node->prev = NULL;
 	if (*env_cpy == NULL)
@@ -51,9 +43,9 @@ void	append_env_node(t_envp **env_cpy, char *env_var)
 
 void	set_key(t_envp **env_cpy, char *env_var)
 {
-	t_envp *tmp;
-	char *key;
-	int i;
+	t_envp	*tmp;
+	char	*key;
+	int		i;
 
 	tmp = *env_cpy;
 	i = 0;
@@ -62,9 +54,9 @@ void	set_key(t_envp **env_cpy, char *env_var)
 	key = ft_substr(env_var, 0, i);
 	while (tmp)
 	{
-		if (ft_strcmp(tmp->envar, env_var) == 0) // Corrected comparison
+		if (ft_strncmp(tmp->envar, env_var, INT_MAX) == 0)
 		{
-			free(tmp->key); // Free previous key if exists
+			free(tmp->key);
 			tmp->key = key;
 			break ;
 		}
@@ -74,20 +66,20 @@ void	set_key(t_envp **env_cpy, char *env_var)
 
 void	set_value(t_envp **env_cpy, char *env_var)
 {
-	t_envp *tmp;
-	char *value;
-	int i;
+	t_envp	*tmp;
+	char	*value;
+	int		i;
 
 	tmp = *env_cpy;
 	i = 0;
 	while (env_var[i] != '=')
 		i++;
-	value = ft_substr(env_var, i + 1, ft_strlen(env_var) - i - 1); // Corrected substring indices
+	value = ft_substr(env_var, i + 1, ft_strlen(env_var) - i - 1);
 	while (tmp)
 	{
-		if (ft_strcmp(tmp->envar, env_var) == 0) // Corrected comparison
+		if (ft_strncmp(tmp->envar, env_var, INT_MAX) == 0)
 		{
-			free(tmp->value); // Free previous value if exists
+			free(tmp->value);
 			tmp->value = value;
 			break ;
 		}
@@ -100,7 +92,7 @@ t_envp	*save_envp(char **env)
 	t_envp	*env_cpy;
 	int		i;
 
-	env_cpy = NULL; // Initialize env_cpy to NULL
+	env_cpy = NULL;
 	i = 0;
 	while (env[i])
 	{
@@ -112,8 +104,7 @@ t_envp	*save_envp(char **env)
 	return (env_cpy);
 }
 
-
-char	**t_envp_to_envp(t_envp *envp)
+char	**restore_envp(t_envp *envp)
 {
 	t_envp	*head;
 	char	**result;

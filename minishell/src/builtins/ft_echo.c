@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deymons <deymons@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 02:42:25 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/19 14:56:46 by deymons          ###   ########.fr       */
+/*   Updated: 2024/04/22 16:09:41 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-bool    need_new_line(char *str)
+bool	need_new_line(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!str)
@@ -30,12 +30,11 @@ bool    need_new_line(char *str)
 	return (false);
 }
 
-int ft_echo(t_cmd *cmd, t_envp *envp)
+int	ft_echo(t_cmd *cmd, t_envp *envp)
 {
+	int	to_print;
+
 	(void)envp;
-
-	int to_print;
-
 	to_print = 1;
 	if (!need_new_line(cmd->cmd_and_args[1]))
 		to_print++;
@@ -48,5 +47,5 @@ int ft_echo(t_cmd *cmd, t_envp *envp)
 	}
 	if (need_new_line(cmd->cmd_and_args[1]))
 		ft_putstr_fd("\n", STDOUT_FILENO);
-	exit(0);
+	return (0);
 }

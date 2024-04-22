@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 13:52:27 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/20 13:47:29 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/22 16:10:14 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	**add_delimiter(t_arg *cmd)
 }
 
 // checks if heredoc is missing a command
-int	missing_heredoc_cmd(t_arg *arg)
+bool	missing_heredoc_cmd(t_arg *arg)
 {
 	while (arg->prev && arg->prev->type != PIPE)
 		arg = arg->prev;
@@ -54,4 +54,3 @@ void	create_heredoc_cmd(t_arg *elem)
 	new_node->next = elem->next;
 	elem->next = new_node;
 }
-

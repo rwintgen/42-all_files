@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 12:31:29 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/22 14:00:44 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/22 15:15:57 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,7 @@ void	save_commands(t_sh *sh)
 			cmd_and_args = fetch_cmd_args(tmp);
 			fd[0] = set_infile(tmp, sh->saved_stdfd[0], prev_fd_in);
 			fd[1] = set_outfile(tmp, sh->saved_stdfd[1], sh->pipefd[1]);
+			// TODO close pipes here?
 			add_to_list(sh, cmd_and_args, fd, skip);
 			ft_memset(fd, -1, sizeof(int) * 2);
 		}

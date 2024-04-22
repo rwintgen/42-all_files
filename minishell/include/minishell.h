@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:11:52 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/22 15:01:57 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/22 16:18:58 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 # include "../libft/src/libft.h"
 # include <signal.h>
 # include <errno.h>
+
+extern int	g_sig;
 
 // TOKENS
 typedef enum	e_tokens
@@ -69,7 +71,7 @@ typedef struct	s_arg
 {
     char			*str_command;
     int				type;
-    
+
     struct s_arg	*prev;
     struct s_arg	*next;
 }				t_arg;
@@ -84,7 +86,7 @@ typedef struct	s_cmd
 
 	bool			skip_cmd;
 	bool			is_builtin;
-	
+
 	struct s_cmd	*next;
 	struct s_cmd	*prev;
 }					t_cmd;
@@ -96,14 +98,14 @@ typedef struct	s_envp
 	char	*key;
 	char	*value;
 
-	struct s_envp *prev;
-	struct s_envp *next;
+	struct s_envp	*prev;
+	struct s_envp	*next;
 }				t_envp;
 
 // SH STRUCT
 typedef struct	s_sh
 {
-	struct s_arg	*arg;
+	struct s_arg		*arg;
 	struct s_cmd		*cmd;
 	struct s_envp		*envp;
 
@@ -122,12 +124,12 @@ t_arg	*copy_args(char *input);
 int		open_quote(char *input);
 char	*replace_dollar(char *input, t_envp *envp, int exit_code);
 void	free_tab(char **tab);
-void    free_s_cmd_line(t_arg *data);
+void	free_s_cmd_line(t_arg *data);
 int		lexer(char **str, int i, t_arg *data);
 int		is_special_char(char c);
 char	*true_line(char *str, t_sh *sh);
 t_envp	*save_envp(char **env);
-char	**t_envp_to_envp(t_envp *env);
+char	**restore_envp(t_envp *env);
 void	parse_input(char *input, t_sh *sh);
 
 void	sig_quit_state(int sig);
@@ -159,7 +161,7 @@ void	free_node(t_cmd *node);
 void	redirect_io(t_cmd *cmd);
 void	close_all_fds(t_cmd *cmd);
 char	**add_delimiter(t_arg *cmd);
-int		missing_heredoc_cmd(t_arg *arg);
+bool		missing_heredoc_cmd(t_arg *arg);
 void	create_heredoc_cmd(t_arg *elem);
 void	set_exit_status(int sig, t_envp **envp);
 int 	is_not_found_cmd(char *str_command, t_envp *envp);
@@ -184,7 +186,8 @@ void	free_arg(t_arg *arg);
 void	free_cmd(t_cmd *cmd);
 void	free_envp(t_envp *envp);
 void	close_if_valid(int fd);
+void	redirect_io_nofork(t_sh *sh, t_cmd *cmd);
+void	restore_io_nofork(t_sh *sh, t_cmd *cmd);
 
-extern int g_sig;
 
 #endif
