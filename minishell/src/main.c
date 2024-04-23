@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:59:56 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/22 18:09:08 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/23 12:25:22 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int g_sig;
 
 ///////// TODO //////////
 // Makefile no libft			=> Arthur
+// rm useless functions
 // make builtins
 // fix ctrl+C heredoc
 // valgrind (open FDs, leaks)
@@ -28,7 +29,7 @@ int g_sig;
 valgrind --trace-children=yes --track-fds=yes --leak-check=full --track-origins=yes --show-leak-kinds=all --suppressions=.vsupp ./minishell
 */
 
-void init_sh(t_sh *sh, char **envp)
+void	init_sh(t_sh *sh, char **envp)
 {
 	sh->arg = NULL;
 	sh->cmd = NULL;
@@ -41,7 +42,7 @@ void init_sh(t_sh *sh, char **envp)
 	sh->envp = save_envp(envp);
 }
 
-void reset_sh(t_sh *sh)
+void	reset_sh(t_sh *sh)
 {
 	free_arg(sh->arg);
 	free_cmd(sh->cmd);

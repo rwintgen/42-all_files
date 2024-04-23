@@ -6,12 +6,13 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 13:44:40 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/22 18:13:41 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/23 12:21:04 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "../../../include/minishell.h"
 
+// appends a new node to the envp linked list
 void	append_env_node(t_envp **env_cpy, char *env_var)
 {
 	t_envp	*new_node;
@@ -21,7 +22,7 @@ void	append_env_node(t_envp **env_cpy, char *env_var)
 	if (!new_node)
 	{
 		ft_putstr_fd("minishell: malloc error\n", STDERR_FILENO);
-		//free_sh(sh);
+		// free_sh(sh);
 		close_all_fds();
 		exit(1);
 	}
@@ -42,6 +43,7 @@ void	append_env_node(t_envp **env_cpy, char *env_var)
 	}
 }
 
+// sets the key of the envp linked list
 void	set_key(t_envp **env_cpy, char *env_var)
 {
 	t_envp	*tmp;
@@ -65,6 +67,7 @@ void	set_key(t_envp **env_cpy, char *env_var)
 	}
 }
 
+// sets the value of the envp node
 void	set_value(t_envp **env_cpy, char *env_var)
 {
 	t_envp	*tmp;
@@ -88,6 +91,7 @@ void	set_value(t_envp **env_cpy, char *env_var)
 	}
 }
 
+// converts a char **envp to a t_envp linked list
 t_envp	*save_envp(char **env)
 {
 	t_envp	*env_cpy;
@@ -105,6 +109,7 @@ t_envp	*save_envp(char **env)
 	return (env_cpy);
 }
 
+// restores envp to a char ** format
 char	**restore_envp(t_envp *envp)
 {
 	t_envp	*head;

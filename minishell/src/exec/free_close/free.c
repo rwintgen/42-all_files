@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_close.c                                       :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 13:45:29 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/22 19:06:39 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/23 12:21:20 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "../../../include/minishell.h"
 
 int	free_sh(t_sh *sh)
 {
@@ -22,18 +22,6 @@ int	free_sh(t_sh *sh)
 	free(sh);
 	exit_code = set_exit_code(errno);
 	return (exit_code);
-}
-
-void	close_all_fds(void)
-{
-	int	i;
-
-	i = 3;
-	while (i < 1024)
-	{
-		close(i);
-		i++;
-	}
 }
 
 void	free_arg(t_arg *arg)
@@ -81,16 +69,4 @@ void	free_envp(t_envp *envp)
 		free(tmp->value);
 		free(tmp);
 	}
-}
-
-void	close_if_valid(int fd)
-{
-	if (fd > 0)
-		close(fd);
-}
-
-void	close_saved_fds(int saved_stdfd[2])
-{
-	close(saved_stdfd[0]);
-	close(saved_stdfd[1]);
 }

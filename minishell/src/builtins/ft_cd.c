@@ -6,11 +6,26 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 02:42:25 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/22 16:09:00 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/23 12:55:52 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
+
+int	ft_cd(t_cmd *cmd, t_envp *envp)
+{
+	char	*old_pwd;
+	char	*new_pwd;
+
+	old_pwd = NULL;
+	new_pwd = NULL;
+	if (get_new_pwd(cmd, envp, &old_pwd) == -1)
+		return (1);
+	old_pwd = get_old_pwd(envp);
+	update_pwd(envp, new_pwd);
+	update_old_pwd(envp, old_pwd);
+	return (0);
+}
 
 int	get_new_pwd(t_cmd *cmd, t_envp *envp, char **new_pwd)
 {
@@ -58,19 +73,4 @@ void	update_old_pwd(t_envp *envp, char *old_pwd)
 	free(envp->value);
 	envp->envar = ft_strjoin("OLDPWD=", old_pwd);
 	envp->value = old_pwd;
-}
-
-int	ft_cd(t_cmd *cmd, t_envp *envp)
-{
-	char	*old_pwd;
-	char	*new_pwd;
-
-	old_pwd = NULL;
-	new_pwd = NULL;
-	if (get_new_pwd(cmd, envp, &old_pwd) == -1)
-		return (1);
-	old_pwd = get_old_pwd(envp);
-	update_pwd(envp, new_pwd);
-	update_old_pwd(envp, old_pwd);
-	return (0);
 }

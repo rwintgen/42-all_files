@@ -6,29 +6,11 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 02:42:25 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/22 16:09:41 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/23 12:56:24 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
-
-bool	need_new_line(char *str)
-{
-	int	i;
-
-	i = 0;
-	if (!str)
-		return (true);
-	if (str[0] == '-')
-		i++;
-	while (str[i])
-	{
-		if (str[i] != 'n')
-			return (true);
-		i++;
-	}
-	return (false);
-}
 
 int	ft_echo(t_cmd *cmd, t_envp *envp)
 {
@@ -49,3 +31,22 @@ int	ft_echo(t_cmd *cmd, t_envp *envp)
 		ft_putstr_fd("\n", STDOUT_FILENO);
 	return (0);
 }
+
+bool	need_new_line(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (!str)
+		return (true);
+	if (str[0] == '-')
+		i++;
+	while (str[i])
+	{
+		if (str[i] != 'n')
+			return (true);
+		i++;
+	}
+	return (false);
+}
+

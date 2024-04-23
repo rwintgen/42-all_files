@@ -6,7 +6,7 @@
 #    By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/10 16:32:07 by deymons           #+#    #+#              #
-#    Updated: 2024/04/20 14:42:23 by rwintgen         ###   ########.fr        #
+#    Updated: 2024/04/23 13:26:06 by rwintgen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,33 +24,38 @@ LIBFT_LIB   =   $(addprefix $(LIBFT_PATH), $(LIBFT_FILE))
 
 LIBFT_EX    =   $(LIBFT_LIB) $(FLAG)
 
-C_FILE      =   main.c								\
-				debug_print.c						\
-				builtins/builtin_handling.c			\
-				builtins/ft_cd.c					\
-				builtins/ft_pwd.c					\
-				builtins/ft_echo.c					\
-				builtins/isbuiltin.c				\
-				exec/exec_commands.c				\
-				exec/exec_handling.c				\
-				exec/prep_for_exec.c				\
-				exec/envp.c							\
-				exec/empty_heredoc.c				\
-				exec/heredoc.c						\
-				exec/i_o.c							\
-				exec/input.c						\
-				exec/output.c						\
-				exec/signal_handling.c				\
-				exec/exec_utils.c					\
-				exec/free_close.c					\
-				exec/get_path.c						\
-				exec/output_utils.c					\
-				parsing/true_line.c					\
-				parsing/parsing.c					\
-				parsing/empty_line.c				\
-				parsing/quote.c						\
-				parsing/dollar.c					\
-				parsing/lexer.c
+C_FILE      =   main.c									\
+				debug_print.c							\
+				builtins/builtin_handling.c				\
+				builtins/ft_cd.c						\
+				builtins/ft_echo.c						\
+				builtins/ft_pwd.c						\
+				exec/cmd_exec/exec_commands.c			\
+				exec/cmd_exec/exec_utils.c				\
+				exec/cmd_exec/exit_code.c				\
+				exec/cmd_exec/get_cmd_args.c			\
+				exec/cmd_exec/get_path.c				\
+				exec/cmd_exec/prep_for_exec.c			\
+				exec/envp/envp.c						\
+				exec/free_close/close.c					\
+				exec/free_close/free.c					\
+				exec/heredocs/empty_heredoc.c			\
+				exec/heredocs/heredoc.c					\
+				exec/redirections/input_utils.c			\
+				exec/redirections/input.c				\
+				exec/redirections/output_utils.c		\
+				exec/redirections/output.c				\
+				exec/redirections/redirect_utils.c		\
+				exec/redirections/redirect.c			\
+				exec/signals/signals.c					\
+				exec/exec_handling.c					\
+				parsing/lexer/lexer_utils.c				\
+				parsing/lexer/lexer.c					\
+				parsing/true_line/dollar.c				\
+				parsing/true_line/true_line_utils.c		\
+				parsing/true_line/true_line.c			\
+				parsing/valid_input/valid_input.c		\
+				parsing/parsing_handling.c
 
 SRC_DIR     =   ./src/
 

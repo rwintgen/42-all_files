@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/23 16:28:53 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/22 18:20:39 by rwintgen         ###   ########.fr       */
+/*   Created: 2024/04/23 12:27:41 by rwintgen          #+#    #+#             */
+/*   Updated: 2024/04/23 13:18:33 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "../../../include/minishell.h"
 
-void free_tab(char **tab)
+void	lexer_v2(t_arg *head)
 {
-	int i;
-
-	i = 0;
-	while (tab[i])
-	{
-		free(tab[i]);
-		i++;
-	}
-	free(tab);
+	set_spec(head);
+	set_file(head);
+	set_cmd(head);
+	set_arg(head);
 }
 
-void    set_spec(t_arg *elem)
+void	set_spec(t_arg *elem)
 {
 	while (elem)
 	{
@@ -43,7 +38,7 @@ void    set_spec(t_arg *elem)
 	}
 }
 
-void    set_file(t_arg *elem)
+void	set_file(t_arg *elem)
 {
 	while (elem)
 	{
@@ -59,7 +54,7 @@ void    set_file(t_arg *elem)
 	}
 }
 
-void    set_cmd(t_arg *elem)
+void	set_cmd(t_arg *elem)
 {
 	while (elem->next)
 		elem = elem->next;
@@ -71,7 +66,7 @@ void    set_cmd(t_arg *elem)
 	}
 }
 
-void    set_arg(t_arg *elem)
+void	set_arg(t_arg *elem)
 {
 	while (elem)
 	{
@@ -81,70 +76,4 @@ void    set_arg(t_arg *elem)
 			elem->type = ARG;
 		elem = elem->next;
 	}
-}
-
-void    lexer_v2(t_arg *head)
-{
-	set_spec(head);
-	set_file(head);
-	set_cmd(head);
-	set_arg(head);
-}
-
-void	append_arg_node(t_arg **arg_cpy, char *arg, t_sh *sh)
-{
-	t_arg *new_node;
-	t_arg *tmp;
-	
-	new_node = malloc(sizeof(t_arg));
-	if (!new_node)
-	{
-		ft_putstr_fd("minishell: malloc error\n", STDERR_FILENO);
-		free_sh(sh);
-		close_all_fds();
-		exit(1);
-	}
-	new_node->str_command = ft_strdup(arg);
-	new_node->type = -1;
-	new_node->next = NULL;
-	new_node->prev = NULL;
-	if (*arg_cpy == NULL)
-		*arg_cpy = new_node;
-	else
-	{
-		tmp = *arg_cpy;
-		while (tmp->next)
-			tmp = tmp->next;
-		tmp->next = new_node;
-		new_node->prev = tmp;
-	}
-}
-
-
-t_arg	*copy_args(char *input, t_sh *sh)
-{
-	t_arg	*arg_cpy;
-	char    **args;
-	int		i;
-
-	args = ft_split(input, ' ');
-	arg_cpy = NULL;
-	i = 0;
-	while (args[i])
-	{
-		append_arg_node(&arg_cpy, args[i], sh);
-		i++;
-	}
-	lexer_v2(arg_cpy);
-	ft_free_char_tab(args);
-	return (arg_cpy);
-}
-
-void	parse_input(char *input, t_sh *sh)
-{
-	printf("\n\nPARSING\n\n");
-	input = true_line(input, sh);
-	sh->arg = copy_args(input, sh);
-	free(input);
-	print_t_arg_struct(sh->arg);
 }

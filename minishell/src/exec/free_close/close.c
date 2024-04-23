@@ -1,24 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_handling.c                                    :+:      :+:    :+:   */
+/*   close.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/08 17:59:02 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/23 12:37:09 by rwintgen         ###   ########.fr       */
+/*   Created: 2024/04/23 12:18:33 by rwintgen          #+#    #+#             */
+/*   Updated: 2024/04/23 13:09:54 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "../../../include/minishell.h"
 
-// handles command execution and i.o redirection
-void	exec_handler(t_sh *sh)
+void	close_all_fds(void)
 {
-	signal(SIGQUIT, &sig_quit_state);
-	signal(SIGINT, &sig_int_state);
-	save_commands(sh);
-	print_t_cmd_struct(sh->cmd);
-	exec_commands(sh);
-	printf("\nlast cmd exit code: %d\n\n=================\n\n", sh->exit_code);
+	int	i;
+
+	i = 3;
+	while (i < 1024)
+	{
+		close(i);
+		i++;
+	}
+}
+
+void	close_if_valid(int fd)
+{
+	if (fd > 0)
+		close(fd);
+}
+
+void	close_saved_fds(int saved_stdfd[2])
+{
+	close(saved_stdfd[0]);
+	close(saved_stdfd[1]);
 }

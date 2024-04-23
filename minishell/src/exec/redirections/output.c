@@ -6,11 +6,11 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 16:08:10 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/22 16:44:39 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/23 12:21:56 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "../../../include/minishell.h"
 
 /*
 Output priority order:
@@ -22,45 +22,27 @@ Output priority order:
 	cmd 
 */
 
-bool	check_outf_outfile(t_arg *cmd, t_arg **true_outfile)
+// finds right outfile and opens it for current cmd
+int	set_outfile(t_arg *cmd, int stdfd_out, int pipefd_out)
 {
-	int	fd;
+	int		fd;
+	t_arg	*true_outfile;
 
-	fd = -1;
-	go_to_start_of_block(&cmd);
-	while (cmd && cmd->type != PIPE)
-	{
-		if (cmd->type == OUTFILE)
-		{
-			if (cmd->prev->type == OUTPUT)
-				ft_open(cmd->str_command, &fd, FLAG_WRITE);
-			else if (cmd->prev->type == APPEND)
-				ft_open(cmd->str_command, &fd, FLAG_APPEND);
-			if (fd == -1)
-			{
-				ft_putstr_fd("minishell: permission denied: ", STDERR_FILENO);
-				ft_putendl_fd(cmd->str_command, STDERR_FILENO);
-				return (false);
-			}
-			close(fd);
-			*true_outfile = cmd;
-		}
-		cmd = cmd->next;
-	}
-	return (true);
+	true_outfile = NULL;
+	if (count_redir_out(cmd) > 1)
+		create_outfiles(cmd);
+	if (!check_outf_outfile(cmd, &true_outfile))
+		return (-1);
+	if (pipefd_out != -1)
+		check_outf_pipe(cmd, &true_outfile);
+	fd = set_outf_fd(true_outfile, pipefd_out, stdfd_out);
+	// TODO check if below lines are necessary
+	if ((!true_outfile || true_outfile->type != PIPE) && pipefd_out != -1)
+		close(pipefd_out);
+	return (fd);
 }
 
-void	check_outf_pipe(t_arg *cmd, t_arg **true_outfile)
-{
-	go_to_start_of_block(&cmd);
-	while (cmd)
-	{
-		if (!(*true_outfile) && cmd && cmd->type == PIPE)
-			*true_outfile = cmd;
-		cmd = cmd->next;
-	}
-}
-
+// opens outfile and returns its FD
 int	set_outf_fd(t_arg	*true_outfile, int pfd_out, int stdfd_out)
 {
 	int	fd;
@@ -79,3 +61,5 @@ int	set_outf_fd(t_arg	*true_outfile, int pfd_out, int stdfd_out)
 		fd = stdfd_out;
 	return (fd);
 }
+
+

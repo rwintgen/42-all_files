@@ -1,32 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signal_handling.c                                  :+:      :+:    :+:   */
+/*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 16:11:36 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/22 17:19:35 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/23 13:15:56 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
-
-void	set_exit_status(int sig, t_envp **envp)
-{
-	while ((*envp))
-	{
-		if ((*envp)->key && !ft_strncmp((*envp)->key, "?", 1))
-		{
-			free((*envp)->envar);
-			(*envp)->envar = ft_strjoin("?", "=");
-			(*envp)->envar = ft_strjoin((*envp)->envar, ft_itoa(sig));
-			(*envp)->value = ft_itoa(sig);
-			break ;
-		}
-		(*envp) = (*envp)->next;
-	}
-}
+#include "../../../include/minishell.h"
 
 void	sig_int_state(int sig)
 {

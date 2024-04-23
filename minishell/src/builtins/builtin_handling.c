@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 06:15:08 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/22 16:07:48 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/23 13:04:42 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,18 @@ int	exec_builtin(t_cmd *cmd, t_envp *envp)
 	if (count_commands(cmd) == 1)
 		return (exit_code);
 	exit(exit_code);
+}
+
+// checks if cmd is a builtin
+bool	is_builtin(char *cmd)
+{
+	if (!ft_strncmp(cmd, "echo", 5)
+		|| !ft_strncmp(cmd, "cd", 3)
+		|| !ft_strncmp(cmd, "pwd", 4)
+		|| !ft_strncmp(cmd, "export", 7)
+		|| !ft_strncmp(cmd, "unset", 6)
+		|| !ft_strncmp(cmd, "env", 4)
+		|| !ft_strncmp(cmd, "exit", 5))
+		return (true);
+	return (false);
 }

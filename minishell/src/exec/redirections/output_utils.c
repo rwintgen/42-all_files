@@ -6,11 +6,11 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 12:32:46 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/22 16:44:22 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/23 12:21:51 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "../../../include/minishell.h"
 
 // counts number of output redirections in cmd
 int	count_redir_out(t_arg *cmd)
@@ -25,6 +25,47 @@ int	count_redir_out(t_arg *cmd)
 		cmd = cmd->next;
 	}
 	return (count);
+}
+
+// checks if current cmd has a pipe output redirection
+void	check_outf_pipe(t_arg *cmd, t_arg **true_outfile)
+{
+	go_to_start_of_block(&cmd);
+	while (cmd)
+	{
+		if (!(*true_outfile) && cmd && cmd->type == PIPE)
+			*true_outfile = cmd;
+		cmd = cmd->next;
+	}
+}
+
+// checks if current cmd has an outfile redirection
+bool	check_outf_outfile(t_arg *cmd, t_arg **true_outfile)
+{
+	int	fd;
+
+	fd = -1;
+	go_to_start_of_block(&cmd);
+	while (cmd && cmd->type != PIPE)
+	{
+		if (cmd->type == OUTFILE)
+		{
+			if (cmd->prev->type == OUTPUT)
+				ft_open(cmd->str_command, &fd, FLAG_WRITE);
+			else if (cmd->prev->type == APPEND)
+				ft_open(cmd->str_command, &fd, FLAG_APPEND);
+			if (fd == -1)
+			{
+				ft_putstr_fd("minishell: permission denied: ", STDERR_FILENO);
+				ft_putendl_fd(cmd->str_command, STDERR_FILENO);
+				return (false);
+			}
+			close(fd);
+			*true_outfile = cmd;
+		}
+		cmd = cmd->next;
+	}
+	return (true);
 }
 
 // checks if cmd is the last output redirection

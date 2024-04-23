@@ -6,41 +6,33 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 14:36:32 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/22 16:40:37 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/23 13:11:38 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "../../../include/minishell.h"
 
-// checks if current line is the delimiter
-int	check_eof(char *line, char *delimiter)
+// handles writing in tmp file
+char	*heredoc_handler(char *delimiter)
 {
-	if (!line)
-	{
-		ft_putstr_fd("minishell: warning: here-document delimited by end-of-file (wanted '", STDERR_FILENO);
-		ft_putstr_fd(delimiter, STDERR_FILENO);
-		ft_putendl_fd("')\n", STDERR_FILENO);
-		return (1);
-	}
-	else if (!ft_strncmp(line, delimiter, INT_MAX))
-		return (1);
-	else
-		return (0);
-}
+	char	*line;
+	char	*file;
+	int		fd;
 
-bool	try_file(char *base_filename, char *id_str, int *fd, char **file)
-{
-	static char	filename[200];
-
-	ft_strlcpy(filename, base_filename, sizeof(filename));
-	ft_strlcat(filename, id_str, sizeof(filename));
-	ft_open(filename, fd, FLAG_TMP);
-	if (*fd >= 0)
+	line = NULL;
+	file = NULL;
+	fd = create_tmp_file(&file);
+	while (true)
 	{
-		*file = strdup(filename);
-		return (true);
+		line = readline("> ");
+		if (check_eof(line, delimiter))
+			break ;
+		ft_putendl_fd(line, fd);
+		free(line);
 	}
-	return (false);
+	free(line);
+	close(fd);
+	return (file);
 }
 
 // creates a temp file with new name
@@ -69,25 +61,34 @@ int	create_tmp_file(char **file)
 	return (-1);
 }
 
-// handles writing in tmp file
-char	*heredoc_handler(char *delimiter)
+// tries to create a file with a new name
+bool	try_file(char *base_filename, char *id_str, int *fd, char **file)
 {
-	char	*line;
-	char	*file;
-	int		fd;
+	static char	filename[200];
 
-	line = NULL;
-	file = NULL;
-	fd = create_tmp_file(&file);
-	while (true)
+	ft_strlcpy(filename, base_filename, sizeof(filename));
+	ft_strlcat(filename, id_str, sizeof(filename));
+	ft_open(filename, fd, FLAG_TMP);
+	if (*fd >= 0)
 	{
-		line = readline("> ");
-		if (check_eof(line, delimiter))
-			break ;
-		ft_putendl_fd(line, fd);
-		free(line);
+		*file = strdup(filename);
+		return (true);
 	}
-	free(line);
-	close(fd);
-	return (file);
+	return (false);
+}
+
+// checks if current line is the delimiter
+bool	check_eof(char *line, char *delimiter)
+{
+	if (!line)
+	{
+		ft_putstr_fd("minishell: warning: here-document delimited by end-of-file (wanted '", STDERR_FILENO);
+		ft_putstr_fd(delimiter, STDERR_FILENO);
+		ft_putendl_fd("')\n", STDERR_FILENO);
+		return (true);
+	}
+	else if (!ft_strncmp(line, delimiter, INT_MAX))
+		return (true);
+	else
+		return (false);
 }

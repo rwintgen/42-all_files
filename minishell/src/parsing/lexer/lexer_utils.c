@@ -1,27 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   empty_line.c                                       :+:      :+:    :+:   */
+/*   lexer_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deymons <deymons@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/08 17:57:51 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/07 21:12:10 by deymons          ###   ########.fr       */
+/*   Created: 2024/04/04 04:28:32 by amalangi          #+#    #+#             */
+/*   Updated: 2024/04/23 13:18:24 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "../../../include/minishell.h"
 
-int		empty_line(char *input)
+int	is_special_char(char c)
+{
+	if (c == '>' || c == '<' || c == '|')
+        return (1);
+    return (0);
+}
+
+int contain_special_char(char *c)
 {
     int i;
-    
+
     i = 0;
-    while (input[i])
+    while (c[i])
     {
-        if (input[i] != ' ' && input[i] != '\t' && input[i] != '\n' && input[i] != '\v' && input[i] != '\f' && input[i] != '\r')
-            return (false);
+        if (is_special_char(c[i]))
+            return (1);
         i++;
     }
-    return (true);
+    return (0);
 }

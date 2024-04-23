@@ -6,27 +6,11 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 13:52:27 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/22 16:10:14 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/23 11:58:09 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
-
-char	**add_delimiter(t_arg *cmd)
-{
-	char	**result;
-
-	result = malloc(sizeof(char *) * 2);
-	if (!result)
-	{
-		ft_putstr_fd("minishell: malloc error\n", STDERR_FILENO);
-		return (NULL);
-	}
-	result[0] = ft_strdup("chibron");
-	result[1] = ft_strdup(cmd->prev->str_command);
-	result[2] = NULL;
-	return (result);
-}
+#include "../../../include/minishell.h"
 
 // checks if heredoc is missing a command
 bool	missing_heredoc_cmd(t_arg *arg)
@@ -53,4 +37,21 @@ void	create_heredoc_cmd(t_arg *elem)
 	new_node->prev = elem;
 	new_node->next = elem->next;
 	elem->next = new_node;
+}
+
+// adds heredoc delimiter to the command
+char	**add_delimiter(t_arg *cmd)
+{
+	char	**result;
+
+	result = malloc(sizeof(char *) * 2);
+	if (!result)
+	{
+		ft_putstr_fd("minishell: malloc error\n", STDERR_FILENO);
+		return (NULL);
+	}
+	result[0] = ft_strdup("chibron");
+	result[1] = ft_strdup(cmd->prev->str_command);
+	result[2] = NULL;
+	return (result);
 }

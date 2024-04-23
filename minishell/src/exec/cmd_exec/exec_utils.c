@@ -6,12 +6,13 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 16:11:44 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/22 16:26:15 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/23 13:05:26 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "../../../include/minishell.h"
 
+// returns current command index
 int	current_command(t_cmd *cmd)
 {
 	t_cmd	*current;
@@ -30,6 +31,7 @@ int	current_command(t_cmd *cmd)
 	return (i);
 }
 
+// counts the number of commands
 int	count_commands(t_cmd *cmd)
 {
 	int	count;
@@ -60,15 +62,27 @@ int	last_cmd(t_arg *arg)
 	return (false);
 }
 
-bool	is_builtin(char *cmd)
+// forks and handles fork error
+int	ft_fork(t_sh *sh)
 {
-	if (!ft_strncmp(cmd, "echo", 5)
-		|| !ft_strncmp(cmd, "cd", 3)
-		|| !ft_strncmp(cmd, "pwd", 4)
-		|| !ft_strncmp(cmd, "export", 7)
-		|| !ft_strncmp(cmd, "unset", 6)
-		|| !ft_strncmp(cmd, "env", 4)
-		|| !ft_strncmp(cmd, "exit", 5))
-		return (true);
-	return (false);
+	int	pid;
+
+	pid = fork();
+	if (pid == -1)
+	{
+		sh->cmd->skip_cmd = true;
+		ft_putstr_fd("minishell: fork error\n", STDERR_FILENO);
+		return (-1);
+	}
+	return (pid);
+}
+
+// waits for all children processes to finish
+void	ft_wait_all(void)
+{
+	int	status;
+
+	while (wait(&status) > 0)
+	{
+	}
 }
