@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/04/24 15:28:48 by rwintgen          #+#    #+#              #
+#    Updated: 2024/04/24 15:49:23 by rwintgen         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = libft.a
 
 CC = gcc
@@ -52,7 +64,7 @@ FILES = ft_atoi \
 		gnl \
 		gnl_utils
 
-FILES_B = 	ft_lstnew_bonus \
+FILES_B =   ft_lstnew_bonus \
 			ft_lstadd_back_bonus \
 			ft_lstadd_front_bonus \
 			ft_lstclear_bonus \
@@ -71,23 +83,23 @@ OBJS = $(addprefix $(OBJS_DIR), $(addsuffix .o, $(FILES)))
 OBJS_B = $(addprefix $(OBJS_DIR), $(addsuffix .o, $(FILES_B)))
 
 
-.c.o: $(SRCS)
-	$(CC) $(CFLAGS) -c -o $@ $<
-
 $(NAME): $(OBJS)
-	$(AR) $@ $^
+	@$(AR) $@ $^
 
 bonus: $(OBJS_B)
-	$(AR) $(NAME) $^
+	@$(AR) $(NAME) $^
 
 all: $(NAME)
 
 clean:
-	$(RM) $(OBJS) $(OBJS_B) $(NAME)
+	@$(RM) $(OBJS) $(OBJS_B) $(NAME)
 
 fclean: clean
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
 
 re: clean all
 
 .PHONY: bonus all clean fclean re
+
+$(OBJS_DIR)%.o: $(SRCS_DIR)%.c
+	@$(CC) $(CFLAGS) -c $< -o $@
