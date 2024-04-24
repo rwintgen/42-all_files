@@ -6,96 +6,93 @@
 #    By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/10 16:32:07 by deymons           #+#    #+#              #
-#    Updated: 2024/04/23 13:26:06 by rwintgen         ###   ########.fr        #
+#    Updated: 2024/04/24 16:35:05 by rwintgen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME        =   minishell
+MAKEFLAGS += --no-print-directory
 
-CC          =   cc
+NAME		=	minishell
+HEADER		=	./include/
+LIBFT		=	libft/libft.a
 
-FLAG        =   -Wall -Wextra -Werror -g
+CC			=	gcc
+CFLAGS		=	-Werror -Wall -Wextra -g -I $(HEADER)
 
-LIBFT_FILE  =   libft.a
+SRCS		=	src/main.c									\
+				src/debug_print.c							\
+				src/builtins/builtin_handling.c				\
+				src/builtins/ft_cd.c						\
+				src/builtins/ft_echo.c						\
+				src/builtins/ft_pwd.c						\
+				src/exec/cmd_exec/exec_commands.c			\
+				src/exec/cmd_exec/exec_utils.c				\
+				src/exec/cmd_exec/exit_code.c				\
+				src/exec/cmd_exec/get_cmd_args.c			\
+				src/exec/cmd_exec/get_path.c				\
+				src/exec/cmd_exec/prep_for_exec.c			\
+				src/exec/envp/envp.c						\
+				src/exec/free_close/close.c					\
+				src/exec/free_close/free.c					\
+				src/exec/heredocs/empty_heredoc.c			\
+				src/exec/heredocs/heredoc.c					\
+				src/exec/redirections/input_utils.c			\
+				src/exec/redirections/input.c				\
+				src/exec/redirections/output_utils.c		\
+				src/exec/redirections/output.c				\
+				src/exec/redirections/redirect_utils.c		\
+				src/exec/redirections/redirect.c			\
+				src/exec/signals/signals.c					\
+				src/exec/exec_handling.c					\
+				src/parsing/lexer/lexer_utils.c				\
+				src/parsing/lexer/lexer.c					\
+				src/parsing/true_line/dollar.c				\
+				src/parsing/true_line/true_line_utils.c		\
+				src/parsing/true_line/true_line.c			\
+				src/parsing/valid_input/valid_input.c		\
+				src/parsing/parsing_handling.c
 
-LIBFT_PATH  =   ./libft/
+GREEN	=	\033[0;32m
+RED		=	\033[0;31m
+NC		=	\033[0m
 
-LIBFT_LIB   =   $(addprefix $(LIBFT_PATH), $(LIBFT_FILE))
+OBJDIR		=	obj
+OBJS		=	$(addprefix $(OBJDIR)/, $(SRCS:.c=.o))
 
-LIBFT_EX    =   $(LIBFT_LIB) $(FLAG)
+all			:	$(NAME)
+				@echo "$(GREEN)minishell compiled$(NC)"
 
-C_FILE      =   main.c									\
-				debug_print.c							\
-				builtins/builtin_handling.c				\
-				builtins/ft_cd.c						\
-				builtins/ft_echo.c						\
-				builtins/ft_pwd.c						\
-				exec/cmd_exec/exec_commands.c			\
-				exec/cmd_exec/exec_utils.c				\
-				exec/cmd_exec/exit_code.c				\
-				exec/cmd_exec/get_cmd_args.c			\
-				exec/cmd_exec/get_path.c				\
-				exec/cmd_exec/prep_for_exec.c			\
-				exec/envp/envp.c						\
-				exec/free_close/close.c					\
-				exec/free_close/free.c					\
-				exec/heredocs/empty_heredoc.c			\
-				exec/heredocs/heredoc.c					\
-				exec/redirections/input_utils.c			\
-				exec/redirections/input.c				\
-				exec/redirections/output_utils.c		\
-				exec/redirections/output.c				\
-				exec/redirections/redirect_utils.c		\
-				exec/redirections/redirect.c			\
-				exec/signals/signals.c					\
-				exec/exec_handling.c					\
-				parsing/lexer/lexer_utils.c				\
-				parsing/lexer/lexer.c					\
-				parsing/true_line/dollar.c				\
-				parsing/true_line/true_line_utils.c		\
-				parsing/true_line/true_line.c			\
-				parsing/valid_input/valid_input.c		\
-				parsing/parsing_handling.c
+$(NAME)		:	$(OBJS) $(LIBFT)
+				@clear
+				@echo "  __  __ ___ _  _ ___ ___ _  _ ___ _    _    \n"
+				@echo " |  \/  |_ _| \| |_ _/ __| || | __| |  | |   \n"
+				@echo " | |\/| || || .\` || |\__ \ __ | _|| |__| |__ \n"
+				@echo " |_|  |_|___|_|\_|___|___/_||_|___|____|____|\n"
+				@echo "                                             \n"
+				@$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LIBFT) -lreadline
+				@echo "$(GREEN)libft created$(NC)"
+				@echo "$(GREEN)minishell linked$(NC)"
 
-SRC_DIR     =   ./src/
+$(OBJDIR)/%.o: %.c
+				@mkdir -p $(@D)
+				@$(CC) $(CFLAGS) -c $< -o $@
 
-INC_DIR     =   ./include/
+$(LIBFT)	:
+				@make -C ./libft
+				@echo "$(GREEN)libft compiled$(NC)"
 
-OBJ_DIR     =   ./obj/
+clean		:
+				@make clean -C ./libft
+				@echo "$(RED)libft object files deleted$(NC)"
+				@rm -rf $(OBJDIR)
+				@echo "$(RED)minishell object files deleted$(NC)"
 
-SRC         =   $(addprefix $(SRC_DIR),$(C_FILE))
+fclean		:	clean
+				@make fclean -C ./libft
+				@echo "$(RED)libft executable deleted$(NC)"
+				@rm -f $(NAME)
+				@echo "$(RED)minishell executable deleted$(NC)"
 
-OBJ         =   $(patsubst %,$(OBJ_DIR)%,$(C_FILE:.c=.o))
-
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c
-	@mkdir -p $(@D)
-	$(CC) $(FLAG) -I $(INC_DIR) -c $< -o $@
-
-all: $(NAME)
-
-kermit:
-	@echo "bisous sur kermit"
-	
-./libft/libft.a:
-	@echo "\033[0;33m\nCOMPILING $(LIBFT_PATH)...\n"
-	@make -sC $(LIBFT_PATH)
-	@echo "\033[1;32mLIBFT created\033[0m\n"
-
-$(NAME): kermit ./libft/libft.a $(OBJ)
-	@echo "\033[0;33m\nLINKING MINISHELL...\n"
-	$(CC) $(OBJ) $(LIBFT_EX) -lreadline -o $(NAME)
-	@echo "\033[1;32m./minishell linked !\n"
-
-clean:
-	@echo "\033[0;31mDeleting Minishell object files and directory...\n"
-	@rm -rf $(OBJ_DIR)
-	@echo "\033[1;32mDone\n"
-
-fclean: clean
-	@echo "\033[0;31mDeleting Minishell executable..."
-	@rm -f $(NAME)
-	@echo "\033[1;32mDone\n"
-
-re: fclean all
+re			:	fclean all
 
 .PHONY: all clean fclean re
