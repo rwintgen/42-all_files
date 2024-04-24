@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 12:32:46 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/23 12:21:51 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/24 14:22:37 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,7 @@ bool	check_outf_outfile(t_arg *cmd, t_arg **true_outfile)
 				ft_open(cmd->str_command, &fd, FLAG_APPEND);
 			if (fd == -1)
 			{
-				ft_putstr_fd("minishell: permission denied: ", STDERR_FILENO);
-				ft_putendl_fd(cmd->str_command, STDERR_FILENO);
+				err_file_msg(cmd->str_command);
 				return (false);
 			}
 			close(fd);

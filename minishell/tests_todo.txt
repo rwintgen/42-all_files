@@ -35,8 +35,6 @@ ls < Makefile | << eof		=> cmd writes to stdout
 
 -----PARSING-----
 
-Quotes not working
-
 
 ----ERR MGMT-----
 

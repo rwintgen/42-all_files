@@ -6,11 +6,24 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 14:28:16 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/23 12:37:33 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/24 10:35:20 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/minishell.h"
+
+bool	valid_input(char *input)
+{
+	if (empty_line(input) || open_quote(input))
+	{
+		if (!empty_line(input))
+			add_history(input);
+		free(input);
+		return (false);
+	}
+	add_history(input);
+	return (true);
+}
 
 int	open_quote(char *input)
 {

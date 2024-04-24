@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 12:18:33 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/04/23 13:09:54 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/24 12:17:27 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,17 @@
 
 void	close_all_fds(void)
 {
+	int	saved_errno;
 	int	i;
 
+	saved_errno = errno;
 	i = 3;
 	while (i < 1024)
 	{
 		close(i);
 		i++;
 	}
+	errno = saved_errno;
 }
 
 void	close_if_valid(int fd)

@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 04:28:32 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/23 13:18:24 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/24 11:09:11 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,20 @@
 int	is_special_char(char c)
 {
 	if (c == '>' || c == '<' || c == '|')
-        return (1);
-    return (0);
+		return (1);
+	return (0);
 }
 
-int contain_special_char(char *c)
+int	contain_special_char(char *c)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (c[i])
-    {
-        if (is_special_char(c[i]))
-            return (1);
-        i++;
-    }
-    return (0);
+	i = 0;
+	while (c[i])
+	{
+		if (is_special_char(c[i]))
+			return (1);
+		i++;
+	}
+	return (0);
 }

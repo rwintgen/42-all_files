@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:11:52 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/23 13:22:54 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/24 14:24:13 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ typedef struct	s_sh
 
 /************************ PROTOTYPES ************************/
 
-// DEBUG //
+// MAIN //
 
 void	print_t_arg_struct(t_arg *data);
 void	print_t_cmd_struct(t_cmd *cmd);
@@ -228,9 +228,10 @@ int		ft_open(char *file, int *fd, int flag);
 void	save_stdfd(int saved_stdfd[2]);
 void	go_to_start_of_block(t_arg **cmd);
 void	check_valid_fds(t_sh *sh);
+void	err_file_msg(char *infile);
 
 void	redirect_io(t_cmd *cmd);
-void	redirect_io_nofork(t_sh *sh, t_cmd *cmd);
+bool	redirect_io_nofork(t_sh *sh, t_cmd *cmd);
 void	restore_io_nofork(t_sh *sh, t_cmd *cmd);
 
 // signals
@@ -255,7 +256,7 @@ void	set_cmd(t_arg *elem);
 void	set_arg(t_arg *elem);
 
 //true_line
-char	*replace_dollar(char *input, t_envp *envp, int exit_code);
+char	*var_expand(char *input, t_envp *envp, int exit_code);
 char	*var_getkey(char *str, int i);
 char	*var_export(char *str, int i, t_envp *envp);
 char	*get_var(char *key, t_envp *envp);
@@ -265,8 +266,10 @@ bool	missing_space_before(char *str, int i);
 bool	missing_space_after(char *str, int i);
 
 char	*true_line(char *str, t_sh *sh);
+void	add_spaces(char **formatted, char *str);
 
 //valid_input
+bool	valid_input(char *input);
 int		open_quote(char *input);
 int		empty_line(char *input);
 

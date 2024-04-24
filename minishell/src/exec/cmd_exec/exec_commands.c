@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 14:18:05 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/23 12:20:24 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/24 14:11:52 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ void	exec_current_cmd(char *path_to_cmd, t_sh *sh, char **envp_c)
 		ft_putendl_fd(sh->cmd->cmd_and_args[0], STDERR_FILENO);
 		ft_free_char_tab(envp_c);
 		close_all_fds();
-		// free(path_to_cmd); // useless askip
 		exit(free_sh(sh));
 	}
 }
@@ -78,7 +77,11 @@ bool	exec_solo_builtin(t_sh *sh, t_cmd *cmd, int *exit_code)
 {
 	if (cmd->is_builtin && count_commands(cmd) == 1)
 	{
-		redirect_io_nofork(sh, cmd);
+		if (!redirect_io_nofork(sh, cmd))
+		{
+			*exit_code = 1;
+			return (true);
+		}
 		*exit_code = exec_builtin(cmd, sh->envp);
 		restore_io_nofork(sh, cmd);
 		return (true);

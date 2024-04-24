@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 16:07:33 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/23 12:21:46 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/24 14:26:10 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ int	set_inf_fd(char *hd_file, t_arg *true_infile, int pfd_in, int stdfd_in)
 bool	infiles_ok(t_arg *cmd)
 {
 	int	fd;
-	// TODO check exit code diff between unexisting/no-perm files
 
 	while (cmd && cmd->type != PIPE)
 	{
@@ -81,8 +80,7 @@ bool	infiles_ok(t_arg *cmd)
 		{
 			if (ft_open(cmd->str_command, &fd, FLAG_READ) < 0)
 			{
-				ft_putstr_fd("minishell: permission denied: ", STDERR_FILENO);
-				ft_putendl_fd(cmd->str_command, STDERR_FILENO);
+				err_file_msg(cmd->str_command);
 				return (false);
 			}
 		}

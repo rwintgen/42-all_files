@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 12:05:24 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/04/23 13:05:34 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/24 14:23:16 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,33 @@ void	check_valid_fds(t_sh *sh)
 	if (sh->cmd->input_fd < 0)
 	{
 		close_all_fds();
+		errno = 0;
 		exit(free_sh(sh));
 	}
 	else if (sh->cmd->output_fd < 0)
 	{
 		close_all_fds();
+		errno = 0;
 		exit(free_sh(sh));
+	}
+}
+
+// prints error message if file can't be opened
+void	err_file_msg(char *infile)
+{
+	if (errno == EACCES)
+	{
+		ft_putstr_fd("minishell: permission denied: ", STDERR_FILENO);
+		ft_putendl_fd(infile, STDERR_FILENO);
+	}
+	else if (errno == ENOENT)
+	{
+		ft_putstr_fd("minishell: file does not exist: ", STDERR_FILENO);
+		ft_putendl_fd(infile, STDERR_FILENO);
+	}
+	else
+	{
+		ft_putstr_fd("minishell: error opening file: ", STDERR_FILENO);
+		ft_putendl_fd(infile, STDERR_FILENO);
 	}
 }

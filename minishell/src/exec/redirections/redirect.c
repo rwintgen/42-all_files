@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 13:47:42 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/23 12:22:05 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/24 14:09:21 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,17 @@ void	redirect_io(t_cmd *cmd)
 }
 
 // redirects input and output for non-forked cmd
-void	redirect_io_nofork(t_sh *sh, t_cmd *cmd)
+bool	redirect_io_nofork(t_sh *sh, t_cmd *cmd)
 {
+	if (cmd->input_fd == -1 || cmd->output_fd == -1)
+		return (false);
 	dup2(cmd->input_fd, STDIN_FILENO);
 	dup2(cmd->output_fd, STDOUT_FILENO);
 	if (cmd->input_fd != sh->saved_stdfd[0])
 		close_if_valid(cmd->input_fd);
 	if (cmd->output_fd != sh->saved_stdfd[1])
 		close_if_valid(cmd->output_fd);
+	return (true);
 }
 
 // restores input and output for non-forked cmd

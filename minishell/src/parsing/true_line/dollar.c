@@ -6,13 +6,13 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 15:38:25 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/23 12:37:39 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/24 11:47:18 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/minishell.h"
 
-char	*replace_dollar(char *input, t_envp *envp, int exit_code)
+char	*var_expand(char *input, t_envp *envp, int exit_code)
 {
 	int		i;
 	int		single_quote;
@@ -25,7 +25,7 @@ char	*replace_dollar(char *input, t_envp *envp, int exit_code)
 	double_quote = 0;
 	while (input[i])
 	{
-		if (input[i] == '\"')
+		if (input[i] == '"')
 			double_quote++;
 		else if (input[i] == '\'')
 			single_quote++;

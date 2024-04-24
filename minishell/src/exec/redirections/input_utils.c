@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 12:00:07 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/04/23 12:21:40 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/24 14:15:36 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ bool	check_inf_delim(t_arg *to_check, char **heredoc_file)
 	}
 	return (false);
 }
+
 // checks if current cmd has an infile redirection
 void	check_inf_infile(t_arg *to_check, t_arg **true_infile)
 {

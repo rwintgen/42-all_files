@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:59:56 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/23 12:25:22 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/24 12:54:21 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int g_sig;
 
 ///////// TODO //////////
 // Makefile no libft			=> Arthur
-// rm useless functions
+// fix dollar_replace			=> Arthur
 // make builtins
 // fix ctrl+C heredoc
 // valgrind (open FDs, leaks)
@@ -29,8 +29,10 @@ int g_sig;
 valgrind --trace-children=yes --track-fds=yes --leak-check=full --track-origins=yes --show-leak-kinds=all --suppressions=.vsupp ./minishell
 */
 
-void	init_sh(t_sh *sh, char **envp)
+void	init_sh(t_sh *sh, char **envp, int argc, char **argv)
 {
+	(void) argc;
+	(void) argv;
 	sh->arg = NULL;
 	sh->cmd = NULL;
 	sh->envp = NULL;
@@ -55,10 +57,8 @@ int	main(int argc, char **argv, char **envp)
 	t_sh	*sh;
 	char	*input;
 
-	(void) argc;
-	(void) argv;
 	sh = malloc(sizeof(t_sh));
-	init_sh(sh, envp);
+	init_sh(sh, envp, argc, argv);
 	while (true)
 	{
 		signal(SIGQUIT, SIG_IGN);
@@ -66,20 +66,14 @@ int	main(int argc, char **argv, char **envp)
 		input = readline("minishell $> ");
 		if (!input)
 			break ;
-		if (empty_line(input) || open_quote(input))
-		{
-			if (!empty_line(input))
-				add_history(input);
-			free(input);
+		if (!valid_input(input))
 			continue ;
-		}
-		add_history(input);
 		parse_input(input, sh);
 		exec_handler(sh);
 		ft_wait_all();
 		reset_sh(sh);
 	}
-	close_saved_fds(sh->saved_stdfd);
+	close_all_fds();
 	free_sh(sh);
 	return (0);
 }

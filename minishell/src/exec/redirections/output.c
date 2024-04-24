@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 16:08:10 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/23 12:21:56 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/24 14:22:30 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,3 @@ int	set_outf_fd(t_arg	*true_outfile, int pfd_out, int stdfd_out)
 		fd = stdfd_out;
 	return (fd);
 }
-
-
