@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 15:38:25 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/24 11:47:18 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/24 16:48:52 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ char	*var_expand(char *input, t_envp *envp, int exit_code)
 		{
 			key = var_getkey(input, i + 1);
 			var = var_export(input, i + 1, envp);
-			printf("\ninput: %s\nkey: %s\nvar: %s\n", input, key, var);
+			//printf("\ninput: %s\nkey: %s\nvar: %s\n", input, key, var);
 			if (var && ft_strlen(var) > 0)
 			{
 				input = ft_str_replace(input, key, var);
-				printf("input: %s\n", input);
+				//printf("input: %s\n", input);
 			}
 			else if (input[i + 1] && input[i + 1] == '?')
 				input = ft_str_replace(input, key, ft_itoa(exit_code));

@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:59:56 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/24 14:42:02 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/24 17:19:49 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 int g_sig;
 
 ///////// TODO //////////
-// Makefile no libft / relink	=> Arthur
 // fix dollar_replace			=> Arthur
+// fix builtin nofork exit code
 // make builtins
 // fix ctrl+C heredoc
 // valgrind (open FDs, leaks)
@@ -50,6 +50,9 @@ void	reset_sh(t_sh *sh)
 	free_cmd(sh->cmd);
 	sh->arg = NULL;
 	sh->cmd = NULL;
+	sh->pipefd[0] = -1;
+	sh->pipefd[1] = -1;
+	sh->exit_code = 0;
 }
 
 int	main(int argc, char **argv, char **envp)
