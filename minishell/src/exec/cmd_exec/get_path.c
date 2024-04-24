@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 17:23:03 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/23 13:09:02 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/24 14:40:17 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*get_path(t_cmd *cmd, t_envp *envp)
 		free(tmp_path);
 		if (access(cmd_path, F_OK | X_OK) == 0)
 		{
-			printf("\t\tcommand found at: %s\n", cmd_path);
+			// printf("\t\tcommand found at: %s\n", cmd_path);
 			ft_free_char_tab(sep_env_paths);
 			return (cmd_path);
 		}

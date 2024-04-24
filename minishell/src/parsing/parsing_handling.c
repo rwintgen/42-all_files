@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:28:53 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/23 12:37:26 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/24 14:39:55 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,10 @@
 // handles input parsing functions
 void	parse_input(char *input, t_sh *sh)
 {
-	printf("\n\nPARSING\n\n");
 	input = true_line(input, sh);
 	sh->arg = copy_args(input, sh);
 	free(input);
-	print_t_arg_struct(sh->arg);
+	// print_t_arg_struct(sh->arg);
 }
 
 // saves command line args into t_arg linked list

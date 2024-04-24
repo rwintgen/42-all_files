@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:59:56 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/24 12:54:21 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/24 14:42:02 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int g_sig;
 
 ///////// TODO //////////
-// Makefile no libft			=> Arthur
+// Makefile no libft / relink	=> Arthur
 // fix dollar_replace			=> Arthur
 // make builtins
 // fix ctrl+C heredoc

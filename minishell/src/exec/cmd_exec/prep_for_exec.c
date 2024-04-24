@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 12:31:29 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/23 12:20:50 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/24 14:53:12 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ t_cmd	*create_node(char **cmd_and_args, int fd[2], bool skip)
 // checks if a pipe is needed and handles pipe error
 void	pipe_if_needed(t_arg *tmp, t_sh *sh, bool skip)
 {
+	(void) skip;
 	if (!(last_cmd(tmp)))
 	{
 		if (pipe(sh->pipefd) == -1)
