@@ -6,19 +6,25 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:28:53 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/25 14:32:12 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/25 15:06:52 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
 // handles input parsing functions
-void	parse_input(char *input, t_sh *sh)
+int	parse_input(char *input, t_sh *sh)
 {
 	input = true_line(input, sh);
+	if (!*input)
+	{
+		free(input);
+		return (-1);
+	}
 	sh->arg = copy_args(input, sh);
 	free(input);
-	print_t_arg_struct(sh->arg);
+	// print_t_arg_struct(sh->arg); // DEBUG
+	return (0);
 }
 
 // saves command line args into t_arg linked list

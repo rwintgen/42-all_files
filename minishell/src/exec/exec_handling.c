@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 17:59:02 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/25 14:32:05 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/25 14:59:42 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	exec_handler(t_sh *sh)
 	signal(SIGQUIT, &sig_quit_state);
 	signal(SIGINT, &sig_int_state);
 	save_commands(sh);
-	print_t_cmd_struct(sh->cmd);
+	// print_t_cmd_struct(sh->cmd); // DEBUG
 	exec_commands(sh);
-	printf("last cmd exit code: %d\n\n", sh->exit_code);
+	// printf("last cmd exit code: %d\n\n", sh->exit_code); // DEBUG
 }

@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:11:52 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/25 14:30:13 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/25 15:05:08 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -265,7 +265,7 @@ void	sigint_muted(int signal);
 
 // PARSING //
 
-void	parse_input(char *input, t_sh *sh);
+int		parse_input(char *input, t_sh *sh);
 t_arg	*copy_args(char *input, t_sh *sh);
 void	append_arg_node(t_arg **arg_cpy, char *arg, t_sh *sh);
 

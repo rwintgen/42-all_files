@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:59:56 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/25 13:56:45 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/25 15:09:33 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ int g_sig;
 
 ///////// TODO //////////
 // fix dollar_replace			=> Arthur
-// fix quotes					=> Arthur
-// segfault $EMPTY				=> Arthur
+// fix quotes being printed		=> Arthur
+// fix open_quotes				=> Arthur
 // make builtins
 // fix ctrl+C heredoc
 // valgrind (open FDs, leaks)
@@ -69,9 +69,8 @@ int	main(int argc, char **argv, char **envp)
 		input = readline("minishell $> ");
 		if (!input)
 			break ;
-		if (!valid_input(input))
+		if (!valid_input(input) || parse_input(input, sh) == -1)
 			continue ;
-		parse_input(input, sh);
 		exec_handler(sh);
 		ft_wait_all();
 		reset_sh(sh);
