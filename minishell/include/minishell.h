@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:11:52 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/25 12:53:46 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/25 13:43:55 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,9 @@
 # define E_SYNTAX_NL "minishell: syntax error near newline"
 
 # define E_FILE_OPEN "minishell: error opening file: "
-# define E_FILE_EXIST "minishell: file does not exist: "
+# define E_FILE_EXIST "minishell: no such file or directory: "
 # define E_FILE_PERM "minishell: permission denied: "
+# define E_FILE_DIR "minishell: is a directory: "
 
 # define E_CMD_NF "minishell: command not found: "
 
@@ -169,6 +170,9 @@ int		ft_pwd(void);
 void	exec_handler(t_sh *sh);
 
 // cmd_exec
+void	cmd_err_msg(char *cmd);
+bool	ispath(char *cmd);
+
 void	exec_commands(t_sh *sh);
 int		ft_exec(t_sh *sh);
 void	exec_current_cmd(char *path_to_cmd, t_sh *sh, char **envp_c);

@@ -6,7 +6,7 @@
 #    By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/10 16:32:07 by deymons           #+#    #+#              #
-#    Updated: 2024/04/25 12:22:52 by rwintgen         ###   ########.fr        #
+#    Updated: 2024/04/25 13:29:52 by rwintgen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRCS		=	src/main.c									\
 				src/builtins/ft_echo.c						\
 				src/builtins/ft_pwd.c						\
 				src/exec/cmd_exec/exec_commands.c			\
+				src/exec/cmd_exec/cmd_err_msg.c				\
 				src/exec/cmd_exec/exec_utils.c				\
 				src/exec/cmd_exec/exit_code.c				\
 				src/exec/cmd_exec/get_cmd_args.c			\

@@ -33,12 +33,9 @@ ls < Makefile | << eof		=> cmd writes to stdout
 << eof | << eof				=> OK
 
 
------PARSING-----
-
-
 ----ERR MGMT-----
 
-- Fix exit code when command not found
+- input: "$EMPTY" -> segfault
 
 
 ----VALGRIND-----

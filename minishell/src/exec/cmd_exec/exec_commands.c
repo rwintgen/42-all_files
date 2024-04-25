@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 14:18:05 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/25 12:51:36 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/25 13:27:16 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,9 @@ void	exec_current_cmd(char *path_to_cmd, t_sh *sh, char **envp_c)
 {
 	if (execve(path_to_cmd, sh->cmd->cmd_and_args, envp_c) == -1)
 	{
-		ft_putstr_fd(E_CMD_NF, 2);
-		ft_putendl_fd(sh->cmd->cmd_and_args[0], STDERR_FILENO);
+		cmd_err_msg(sh->cmd->cmd_and_args[0]);
+		// ft_putstr_fd(E_CMD_NF, 2);
+		// ft_putendl_fd(sh->cmd->cmd_and_args[0], STDERR_FILENO);
 		ft_free_char_tab(envp_c);
 		close_all_fds();
 		exit(free_sh(sh));
