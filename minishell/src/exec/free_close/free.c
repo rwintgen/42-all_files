@@ -6,11 +6,11 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 13:45:29 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/23 12:21:20 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/25 15:57:38 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../include/minishell.h"
+#include "minishell.h"
 
 int	free_sh(t_sh *sh)
 {

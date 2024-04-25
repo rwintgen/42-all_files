@@ -6,11 +6,11 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:28:53 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/25 15:06:52 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/25 16:15:49 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "minishell.h"
 
 // handles input parsing functions
 int	parse_input(char *input, t_sh *sh)
@@ -34,11 +34,13 @@ t_arg	*copy_args(char *input, t_sh *sh)
 	char	**args;
 	int		i;
 
-	args = ft_split(input, ' ');
+	args = ms_split(input, ' ');
 	arg_cpy = NULL;
 	i = 0;
 	while (args[i])
 	{
+		// rm quotes
+		remove_quote(args[i]);
 		append_arg_node(&arg_cpy, args[i], sh);
 		i++;
 	}

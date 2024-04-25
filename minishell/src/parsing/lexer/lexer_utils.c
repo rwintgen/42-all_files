@@ -6,11 +6,11 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 04:28:32 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/24 11:09:11 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/25 15:57:38 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../include/minishell.h"
+#include "minishell.h"
 
 int	is_special_char(char c)
 {

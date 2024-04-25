@@ -6,11 +6,11 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 13:52:27 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/25 12:48:55 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/25 15:57:38 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../include/minishell.h"
+#include "minishell.h"
 
 // checks if heredoc is missing a command
 bool	missing_heredoc_cmd(t_arg *arg)

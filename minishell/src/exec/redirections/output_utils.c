@@ -6,11 +6,11 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 12:32:46 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/24 14:22:37 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/25 15:57:38 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../include/minishell.h"
+#include "minishell.h"
 
 // counts number of output redirections in cmd
 int	count_redir_out(t_arg *cmd)

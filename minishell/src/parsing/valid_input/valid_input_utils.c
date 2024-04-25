@@ -6,11 +6,11 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 12:22:55 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/04/25 14:50:48 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/25 15:57:38 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../include/minishell.h"
+#include "minishell.h"
 
 bool	is_too_many_redir(char *input)
 {

@@ -6,18 +6,18 @@
 #    By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/10 16:32:07 by deymons           #+#    #+#              #
-#    Updated: 2024/04/25 13:29:52 by rwintgen         ###   ########.fr        #
+#    Updated: 2024/04/25 16:29:27 by rwintgen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-MAKEFLAGS += --no-print-directory
+MAKEFLAGS	+=	--no-print-directory
 
 NAME		=	minishell
-HEADER		=	./include/
+HEADER		=	-I ./include
 LIBFT		=	libft/libft.a
 
 CC			=	gcc
-CFLAGS		=	-Werror -Wall -Wextra -g -I $(HEADER)
+CFLAGS		=	-Werror -Wall -Wextra -g
 
 SRCS		=	src/main.c									\
 				src/debug_print.c							\
@@ -50,6 +50,8 @@ SRCS		=	src/main.c									\
 				src/parsing/true_line/dollar.c				\
 				src/parsing/true_line/true_line_utils.c		\
 				src/parsing/true_line/true_line.c			\
+				src/parsing/utils/ms_split.c				\
+				src/parsing/utils/rm_quotes.c				\
 				src/parsing/valid_input/valid_input_utils.c	\
 				src/parsing/valid_input/valid_input.c		\
 				src/parsing/parsing_handling.c
@@ -71,13 +73,13 @@ $(NAME)		:	$(OBJS) $(LIBFT)
 				@echo " | |\/| || || .\` || |\__ \ __ | _|| |__| |__ \n"
 				@echo " |_|  |_|___|_|\_|___|___/_||_|___|____|____|\n"
 				@echo " by rwintgen && amalangi                     \n"
-				@$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LIBFT) -lreadline
 				@echo "$(GREEN)libft created$(NC)"
+				@$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LIBFT) -lreadline
 				@echo "$(GREEN)minishell linked$(NC)"
 
 $(OBJDIR)/%.o: %.c
 				@mkdir -p $(@D)
-				@$(CC) $(CFLAGS) -c $< -o $@
+				@$(CC) $(HEADER) $(CFLAGS) -c $< -o $@
 
 $(LIBFT)	:
 				@make -C ./libft
@@ -96,5 +98,9 @@ fclean		:	clean
 				@echo "$(RED)minishell executable deleted$(NC)"
 
 re			:	fclean all
+
+run			:	$(NAME)
+				@echo "$(GREEN)launching minishell...$(NC)"
+				@./$(NAME)
 
 .PHONY: all clean fclean re

@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:11:52 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/25 15:05:08 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/25 16:24:24 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -291,6 +291,12 @@ bool	missing_space_after(char *str, int i);
 
 char	*true_line(char *str, t_sh *sh);
 void	add_spaces(char **formatted, char *str);
+
+// utils
+char	**ms_split(char *s, char c);
+
+void	remove_quote(char *str);
+char	*ft_strdelchar(char *str, char c, unsigned int n);
 
 //valid_input
 bool	is_too_many_redir(char *input);

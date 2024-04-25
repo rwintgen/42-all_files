@@ -6,11 +6,11 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 06:15:08 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/23 13:04:42 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/25 15:57:44 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "minishell.h"
 
 int	exec_builtin(t_cmd *cmd, t_envp *envp)
 {

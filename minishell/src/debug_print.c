@@ -6,11 +6,11 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 13:48:42 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/20 11:30:25 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/25 15:58:09 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "minishell.h"
 
 void   print_t_arg_struct(t_arg *data)
 {

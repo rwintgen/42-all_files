@@ -6,11 +6,11 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 21:01:13 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/20 14:38:44 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/25 15:57:44 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "minishell.h"
 
 //pwd with no options
 

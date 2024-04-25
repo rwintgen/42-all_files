@@ -6,11 +6,11 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 02:42:25 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/25 12:52:39 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/25 15:57:44 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "minishell.h"
 
 int	ft_cd(t_cmd *cmd, t_envp *envp)
 {

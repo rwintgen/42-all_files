@@ -6,11 +6,11 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 12:40:53 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/25 14:59:57 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/25 16:20:06 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../include/minishell.h"
+#include "minishell.h"
 
 // formats input and expands variables
 char	*true_line(char *str, t_sh *sh)

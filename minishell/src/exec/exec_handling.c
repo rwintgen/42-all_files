@@ -6,11 +6,11 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 17:59:02 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/25 14:59:42 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/25 15:57:44 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "minishell.h"
 
 // handles command execution and i.o redirection
 void	exec_handler(t_sh *sh)

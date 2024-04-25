@@ -6,11 +6,11 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 14:28:16 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/25 14:46:36 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/25 16:34:49 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../include/minishell.h"
+#include "minishell.h"
 
 bool	valid_input(char *input)
 {
@@ -27,25 +27,25 @@ bool	valid_input(char *input)
 
 bool	open_quote(char *input)
 {
-	int	i;
-	int	single_quote;
-	int	double_quote;
+	int		i;
+	char	quote;
 
 	i = 0;
-	single_quote = 0;
-	double_quote = 0;
 	while (input[i])
 	{
-		if (input[i] == 34)
-			double_quote++;
-		else if (input[i] == 39)
-			single_quote++;
+		if (input[i] == '\'' || input[i] == '"')
+		{
+			quote = input[i];
+			i++;
+			while (input[i] && input[i] != quote)
+				i++;
+			if (!input[i])
+			{
+				ft_putendl_fd(E_SYNTAX_QUOTE, STDERR_FILENO);
+				return (true);
+			}
+		}
 		i++;
-	}
-	if (single_quote % 2 != 0 || double_quote % 2 != 0)
-	{
-		ft_putendl_fd(E_SYNTAX_QUOTE, STDERR_FILENO);
-		return (true);
 	}
 	return (false);
 }
