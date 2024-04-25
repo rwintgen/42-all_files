@@ -6,78 +6,11 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 15:38:25 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/25 16:45:28 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/25 18:15:29 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-char	*var_expand(char *input, t_envp *envp, int exit_code)
-{
-	int		i;
-	int		single_quote;
-	int		double_quote;
-	char	*var;
-	char	*key;
-
-	i = 0;
-	single_quote = 0;
-	double_quote = 0;
-	while (input[i])
-	{
-		if (input[i] == '"')
-			double_quote++;
-		else if (input[i] == '\'')
-			single_quote++;
-		if (input[i] == '$' && single_quote % 2 == 0)
-		{
-			key = var_getkey(input, i + 1);
-			var = var_export(input, i + 1, envp);
-			//printf("\ninput: %s\nkey: %s\nvar: %s\n", input, key, var);
-			if (var && ft_strlen(var) > 0)
-			{
-				input = ft_strrep(input, key, var);
-				//printf("input: %s\n", input);
-			}
-			else if (input[i + 1] && input[i + 1] == '?')
-				input = ft_strrep(input, key, ft_itoa(exit_code));
-			else
-				input = ft_strrep(input, key, "");
-		}
-		i++;
-	}
-	return (input);
-}
-
-char	*var_getkey(char *str, int i)
-{
-	char	*key;
-	int		j;
-
-	j = i;
-	while (str[j] && ft_isalpha(str[j]))
-		j++;
-	if (str[j] == '?')
-		j++;
-	key = ft_substr(str, i - 1, j - i + 1);
-	return (key);
-}
-
-char	*var_export(char *str, int i, t_envp *envp)
-{
-	char	*var;
-	char	*key;
-	int		j;
-
-	j = i;
-	while (str[j] && str[j] != ' ' && str[j] != '$')
-		j++;
-	key = ft_substr(str, i, j - i);
-	var = get_var(key, envp);
-	free(key);
-	return (var);
-
-}
 
 char	*get_var(char *key, t_envp *envp)
 {
@@ -90,7 +23,7 @@ char	*get_var(char *key, t_envp *envp)
 		while (envp->envar[i] && envp->envar[i] != '=')
 			i++;
 		envp_key = ft_substr(envp->envar, 0, i);
-		if (ft_strncmp(envp_key, key, ft_strlen(key)) == 0)
+		if (ft_strncmp(envp_key, &key[1], ft_strlen(key)) == 0)
 		{
 			free(envp_key);
 			return (envp->envar + i + 1);
@@ -99,4 +32,59 @@ char	*get_var(char *key, t_envp *envp)
 		envp = envp->next;
 	}
 	return (NULL);
+}
+
+int	get_key_len(char *input, int i)
+{
+	int		key_len;
+
+	key_len = 1;
+	while (input[i + key_len] && ft_isalnum(input[i + key_len]))
+		key_len++;
+	return (key_len);
+}
+
+char	*var_replace(char *input, int *i, t_envp *envp, int exit_code)
+{
+	int		key_len;
+	char	*key;
+	char	*var;
+
+	if (input[*i + 1] == '?')
+	{
+		input = ft_strrep(input, "$?", ft_itoa(exit_code));
+		*i += 1;
+	}
+	else
+	{
+		key_len = get_key_len(input, *i);
+		key = ft_substr(input, *i, key_len);
+		var = get_var(key, envp);
+		if (var)
+			input = ft_strrep(input, key, var);
+		else
+			input = ft_strrep(input, key, "");
+		*i += key_len;
+	}
+	return (input);
+}
+
+char	*var_expand(char *input, t_envp *envp, int exit_code)
+{
+	int		i;
+
+	i = 0;
+	while (input[i])
+	{
+		if (input[i] == '\'')
+		{
+			i++;
+			while (input[i] && input[i] != '\'')
+				i++;
+		}
+		else if (input[i] == '$')
+			input = var_replace(input, &i, envp, exit_code);
+		i++;
+	}
+	return (input);
 }
