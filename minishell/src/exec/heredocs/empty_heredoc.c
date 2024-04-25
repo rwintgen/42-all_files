@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 13:52:27 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/23 11:58:09 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/25 12:48:55 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char	**add_delimiter(t_arg *cmd)
 	result = malloc(sizeof(char *) * 2);
 	if (!result)
 	{
-		ft_putstr_fd("minishell: malloc error\n", STDERR_FILENO);
+		ft_putendl_fd(E_MALLOC, STDERR_FILENO);
 		return (NULL);
 	}
 	result[0] = ft_strdup("chibron");

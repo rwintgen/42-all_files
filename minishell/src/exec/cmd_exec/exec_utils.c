@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 16:11:44 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/23 13:05:26 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/25 12:50:33 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	ft_fork(t_sh *sh)
 	if (pid == -1)
 	{
 		sh->cmd->skip_cmd = true;
-		ft_putstr_fd("minishell: fork error\n", STDERR_FILENO);
+		ft_putendl_fd(E_FORK, STDERR_FILENO);
 		return (-1);
 	}
 	return (pid);

@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 14:28:16 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/24 10:35:20 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/25 12:38:20 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 bool	valid_input(char *input)
 {
-	if (empty_line(input) || open_quote(input))
+	if (empty_line(input) || open_quote(input) || syntax_error(input))
 	{
 		if (!empty_line(input))
 			add_history(input);
@@ -25,7 +25,7 @@ bool	valid_input(char *input)
 	return (true);
 }
 
-int	open_quote(char *input)
+bool	open_quote(char *input)
 {
 	int	i;
 	int	single_quote;
@@ -44,13 +44,13 @@ int	open_quote(char *input)
 	}
 	if (single_quote % 2 != 0 || double_quote % 2 != 0)
 	{
-		ft_putstr_fd("minishell: open quote\n", STDERR_FILENO);
+		ft_putendl_fd(E_SYNTAX_QUOTE, STDERR_FILENO);
 		return (true);
 	}
 	return (false);
 }
 
-int	empty_line(char *input)
+bool	empty_line(char *input)
 {
 	int	i;
 
@@ -67,4 +67,29 @@ int	empty_line(char *input)
 		i++;
 	}
 	return (true);
+}
+
+bool	syntax_error(char *input)
+{
+	int	i;
+
+	i = 0;
+	while (input[i])
+	{
+		if (input[i] == '|'
+			&& (!ft_isalnum(input[i + 1]) && input[i + 1] != ' '))
+		{
+			ft_putendl_fd(E_SYNTAX_PIPE, STDERR_FILENO);
+			return (true);
+		}
+		if (is_special_char(input[i]) && empty_line(input + i + 1))
+		{
+			ft_putendl_fd(E_SYNTAX_NL, STDERR_FILENO);
+			return (true);
+		}
+		if (is_too_many_redir(input))
+			return (true);
+		i++;
+	}
+	return (false);
 }

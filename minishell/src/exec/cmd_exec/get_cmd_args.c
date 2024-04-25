@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 11:46:24 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/04/23 13:07:16 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/25 12:50:08 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	**fetch_cmd_args(t_arg *current)
 	result = malloc(sizeof(char *) * (cmd_argc + 1));
 	if (!result)
 	{
-		ft_putstr_fd("minishell: malloc error\n", STDERR_FILENO);
+		ft_putendl_fd(E_MALLOC, STDERR_FILENO);
 		return (NULL);
 	}
 	current = cmd;

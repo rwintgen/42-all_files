@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 12:31:29 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/24 14:53:12 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/25 12:49:43 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	pipe_if_needed(t_arg *tmp, t_sh *sh, bool skip)
 		if (pipe(sh->pipefd) == -1)
 		{
 			skip = true;
-			ft_putstr_fd("minishell: pipe error\n", STDERR_FILENO);
+			ft_putendl_fd(E_PIPE, STDERR_FILENO);
 			return ;
 		}
 	}

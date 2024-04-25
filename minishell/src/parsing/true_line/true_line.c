@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 12:40:53 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/24 11:28:33 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/25 12:39:24 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*true_line(char *str, t_sh *sh)
 	formatted = malloc(sizeof(char) * (ft_strlen(str) + missing_spaces + 1));
 	if (!formatted)
 	{
-		ft_putstr_fd("minishell: malloc error\n", STDERR_FILENO);
+		ft_putendl_fd(E_MALLOC, STDERR_FILENO);
 		return (NULL);
 	}
 	add_spaces(&formatted, str);

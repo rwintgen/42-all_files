@@ -1,24 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_handling.c                                    :+:      :+:    :+:   */
+/*   valid_input_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/08 17:59:02 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/25 12:55:06 by rwintgen         ###   ########.fr       */
+/*   Created: 2024/04/25 12:22:55 by rwintgen          #+#    #+#             */
+/*   Updated: 2024/04/25 12:34:09 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "../../../include/minishell.h"
 
-// handles command execution and i.o redirection
-void	exec_handler(t_sh *sh)
+bool	is_too_many_redir(char *input)
 {
-	signal(SIGQUIT, &sig_quit_state);
-	signal(SIGINT, &sig_int_state);
-	save_commands(sh);
-	// print_t_cmd_struct(sh->cmd);
-	exec_commands(sh);
-	printf("last cmd exit code: %d\n\n", sh->exit_code);
+	int	i;
+	int	count;
+
+	i = 0;
+	count = 0;
+	while (input[i])
+	{
+		if (input[i] == '<' || input[i] == '>')
+		{
+			count++;
+			if (count > 2)
+			{
+				ft_putendl_fd(E_SYNTAX_REDIR, STDERR_FILENO);
+				return (true);
+			}
+		}
+		else
+			count = 0;
+		i++;
+	}
+	return (false);
 }

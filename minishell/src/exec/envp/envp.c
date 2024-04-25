@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 13:44:40 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/23 12:21:04 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/25 12:49:21 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	append_env_node(t_envp **env_cpy, char *env_var)
 	new_node = ft_calloc(1, sizeof(t_envp));
 	if (!new_node)
 	{
-		ft_putstr_fd("minishell: malloc error\n", STDERR_FILENO);
+		ft_putendl_fd(E_MALLOC, STDERR_FILENO);
 		// free_sh(sh);
 		close_all_fds();
 		exit(1);

@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 14:18:05 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/24 17:18:10 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/25 12:51:36 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,14 @@ void	exec_commands(t_sh *sh)
 	while (sh->cmd)
 	{
 		if (sh->cmd->skip_cmd == false)
+		{
 			last_pid = ft_exec(sh);
+			if (sh->cmd->is_builtin && count_commands(sh->cmd) == 1)
+			{
+				sh->exit_code = last_pid;
+				return ;
+			}
+		}
 		if (sh->cmd->input_fd != sh->saved_stdfd[0]/*&& sh->cmd->input_fd != STDIN_FILENO*/)
 			close_if_valid(sh->cmd->input_fd);
 		if (sh->cmd->output_fd != sh->saved_stdfd[1]/*&& sh->cmd->output_fd != STDOUT_FILENO*/)
@@ -65,7 +72,7 @@ void	exec_current_cmd(char *path_to_cmd, t_sh *sh, char **envp_c)
 {
 	if (execve(path_to_cmd, sh->cmd->cmd_and_args, envp_c) == -1)
 	{
-		ft_putstr_fd("minishell: command not found: ", 2);
+		ft_putstr_fd(E_CMD_NF, 2);
 		ft_putendl_fd(sh->cmd->cmd_and_args[0], STDERR_FILENO);
 		ft_free_char_tab(envp_c);
 		close_all_fds();

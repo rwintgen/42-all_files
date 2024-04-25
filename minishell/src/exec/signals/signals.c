@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 16:11:36 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/23 13:15:56 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/25 12:40:13 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ void	sig_int_state(int sig)
 {
 	(void)sig;
 	g_sig = 130;
-	ft_putstr_fd("\n", STDERR_FILENO); //TODO check si le \n est sur la sortie 1 ou 2
+	ft_putstr_fd("\n", STDERR_FILENO);
+	//TODO check si le \n est sur la sortie 1 ou 2
 }
 
 void	sig_quit_state(int sig)

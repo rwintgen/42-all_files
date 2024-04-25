@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:28:53 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/24 14:39:55 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/25 12:39:47 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	append_arg_node(t_arg **arg_cpy, char *arg, t_sh *sh)
 	new_node = malloc(sizeof(t_arg));
 	if (!new_node)
 	{
-		ft_putstr_fd("minishell: malloc error\n", STDERR_FILENO);
+		ft_putendl_fd(E_MALLOC, STDERR_FILENO);
 		free_sh(sh);
 		close_all_fds();
 		exit(1);

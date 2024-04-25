@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 14:36:32 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/23 13:11:38 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/25 12:47:35 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,9 @@ bool	check_eof(char *line, char *delimiter)
 {
 	if (!line)
 	{
-		ft_putstr_fd("minishell: warning: here-document delimited by end-of-file (wanted '", STDERR_FILENO);
+		ft_putstr_fd(E_DELIM, STDERR_FILENO);
 		ft_putstr_fd(delimiter, STDERR_FILENO);
-		ft_putendl_fd("')\n", STDERR_FILENO);
+		ft_putendl_fd("')", STDERR_FILENO);
 		return (true);
 	}
 	else if (!ft_strncmp(line, delimiter, INT_MAX))

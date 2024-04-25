@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:11:52 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/24 14:24:13 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/25 12:53:46 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,26 @@
 # include "../libft/src/libft.h"
 # include <signal.h>
 # include <errno.h>
+
+/************************** DEFINES *************************/
+
+# define E_SYNTAX_REDIR "minishell: syntax error near angle brackets"
+# define E_SYNTAX_PIPE "minishell: syntax error near pipe"
+# define E_SYNTAX_QUOTE "minishell: syntax error near quote"
+# define E_SYNTAX_NL "minishell: syntax error near newline"
+
+# define E_FILE_OPEN "minishell: error opening file: "
+# define E_FILE_EXIST "minishell: file does not exist: "
+# define E_FILE_PERM "minishell: permission denied: "
+
+# define E_CMD_NF "minishell: command not found: "
+
+# define E_MALLOC "minishell: malloc error"
+# define E_PIPE "minishell: pipe error"
+# define E_FORK "minishell: fork error"
+
+# define E_DELIM "minishell: warning: here-document delimited by \
+end-of-file (wanted '"
 
 /********************** GLOBAL VARIABLE *********************/
 
@@ -269,8 +289,11 @@ char	*true_line(char *str, t_sh *sh);
 void	add_spaces(char **formatted, char *str);
 
 //valid_input
+bool	is_too_many_redir(char *input);
+
 bool	valid_input(char *input);
-int		open_quote(char *input);
-int		empty_line(char *input);
+bool	open_quote(char *input);
+bool	empty_line(char *input);
+bool	syntax_error(char *input);
 
 #endif
