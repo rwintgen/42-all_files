@@ -6,7 +6,7 @@
 #    By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/10 16:32:07 by deymons           #+#    #+#              #
-#    Updated: 2024/04/25 16:29:27 by rwintgen         ###   ########.fr        #
+#    Updated: 2024/04/25 17:19:20 by rwintgen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,11 +68,11 @@ all			:	$(NAME)
 
 $(NAME)		:	$(OBJS) $(LIBFT)
 				@clear
-				@echo "  __  __ ___ _  _ ___ ___ _  _ ___ _    _    \n"
-				@echo " |  \/  |_ _| \| |_ _/ __| || | __| |  | |   \n"
-				@echo " | |\/| || || .\` || |\__ \ __ | _|| |__| |__ \n"
+				@echo "  __  __ ___ _  _ ___ ___ _  _ ___ _    _    "
+				@echo " |  \/  |_ _| \| |_ _/ __| || | __| |  | |   "
+				@echo " | |\/| || || .\` || |\__ \ __ | _|| |__| |__ "
 				@echo " |_|  |_|___|_|\_|___|___/_||_|___|____|____|\n"
-				@echo " by rwintgen && amalangi                     \n"
+				@echo "            by rwintgen && amalangi\n"
 				@echo "$(GREEN)libft created$(NC)"
 				@$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LIBFT) -lreadline
 				@echo "$(GREEN)minishell linked$(NC)"

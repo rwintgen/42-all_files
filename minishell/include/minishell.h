@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:11:52 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/25 16:24:24 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/25 16:41:43 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # include <stdbool.h>
 # include <sys/types.h>
 # include <sys/wait.h>
-# include "../libft/src/libft.h"
+# include "../libft/libft.h"
 # include <signal.h>
 # include <errno.h>
 
