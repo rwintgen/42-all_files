@@ -5,101 +5,97 @@
 #                                                     +:+ +:+         +:+      #
 #    By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/04/24 15:28:48 by rwintgen          #+#    #+#              #
-#    Updated: 2024/04/24 15:49:23 by rwintgen         ###   ########.fr        #
+#    Created: 2023/11/02 12:30:27 by rwintgen          #+#    #+#              #
+#    Updated: 2024/04/25 16:46:22 by rwintgen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libft.a
+SRCS	= ft_atoi.c \
+		ft_atol.c \
+		ft_atoll.c \
+		ft_bzero.c \
+		ft_calloc.c \
+		ft_isalnum.c \
+		ft_isalpha.c \
+		ft_isascii.c \
+		ft_isdigit.c \
+		ft_isprint.c \
+		ft_memchr.c \
+		ft_memcmp.c \
+		ft_memcpy.c \
+		ft_memmove.c \
+		ft_memset.c \
+		ft_strchr.c \
+		ft_strdup.c \
+		ft_strlcat.c \
+		ft_strlcpy.c \
+		ft_strlen.c \
+		ft_strncmp.c \
+		ft_strnstr.c \
+		ft_strrep.c \
+		ft_strrchr.c \
+		ft_tolower.c \
+		ft_toupper.c \
+		ft_substr.c \
+		ft_strjoin.c \
+		ft_strtrim.c \
+		ft_split.c \
+		ft_itoa.c \
+		ft_strmapi.c \
+		ft_striteri.c \
+		ft_putchar_fd.c \
+		ft_putstr_fd.c \
+		ft_putendl_fd.c \
+		ft_putnbr_fd.c \
+		ft_lstnew.c \
+		ft_lstadd_front.c \
+		ft_lstsize.c \
+		ft_lstlast.c \
+		ft_lstadd_back.c \
+		ft_lstdelone.c \
+		ft_lstclear.c \
+		ft_lstiter.c \
+		ft_lstmap.c \
+		ft_printf/ft_format.c \
+		ft_printf/ft_printf.c \
+		ft_printf/ft_printfchar.c \
+		ft_printf/ft_printfnbr.c \
+		ft_printf/ft_printfnbrhex.c \
+		ft_printf/ft_printfnbru.c \
+		ft_printf/ft_printfptr.c \
+		ft_printf/ft_printfstr.c \
+		get_next_line.c \
+		ft_free_char_tab.c
 
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror
-AR = ar rcs
-RM = rm -f
+OBJS    = ${SRCS:.c=.o}
 
-FILES = ft_atoi \
-		ft_bzero \
-		ft_calloc \
-		ft_isalnum \
-		ft_isalpha \
-		ft_isascii \
-		ft_isdigit \
-		ft_isprint \
-		ft_itoa \
-		ft_memchr \
-		ft_memcmp \
-		ft_memcpy \
-		ft_memmove \
-		ft_memset \
-		ft_putchar_fd \
-		ft_putendl_fd \
-		ft_putnbr_fd \
-		ft_putstr_fd \
-		ft_split \
-		ft_strchr \
-		ft_strdup \
-		ft_striteri \
-		ft_strjoin \
-		ft_strlcat \
-		ft_strlcpy \
-		ft_strlen \
-		ft_strmapi \
-		ft_strncmp \
-		ft_strnstr \
-		ft_strrchr \
-		ft_strtrim \
-		ft_str_replace \
-		ft_substr \
-		ft_tolower \
-		ft_toupper \
-		ft_printf \
-		ft_printf_char \
-		ft_printf_decimal \
-		ft_printf_hex_address \
-		ft_printf_param \
-		ft_printf_string \
-		ft_printf_unsigned_decimal \
-		ft_putnbr_base \
-		ft_free_char_tab \
-		gnl \
-		gnl_utils
+NAME    = libft.a
 
-FILES_B =   ft_lstnew_bonus \
-			ft_lstadd_back_bonus \
-			ft_lstadd_front_bonus \
-			ft_lstclear_bonus \
-			ft_lstdelone_bonus \
-			ft_lstiter_bonus \
-			ft_lstlast_bonus \
-			ft_lstmap_bonus \
-			ft_lstsize_bonus
+CC  = gcc
 
-SRCS_DIR = ./src/
-SRCS = $(addprefix $(SRCS_DIR), $(addsuffix .c, $(FILES)))
-SRCS_B = $(addprefix $(SRCS_DIR), $(addsuffix .c, $(FILES_B)))
+AR    = ar rcs
 
-OBJS_DIR = ./src/
-OBJS = $(addprefix $(OBJS_DIR), $(addsuffix .o, $(FILES)))
-OBJS_B = $(addprefix $(OBJS_DIR), $(addsuffix .o, $(FILES_B)))
+CFLAGS  = -Wall -Wextra -Werror -g
 
+RM  = rm -f
 
-$(NAME): $(OBJS)
-	@$(AR) $@ $^
+$(NAME):	$(OBJS)
+	@$(AR) $(NAME) $(OBJS)
 
-bonus: $(OBJS_B)
-	@$(AR) $(NAME) $^
+%.o: %.c
+	@$(CC) $(CFLAGS) -c $< -o $@
 
-all: $(NAME)
+all:		${NAME}
+
+bonus:		$(OBJS)
+		@$(AR) $(NAME) $?
 
 clean:
-	@$(RM) $(OBJS) $(OBJS_B) $(NAME)
+		@${RM} ${OBJS}
 
-fclean: clean
-	@$(RM) $(NAME)
+fclean:		clean
+		@${RM} ${NAME}
 
-re: clean all
+re:			fclean all
 
-.PHONY: bonus all clean fclean re
-
-$(OBJS_DIR)%.o: $(SRCS_DIR)%.c
-	@$(CC) $(CFLAGS) -c $< -o $@
+.PHONY:	all clean fclean re
