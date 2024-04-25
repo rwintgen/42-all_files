@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 14:28:16 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/25 12:38:20 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/25 14:46:36 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ bool	syntax_error(char *input)
 	i = 0;
 	while (input[i])
 	{
-		if (input[i] == '|'
+		if (input[i] == '|' && !is_between_quotes(input, &input[i])
 			&& (!ft_isalnum(input[i + 1]) && input[i + 1] != ' '))
 		{
 			ft_putendl_fd(E_SYNTAX_PIPE, STDERR_FILENO);

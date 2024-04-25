@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:59:56 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/25 13:49:34 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/25 13:56:45 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int g_sig;
 
 ///////// TODO //////////
 // fix dollar_replace			=> Arthur
+// fix quotes					=> Arthur
 // segfault $EMPTY				=> Arthur
 // make builtins
 // fix ctrl+C heredoc

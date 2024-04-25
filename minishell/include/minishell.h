@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:11:52 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/25 13:43:55 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/25 14:30:13 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -294,6 +294,7 @@ void	add_spaces(char **formatted, char *str);
 
 //valid_input
 bool	is_too_many_redir(char *input);
+bool	is_between_quotes(char *input, char *c);
 
 bool	valid_input(char *input);
 bool	open_quote(char *input);
