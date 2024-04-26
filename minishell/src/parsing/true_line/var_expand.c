@@ -6,11 +6,18 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 15:38:25 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/26 11:52:39 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/26 13:01:09 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+///////// TODO //////////
+// echo '$USER' "$USER"
+// -> ft_strrep wil replace first instance of USER
+// echo "'$USER'"
+// -> will not expand
+/////////////////////////
 
 char	*var_expand(char *input, t_envp *envp, int exit_code)
 {

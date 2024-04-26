@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 16:43:40 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/04/25 17:17:26 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/26 13:06:55 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,28 @@
 
 static char	*find_torep_start(char *str, char *torep)
 {
-	char	*start;
+	char	*current;
+	int		in_quotes;
+	size_t	len;
+	size_t	torep_len;
 
-	start = ft_strnstr(str, torep, ft_strlen(str));
-	if (!start)
-		return (NULL);
-	return (start);
+	current = str;
+	in_quotes = 0;
+	len = ft_strlen(str);
+	torep_len = ft_strlen(torep);
+	while (*current && (current - str + torep_len <= len))
+	{
+		if (*current == '\'')
+		{
+			in_quotes = !in_quotes;
+			current++;
+			continue ;
+		}
+		if (!in_quotes && ft_strncmp(current, torep, torep_len) == 0)
+			return (current);
+		current++;
+	}
+	return (NULL);
 }
 
 static int	getlen(char *str, char *torep, char *repby)
