@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 15:38:25 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/26 14:14:05 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/26 18:17:59 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,46 +15,64 @@
 ///////// TODO //////////
 // x = variable expansion
 // n = no variable expansion
-// sq = single quotes
-// dq = double quotes
-// nq = no quotes
 //
 // to test: 
 /*
-echo "'$USER'" -> x, sq										=> nx, sq
-echo '"$USER"' -> nx, dq									=> OK
-echo "'"$USER"'" -> x, sq									=> nx, sq
-echo '"'$USER'"' -> x, dq									=> OK
-echo "'"'$USER'"'" -> nx, sq								=> x, sq
-echo '"'"$USER"'"' -> x, dq									=> OK
-echo "$USER" '$USER' -> x, nx, nq							=> OK
-echo '$USER' "$USER" -> nx, x, nq							=> OK
-echo "$USER" '$USER' "$USER" '$USER' -> x, nx, x, nx, nq	=> OK
-echo '$USER' "$USER" '$USER' "$USER" -> nx, x, nx, x, nq	=> OK
+echo "'$USER'" -> x														=> OK
+echo '"$USER"' -> nx													=> OK
+echo "'"$USER"'" -> x													=> OK
+echo '"'$USER'"' -> x													=> OK
+echo "'"'$USER'"'" -> nx												=> OK
+echo '"'"$USER"'"' -> x													=> OK
+echo "$USER" '$USER' -> x, nx											=> OK
+echo '$USER' "$USER" -> nx, x											=> OK
+echo "$USER" '$USER' "$USER" '$USER' -> x, nx, x, nx					=> OK
+echo '$USER' "$USER" '$USER' "$USER" -> nx, x, nx, x					=> OK
+echo "'$USER"' '"$USER'" -> 'rwintgen rwintgen'							=> OK
+echo "'$USER'" '"$USER"' -> 'rwintgen' "$USER"							=> OK
+echo "'"'"'$USER'"'"'" '"'"'"$USER"'"'"' -> '"rwintgen"' "'rwintgen'"	=> OK
 */
 /////////////////////////
+
+bool	is_valid_var(char *input, int dollar)
+{
+	int	sq;
+	int	dq;
+	int	i;
+
+	sq = 0;
+	dq = 0;
+	i = 0;
+	while (input[i] && i < dollar)
+	{
+		if (input[i] == '\'' && !dq)
+			sq = !sq;
+		if (input[i] == '"' && !sq)
+			dq = !dq;
+		i++;
+	}
+	if (sq)
+		return (false);
+	// printf("is_valid_var\n"); // DEBUG
+	return (true);
+}
 
 char	*var_expand(char *input, t_envp *envp, int exit_code)
 {
 	int	i;
 	int	len;
 
+	// printf("before expansion:\t%s\n", input); // DEBUG
 	len = ft_strlen(input);
 	i = 0;
 	while (input[i])
 	{
-		if (input[i] == '\'')
-		{
-			i++;
-			while (input[i] && input[i] != '\'')
-				i++;
-		}
-		else if (input[i] == '$')
+		if (input[i] == '$' && is_valid_var(input, i))
 			input = var_replace(input, &i, envp, exit_code);
 		if (i < len - 1)
 			i++;
 		else
-			break;
+			break ;
 	}
 	return (input);
 }
@@ -66,6 +84,8 @@ char	*var_replace(char *input, int *i, t_envp *envp, int exit_code)
 	char	*var;
 	char	*tmp;
 
+	if (!input[*i + 1] || input[*i + 1] == '$' || input[*i + 1] == ' ')
+		return (input);
 	if (input[*i + 1] == '?')
 	{
 		tmp = ft_itoa(exit_code);
@@ -77,7 +97,9 @@ char	*var_replace(char *input, int *i, t_envp *envp, int exit_code)
 	{
 		key_len = get_key_len(input, *i);
 		key = ft_substr(input, *i, key_len);
+		// printf("key:\t%s\n", key); // DEBUG
 		var = get_var(key, envp);
+		// printf("var:\t%s\n", var); // DEBUG
 		if (var)
 			input = ft_strrep(input, key, var);
 		else

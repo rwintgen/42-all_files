@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:11:52 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/26 11:39:47 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/26 18:34:18 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -293,6 +293,8 @@ char	*get_var(char *key, t_envp *envp);
 int		get_key_len(char *input, int i);
 
 // utils
+int		err_msg_syntax(char *msg, int ret);
+
 char	**ms_split(char *s, char c);
 
 void	remove_quote(char *str);
@@ -301,8 +303,9 @@ char	*ft_strdelchar(char *str, char c, unsigned int n);
 //valid_input
 bool	is_too_many_redir(char *input);
 bool	is_between_quotes(char *input, char *c);
+bool	wrong_count(char *input);
 
-bool	valid_input(char *input);
+bool	valid_input(char *input, t_sh *sh);
 bool	open_quote(char *input);
 bool	empty_line(char *input);
 bool	syntax_error(char *input);
