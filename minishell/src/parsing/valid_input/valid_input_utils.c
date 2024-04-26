@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 12:22:55 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/04/25 15:57:38 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/26 14:20:14 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ bool	is_too_many_redir(char *input)
 			if (count > 2)
 			{
 				ft_putendl_fd(E_SYNTAX_REDIR, STDERR_FILENO);
+				// TODO sh->exit_code = 2;
 				return (true);
 			}
 		}

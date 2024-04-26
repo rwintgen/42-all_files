@@ -6,17 +6,32 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 15:38:25 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/26 13:01:09 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/26 14:14:05 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 ///////// TODO //////////
-// echo '$USER' "$USER"
-// -> ft_strrep wil replace first instance of USER
-// echo "'$USER'"
-// -> will not expand
+// x = variable expansion
+// n = no variable expansion
+// sq = single quotes
+// dq = double quotes
+// nq = no quotes
+//
+// to test: 
+/*
+echo "'$USER'" -> x, sq										=> nx, sq
+echo '"$USER"' -> nx, dq									=> OK
+echo "'"$USER"'" -> x, sq									=> nx, sq
+echo '"'$USER'"' -> x, dq									=> OK
+echo "'"'$USER'"'" -> nx, sq								=> x, sq
+echo '"'"$USER"'"' -> x, dq									=> OK
+echo "$USER" '$USER' -> x, nx, nq							=> OK
+echo '$USER' "$USER" -> nx, x, nq							=> OK
+echo "$USER" '$USER' "$USER" '$USER' -> x, nx, x, nx, nq	=> OK
+echo '$USER' "$USER" '$USER' "$USER" -> nx, x, nx, x, nq	=> OK
+*/
 /////////////////////////
 
 char	*var_expand(char *input, t_envp *envp, int exit_code)
