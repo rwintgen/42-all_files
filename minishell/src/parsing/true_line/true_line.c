@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 12:40:53 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/25 16:20:06 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/26 11:31:54 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ char	*true_line(char *str, t_sh *sh)
 {
 	char	*formatted;
 	int		missing_spaces;
+	char	*tmp;
 
 	missing_spaces = count_missing_spaces(str);
 	formatted = malloc(sizeof(char) * (ft_strlen(str) + missing_spaces + 1));
@@ -28,7 +29,10 @@ char	*true_line(char *str, t_sh *sh)
 	add_spaces(&formatted, str);
 	// printf("formatted: %s\n", formatted); // DEBUG
 	free(str);
+	tmp = formatted;
 	formatted = var_expand(formatted, sh->envp, sh->exit_code);
+	if (tmp != formatted)
+		free(tmp);
 	// printf("expanded: %s\n", formatted); // DEBUG
 	return (formatted);
 }

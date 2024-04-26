@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:59:56 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/25 16:35:58 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/26 11:39:19 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int g_sig;
 
 ///////// TODO //////////
-// fix dollar_replace			=> Arthur
+// fix dollar_replace
 // make builtins
 // fix ctrl+C heredoc
 // valgrind (open FDs, leaks)

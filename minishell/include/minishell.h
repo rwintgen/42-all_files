@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:11:52 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/25 16:41:43 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/26 11:39:47 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -280,17 +280,17 @@ void	set_cmd(t_arg *elem);
 void	set_arg(t_arg *elem);
 
 //true_line
-char	*var_expand(char *input, t_envp *envp, int exit_code);
-char	*var_getkey(char *str, int i);
-char	*var_export(char *str, int i, t_envp *envp);
-char	*get_var(char *key, t_envp *envp);
-
 int		count_missing_spaces(char *str);
 bool	missing_space_before(char *str, int i);
 bool	missing_space_after(char *str, int i);
 
 char	*true_line(char *str, t_sh *sh);
 void	add_spaces(char **formatted, char *str);
+
+char	*var_expand(char *input, t_envp *envp, int exit_code);
+char	*var_replace(char *input, int *i, t_envp *envp, int exit_code);
+char	*get_var(char *key, t_envp *envp);
+int		get_key_len(char *input, int i);
 
 // utils
 char	**ms_split(char *s, char c);

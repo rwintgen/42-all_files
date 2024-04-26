@@ -6,7 +6,7 @@
 #    By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/10 16:32:07 by deymons           #+#    #+#              #
-#    Updated: 2024/04/25 17:19:20 by rwintgen         ###   ########.fr        #
+#    Updated: 2024/04/26 11:40:06 by rwintgen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,9 +47,9 @@ SRCS		=	src/main.c									\
 				src/exec/exec_handling.c					\
 				src/parsing/lexer/lexer_utils.c				\
 				src/parsing/lexer/lexer.c					\
-				src/parsing/true_line/dollar.c				\
 				src/parsing/true_line/true_line_utils.c		\
 				src/parsing/true_line/true_line.c			\
+				src/parsing/true_line/var_expand.c			\
 				src/parsing/utils/ms_split.c				\
 				src/parsing/utils/rm_quotes.c				\
 				src/parsing/valid_input/valid_input_utils.c	\
