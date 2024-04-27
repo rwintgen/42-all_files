@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 13:19:51 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/04/27 11:00:16 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/27 14:28:40 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ bool	missing_space_after(char *str, int i)
 		return (false);
 	if (str[i + 1] != ' ' && !is_special_char(str[i + 1])
 		&& str[i + 1] != '\'' && str[i + 1] != '\"')
+		return (true);
+	if (str[i + 1] == '\'' || str[i + 1] == '"')
 		return (true);
 	if (is_special_char(str[i + 1]) && str[i] != str[i + 1])
 		return (true);

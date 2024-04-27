@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:11:52 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/27 13:27:01 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/27 14:19:18 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,6 +167,7 @@ int		ft_pwd(void);
 // EXEC //
 
 void	exec_handler(t_sh *sh);
+void	remove_all_quotes(t_sh *sh);
 
 // cmd_exec
 void	cmd_err_msg(char *cmd);
@@ -269,8 +270,8 @@ t_arg	*copy_args(char *input, t_sh *sh);
 void	append_arg_node(t_arg **arg_cpy, char *arg, t_sh *sh);
 
 // lexer
-int	is_special_char(char c);
-int	is_special_symbol(char *c);
+int		is_special_char(char c);
+int		is_special_symbol(char *c);
 
 void	lexer_v2(t_arg *head);
 void	set_spec(t_arg *elem);
