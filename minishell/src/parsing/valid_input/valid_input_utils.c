@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 12:22:55 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/04/27 12:51:17 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/27 13:34:51 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,15 +74,3 @@ bool	check_redir(char *input, int i)
 	}
 	return (true);
 }
-
-/*to test:
-ls <> ls
-ls >>> ls
-ls <|> ls
-ls >| ls
-ls |> ls
-
-ls > |out
-ls >> |out
-ls << |eof
-*/

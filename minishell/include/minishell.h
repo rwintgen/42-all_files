@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:11:52 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/27 12:36:05 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/27 13:27:01 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@
 # define E_SYNTAX_PIPE "minishell: syntax error near pipe"
 # define E_SYNTAX_QUOTE "minishell: syntax error near quote"
 # define E_SYNTAX_NL "minishell: syntax error near newline"
-# define E_SYNTAX_TOKEN "minishell: syntax error near unrecognized token: "
 
 # define E_FILE_OPEN "minishell: error opening file: "
 # define E_FILE_EXIST "minishell: no such file or directory: "
