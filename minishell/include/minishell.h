@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:11:52 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/26 18:34:18 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/27 12:36:05 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 # define E_SYNTAX_PIPE "minishell: syntax error near pipe"
 # define E_SYNTAX_QUOTE "minishell: syntax error near quote"
 # define E_SYNTAX_NL "minishell: syntax error near newline"
+# define E_SYNTAX_TOKEN "minishell: syntax error near unrecognized token: "
 
 # define E_FILE_OPEN "minishell: error opening file: "
 # define E_FILE_EXIST "minishell: no such file or directory: "
@@ -92,7 +93,6 @@ typedef enum	e_err
 	ERR_EXEC,
 	ERR_HEREDOC
 }				t_err;
-
 
 // CMD LINE WORDS
 typedef struct	s_arg
@@ -270,8 +270,8 @@ t_arg	*copy_args(char *input, t_sh *sh);
 void	append_arg_node(t_arg **arg_cpy, char *arg, t_sh *sh);
 
 // lexer
-int		is_special_char(char c);
-int		contain_special_char(char *c);
+int	is_special_char(char c);
+int	is_special_symbol(char *c);
 
 void	lexer_v2(t_arg *head);
 void	set_spec(t_arg *elem);
@@ -302,8 +302,9 @@ char	*ft_strdelchar(char *str, char c, unsigned int n);
 
 //valid_input
 bool	is_too_many_redir(char *input);
-bool	is_between_quotes(char *input, char *c);
-bool	wrong_count(char *input);
+bool	is_quoted(char *input, char *c);
+bool	check_pipe(char *input, int i);
+bool	check_redir(char *input, int i);
 
 bool	valid_input(char *input, t_sh *sh);
 bool	open_quote(char *input);

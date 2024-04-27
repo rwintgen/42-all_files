@@ -6,29 +6,33 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 04:28:32 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/25 15:57:38 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/27 11:22:27 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+// returns char type
 int	is_special_char(char c)
 {
-	if (c == '>' || c == '<' || c == '|')
+	if (c == '|')
 		return (1);
+	if (c == '>' || c == '<')
+		return (2);
 	return (0);
 }
 
-int	contain_special_char(char *c)
+// returns 1 if word is pipe, 2 if redirection, 0 if neither
+int	is_special_symbol(char *c)
 {
 	int	i;
 
 	i = 0;
-	while (c[i])
+	while (c[i] && c[i] != ' ')
 	{
-		if (is_special_char(c[i]))
-			return (1);
+		if (i > 0 && c[i] != c[i - 1] && !is_quoted(c, &c[i]))
+			return (-1);
 		i++;
 	}
-	return (0);
+	return (is_special_char(c[0]));
 }

@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 14:28:16 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/26 18:30:26 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/27 12:50:27 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,12 +81,14 @@ bool	syntax_error(char *input)
 	i = 0;
 	while (input[i])
 	{
-		if (input[i] == '|' && !is_between_quotes(input, &input[i])
-			&& (!ft_isalnum(input[i + 1]) && input[i + 1] != ' '))
+		// checks that non-quoted pipes are followed by alphanum characters
+		if (!check_pipe(input, i))
 			return (err_msg_syntax(E_SYNTAX_PIPE, true));
+		// checks that non-quoted special characters are not at end of line
 		if (is_special_char(input[i]) && empty_line(input + i + 1))
 			return (err_msg_syntax(E_SYNTAX_NL, true));
-		if (is_too_many_redir(input) || wrong_count(input))
+		// checks that non quotes redirection symbols are valid
+		if (is_special_char(input[i]) && !check_redir(input, i))
 			return (err_msg_syntax(E_SYNTAX_REDIR, true));
 		i++;
 	}

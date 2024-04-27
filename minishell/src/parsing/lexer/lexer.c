@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 12:27:41 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/04/25 15:57:38 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/27 12:57:45 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	set_spec(t_arg *elem)
 {
 	while (elem)
 	{
+		// if (is_quoted(elem->str_command))
+		// 	return ;
 		if (ft_strncmp(elem->str_command, "<<", 2) == 0)
 			elem->type = HEREDOC;
 		else if (ft_strncmp(elem->str_command, "<", 1) == 0)

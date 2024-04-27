@@ -6,36 +6,14 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 12:22:55 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/04/26 18:33:59 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/27 12:51:17 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-bool	is_too_many_redir(char *input)
-{
-	int	i;
-	int	count;
-
-	i = 0;
-	count = 0;
-	while (input[i])
-	{
-		if ((input[i] == '<' || input[i] == '>')
-			&& !is_between_quotes(input, &input[i]))
-		{
-			count++;
-			if (count > 2)
-				return (true);
-		}
-		else
-			count = 0;
-		i++;
-	}
-	return (false);
-}
-
-bool	is_between_quotes(char *input, char *c)
+// checks if a character is quoted
+bool	is_quoted(char *input, char *c)
 {
 	int	i;
 	int	sq_count;
@@ -57,10 +35,54 @@ bool	is_between_quotes(char *input, char *c)
 	return (false);
 }
 
-// TODO
-// checks if too many special chars
-bool	wrong_count(char *input)
+// checks if a pipe is followed by a valid character
+bool	check_pipe(char *input, int i)
 {
-	(void)input;
-	return (false);
+	if (input[i] == '|' && !is_quoted(input, &input[i]))
+	{
+		i++;
+		if (input[i] && !ft_isalnum(input[i]) && input[i] != ' ')
+			return (false);
+		while (input[i] && input[i] == ' ')
+			i++;
+		if (is_special_char(input[i]))
+			return (false);
+	}
+	return (true);
 }
+
+bool	check_redir(char *input, int i)
+{
+	int	redir_len;
+
+	redir_len = 0;
+	if (is_special_symbol(&input[i]) == -1 && !is_quoted(input, &input[i]))
+		return (false);
+	if (is_special_symbol(&input[i]) == 2 && !is_quoted(input, &input[i]))
+	{
+		while (is_special_char(input[i]))
+		{
+			redir_len++;
+			if (redir_len > 2)
+				return (false);
+			i++;
+		}
+		while (input[i] && input[i] == ' ')
+			i++;
+		if (is_special_char(input[i]))
+			return (false);
+	}
+	return (true);
+}
+
+/*to test:
+ls <> ls
+ls >>> ls
+ls <|> ls
+ls >| ls
+ls |> ls
+
+ls > |out
+ls >> |out
+ls << |eof
+*/

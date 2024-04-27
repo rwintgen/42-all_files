@@ -6,34 +6,46 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 16:43:40 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/04/26 13:06:55 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/26 18:02:51 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+static int	in_sq(char *str, int i)
+{
+	int	sq;
+	int	dq;
+	int	j;
+
+	sq = 0;
+	dq = 0;
+	j = 0;
+	while (j < i)
+	{
+		if (str[j] == '\'' && !dq)
+			sq = !sq;
+		if (str[j] == '"' && !sq)
+			dq = !dq;
+		j++;
+	}
+	return (sq);
+}
+
 static char	*find_torep_start(char *str, char *torep)
 {
-	char	*current;
-	int		in_quotes;
 	size_t	len;
 	size_t	torep_len;
+	int		i;
 
-	current = str;
-	in_quotes = 0;
 	len = ft_strlen(str);
 	torep_len = ft_strlen(torep);
-	while (*current && (current - str + torep_len <= len))
+	i = 0;
+	while (str[i] && (i + torep_len <= len))
 	{
-		if (*current == '\'')
-		{
-			in_quotes = !in_quotes;
-			current++;
-			continue ;
-		}
-		if (!in_quotes && ft_strncmp(current, torep, torep_len) == 0)
-			return (current);
-		current++;
+		if (!ft_strncmp(&str[i], torep, torep_len) && !in_sq(str, i))
+			return (&str[i]);
+		i++;
 	}
 	return (NULL);
 }
