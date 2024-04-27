@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 16:11:44 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/25 15:57:38 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/27 16:45:41 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int	count_commands(t_cmd *cmd)
 	int	count;
 
 	count = 0;
+	if (!cmd)
+		return (0);
 	while (cmd->prev)
 		cmd = cmd->prev;
 	while (cmd)

@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 12:27:41 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/04/27 12:57:45 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/27 17:34:04 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ void	set_spec(t_arg *elem)
 {
 	while (elem)
 	{
-		// if (is_quoted(elem->str_command))
-		// 	return ;
 		if (ft_strncmp(elem->str_command, "<<", 2) == 0)
 			elem->type = HEREDOC;
 		else if (ft_strncmp(elem->str_command, "<", 1) == 0)
@@ -70,12 +68,25 @@ void	set_cmd(t_arg *elem)
 
 void	set_arg(t_arg *elem)
 {
-	while (elem)
+	t_arg	*tmp;
+	int		cmd_count;
+
+	tmp = elem;
+	while (tmp)
 	{
-		if (elem->type == -1 && elem->str_command[0] == '-')
-			elem->type = OPTION;
-		else if (elem->type == -1 && elem->str_command[0] != '-')
-			elem->type = ARG;
+		if (tmp->type == -1 && tmp->str_command[0] == '-')
+			tmp->type = OPTION;
+		else if (tmp->type == -1 && tmp->str_command[0] != '-')
+			tmp->type = ARG;
+		tmp = tmp->next;
+	}
+	cmd_count = 0;
+	while (elem && elem->type != PIPE)
+	{
+		if (elem->type == CMD)
+			cmd_count++;
+		if (elem->type == CMD && cmd_count > 1)
+				elem->type = ARG;
 		elem = elem->next;
 	}
 }
