@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:11:52 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/27 14:19:18 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/27 16:34:38 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -229,6 +229,9 @@ bool	try_file(char *base_filename, char *id_str, int *fd, char **file);
 bool	check_eof(char *line, char *delimiter);
 
 // redirections
+int		create_files(t_arg *arg);
+int		check_file_creation(t_arg *arg);
+
 bool	last_inf(t_arg *cmd);
 bool	prev_cmd_out(t_arg *cmd);
 void	check_inf_pipe(t_arg *to_check, t_arg **true_infile);

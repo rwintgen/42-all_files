@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 17:59:02 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/27 14:29:37 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/27 16:33:40 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@ void	exec_handler(t_sh *sh)
 	remove_all_quotes(sh);
 	save_commands(sh);
 	// print_t_cmd_struct(sh->cmd); // DEBUG
+	if (check_file_creation(sh->arg) == -1)
+	{
+		sh->exit_code = 1;
+		return ;
+	}
 	exec_commands(sh);
 	// printf("last cmd exit code: %d\n\n", sh->exit_code); // DEBUG
 }
