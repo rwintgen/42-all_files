@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 12:32:46 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/25 15:57:38 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/28 11:43:16 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,17 @@ void	check_outf_pipe(t_arg *cmd, t_arg **true_outfile)
 bool	check_outf_outfile(t_arg *cmd, t_arg **true_outfile)
 {
 	int	fd;
+	int	fd_in;
 
 	fd = -1;
+	fd_in = -2;
 	go_to_start_of_block(&cmd);
 	while (cmd && cmd->type != PIPE)
 	{
+		if (cmd->type == INFILE)
+			ft_open(cmd->str_command, &fd_in, FLAG_READ);
+		if (fd_in == -1)
+			return (true);
 		if (cmd->type == OUTFILE)
 		{
 			if (cmd->prev->type == OUTPUT)
@@ -85,12 +91,19 @@ bool	last_outf(t_arg *cmd)
 // creates all outfiles
 void	create_outfiles(t_arg *cmd)
 {
-	int			fd;
+	int	fd;
+	int	fd_in;
 
+	fd_in = -2;
+	go_to_start_of_block(&cmd);
 	while (cmd && !last_outf(cmd))
 	{
 		fd = -1;
-		if (cmd->type == OUTFILE && cmd->prev->type == OUTPUT)
+		if (cmd->type == INFILE)
+			ft_open(cmd->str_command, &fd_in, FLAG_READ);
+		if (fd_in == -1)
+			return ;
+		else if (cmd->type == OUTFILE && cmd->prev->type == OUTPUT)
 			ft_open(cmd->str_command, &fd, FLAG_WRITE);
 		else if (cmd->type == OUTFILE && cmd->prev->type == APPEND)
 			ft_open(cmd->str_command, &fd, FLAG_APPEND);
