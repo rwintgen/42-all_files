@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:59:56 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/28 12:24:04 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/28 15:35:31 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@ int g_sig;
 ///////// TODO //////////
 
 ///////// TODO //////////
-// fix "echo $"
-// fix cat wait infile // see pinned msg discord Arthur
+// empty command "" '' exit 126
 // make builtins
 // fix ctrl+C heredoc
 // valgrind (open FDs, leaks)

@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 14:28:16 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/27 13:52:41 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/28 15:31:11 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,10 @@ bool	syntax_error(char *input)
 	int	i;
 
 	i = 0;
+	while (input[i] && input[i] == ' ')
+		i++;
+	if (input[i] == '|')
+		return (err_msg_syntax(E_SYNTAX_PIPE, true));
 	while (input[i])
 	{
 		// checks that non-quoted pipes are followed by alphanum characters
