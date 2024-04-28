@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 12:05:24 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/04/25 15:57:38 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/28 14:02:09 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,23 @@ void	go_to_start_of_block(t_arg **cmd)
 		*cmd = (*cmd)->prev;
 }
 
-// exits if one on cmd's FD is invalid
+// exits if one of cmd's FD is invalid
 void	check_valid_fds(t_sh *sh)
 {
+	if (sh->cmd->input_fd == -3)
+	{
+		close_all_fds();
+		errno = 0;
+		free_sh(sh);
+		exit(1);
+	}
+	if (sh->cmd->input_fd == -2)
+	{
+		close_all_fds();
+		errno = 0;
+		free_sh(sh);
+		exit(0);
+	}
 	if (sh->cmd->input_fd < 0)
 	{
 		close_all_fds();

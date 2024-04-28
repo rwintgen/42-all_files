@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 12:22:55 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/04/27 18:02:28 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/28 12:55:18 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ bool	check_pipe(char *input, int i)
 	if (input[i] == '|' && !is_quoted(input, &input[i]))
 	{
 		i++;
-		if (input[i] && !ft_isalnum(input[i]) && input[i] != ' ')
+		if (input[i] && input[i] != ' '
+			&& !ft_isalnum(input[i]) && !is_special_char(input[i]))
 			return (false);
 		while (input[i] && input[i] == ' ')
 			i++;

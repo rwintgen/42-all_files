@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 16:07:33 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/27 10:34:57 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/28 14:01:35 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,47 @@ Input priority order:
 	cmd 1
 */
 
+bool	cat_piped(int stdfd_in, int fd, t_arg *cmd)
+{
+	t_arg	*tmp;
+
+	tmp = cmd;
+	if (ft_strncmp(cmd->str_command, "cat", 4) || fd != stdfd_in)
+		return (false);
+	while (tmp && tmp->type != PIPE)
+		tmp = tmp->prev;
+	if (!tmp)
+		return (false);
+	return (true);
+}
+
+bool	grep_piped(int stdfd_in, int fd, t_arg *cmd)
+{
+	t_arg	*tmp;
+
+	tmp = cmd;
+	if (ft_strncmp(cmd->str_command, "grep", 5) || fd != stdfd_in)
+		return (false);
+	if (!cmd->next || cmd->next->type != ARG)
+		return (false);
+	while (tmp && tmp->type != PIPE)
+		tmp = tmp->prev;
+	if (!tmp)
+		return (false);
+	return (true);
+}
+
 // finds right infile and opens it for current cmd
 int	set_infile(t_arg *cmd, int stdfd_in, int pipefd_in)
 {
-	int		fd;
 	t_arg	*true_infile;
+	t_arg	*tmp;
 	char	*heredoc_file;
+	int		fd;
 
 	heredoc_file = NULL;
 	true_infile = NULL;
+	tmp = cmd;
 	go_to_start_of_block(&cmd);
 	if (!infiles_ok(cmd))
 		return (-1);
@@ -45,9 +77,14 @@ int	set_infile(t_arg *cmd, int stdfd_in, int pipefd_in)
 		cmd = cmd->next;
 	}
 	fd = set_inf_fd(heredoc_file, true_infile, pipefd_in, stdfd_in);
+	if (cat_piped(stdfd_in, fd, tmp))
+		fd = -2;
+	else if (grep_piped(stdfd_in, fd, tmp))
+		fd = -3;
+
 	// TODO check if below lines are necessary
 	// if ((heredoc_file || !true_infile || true_infile->type != PIPE) && pipefd_in != -1)
-	// 	close(pipefd_in);
+	//     close(pipefd_in);
 	return (fd);
 }
 

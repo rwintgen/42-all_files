@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 04:28:32 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/27 13:37:34 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/28 12:58:40 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	is_special_symbol(char *c)
 	i = 0;
 	while (c[i] && is_special_char(c[i]) && c[i] != ' ')
 	{
-		if (i > 0 && c[i] != c[i - 1] && !is_quoted(c, &c[i]))
+		if (i > 0 && c[i] != c[i - 1] && !is_quoted(c, &c[i]) && c[i - 1] != '|')
 			return (-1);
 		i++;
 	}
