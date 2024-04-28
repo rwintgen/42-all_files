@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_commands.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 14:18:05 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/25 15:57:38 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/28 18:53:12 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,13 @@ void	exec_current_cmd(char *path_to_cmd, t_sh *sh, char **envp_c)
 	if (execve(path_to_cmd, sh->cmd->cmd_and_args, envp_c) == -1)
 	{
 		cmd_err_msg(sh->cmd->cmd_and_args[0]);
-		// ft_putstr_fd(E_CMD_NF, 2);
-		// ft_putendl_fd(sh->cmd->cmd_and_args[0], STDERR_FILENO);
 		ft_free_char_tab(envp_c);
 		close_all_fds();
+		if (!sh->cmd->cmd_and_args[0][0])
+		{
+			free_sh(sh);
+			exit(127);
+		}
 		exit(free_sh(sh));
 	}
 }
