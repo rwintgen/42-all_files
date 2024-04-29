@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pwd.c                                           :+:      :+:    :+:   */
+/*   ft_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/10 21:01:13 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/29 11:37:22 by rwintgen         ###   ########.fr       */
+/*   Created: 2024/04/29 15:02:13 by rwintgen          #+#    #+#             */
+/*   Updated: 2024/04/29 15:02:44 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_pwd(void)
+int	ft_env(t_envp *envp)
 {
-	char	*buffer;
+	t_envp	*tmp;
 
-	buffer = getcwd(NULL, 0);
-	if (buffer)
+	tmp = envp;
+	while (tmp)
 	{
-		ft_putstr_fd(buffer, STDOUT_FILENO);
-		ft_putstr_fd("\n", STDOUT_FILENO);
+		if (tmp->value)
+		{
+			ft_putstr_fd(tmp->key, STDOUT_FILENO);
+			ft_putstr_fd("=", STDOUT_FILENO);
+			ft_putendl_fd(tmp->value, STDOUT_FILENO);
+		}
+		tmp = tmp->next;
 	}
 	return (0);
 }

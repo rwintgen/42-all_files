@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 12:32:46 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/28 11:43:16 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/29 14:29:36 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ bool	check_outf_outfile(t_arg *cmd, t_arg **true_outfile)
 				ft_open(cmd->str_command, &fd, FLAG_APPEND);
 			if (fd == -1)
 			{
-				err_file_msg(cmd->str_command);
+				err_msg_file(cmd->str_command);
 				return (false);
 			}
 			close(fd);

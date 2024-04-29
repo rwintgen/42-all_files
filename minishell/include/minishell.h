@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:11:52 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/27 16:34:38 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/29 15:26:49 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,10 @@
 # define E_FILE_DIR "minishell: is a directory: "
 
 # define E_CMD_NF "minishell: command not found: "
+
+# define E_EXPORT_ID "minishell: export: not a valid identifier: "
+# define E_EXIT_ARGC "minishell: exit: too many arguments"
+# define E_EXIT_NUM "minishell: exit: numeric argument required"
 
 # define E_MALLOC "minishell: malloc error"
 # define E_PIPE "minishell: pipe error"
@@ -162,7 +166,20 @@ void	update_old_pwd(t_envp *envp, char *old_pwd);
 int		ft_echo(t_cmd *cmd, t_envp *envp);
 bool	need_new_line(char *str);
 
+int		ft_env(t_envp *envp);
+
+int		ft_exit(t_cmd *cmd);
+
+int		ft_export(t_cmd *cmd, t_envp *envp);
+void	print_export(t_envp *envp);
+char	*get_key(char *arg);
+char	*get_value(char *arg);
+void	update_envp(t_envp *envp, char *key, char *new_value);
+void	add_envp(t_envp *envp, char *key, char *value);
+
 int		ft_pwd(void);
+
+int		ft_unset(t_cmd *cmd, t_envp *envp);
 
 // EXEC //
 
@@ -255,7 +272,7 @@ int		ft_open(char *file, int *fd, int flag);
 void	save_stdfd(int saved_stdfd[2]);
 void	go_to_start_of_block(t_arg **cmd);
 void	check_valid_fds(t_sh *sh);
-void	err_file_msg(char *infile);
+void	err_msg_file(char *infile);
 
 void	redirect_io(t_cmd *cmd);
 bool	redirect_io_nofork(t_sh *sh, t_cmd *cmd);

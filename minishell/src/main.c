@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:59:56 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/28 15:35:31 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/29 15:06:36 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ int g_sig;
 ///////// TODO //////////
 
 ///////// TODO //////////
-// empty command "" '' exit 126
 // make builtins
+//// fix cd -
 // fix ctrl+C heredoc
 // valgrind (open FDs, leaks)
 // fix error msg char by char
@@ -77,5 +77,6 @@ int	main(int argc, char **argv, char **envp)
 	}
 	close_all_fds();
 	free_sh(sh);
+	write (1, "exit\n", 5);
 	return (0);
 }

@@ -1,26 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pwd.c                                           :+:      :+:    :+:   */
+/*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/10 21:01:13 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/29 11:37:22 by rwintgen         ###   ########.fr       */
+/*   Created: 2024/04/29 15:04:51 by rwintgen          #+#    #+#             */
+/*   Updated: 2024/04/29 15:12:40 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_pwd(void)
+int	ft_unset(t_cmd *cmd, t_envp *envp)
 {
-	char	*buffer;
+	t_envp	*tmp;
+	int		i;
 
-	buffer = getcwd(NULL, 0);
-	if (buffer)
+	i = 1;
+	while (cmd->cmd_and_args[i])
 	{
-		ft_putstr_fd(buffer, STDOUT_FILENO);
-		ft_putstr_fd("\n", STDOUT_FILENO);
+		tmp = envp;
+		while (tmp)
+		{
+			if (!ft_strncmp(tmp->key, cmd->cmd_and_args[i], ft_strlen(cmd->cmd_and_args[i])))
+			{
+				free(tmp->key);
+				free(tmp->value);
+				tmp->key = NULL;
+				tmp->value = NULL;
+				break ;
+			}
+			tmp = tmp->next;
+		}
+		i++;
 	}
 	return (0);
 }

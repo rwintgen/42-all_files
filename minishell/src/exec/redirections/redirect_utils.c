@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 12:05:24 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/04/28 14:02:09 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/04/29 14:29:36 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	check_valid_fds(t_sh *sh)
 }
 
 // prints error message if file can't be opened
-void	err_file_msg(char *infile)
+void	err_msg_file(char *infile)
 {
 	if (errno == EACCES)
 	{
