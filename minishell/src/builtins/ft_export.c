@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 12:50:26 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/04/29 14:42:31 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/02 12:56:36 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,26 +81,69 @@ int	ft_export(t_cmd *cmd, t_envp *envp)
 	return (0);
 }
 
+void	print_key(char *key)
+{
+	ft_putstr_fd("declare -x ", STDOUT_FILENO);
+	ft_putstr_fd(key, STDOUT_FILENO);
+}
+
+void	print_value(char *value)
+{
+	if (value)
+	{
+		ft_putstr_fd("=\"", STDOUT_FILENO);
+		ft_putstr_fd(value, STDOUT_FILENO);
+		ft_putstr_fd("\"\n", STDOUT_FILENO);
+	}
+	else
+		ft_putstr_fd("\n", STDOUT_FILENO);
+}
+
 void	print_export(t_envp *envp)
 {
 	t_envp	*tmp;
+	t_envp	*first;
 
 	tmp = envp;
 	while (tmp)
 	{
-		ft_putstr_fd("declare -x ", STDOUT_FILENO);
-		ft_putstr_fd(tmp->key, STDOUT_FILENO);
-		if (tmp->value)
+		if (!tmp->is_printed)
 		{
-			ft_putstr_fd("=\"", STDOUT_FILENO);
-			ft_putstr_fd(tmp->value, 1);
-			ft_putstr_fd("\"\n", STDOUT_FILENO);
+			if (!first
+				|| ft_strncmp(tmp->key, first->key, ft_strlen(tmp->key)) < 0)
+				first = tmp;
 		}
-		else
-			ft_putstr_fd("\n", STDOUT_FILENO);
 		tmp = tmp->next;
 	}
+	if (!first)
+		return ;
+	print_key(first->key);
+	print_value(first->value);
+	first->is_printed = true;
+
+	return (print_export(envp));
 }
+
+// void	print_export(t_envp *envp)
+// {
+// 	t_envp	*tmp;
+
+// 	tmp = envp;
+// 	while (tmp)
+// 	{
+// 		ft_putstr_fd("declare -x ", STDOUT_FILENO);
+// 		ft_putstr_fd(tmp->key, STDOUT_FILENO);
+// 		if (tmp->value)
+// 		{
+// 			ft_putstr_fd("=\"", STDOUT_FILENO);
+// 			ft_putstr_fd(tmp->value, 1);
+// 			ft_putstr_fd("\"\n", STDOUT_FILENO);
+// 		}
+// 		else
+// 			ft_putstr_fd("\n", STDOUT_FILENO);
+// 		tmp = tmp->next;
+// 	}
+// }
 
 char	*get_key(char *arg)
 {

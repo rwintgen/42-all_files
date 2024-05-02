@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 13:44:40 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/25 15:57:38 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/02 12:57:18 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	append_env_node(t_envp **env_cpy, char *env_var)
 	new_node->envar = ft_strdup(env_var);
 	new_node->key = NULL;
 	new_node->value = NULL;
+	new_node->is_printed = false;
 	new_node->next = NULL;
 	new_node->prev = NULL;
 	if (*env_cpy == NULL)

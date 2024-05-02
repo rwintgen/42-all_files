@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:11:52 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/29 15:26:49 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/02 12:55:42 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,8 @@ typedef struct	s_envp
 	char			*envar;
 	char			*key;
 	char			*value;
+
+	bool			is_printed;
 
 	struct s_envp	*prev;
 	struct s_envp	*next;

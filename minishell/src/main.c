@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:59:56 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/29 16:07:29 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/02 12:06:05 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ int g_sig;
 
 ///////// TODO //////////
 // make builtins
-//// fix cd -
+//// cd unset HOME segfault
+//// env no option nor args
 //// sort export no arg
 //// fix exit
 // fix ctrl+C heredoc
