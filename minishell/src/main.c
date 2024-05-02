@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:59:56 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/02 12:06:05 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/02 13:06:41 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@ int g_sig;
 
 ///////// TODO //////////
 // make builtins
-//// cd unset HOME segfault
-//// env no option nor args
-//// sort export no arg
+//// cd : unset HOME segfault
+//// env : no option nor args err msg
+//// export : do not replace var with empty value if value already exists
+//// export : a = b must export a and b
 //// fix exit
 // fix ctrl+C heredoc
 // valgrind (open FDs, leaks)

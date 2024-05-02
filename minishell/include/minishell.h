@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:11:52 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/02 12:55:42 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/02 13:12:15 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,6 +178,12 @@ char	*get_key(char *arg);
 char	*get_value(char *arg);
 void	update_envp(t_envp *envp, char *key, char *new_value);
 void	add_envp(t_envp *envp, char *key, char *value);
+int		err_msg_export(char *arg);
+bool	is_invalid_key(char *key);
+char	*get_key(char *arg);
+char	*get_value(char *arg);
+void	reset_export(t_envp *envp);
+void	print_export(t_envp *envp);
 
 int		ft_pwd(void);
 

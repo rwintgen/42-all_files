@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 12:50:26 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/02 12:56:36 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/02 13:15:45 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,31 +32,6 @@ creates new env var with VALUE = NULL
 export with =VALUE is an error
 */
 
-int	err_msg_export(char *arg)
-{
-	ft_putstr_fd(E_EXPORT_ID, STDERR_FILENO);
-	ft_putendl_fd(arg, STDERR_FILENO);
-	return (1);
-}
-
-bool	is_invalid_key(char *key)
-{
-	int	i;
-
-	i = 0;
-	if (!key || !key[0])
-		return (true);
-	if (key[0] && !ft_isalpha(key[0]) && key[0] != '_')
-		return (true);
-	while (key[i])
-	{
-		if (!ft_isalnum(key[i]) && key[i] != '_')
-			return (true);
-		i++;
-	}
-	return (false);
-}
-
 int	ft_export(t_cmd *cmd, t_envp *envp)
 {
 	int		i;
@@ -67,110 +42,24 @@ int	ft_export(t_cmd *cmd, t_envp *envp)
 	if (!cmd->cmd_and_args[i])
 	{
 		print_export(envp);
+		reset_export(envp);
 		return (0);
 	}
 	while (cmd->cmd_and_args[i])
 	{
 		key = get_key(cmd->cmd_and_args[i]);
 		if (is_invalid_key(key))
-			return (err_msg_export(cmd->cmd_and_args[i]));
+		{
+			err_msg_export(cmd->cmd_and_args[i]);
+			i++;
+			continue ;
+		}
 		value = get_value(cmd->cmd_and_args[i]);
 		update_envp(envp, key, value);
 		i++;
 	}
 	return (0);
 }
-
-void	print_key(char *key)
-{
-	ft_putstr_fd("declare -x ", STDOUT_FILENO);
-	ft_putstr_fd(key, STDOUT_FILENO);
-}
-
-void	print_value(char *value)
-{
-	if (value)
-	{
-		ft_putstr_fd("=\"", STDOUT_FILENO);
-		ft_putstr_fd(value, STDOUT_FILENO);
-		ft_putstr_fd("\"\n", STDOUT_FILENO);
-	}
-	else
-		ft_putstr_fd("\n", STDOUT_FILENO);
-}
-
-void	print_export(t_envp *envp)
-{
-	t_envp	*tmp;
-	t_envp	*first;
-
-	tmp = envp;
-	while (tmp)
-	{
-		if (!tmp->is_printed)
-		{
-			if (!first
-				|| ft_strncmp(tmp->key, first->key, ft_strlen(tmp->key)) < 0)
-				first = tmp;
-		}
-		tmp = tmp->next;
-	}
-	if (!first)
-		return ;
-	print_key(first->key);
-	print_value(first->value);
-	first->is_printed = true;
-
-	return (print_export(envp));
-}
-
-// void	print_export(t_envp *envp)
-// {
-// 	t_envp	*tmp;
-
-// 	tmp = envp;
-// 	while (tmp)
-// 	{
-// 		ft_putstr_fd("declare -x ", STDOUT_FILENO);
-// 		ft_putstr_fd(tmp->key, STDOUT_FILENO);
-// 		if (tmp->value)
-// 		{
-// 			ft_putstr_fd("=\"", STDOUT_FILENO);
-// 			ft_putstr_fd(tmp->value, 1);
-// 			ft_putstr_fd("\"\n", STDOUT_FILENO);
-// 		}
-// 		else
-// 			ft_putstr_fd("\n", STDOUT_FILENO);
-// 		tmp = tmp->next;
-// 	}
-// }
-
-char	*get_key(char *arg)
-{
-	int		i;
-	char	*key;
-
-	i = 0;
-	while (arg[i] && arg[i] != '=')
-		i++;
-	key = ft_substr(arg, 0, i);
-	return (key);
-}
-
-char	*get_value(char *arg)
-{
-	int		i;
-	char	*value;
-
-	i = 0;
-	while (arg[i] && arg[i] != '=')
-		i++;
-	if (!arg[i])
-		return (NULL);
-	value = ft_strdup(arg + i + 1);
-	return (value);
-}
-
 
 void	update_envp(t_envp *envp, char *key, char *new_value)
 {
