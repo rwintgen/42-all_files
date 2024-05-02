@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 12:50:26 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/02 13:15:45 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/02 13:25:12 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,11 @@ void	update_envp(t_envp *envp, char *key, char *new_value)
 	{
 		if (!ft_strncmp(tmp->key, key, ft_strlen(key)))
 		{
-			free(tmp->value);
-			tmp->value = new_value;
+			if (new_value)
+			{
+				free(tmp->value);
+				tmp->value = new_value;
+			}
 			return ;
 		}
 		tmp = tmp->next;
