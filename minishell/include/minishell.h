@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:11:52 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/02 13:12:15 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/02 13:29:53 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@
 # define E_EXPORT_ID "minishell: export: not a valid identifier: "
 # define E_EXIT_ARGC "minishell: exit: too many arguments"
 # define E_EXIT_NUM "minishell: exit: numeric argument required"
+
+# define E_ENV_ARGC "minishell: env: too many arguments"
 
 # define E_MALLOC "minishell: malloc error"
 # define E_PIPE "minishell: pipe error"
@@ -168,7 +170,7 @@ void	update_old_pwd(t_envp *envp, char *old_pwd);
 int		ft_echo(t_cmd *cmd, t_envp *envp);
 bool	need_new_line(char *str);
 
-int		ft_env(t_envp *envp);
+int		ft_env(char *arg, t_envp *envp);
 
 int		ft_exit(t_cmd *cmd);
 

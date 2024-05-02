@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:59:56 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/02 13:25:43 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/02 13:31:37 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int g_sig;
 ///////// TODO //////////
 // make builtins
 //// cd : unset HOME segfault
-//// env : no option nor args err msg
 //// export : segfault after exporting var then ctrl+D
 //// fix exit
 // fix ctrl+C heredoc
