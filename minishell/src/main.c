@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:59:56 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/02 14:07:20 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/06 12:15:32 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@ int g_sig;
 ///////// TODO //////////
 // make builtins
 //// export : segfault free_sh after exporting var then ctrl+D
-//// env -i cd : OLDPWD not set
-//// cd : unset HOME segfault
-//// cd : OLDPWD fucked up
+
 //// fix exit
 // fix ctrl+C heredoc
 // valgrind (open FDs, leaks)

@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 02:42:25 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/02 13:51:54 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/06 12:13:54 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,16 @@ char	*get_home(t_envp *envp)
 	return (NULL);
 }
 
-char	*get_old_cwd(t_envp *envp)
+char	*get_cwd(void)
 {
-	t_envp	*tmp;
+	char	*cwd;
 
-	tmp = envp;
-	while (tmp)
+	cwd = getcwd(NULL, 0);
+	if (!cwd)
 	{
-		if (!ft_strncmp(tmp->key, "OLDPWD", 7))
-			return (tmp->value);
-		tmp = tmp->next;
+		ft_putstr_fd("minishell: error retrieving current directory\n", 2);
 	}
-	ft_putstr_fd("minishell: cd: OLDPWD not set\n", 2);
-	return (NULL);
+	return (cwd);
 }
 
 void	update_old_cwd(t_envp *envp, char *old_cwd)
@@ -81,7 +78,6 @@ int	ft_cd(t_cmd *cmd, t_envp *envp)
 	char	*new_cwd;
 	char	*old_cwd;
 
-
 	if (cmd->cmd_and_args[1] && cmd->cmd_and_args[2])
 	{
 		ft_putstr_fd("minishell: cd: too many arguments\n", 2);
@@ -95,6 +91,9 @@ int	ft_cd(t_cmd *cmd, t_envp *envp)
 	}
 	else
 		new_cwd = cmd->cmd_and_args[1];
+	old_cwd = get_cwd();
+	if (old_cwd == NULL)
+		return (1);
 	if (chdir(new_cwd) == -1)
 	{
 		ft_putstr_fd("minishell: cd: ", 2);
@@ -104,9 +103,6 @@ int	ft_cd(t_cmd *cmd, t_envp *envp)
 		ft_putstr_fd("\n", 2);
 		return (1);
 	}
-	old_cwd = get_old_cwd(envp);
-	if (old_cwd == NULL)
-		return (1);
 	update_old_cwd(envp, old_cwd);
 	update_cwd(envp, new_cwd);
 	return (0);
