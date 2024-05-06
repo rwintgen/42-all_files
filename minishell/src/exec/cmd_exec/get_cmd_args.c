@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 11:46:24 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/04/27 15:25:09 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/06 13:27:48 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,14 @@ void	fill_arg_arr(int cmd_argc, char ***result, t_arg *cmd)
 	int	i;
 
 	i = 0;
-	while (i < cmd_argc)
+	while (i < cmd_argc && cmd && cmd->type != PIPE)
 	{
-		// remove_quote(cmd->str_command);
-		(*result)[i] = ft_strdup(cmd->str_command);
+		if (cmd->type == CMD || cmd->type == ARG || cmd->type == OPTION)
+		{
+			(*result)[i] = ft_strdup(cmd->str_command);
+			i++;
+		}
 		cmd = cmd->next;
-		i++;
 	}
 	(*result)[cmd_argc] = NULL;
 }
