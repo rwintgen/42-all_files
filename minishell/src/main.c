@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:59:56 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/06 13:17:26 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/06 13:19:16 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int g_sig;
 
-///////// TODO //////////
+///////// TODO ////////// 
 // make builtins
 //// export : segfault free_sh after exporting var then ctrl+D
 //// fix exit
