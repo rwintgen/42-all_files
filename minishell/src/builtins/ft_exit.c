@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 15:14:32 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/04/29 15:44:17 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/06 15:45:20 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,12 @@ bool	is_full_digit(char *str)
 	int	i;
 
 	i = 0;
+	while (str[i] && str[i] == ' ')
+		i++;
+	if (str[i] && str[i] == '+')
+		i++;
+	while (str[i] && str[i] == '0')
+		i++;
 	while (str[i])
 	{
 		if (!ft_isdigit(str[i]))
