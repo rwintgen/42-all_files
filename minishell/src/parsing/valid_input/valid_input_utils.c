@@ -6,14 +6,14 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 12:22:55 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/04/28 15:28:55 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/06 14:01:15 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 // checks if a character is quoted
-bool	is_quoted(char *input, char *c)
+int	is_quoted(char *input, char *c)
 {
 	int	i;
 	int	sq_count;
@@ -30,9 +30,11 @@ bool	is_quoted(char *input, char *c)
 			dq_count++;
 		i++;
 	}
-	if (sq_count % 2 != 0 || dq_count % 2 != 0)
-		return (true);
-	return (false);
+	if (sq_count % 2 != 0)
+		return (1);
+	if (dq_count % 2 != 0)
+		return (2);
+	return (0);
 }
 
 // checks if a pipe is followed by a valid character

@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 15:38:25 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/26 18:17:59 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/06 14:39:47 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ bool	is_valid_var(char *input, int dollar)
 	}
 	if (sq)
 		return (false);
-	// printf("is_valid_var\n"); // DEBUG
 	return (true);
 }
 
@@ -62,7 +61,6 @@ char	*var_expand(char *input, t_envp *envp, int exit_code)
 	int	i;
 	int	len;
 
-	// printf("before expansion:\t%s\n", input); // DEBUG
 	len = ft_strlen(input);
 	i = 0;
 	while (input[i])
@@ -97,9 +95,7 @@ char	*var_replace(char *input, int *i, t_envp *envp, int exit_code)
 	{
 		key_len = get_key_len(input, *i);
 		key = ft_substr(input, *i, key_len);
-		// printf("key:\t%s\n", key); // DEBUG
 		var = get_var(key, envp);
-		// printf("var:\t%s\n", var); // DEBUG
 		if (var)
 			input = ft_strrep(input, key, var);
 		else

@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:11:52 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/02 13:29:53 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/06 14:01:22 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -332,7 +332,7 @@ char	*ft_strdelchar(char *str, char c, unsigned int n);
 
 //valid_input
 bool	is_too_many_redir(char *input);
-bool	is_quoted(char *input, char *c);
+int		is_quoted(char *input, char *c);
 bool	check_pipe(char *input, int i);
 bool	check_redir(char *input, int i);
 

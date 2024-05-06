@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 16:43:40 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/04/26 18:02:51 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/06 14:41:01 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ char	*ft_strrep(char *str, char *torep, char *repby)
 	char	*start;
 	int		result_len;
 
+	if (!ft_strncmp(torep, "$", 2) && !ft_strncmp(repby, "", 1))
+		return (str);
 	start = find_torep_start(str, torep);
 	if (!start)
 		return (NULL);
