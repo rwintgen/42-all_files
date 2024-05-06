@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 12:27:41 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/04/27 17:34:04 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/06 14:49:17 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,12 +81,14 @@ void	set_arg(t_arg *elem)
 		tmp = tmp->next;
 	}
 	cmd_count = 0;
-	while (elem && elem->type != PIPE)
+	while (elem)
 	{
+		if (elem->type == PIPE)
+			cmd_count = 0;
 		if (elem->type == CMD)
 			cmd_count++;
 		if (elem->type == CMD && cmd_count > 1)
-				elem->type = ARG;
+			elem->type = ARG;
 		elem = elem->next;
 	}
 }
