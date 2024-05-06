@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:11:52 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/06 14:01:22 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/06 15:28:10 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -313,6 +313,7 @@ void	set_arg(t_arg *elem);
 int		count_missing_spaces(char *str);
 bool	missing_space_before(char *str, int i);
 bool	missing_space_after(char *str, int i);
+bool	is_whitespace(char c);
 
 char	*true_line(char *str, t_sh *sh);
 void	add_spaces(char **formatted, char *str);
