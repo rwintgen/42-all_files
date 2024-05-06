@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 12:50:26 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/06 13:17:40 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/06 13:34:39 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,12 @@ export with =VALUE is an error
 int	ft_export(t_cmd *cmd, t_envp *envp)
 {
 	int		i;
+	int		exit_code;
 	char	*key;
 	char	*value;
 
 	i = 1;
+	exit_code = 0;
 	if (!cmd->cmd_and_args[i])
 	{
 		print_export(envp);
@@ -50,6 +52,7 @@ int	ft_export(t_cmd *cmd, t_envp *envp)
 		key = get_key(cmd->cmd_and_args[i]);
 		if (is_invalid_key(key))
 		{
+			exit_code = 1;
 			err_msg_export(cmd->cmd_and_args[i]);
 			i++;
 			continue ;
@@ -58,7 +61,7 @@ int	ft_export(t_cmd *cmd, t_envp *envp)
 		update_envp(envp, key, value);
 		i++;
 	}
-	return (0);
+	return (exit_code);
 }
 
 void	update_envp(t_envp *envp, char *key, char *new_value)
