@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 12:32:46 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/29 14:29:36 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/07 12:46:04 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,8 @@ void	create_outfiles(t_arg *cmd)
 			ft_open(cmd->str_command, &fd, FLAG_APPEND);
 		if (fd != -1)
 			close(fd);
+		else
+			return ;
 		cmd = cmd->next;
 	}
 }
