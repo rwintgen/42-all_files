@@ -6,23 +6,49 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 15:14:32 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/06 15:45:20 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/07 12:37:55 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+bool	over_int_max(char *str, int i)
+{
+	if (ft_strlen(str + i) > 19)
+		return (true);
+	if (ft_strlen(str + i) == 19 && ft_strncmp(str + i, INT_64_MAX, 19) > 0)
+		return (true);
+	return (false);
+}
+
+bool	over_int_min(char *str, int i)
+{
+	if (ft_strlen(str + i) > 19)
+		return (true);
+	if (ft_strlen(str + i) == 19 && ft_strncmp(str + i, INT_64_MIN, 19) > 0)
+		return (true);
+	return (false);
+}
+
 bool	is_full_digit(char *str)
 {
-	int	i;
+	int		i;
+	bool	minus;
 
 	i = 0;
 	while (str[i] && str[i] == ' ')
 		i++;
 	if (str[i] && str[i] == '+')
 		i++;
+	else if (str[i] && str[i] == '-')
+	{
+		i++;
+		minus = true;
+	}
 	while (str[i] && str[i] == '0')
 		i++;
+	if ((minus && over_int_min(str, i)) || (!minus && over_int_max(str, i)))
+		return (false);
 	while (str[i])
 	{
 		if (!ft_isdigit(str[i]))

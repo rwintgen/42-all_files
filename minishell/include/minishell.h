@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:11:52 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/06 15:28:10 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/07 12:38:13 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,9 @@
 
 # define E_DELIM "minishell: warning: here-document delimited by \
 end-of-file (wanted '"
+
+# define INT_64_MAX "9223372036854775807"
+# define INT_64_MIN "9223372036854775808"
 
 /********************** GLOBAL VARIABLE *********************/
 
