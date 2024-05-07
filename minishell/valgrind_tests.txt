@@ -1,0 +1,7 @@
+export a = b
+cd ..
+> out
+
+Any forked builtin command will leak
+	echo salut | cat
+	env | cat
