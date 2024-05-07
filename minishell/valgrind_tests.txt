@@ -1,7 +1,13 @@
 export a = b
 cd ..
 > out
+<< eof
 
 Any forked builtin command will leak
 	echo salut | cat
 	env | cat
+
+unset USER
+unset PATH
+unset PWD
+/bin/ls

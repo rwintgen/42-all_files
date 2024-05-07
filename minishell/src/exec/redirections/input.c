@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 16:07:33 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/29 14:29:36 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/07 13:13:19 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,8 @@ int	set_infile(t_arg *cmd, int stdfd_in, int pipefd_in)
 		fd = -2;
 	else if (grep_piped(stdfd_in, fd, tmp))
 		fd = -3;
-
-	// TODO check if below lines are necessary
-	// if ((heredoc_file || !true_infile || true_infile->type != PIPE) && pipefd_in != -1)
-	//     close(pipefd_in);
+	if (heredoc_file)
+		unlink(heredoc_file);
 	return (fd);
 }
 
