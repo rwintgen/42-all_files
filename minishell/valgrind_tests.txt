@@ -1,6 +1,0 @@
-leaks when 2 piped builtins
-
-unset USER
-unset PATH
-unset PWD
-/bin/ls
