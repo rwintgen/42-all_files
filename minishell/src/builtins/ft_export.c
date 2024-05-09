@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 12:50:26 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/09 13:14:58 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/09 13:29:35 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,9 @@ void	add_envp(t_envp **envp, char *key, char *value)
 	if (!new)
 		return ;
 	new->key = ft_strdup(key);
-	new->value = ft_strdup(value);
+	new->value = NULL;
+	if (new->value)
+		new->value = ft_strdup(value);
 	new->envar = NULL;
 	new->next = NULL;
 	new->prev = NULL;
