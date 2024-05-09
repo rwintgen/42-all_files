@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 02:42:25 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/26 16:31:13 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/09 15:29:04 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ bool	need_new_line(char *str)
 		return (true);
 	if (str[0] == '-')
 		i++;
+	else
+		return (true);
 	if (!str[i])
 		return (true);
 	while (str[i])

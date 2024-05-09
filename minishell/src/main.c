@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:59:56 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/09 15:15:16 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/09 15:23:35 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int g_sig;
 
 ///////// TODO //////////
 // b=5
-// cat Makefile | << eof
 // fix ctrl+C heredoc
 // valgrind (open FDs, leaks)
 // fix error msg char by char (if possible)

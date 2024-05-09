@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 12:31:29 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/09 15:16:19 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/09 15:21:27 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	save_commands(t_sh *sh)
 			reset_pipefd(sh->pipefd);
 			pipe_if_needed(tmp, sh, skip);
 			cmd_and_args = fetch_cmd_args(tmp);
+			if (!cmd_and_args)
+				continue ;
 			fd[0] = set_infile(tmp, sh->saved_stdfd[0], prev_fd_in);
 			fd[1] = set_outfile(tmp, sh->saved_stdfd[1], sh->pipefd[1]);
 			// TODO close pipes here?
@@ -54,6 +56,8 @@ void	add_to_list(t_sh *sh, char **cmd_and_args, int fd[2], bool skip)
 	t_cmd	*current;
 
 	new_node = create_node(cmd_and_args, fd, skip);
+	if (!new_node)
+		return ;
 	if (!(sh->cmd))
 		sh->cmd = new_node;
 	else
@@ -73,7 +77,10 @@ t_cmd	*create_node(char **cmd_and_args, int fd[2], bool skip)
 
 	new_node = malloc(sizeof(t_cmd));
 	if (!new_node)
+	{
+		ft_putendl_fd(E_MALLOC, STDERR_FILENO);
 		return (NULL);
+	}
 	new_node->is_builtin = false;
 	new_node->skip_cmd = skip;
 	if (is_builtin(cmd_and_args[0]))
