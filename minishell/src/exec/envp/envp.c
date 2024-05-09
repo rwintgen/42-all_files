@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 13:44:40 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/02 12:57:18 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/09 15:16:35 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	append_env_node(t_envp **env_cpy, char *env_var)
 	if (!new_node)
 	{
 		ft_putendl_fd(E_MALLOC, STDERR_FILENO);
-		// free_sh(sh);
 		close_all_fds();
 		exit(1);
 	}

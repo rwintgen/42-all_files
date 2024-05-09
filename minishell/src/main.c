@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:59:56 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/09 13:34:36 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/09 15:15:16 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ int	main(int argc, char **argv, char **envp)
 	char	*input;
 
 	sh = malloc(sizeof(t_sh));
+	if (!sh)
+		return (1);
 	init_sh(sh, envp, argc, argv);
 	while (true)
 	{

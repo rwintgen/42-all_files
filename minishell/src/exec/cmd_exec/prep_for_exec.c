@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 12:31:29 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/09 13:43:56 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/09 15:16:19 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ t_cmd	*create_node(char **cmd_and_args, int fd[2], bool skip)
 	t_cmd	*new_node;
 
 	new_node = malloc(sizeof(t_cmd));
+	if (!new_node)
+		return (NULL);
 	new_node->is_builtin = false;
 	new_node->skip_cmd = skip;
 	if (is_builtin(cmd_and_args[0]))
