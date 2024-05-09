@@ -6,23 +6,11 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 14:36:32 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/09 17:41:05 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/09 17:55:39 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	heredoc_signal(int signum)
-{
-	g_sig = signum;
-	if (g_sig == SIGINT)
-	{
-		ft_putstr_fd("\n", STDERR_FILENO);
-		rl_replace_line("qwertyuiop", STDOUT_FILENO);
-		rl_on_new_line();
-		rl_redisplay();
-	}
-}
 
 // handles writing in tmp file
 char	*heredoc_handler(char *delimiter)
@@ -31,15 +19,12 @@ char	*heredoc_handler(char *delimiter)
 	char	*file;
 	int		fd;
 
-	signal(SIGINT, heredoc_signal);
-
 	line = NULL;
 	file = NULL;
 	fd = create_tmp_file(&file);
 	while (true)
 	{
 		line = readline("> ");
-		printf("line = %s\n", line);
 		if (check_eof(line, delimiter))
 			break ;
 		ft_putendl_fd(line, fd);
