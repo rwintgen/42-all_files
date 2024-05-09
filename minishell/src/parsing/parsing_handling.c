@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:28:53 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/09 15:29:42 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/09 17:01:18 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,6 @@ int	parse_input(char *input, t_sh *sh)
 	return (0);
 }
 
-void	remove_whitespaces(char *str)
-{
-// TODO: make function that remove leading and trailing whitespaces around a string
-	(void)str;
-}
 // saves command line args into t_arg linked list
 t_arg	*copy_args(char *input, t_sh *sh)
 {
@@ -44,7 +39,6 @@ t_arg	*copy_args(char *input, t_sh *sh)
 	i = 0;
 	while (args[i])
 	{
-		remove_whitespaces(args[i]);
 		append_arg_node(&arg_cpy, args[i], sh);
 		i++;
 	}

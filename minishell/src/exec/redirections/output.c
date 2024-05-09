@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 16:08:10 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/27 10:35:03 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/09 17:01:37 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,6 @@ int	set_outfile(t_arg *cmd, int stdfd_out, int pipefd_out)
 	if (pipefd_out != -1)
 		check_outf_pipe(cmd, &true_outfile);
 	fd = set_outf_fd(true_outfile, pipefd_out, stdfd_out);
-	// TODO check if below lines are necessary
-	// if ((!true_outfile || true_outfile->type != PIPE) && pipefd_out != -1)
-	// 	close(pipefd_out);
 	return (fd);
 }
 

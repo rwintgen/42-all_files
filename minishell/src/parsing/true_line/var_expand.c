@@ -6,33 +6,11 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 15:38:25 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/06 14:39:47 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/09 17:01:08 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-///////// TODO //////////
-// x = variable expansion
-// n = no variable expansion
-//
-// to test: 
-/*
-echo "'$USER'" -> x														=> OK
-echo '"$USER"' -> nx													=> OK
-echo "'"$USER"'" -> x													=> OK
-echo '"'$USER'"' -> x													=> OK
-echo "'"'$USER'"'" -> nx												=> OK
-echo '"'"$USER"'"' -> x													=> OK
-echo "$USER" '$USER' -> x, nx											=> OK
-echo '$USER' "$USER" -> nx, x											=> OK
-echo "$USER" '$USER' "$USER" '$USER' -> x, nx, x, nx					=> OK
-echo '$USER' "$USER" '$USER' "$USER" -> nx, x, nx, x					=> OK
-echo "'$USER"' '"$USER'" -> 'rwintgen rwintgen'							=> OK
-echo "'$USER'" '"$USER"' -> 'rwintgen' "$USER"							=> OK
-echo "'"'"'$USER'"'"'" '"'"'"$USER"'"'"' -> '"rwintgen"' "'rwintgen'"	=> OK
-*/
-/////////////////////////
 
 bool	is_valid_var(char *input, int dollar)
 {
