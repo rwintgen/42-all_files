@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 21:01:13 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/02 11:44:57 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/09 13:48:50 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	ft_pwd(void)
 	{
 		ft_putstr_fd(buffer, STDOUT_FILENO);
 		ft_putstr_fd("\n", STDOUT_FILENO);
+		free(buffer);
 	}
 	return (0);
 }
