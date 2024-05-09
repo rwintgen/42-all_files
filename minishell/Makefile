@@ -6,7 +6,7 @@
 #    By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/10 16:32:07 by deymons           #+#    #+#              #
-#    Updated: 2024/05/02 13:11:00 by rwintgen         ###   ########.fr        #
+#    Updated: 2024/05/09 12:39:21 by rwintgen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ SRCS		=	src/main.c									\
 				src/exec/heredocs/empty_heredoc.c			\
 				src/exec/heredocs/heredoc.c					\
 				src/exec/redirections/input_utils.c			\
-				src/exec/redirections/file_creat_no_cmd.c	\
+				src/exec/file/file_creat_no_cmd.c			\
 				src/exec/redirections/input.c				\
 				src/exec/redirections/output_utils.c		\
 				src/exec/redirections/output.c				\

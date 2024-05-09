@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 14:36:32 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/02 13:55:25 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/09 13:22:25 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,10 @@ int	create_tmp_file(char **file)
 		if (ft_strlen(filename) + ft_strlen(id_str) + 1 < sizeof(filename))
 		{
 			if (try_file(filename, id_str, &fd, file))
+			{
+				free(id_str);
 				return (fd);
+			}
 		}
 		else
 			break ;
@@ -71,9 +74,10 @@ bool	try_file(char *base_filename, char *id_str, int *fd, char **file)
 	ft_open(filename, fd, FLAG_TMP);
 	if (*fd >= 0)
 	{
-		*file = strdup(filename);
+		*file = ft_strdup(filename);
 		return (true);
 	}
+	free(*file);
 	return (false);
 }
 

@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 12:05:24 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/04/29 14:29:36 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/09 13:13:51 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	check_valid_fds(t_sh *sh)
 		free_sh(sh);
 		exit(1);
 	}
-	if (sh->cmd->input_fd == -2)
+	if (sh->cmd->input_fd == -2 || sh->cmd->output_fd == -4)
 	{
 		close_all_fds();
 		errno = 0;

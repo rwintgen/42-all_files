@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 16:34:04 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/04/27 17:21:10 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/09 12:38:04 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,14 @@ int	check_file_creation(t_arg *arg)
 
 	tmp = arg;
 	cmd_count = 0;
+	file_count = 0;
 	while (tmp)
 	{
 		if (tmp->type == CMD)
 			cmd_count++;
 		if (tmp->type == OUTFILE || tmp->type == INFILE)
 			file_count++;
-		if (tmp->type == PIPE || tmp->next == NULL)
+		if (!tmp->next || tmp->type == PIPE)
 		{
 			if (cmd_count == 0 && file_count > 0)
 			{

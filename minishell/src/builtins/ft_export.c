@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 12:50:26 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/09 11:46:02 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/09 13:14:58 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int	ft_export(t_cmd *cmd, t_envp **envp)
 		}
 		value = get_value(cmd->cmd_and_args[i]);
 		update_envp(envp, key, value);
+		free(value);
 		free(key);
 		i++;
 	}
@@ -76,7 +77,7 @@ void	update_envp(t_envp **envp, char *key, char *new_value)
 		if (strcmp(tmp->key, key) == 0)
 		{
 			free(tmp->value);
-			tmp->value = strdup(new_value);
+			tmp->value = ft_strdup(new_value);
 			return ;
 		}
 		tmp = tmp->next;
@@ -91,13 +92,12 @@ void	add_envp(t_envp **envp, char *key, char *value)
 
 	new = malloc(sizeof(t_envp));
 	if (!new)
-		return;  // Handle malloc failure
-	new->key = strdup(key);
-	new->value = strdup(value);
+		return ;
+	new->key = ft_strdup(key);
+	new->value = ft_strdup(value);
 	new->envar = NULL;
 	new->next = NULL;
 	new->prev = NULL;
-
 	tmp = *envp;
 	if (tmp)
 	{
@@ -107,7 +107,5 @@ void	add_envp(t_envp **envp, char *key, char *value)
 		new->prev = tmp;
 	}
 	else
-	{
 		*envp = new;
-	}
 }

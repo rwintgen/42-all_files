@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 16:07:33 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/07 13:13:19 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/09 13:23:25 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,20 @@ bool	grep_piped(int stdfd_in, int fd, t_arg *cmd)
 	return (true);
 }
 
+bool	wc_piped(int stdfd_in, int fd, t_arg *cmd)
+{
+	t_arg	*tmp;
+
+	tmp = cmd;
+	if (ft_strncmp(cmd->str_command, "wc", 3) || fd != stdfd_in)
+		return (false);
+	while (tmp && tmp->type != PIPE)
+		tmp = tmp->prev;
+	if (!tmp)
+		return (false);
+	return (true);
+}
+
 // finds right infile and opens it for current cmd
 int	set_infile(t_arg *cmd, int stdfd_in, int pipefd_in)
 {
@@ -81,8 +95,13 @@ int	set_infile(t_arg *cmd, int stdfd_in, int pipefd_in)
 		fd = -2;
 	else if (grep_piped(stdfd_in, fd, tmp))
 		fd = -3;
+	else if (wc_piped(stdfd_in, fd, tmp))
+		fd = -4;
 	if (heredoc_file)
+	{
 		unlink(heredoc_file);
+		free(heredoc_file);
+	}
 	return (fd);
 }
 

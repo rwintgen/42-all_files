@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 13:52:27 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/25 15:57:38 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/09 12:42:29 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	**add_delimiter(t_arg *cmd)
 {
 	char	**result;
 
-	result = malloc(sizeof(char *) * 2);
+	result = malloc(sizeof(char *) * 3);
 	if (!result)
 	{
 		ft_putendl_fd(E_MALLOC, STDERR_FILENO);
