@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 06:15:08 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/09 11:50:45 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/09 14:55:09 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ int	exec_builtin(t_cmd *cmd, t_envp **envp)
 		exit_code = ft_env(cmd->cmd_and_args[1], *envp);
 	else if (!ft_strncmp(cmd->cmd_and_args[0], "exit", 4))
 		exit_code = ft_exit(cmd);
-	if (count_commands(cmd) == 1)
+	// if (count_commands(cmd) == 1)
 		return (exit_code);
-	exit(exit_code);
+	// exit(exit_code);
 }
 
 // checks if cmd is a builtin

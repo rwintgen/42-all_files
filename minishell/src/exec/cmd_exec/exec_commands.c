@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 14:18:05 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/09 11:52:30 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/09 14:56:27 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ int	ft_exec(t_sh *sh)
 	{
 		exit_code = exec_builtin(sh->cmd, &sh->envp);
 		close_all_fds();
-		exit(free_sh(sh));
+		free_sh(sh);
+		exit(exit_code);
 	}
 	path_to_cmd = get_path(sh->cmd, sh->envp);
 	envp_c = restore_envp(sh->envp);

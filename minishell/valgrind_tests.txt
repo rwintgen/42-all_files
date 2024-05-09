@@ -2,9 +2,12 @@ Any forked builtin command will leak
 	echo salut | cat
 	env | cat
 
-env | echo n
+env | echo n does not work
+echo n | cat does not work
 
-leaks when 2 piped builtins5555
+heredoc leaks
+
+leaks when 2 piped builtins
 
 unset USER
 unset PATH
