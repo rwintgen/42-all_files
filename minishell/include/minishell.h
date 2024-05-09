@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:11:52 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/09 11:51:35 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/09 16:08:19 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,7 +161,7 @@ void	print_t_cmd_struct(t_cmd *cmd);
 
 // BUILTINS //
 
-int		exec_builtin(t_cmd *cmd, t_envp **envp);
+int		exec_builtin(t_cmd *cmd, t_envp **envp, t_sh *sh);
 bool	is_builtin(char *cmd);
 
 int		ft_cd(t_cmd *cmd, t_envp *envp);
@@ -175,7 +175,7 @@ bool	need_new_line(char *str);
 
 int		ft_env(char *arg, t_envp *envp);
 
-int		ft_exit(t_cmd *cmd);
+int		ft_exit(t_cmd *cmd, t_sh *tofree);
 
 int		ft_export(t_cmd *cmd, t_envp **envp);
 void	print_export(t_envp *envp);
