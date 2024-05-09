@@ -2,6 +2,10 @@ Any forked builtin command will leak
 	echo salut | cat
 	env | cat
 
+env | echo n
+
+leaks when 2 piped builtins5555
+
 unset USER
 unset PATH
 unset PWD
