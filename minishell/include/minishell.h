@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:11:52 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/07 12:38:13 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/09 11:51:35 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,7 +161,7 @@ void	print_t_cmd_struct(t_cmd *cmd);
 
 // BUILTINS //
 
-int		exec_builtin(t_cmd *cmd, t_envp *envp);
+int		exec_builtin(t_cmd *cmd, t_envp **envp);
 bool	is_builtin(char *cmd);
 
 int		ft_cd(t_cmd *cmd, t_envp *envp);
@@ -177,12 +177,12 @@ int		ft_env(char *arg, t_envp *envp);
 
 int		ft_exit(t_cmd *cmd);
 
-int		ft_export(t_cmd *cmd, t_envp *envp);
+int		ft_export(t_cmd *cmd, t_envp **envp);
 void	print_export(t_envp *envp);
 char	*get_key(char *arg);
 char	*get_value(char *arg);
-void	update_envp(t_envp *envp, char *key, char *new_value);
-void	add_envp(t_envp *envp, char *key, char *value);
+void	update_envp(t_envp **envp, char *key, char *new_value);
+void	add_envp(t_envp **envp, char *key, char *value);
 int		err_msg_export(char *arg);
 bool	is_invalid_key(char *key);
 char	*get_key(char *arg);
@@ -192,7 +192,7 @@ void	print_export(t_envp *envp);
 
 int		ft_pwd(void);
 
-int		ft_unset(t_cmd *cmd, t_envp *envp);
+int		ft_unset(t_cmd *cmd, t_envp **envp);
 
 // EXEC //
 

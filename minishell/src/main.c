@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:59:56 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/07 13:20:59 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/09 11:53:12 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 int g_sig;
 
 ///////// TODO //////////
-// export does not update value
-// export a=b fucks up command prompt
 // fix ctrl+C heredoc
 // valgrind (open FDs, leaks)
 // fix error msg char by char (if possible)

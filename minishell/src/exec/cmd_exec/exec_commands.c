@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 14:18:05 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/29 10:29:02 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/09 11:52:30 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	ft_exec(t_sh *sh)
 	redirect_io(sh->cmd);
 	if (sh->cmd->is_builtin)
 	{
-		exit_code = exec_builtin(sh->cmd, sh->envp);
+		exit_code = exec_builtin(sh->cmd, &sh->envp);
 		close_all_fds();
 		exit(free_sh(sh));
 	}
@@ -93,7 +93,7 @@ bool	exec_solo_builtin(t_sh *sh, t_cmd *cmd, int *exit_code)
 			*exit_code = 1;
 			return (true);
 		}
-		*exit_code = exec_builtin(cmd, sh->envp);
+		*exit_code = exec_builtin(cmd, &sh->envp);
 		restore_io_nofork(sh, cmd);
 		return (true);
 	}
