@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 16:07:33 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/13 13:47:36 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/13 15:48:50 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,11 +99,8 @@ int	set_infile(t_arg *cmd, int stdfd_in, int pipefd_in, t_sh *tofree)
 		fd = -4;
 	if (heredoc_file)
 	{
-		printf("heredoc file exists\n");
 		unlink(heredoc_file);
 		free(heredoc_file);
-		printf("exit_code: %d\n", tofree->exit_code);
-		printf("fd infile: %d\n", fd);
 	}
 	return (fd);
 }
