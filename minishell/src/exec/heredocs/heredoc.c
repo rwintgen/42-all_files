@@ -6,33 +6,13 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 14:36:32 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/13 15:48:27 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/13 16:51:51 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// checks if last command is a heredoc
-bool	last_cmd_is_heredoc(t_arg *arg)
-{
-	while (arg && arg->next)
-		arg = arg->next;
-	while (arg && arg->prev && arg->type != PIPE)
-	{
-		if (arg->type == DELIM)
-			return (true);
-		arg = arg->prev;
-	}
-	return (false);
-}
 
-// ctrl+C handler for heredoc
-void sigint_heredoc(int sig)
-{
-	(void)sig;
-	g_sig = SIGINT;
-	close(STDIN_FILENO);
-}
 
 // invoques the heredoc in the child process
 void prompt_heredoc(char *delimiter, int fd, char *file, t_sh *tofree)
@@ -50,7 +30,7 @@ void prompt_heredoc(char *delimiter, int fd, char *file, t_sh *tofree)
 		free(line);
 	}
 	free(line);
-	close(fd); // TODO close all fds?
+	close_all_fds();
 	if (g_sig == SIGINT)
 	{
 		unlink(file);
@@ -128,18 +108,4 @@ bool	try_file(char *base_filename, char *id_str, int *fd, char **file)
 	return (false);
 }
 
-// checks if current line is the delimiter
-bool	check_eof(char *line, char *delimiter)
-{
-	if (!line && g_sig != SIGINT)
-	{
-		ft_putstr_fd(E_DELIM, STDERR_FILENO);
-		ft_putstr_fd(delimiter, STDERR_FILENO);
-		ft_putendl_fd("')", STDERR_FILENO);
-		return (true);
-	}
-	else if (!ft_strncmp(line, delimiter, INT_MAX))
-		return (true);
-	else
-		return (false);
-}
+
