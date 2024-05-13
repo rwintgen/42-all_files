@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 12:31:29 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/13 15:49:07 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/13 16:54:05 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ void	save_commands(t_sh *sh)
 			prev_fd_in = sh->pipefd[0];
 			reset_pipefd(sh->pipefd);
 			pipe_if_needed(tmp, sh, skip);
+			fd[0] = set_infile(tmp, sh->saved_stdfd[0], prev_fd_in, sh);
+			fd[1] = set_outfile(tmp, sh->saved_stdfd[1], sh->pipefd[1]);
 			cmd_and_args = fetch_cmd_args(tmp);
 			if (!cmd_and_args)
 				continue ;
-			fd[0] = set_infile(tmp, sh->saved_stdfd[0], prev_fd_in, sh);
-			fd[1] = set_outfile(tmp, sh->saved_stdfd[1], sh->pipefd[1]);
 			add_to_list(sh, cmd_and_args, fd, skip);
 		}
 		tmp = tmp->next;

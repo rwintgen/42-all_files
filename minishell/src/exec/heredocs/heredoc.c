@@ -6,13 +6,11 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 14:36:32 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/13 16:51:51 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/13 17:07:36 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-
 
 // invoques the heredoc in the child process
 void prompt_heredoc(char *delimiter, int fd, char *file, t_sh *tofree)
@@ -38,6 +36,7 @@ void prompt_heredoc(char *delimiter, int fd, char *file, t_sh *tofree)
 		free_sh(tofree);
 		exit(130);
 	}
+	free(file);
 	exit(free_sh(tofree));
 }
 
@@ -107,5 +106,3 @@ bool	try_file(char *base_filename, char *id_str, int *fd, char **file)
 	free(*file);
 	return (false);
 }
-
-
