@@ -6,12 +6,13 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 11:42:31 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/13 14:22:41 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/13 18:31:31 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+// sets proper exit code depending on the status of the process
 int	exit_code_handler(int error_code, int status)
 {
 	if (WIFEXITED(status))
@@ -30,6 +31,7 @@ int	exit_code_handler(int error_code, int status)
 		return (1);
 }
 
+// sets proper exit code depending on the error code
 int	set_exit_code(int error_code)
 {
 	if (error_code == ENOENT)

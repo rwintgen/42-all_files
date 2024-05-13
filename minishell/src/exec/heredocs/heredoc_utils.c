@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 15:30:54 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/13 16:50:54 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/13 19:04:18 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,24 @@ bool	check_eof(char *line, char *delimiter)
 		return (true);
 	else
 		return (false);
+}
+
+// creates heredoc command for parsing if needed
+void	create_missing_heredoc_cmd(t_arg *tmp)
+{
+	while (tmp)
+	{
+		if (tmp->type == DELIM && missing_heredoc_cmd(tmp))
+			create_heredoc_cmd(tmp);
+		tmp = tmp->next;
+	}
+}
+
+void	unlink_heredoc_file(char *heredoc_file)
+{
+	if (heredoc_file)
+	{
+		unlink(heredoc_file);
+		free(heredoc_file);
+	}
 }

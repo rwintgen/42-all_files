@@ -6,90 +6,11 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 13:44:40 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/13 18:21:21 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/13 18:46:42 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-// appends a new node to the envp linked list
-void	append_env_node(t_envp **env_cpy, char *env_var)
-{
-	t_envp	*new_node;
-	t_envp	*tmp;
-
-	new_node = ft_calloc(1, sizeof(t_envp));
-	if (!new_node)
-	{
-		ft_putendl_fd(E_MALLOC, STDERR_FILENO);
-		close_all_fds();
-		exit(1);
-	}
-	new_node->envar = ft_strdup(env_var);
-	new_node->key = NULL;
-	new_node->value = NULL;
-	new_node->is_printed = false;
-	new_node->next = NULL;
-	new_node->prev = NULL;
-	if (*env_cpy == NULL)
-		*env_cpy = new_node;
-	else
-	{
-		tmp = *env_cpy;
-		while (tmp->next)
-			tmp = tmp->next;
-		tmp->next = new_node;
-		new_node->prev = tmp;
-	}
-}
-
-// sets the key of the envp linked list
-void	set_key(t_envp **env_cpy, char *env_var)
-{
-	t_envp	*tmp;
-	char	*key;
-	int		i;
-
-	tmp = *env_cpy;
-	i = 0;
-	while (env_var[i] != '=')
-		i++;
-	key = ft_substr(env_var, 0, i);
-	while (tmp)
-	{
-		if (ft_strncmp(tmp->envar, env_var, INT_MAX) == 0)
-		{
-			free(tmp->key);
-			tmp->key = key;
-			break ;
-		}
-		tmp = tmp->next;
-	}
-}
-
-// sets the value of the envp node
-void	set_value(t_envp **env_cpy, char *env_var)
-{
-	t_envp	*tmp;
-	char	*value;
-	int		i;
-
-	tmp = *env_cpy;
-	i = 0;
-	while (env_var[i] != '=')
-		i++;
-	value = ft_substr(env_var, i + 1, ft_strlen(env_var) - i - 1);
-	while (tmp)
-	{
-		if (ft_strncmp(tmp->envar, env_var, INT_MAX) == 0)
-		{
-			free(tmp->value);
-			tmp->value = value;
-			break ;
-		}
-		tmp = tmp->next;
-	}
-}
 
 // converts a char **envp to a t_envp linked list
 t_envp	*save_envp(char **env)

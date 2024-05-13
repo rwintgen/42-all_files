@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 12:05:24 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/13 18:21:21 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/13 19:15:42 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,37 +45,6 @@ void	go_to_start_of_block(t_arg **cmd)
 {
 	while (*cmd && (*cmd)->prev && (*cmd)->prev->type != PIPE)
 		*cmd = (*cmd)->prev;
-}
-
-// exits if one of cmd's FD is invalid
-void	check_valid_fds(t_sh *sh)
-{
-	if (sh->cmd->input_fd == -3)
-	{
-		close_all_fds();
-		errno = 0;
-		free_sh(sh);
-		exit(1);
-	}
-	if (sh->cmd->input_fd == -2 || sh->cmd->output_fd == -4)
-	{
-		close_all_fds();
-		errno = 0;
-		free_sh(sh);
-		exit(0);
-	}
-	if (sh->cmd->input_fd < 0)
-	{
-		close_all_fds();
-		errno = 0;
-		exit(free_sh(sh));
-	}
-	else if (sh->cmd->output_fd < 0)
-	{
-		close_all_fds();
-		errno = 0;
-		exit(free_sh(sh));
-	}
 }
 
 // prints error message if file can't be opened

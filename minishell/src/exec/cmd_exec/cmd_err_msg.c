@@ -6,12 +6,13 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 13:27:30 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/04/25 15:57:38 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/13 18:29:34 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+// writes approriate message to stderr
 void	cmd_err_msg(char *cmd)
 {
 	if (ispath(cmd))
@@ -39,6 +40,7 @@ void	cmd_err_msg(char *cmd)
 	}
 }
 
+// checks if the command is a path
 bool	ispath(char *cmd)
 {
 	int	i;

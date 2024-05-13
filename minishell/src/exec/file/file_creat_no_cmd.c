@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 16:34:04 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/09 12:38:04 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/13 18:56:15 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,15 @@ int	create_files(t_arg *arg)
 	return (fd);
 }
 
+void	create_files_if_needed(t_arg *arg, int cmd_count, int file_count)
+{
+	if (cmd_count == 0 && file_count > 0)
+	{
+		if (create_files(arg) == -1)
+			return ;
+	}
+}
+
 int	check_file_creation(t_arg *arg)
 {
 	t_arg	*tmp;
@@ -53,11 +62,7 @@ int	check_file_creation(t_arg *arg)
 			file_count++;
 		if (!tmp->next || tmp->type == PIPE)
 		{
-			if (cmd_count == 0 && file_count > 0)
-			{
-				if (create_files(tmp) == -1)
-					return (-1);
-			}
+			create_files_if_needed(tmp, cmd_count, file_count);
 			tmp = tmp->next;
 			cmd_count = 0;
 			file_count = 0;

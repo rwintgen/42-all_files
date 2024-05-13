@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:11:52 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/13 18:26:22 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/13 19:20:55 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -232,9 +232,11 @@ void	pipe_if_needed(t_arg *tmp, t_sh *sh);
 void	reset_pipefd(int pipefd[2]);
 
 // envp
+
 void	append_env_node(t_envp **env_cpy, char *env_var);
 void	set_key(t_envp **env_cpy, char *env_var);
 void	set_value(t_envp **env_cpy, char *env_var);
+
 t_envp	*save_envp(char **env);
 char	**restore_envp(t_envp *envp);
 
@@ -255,6 +257,8 @@ char	**add_delimiter(t_arg *cmd);
 
 bool	last_cmd_is_heredoc(t_arg *arg);
 bool	check_eof(char *line, char *delimiter);
+void	create_missing_heredoc_cmd(t_arg *tmp);
+void	unlink_heredoc_file(char *heredoc_file);
 
 char	*heredoc_handler(char *delimiter, t_sh *sh);
 int		create_tmp_file(char **file);
@@ -262,6 +266,14 @@ bool	try_file(char *base_filename, char *id_str, int *fd, char **file);
 bool	check_eof(char *line, char *delimiter);
 
 // redirections
+
+void	check_valid_fds(t_sh *sh);
+
+void	check_input_piped_cmds(int *fd, t_arg *arg, int stdfd_in);
+bool	cat_piped(int stdfd_in, int fd, t_arg *cmd);
+bool	grep_piped(int stdfd_in, int fd, t_arg *cmd);
+bool	wc_piped(int stdfd_in, int fd, t_arg *cmd);
+
 int		create_files(t_arg *arg);
 int		check_file_creation(t_arg *arg);
 
@@ -279,6 +291,9 @@ int		count_redir_out(t_arg *cmd);
 void	check_outf_pipe(t_arg *cmd, t_arg **true_outfile);
 bool	check_outf_outfile(t_arg *cmd, t_arg **true_outfile);
 bool	last_outf(t_arg *cmd);
+void	create_outfiles(t_arg *cmd);
+
+int		open_outfile(t_arg *cmd, int *fd);
 void	create_outfiles(t_arg *cmd);
 
 int		set_outf_fd(t_arg	*true_outfile, int pfd_out, int stdfd_out);

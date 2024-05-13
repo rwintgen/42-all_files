@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 12:50:26 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/13 18:01:44 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/13 18:41:10 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	update_envp(t_envp **envp, char *key, char *new_value)
 	add_envp(envp, key, new_value);
 }
 
-void	init_new(t_envp *new, char *key, char *value)
+static void	init_new_envp_node(t_envp *new, char *key, char *value)
 {
 	new->key = ft_strdup(key);
 	new->value = NULL;
@@ -117,7 +117,7 @@ void	add_envp(t_envp **envp, char *key, char *value)
 		ft_putendl_fd(E_MALLOC, STDERR_FILENO);
 		return ;
 	}
-	init_new(new, key, value);
+	init_new_envp_node(new, key, value);
 	tmp = *envp;
 	if (tmp)
 	{

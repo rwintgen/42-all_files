@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 16:11:36 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/13 16:50:05 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/13 19:21:58 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	sig_int_state(int sig)
 	(void)sig;
 	g_sig = 130;
 	ft_putstr_fd("\n", STDERR_FILENO);
-	//TODO check si le \n est sur la sortie 1 ou 2
 }
 
 void	sig_quit_state(int sig)
@@ -38,7 +37,7 @@ void	sigint_muted(int signal)
 }
 
 // ctrl+C handler for heredoc
-void sigint_heredoc(int sig)
+void	sigint_heredoc(int sig)
 {
 	(void)sig;
 	g_sig = SIGINT;

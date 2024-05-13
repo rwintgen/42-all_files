@@ -6,12 +6,13 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 14:18:05 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/13 18:24:29 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/13 18:29:02 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+// loops until all commands are executed
 void	exec_commands(t_sh *sh)
 {
 	t_cmd		*tmp;
@@ -21,14 +22,12 @@ void	exec_commands(t_sh *sh)
 	tmp = sh->cmd;
 	while (sh->cmd)
 	{
-
-			last_pid = ft_exec(sh);
-			if (sh->cmd->is_builtin && count_commands(sh->cmd) == 1)
-			{
-				sh->exit_code = last_pid;
-				return ;
-			}
-
+		last_pid = ft_exec(sh);
+		if (sh->cmd->is_builtin && count_commands(sh->cmd) == 1)
+		{
+			sh->exit_code = last_pid;
+			return ;
+		}
 		if (sh->cmd->input_fd != sh->saved_stdfd[0])
 			close_if_valid(sh->cmd->input_fd);
 		if (sh->cmd->output_fd != sh->saved_stdfd[1])
@@ -41,6 +40,7 @@ void	exec_commands(t_sh *sh)
 		sh->exit_code = exit_code_handler(errno, status);
 }
 
+// executes single command
 int	ft_exec(t_sh *sh)
 {
 	pid_t	pid;
@@ -69,6 +69,7 @@ int	ft_exec(t_sh *sh)
 	return (-1);
 }
 
+// executes current classic command
 void	exec_current_cmd(char *path_to_cmd, t_sh *sh, char **envp_c)
 {
 	if (execve(path_to_cmd, sh->cmd->cmd_and_args, envp_c) == -1)
@@ -85,6 +86,7 @@ void	exec_current_cmd(char *path_to_cmd, t_sh *sh, char **envp_c)
 	}
 }
 
+// executes single builtin command
 bool	exec_solo_builtin(t_sh *sh, t_cmd *cmd, int *exit_code)
 {
 	if (cmd->is_builtin && count_commands(cmd) == 1)
@@ -101,6 +103,7 @@ bool	exec_solo_builtin(t_sh *sh, t_cmd *cmd, int *exit_code)
 	return (false);
 }
 
+// executes heredoc command
 void	exec_heredoc(t_cmd *cmd, t_sh *sh)
 {
 	if (!ft_strncmp(cmd->cmd_and_args[0], "chibron", 7))

@@ -6,14 +6,14 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 14:36:32 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/13 18:21:21 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/13 18:51:32 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 // invoques the heredoc in the child process
-void prompt_heredoc(char *delimiter, int fd, char *file, t_sh *tofree)
+void	prompt_heredoc(char *delimiter, int fd, char *file, t_sh *tofree)
 {
 	char	*line;
 
@@ -56,7 +56,7 @@ char	*heredoc_handler(char *delimiter, t_sh *sh)
 	else
 		waitpid(pid, &status, 0);
 	if (WIFEXITED(status))
-    	sh->exit_code = exit_code_handler(errno, status);
+		sh->exit_code = exit_code_handler(errno, status);
 	return (file);
 }
 

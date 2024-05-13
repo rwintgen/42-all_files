@@ -6,15 +6,16 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 13:48:42 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/27 14:15:36 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/13 19:22:54 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void   print_t_arg_struct(t_arg *data)
+// prints arg list
+void	print_t_arg_struct(t_arg *data)
 {
-	t_arg *ptr;
+	t_arg	*ptr;
 
 	ptr = data;
 	while (ptr)
@@ -25,11 +26,12 @@ void   print_t_arg_struct(t_arg *data)
 }
 
 // prints cmd list
-void print_t_cmd_struct(t_cmd *cmd)
+void	print_t_cmd_struct(t_cmd *cmd)
 {
-	int i = 1;
-	int j;
+	int	i;
+	int	j;
 
+	i = 1;
 	while (cmd)
 	{
 		j = 0;

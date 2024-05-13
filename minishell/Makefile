@@ -6,7 +6,7 @@
 #    By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/10 16:32:07 by deymons           #+#    #+#              #
-#    Updated: 2024/05/13 17:24:05 by rwintgen         ###   ########.fr        #
+#    Updated: 2024/05/13 19:21:22 by rwintgen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,15 +39,19 @@ SRCS		=	src/main.c									\
 				src/exec/cmd_exec/get_cmd_args.c			\
 				src/exec/cmd_exec/get_path.c				\
 				src/exec/cmd_exec/prep_for_exec.c			\
+				src/exec/envp/envp_utils.c					\
 				src/exec/envp/envp.c						\
 				src/exec/free_close/close.c					\
 				src/exec/free_close/free.c					\
 				src/exec/heredocs/empty_heredoc.c			\
 				src/exec/heredocs/heredoc_utils.c			\
 				src/exec/heredocs/heredoc.c					\
-				src/exec/redirections/input_utils.c			\
 				src/exec/file/file_creat_no_cmd.c			\
+				src/exec/redirections/check_valid_fds.c		\
+				src/exec/redirections/input_piped_cmds.c	\
+				src/exec/redirections/input_utils.c			\
 				src/exec/redirections/input.c				\
+				src/exec/redirections/outfiles.c			\
 				src/exec/redirections/output_utils.c		\
 				src/exec/redirections/output.c				\
 				src/exec/redirections/redirect_utils.c		\

@@ -6,13 +6,13 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:59:56 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/13 18:21:21 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/13 19:24:58 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int g_sig;
+int	g_sig;
 
 ///////// TODO //////////
 // file name with spaces 						??
@@ -23,6 +23,7 @@ int g_sig;
 // reorganisation								TODO
 // norme										TODO
 // replace strncmp strcmp						TODO
+// replace 0 and 1 with EXIT_...				TODO
 /////////////////////////
 
 /*

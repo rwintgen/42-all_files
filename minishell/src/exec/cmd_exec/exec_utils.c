@@ -6,30 +6,11 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 16:11:44 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/13 18:25:16 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/13 18:37:09 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-// returns current command index
-int	current_command(t_cmd *cmd)
-{
-	t_cmd	*current;
-	int		i;
-
-	current = cmd;
-	i = 0;
-	while (cmd->prev)
-		cmd = cmd->prev;
-	while (cmd && cmd != current)
-	{
-		i++;
-		cmd = cmd->next;
-	}
-	printf("current command: %s, number %d\n", current->cmd_and_args[0], i);
-	return (i);
-}
 
 // counts the number of commands
 int	count_commands(t_cmd *cmd)

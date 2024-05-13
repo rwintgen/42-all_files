@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 16:07:33 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/13 15:48:50 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/13 19:11:50 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,50 +23,6 @@ Input priority order:
 4 - reads from stdin if no infile, no heredoc
 	cmd 1
 */
-
-bool	cat_piped(int stdfd_in, int fd, t_arg *cmd)
-{
-	t_arg	*tmp;
-
-	tmp = cmd;
-	if (ft_strncmp(cmd->str_command, "cat", 4) || fd != stdfd_in)
-		return (false);
-	while (tmp && tmp->type != PIPE)
-		tmp = tmp->prev;
-	if (!tmp)
-		return (false);
-	return (true);
-}
-
-bool	grep_piped(int stdfd_in, int fd, t_arg *cmd)
-{
-	t_arg	*tmp;
-
-	tmp = cmd;
-	if (ft_strncmp(cmd->str_command, "grep", 5) || fd != stdfd_in)
-		return (false);
-	if (!cmd->next || cmd->next->type != ARG)
-		return (false);
-	while (tmp && tmp->type != PIPE)
-		tmp = tmp->prev;
-	if (!tmp)
-		return (false);
-	return (true);
-}
-
-bool	wc_piped(int stdfd_in, int fd, t_arg *cmd)
-{
-	t_arg	*tmp;
-
-	tmp = cmd;
-	if (ft_strncmp(cmd->str_command, "wc", 3) || fd != stdfd_in)
-		return (false);
-	while (tmp && tmp->type != PIPE)
-		tmp = tmp->prev;
-	if (!tmp)
-		return (false);
-	return (true);
-}
 
 // finds right infile and opens it for current cmd
 int	set_infile(t_arg *cmd, int stdfd_in, int pipefd_in, t_sh *tofree)
@@ -91,17 +47,8 @@ int	set_infile(t_arg *cmd, int stdfd_in, int pipefd_in, t_sh *tofree)
 		cmd = cmd->next;
 	}
 	fd = set_inf_fd(heredoc_file, true_infile, pipefd_in, stdfd_in);
-	if (cat_piped(stdfd_in, fd, tmp))
-		fd = -2;
-	else if (grep_piped(stdfd_in, fd, tmp))
-		fd = -3;
-	else if (wc_piped(stdfd_in, fd, tmp))
-		fd = -4;
-	if (heredoc_file)
-	{
-		unlink(heredoc_file);
-		free(heredoc_file);
-	}
+	check_input_piped_cmds(&fd, tmp, stdfd_in);
+	unlink_heredoc_file(heredoc_file);
 	return (fd);
 }
 

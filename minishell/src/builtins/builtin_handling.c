@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 06:15:08 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/09 16:07:47 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/13 18:29:50 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int	exec_builtin(t_cmd *cmd, t_envp **envp, t_sh *sh)
 	return (exit_code);
 }
 
-// checks if cmd is a builtin
 bool	is_builtin(char *cmd)
 {
 	if (!ft_strncmp(cmd, "echo", 5)

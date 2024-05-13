@@ -6,17 +6,25 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 17:23:03 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/13 18:26:10 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/13 18:34:04 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+void	join_path(char **cmd_path, char *sep_env_path, char *cmd)
+{
+	char	*tmp_path;
+
+	tmp_path = ft_strjoin(sep_env_path, "/");
+	*cmd_path = ft_strjoin(tmp_path, cmd);
+	free(tmp_path);
+}
+
 // fetches the path of the command to execute
 char	*get_path(t_cmd *cmd, t_envp *envp)
 {
 	char	**sep_env_paths;
-	char	*tmp_path;
 	char	*cmd_path;
 	int		i;
 
@@ -29,9 +37,7 @@ char	*get_path(t_cmd *cmd, t_envp *envp)
 	i = 0;
 	while (sep_env_paths[i])
 	{
-		tmp_path = ft_strjoin(sep_env_paths[i], "/");
-		cmd_path = ft_strjoin(tmp_path, cmd->cmd_and_args[0]);
-		free(tmp_path);
+		join_path(&cmd_path, sep_env_paths[i], cmd->cmd_and_args[0]);
 		if (access(cmd_path, F_OK | X_OK) == 0)
 		{
 			ft_free_char_tab(sep_env_paths);

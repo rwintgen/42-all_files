@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 12:31:29 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/13 18:26:14 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/13 18:38:36 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,7 @@ void	save_commands(t_sh *sh)
 	t_arg		*tmp;
 
 	tmp = sh->arg;
-	while (tmp)
-	{
-		if (tmp->type == DELIM && missing_heredoc_cmd(tmp))
-			create_heredoc_cmd(tmp);
-		tmp = tmp->next;
-	}
-	tmp = sh->arg;
+	create_missing_heredoc_cmd(tmp);
 	while (tmp)
 	{
 		if (tmp->type == CMD)
