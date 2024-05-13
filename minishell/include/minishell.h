@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:11:52 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/13 17:22:42 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/13 18:26:22 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,6 @@ typedef struct	s_cmd
 	int				input_fd;
 	int				output_fd;
 
-	bool			skip_cmd;
 	bool			is_builtin;
 
 	struct s_cmd	*next;
@@ -227,9 +226,9 @@ char	*get_path(t_cmd *cmd, t_envp *envp);
 char	*fetch_path_from_envp(t_envp *envp);
 
 void	save_commands(t_sh *sh);
-void	add_to_list(t_sh *sh, char **cmd_and_args, int fd[2], bool skip);
-t_cmd	*create_node(char **cmd_and_args, int fd[2], bool skip);
-void	pipe_if_needed(t_arg *tmp, t_sh *sh, bool skip);
+void	add_to_list(t_sh *sh, char **cmd_and_args, int fd[2]);
+t_cmd	*create_node(char **cmd_and_args, int fd[2]);
+void	pipe_if_needed(t_arg *tmp, t_sh *sh);
 void	reset_pipefd(int pipefd[2]);
 
 // envp

@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 14:18:05 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/13 15:48:19 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/13 18:24:29 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,14 @@ void	exec_commands(t_sh *sh)
 	tmp = sh->cmd;
 	while (sh->cmd)
 	{
-		if (sh->cmd->skip_cmd == false)
-		{
+
 			last_pid = ft_exec(sh);
 			if (sh->cmd->is_builtin && count_commands(sh->cmd) == 1)
 			{
 				sh->exit_code = last_pid;
 				return ;
 			}
-		}
+
 		if (sh->cmd->input_fd != sh->saved_stdfd[0])
 			close_if_valid(sh->cmd->input_fd);
 		if (sh->cmd->output_fd != sh->saved_stdfd[1])

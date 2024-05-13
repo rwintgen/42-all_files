@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 16:11:44 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/27 16:45:41 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/13 18:25:16 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,10 @@ int	ft_fork(t_sh *sh)
 {
 	int	pid;
 
+	(void) sh;
 	pid = fork();
 	if (pid == -1)
 	{
-		sh->cmd->skip_cmd = true;
 		ft_putendl_fd(E_FORK, STDERR_FILENO);
 		return (-1);
 	}
