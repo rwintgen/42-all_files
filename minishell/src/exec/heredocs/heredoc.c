@@ -6,69 +6,64 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 14:36:32 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/13 11:17:18 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/13 12:06:56 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// handles writing in tmp file
-// handles writing in tmp file
-char	*heredoc_handler(t_sh *sh, char *delimiter)
+// ctrl+C handler for heredoc
+void sigint_heredoc(int sig)
+{
+	(void)sig;
+	g_sig = SIGINT;
+	close(STDIN_FILENO);
+}
+
+// invoques the heredoc in the child process
+void prompt_heredoc(char *delimiter, int fd, char *file)
 {
 	char	*line;
+
+	line = NULL;
+	signal(SIGINT, sigint_heredoc);
+	while (g_sig != SIGINT)
+	{
+		line = readline("> ");
+		if (check_eof(line, delimiter))
+			break ;
+		ft_putendl_fd(line, fd);
+		free(line);
+	}
+	free(line);
+	close(fd);
+	if (g_sig == SIGINT)
+	{
+		unlink(file);
+		free(file);
+		// TODO free all
+		exit(130);
+	}
+	exit(0);
+}
+
+// handles writing in tmp file
+char	*heredoc_handler(char *delimiter)
+{
 	char	*file;
 	int		pid;
 	int		fd;
 
-	line = NULL;
 	file = NULL;
 	fd = create_tmp_file(&file);
 
 	pid = fork();
-	if (pid == 0) // child executes heredoc
-	{
-		signal(SIGINT, sigint_heredoc);
-		while (true)
-		{
-			line = readline("> ");
-			if (check_eof(line, delimiter))
-				break ;
-			ft_putendl_fd(line, fd);
-			free(line);
-		}
-		free(line);
-		close(fd);
-		exit(0);
-	}
-	else // parent waits for child to finish
-	{
+	if (pid == 0)
+		prompt_heredoc(delimiter, fd, file);
+	else
 		waitpid(pid, NULL, 0);
-	}
 	return (file);
 }
-
-// char	*heredoc_handler(char *delimiter)
-// {
-// 	char	*line;
-// 	char	*file;
-// 	int		fd;
-
-// 	line = NULL;
-// 	file = NULL;
-// 	fd = create_tmp_file(&file);
-// 	while (true)
-// 	{
-// 		line = readline("> ");
-// 		if (check_eof(line, delimiter))
-// 			break ;
-// 		ft_putendl_fd(line, fd);
-// 		free(line);
-// 	}
-// 	free(line);
-// 	close(fd);
-// 	return (file);
-// }
 
 // creates a temp file with new name
 int	create_tmp_file(char **file)
@@ -120,7 +115,7 @@ bool	try_file(char *base_filename, char *id_str, int *fd, char **file)
 // checks if current line is the delimiter
 bool	check_eof(char *line, char *delimiter)
 {
-	if (!line)
+	if (!line && g_sig != SIGINT)
 	{
 		ft_putstr_fd(E_DELIM, STDERR_FILENO);
 		ft_putstr_fd(delimiter, STDERR_FILENO);
