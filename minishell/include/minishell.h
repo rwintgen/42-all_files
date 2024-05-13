@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:11:52 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/13 12:24:06 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/13 13:30:29 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -253,7 +253,7 @@ bool	missing_heredoc_cmd(t_arg *arg);
 void	create_heredoc_cmd(t_arg *elem);
 char	**add_delimiter(t_arg *cmd);
 
-char	*heredoc_handler(char *delimiter, t_sh *tofree);
+char	*heredoc_handler(char *delimiter, t_sh *sh);
 int		create_tmp_file(char **file);
 bool	try_file(char *base_filename, char *id_str, int *fd, char **file);
 bool	check_eof(char *line, char *delimiter);
@@ -265,10 +265,10 @@ int		check_file_creation(t_arg *arg);
 bool	last_inf(t_arg *cmd);
 bool	prev_cmd_out(t_arg *cmd);
 void	check_inf_pipe(t_arg *to_check, t_arg **true_infile);
-bool	check_inf_delim(t_arg *to_check, char **heredoc_file, t_sh *tofree);
+bool	check_inf_delim(t_arg *to_check, char **heredoc_file, t_sh *sh);
 void	check_inf_infile(t_arg *to_check, t_arg **true_infile);
 
-int		set_infile(t_arg *cmd, int stdfd_in, int pipefd_in, t_sh *tofree);
+int		set_infile(t_arg *cmd, int stdfd_in, int pipefd_in, t_sh *sh);
 int		set_inf_fd(char *hd_file, t_arg *true_infile, int pfd_in, int stdfd_in);
 bool	infiles_ok(t_arg *cmd);
 

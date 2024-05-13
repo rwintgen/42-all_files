@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 14:36:32 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/13 12:23:00 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/13 13:34:15 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void sigint_heredoc(int sig)
 }
 
 // invoques the heredoc in the child process
-void prompt_heredoc(char *delimiter, int fd, char *file, t_sh *sh)
+void prompt_heredoc(char *delimiter, int fd, char *file, t_sh *tofree)
 {
 	char	*line;
 
@@ -41,27 +41,30 @@ void prompt_heredoc(char *delimiter, int fd, char *file, t_sh *sh)
 	{
 		unlink(file);
 		free(file);
-		// TODO free all
-		sh->exit_code = 130;
+		free_sh(tofree);
+		exit(130);
 	}
-	exit(free_sh(sh));
+	exit(free_sh(tofree));
 }
 
 // handles writing in tmp file
-char	*heredoc_handler(char *delimiter, t_sh *tofree)
+char	*heredoc_handler(char *delimiter, t_sh *sh)
 {
 	char	*file;
 	int		pid;
 	int		fd;
+	int		status;
 
 	file = NULL;
 	fd = create_tmp_file(&file);
 
 	pid = fork();
 	if (pid == 0)
-		prompt_heredoc(delimiter, fd, file, tofree);
+		prompt_heredoc(delimiter, fd, file, sh);
 	else
-		waitpid(pid, NULL, 0);
+		waitpid(pid, &status, 0);
+	if (WIFEXITED(status))
+            sh->exit_code = WEXITSTATUS(status);
 	return (file);
 }
 
