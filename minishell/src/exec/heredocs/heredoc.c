@@ -6,34 +6,69 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 14:36:32 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/09 17:55:39 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/13 11:17:18 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 // handles writing in tmp file
-char	*heredoc_handler(char *delimiter)
+// handles writing in tmp file
+char	*heredoc_handler(t_sh *sh, char *delimiter)
 {
 	char	*line;
 	char	*file;
+	int		pid;
 	int		fd;
 
 	line = NULL;
 	file = NULL;
 	fd = create_tmp_file(&file);
-	while (true)
+
+	pid = fork();
+	if (pid == 0) // child executes heredoc
 	{
-		line = readline("> ");
-		if (check_eof(line, delimiter))
-			break ;
-		ft_putendl_fd(line, fd);
+		signal(SIGINT, sigint_heredoc);
+		while (true)
+		{
+			line = readline("> ");
+			if (check_eof(line, delimiter))
+				break ;
+			ft_putendl_fd(line, fd);
+			free(line);
+		}
 		free(line);
+		close(fd);
+		exit(0);
 	}
-	free(line);
-	close(fd);
+	else // parent waits for child to finish
+	{
+		waitpid(pid, NULL, 0);
+	}
 	return (file);
 }
+
+// char	*heredoc_handler(char *delimiter)
+// {
+// 	char	*line;
+// 	char	*file;
+// 	int		fd;
+
+// 	line = NULL;
+// 	file = NULL;
+// 	fd = create_tmp_file(&file);
+// 	while (true)
+// 	{
+// 		line = readline("> ");
+// 		if (check_eof(line, delimiter))
+// 			break ;
+// 		ft_putendl_fd(line, fd);
+// 		free(line);
+// 	}
+// 	free(line);
+// 	close(fd);
+// 	return (file);
+// }
 
 // creates a temp file with new name
 int	create_tmp_file(char **file)
