@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 12:50:26 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/09 15:57:47 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/13 18:01:44 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,32 @@
 
 ////////// BEHAVIOR ///////////
 /*
-export with no args prints
-all env vars sorted
+export with no args
+prints all env vars sorted
 even if VALUE = NULL
 
 export with KEY=VALUE
-creates new env var or updates existing
-with VALUE
+creates new env var
+or updates existing with VALUE
 
 export with KEY=
-creates new env var or updates existing
-with VALUE = ""
+creates new env var
+or updates existing with VALUE = ""
 
 export with KEY
 creates new env var with VALUE = NULL
 
 export with =VALUE is an error
 */
+
+// TODO segfaults
+
+// minishell $> export a=value
+// minishell $> export a
+
+// minishell $> export a
+// minishell $> unset a
+// minishell $> export
 
 int	ft_export(t_cmd *cmd, t_envp **envp)
 {
@@ -85,6 +94,18 @@ void	update_envp(t_envp **envp, char *key, char *new_value)
 	add_envp(envp, key, new_value);
 }
 
+void	init_new(t_envp *new, char *key, char *value)
+{
+	new->key = ft_strdup(key);
+	new->value = NULL;
+	if (value)
+		new->value = ft_strdup(value);
+	new->envar = NULL;
+	new->next = NULL;
+	new->prev = NULL;
+	new->is_printed = false;
+}
+
 void	add_envp(t_envp **envp, char *key, char *value)
 {
 	t_envp	*new;
@@ -96,14 +117,7 @@ void	add_envp(t_envp **envp, char *key, char *value)
 		ft_putendl_fd(E_MALLOC, STDERR_FILENO);
 		return ;
 	}
-	new->key = ft_strdup(key);
-	new->value = NULL;
-	if (value)
-		new->value = ft_strdup(value);
-	new->envar = NULL;
-	new->next = NULL;
-	new->prev = NULL;
-	new->is_printed = false;
+	init_new(new, key, value);
 	tmp = *envp;
 	if (tmp)
 	{

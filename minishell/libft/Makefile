@@ -6,7 +6,7 @@
 #    By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/02 12:30:27 by rwintgen          #+#    #+#              #
-#    Updated: 2024/04/25 16:46:22 by rwintgen         ###   ########.fr        #
+#    Updated: 2024/05/13 17:39:41 by rwintgen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRCS	= ft_atoi.c \
 		ft_memmove.c \
 		ft_memset.c \
 		ft_strchr.c \
+		ft_strcmp.c \
 		ft_strdup.c \
 		ft_strlcat.c \
 		ft_strlcpy.c \

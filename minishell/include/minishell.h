@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:11:52 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/13 16:51:08 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/13 17:22:42 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,10 +165,11 @@ int		exec_builtin(t_cmd *cmd, t_envp **envp, t_sh *sh);
 bool	is_builtin(char *cmd);
 
 int		ft_cd(t_cmd *cmd, t_envp *envp);
-int		get_new_pwd(t_cmd *cmd, t_envp *envp, char **new_pwd);
-char	*get_old_pwd(t_envp *envp);
-void	update_pwd(t_envp *envp, char *new_pwd);
-void	update_old_pwd(t_envp *envp, char *old_pwd);
+char	*get_home(t_envp *envp);
+char	*get_cwd(void);
+void	update_old_cwd(t_envp *envp, char *old_cwd);
+void	update_cwd(t_envp *envp, char *new_cwd);
+int		err_msg_cd(char *old_cwd, char *new_cwd);
 
 int		ft_echo(t_cmd *cmd, t_envp *envp);
 bool	need_new_line(char *str);

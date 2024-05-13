@@ -1,39 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_unset.c                                         :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/29 15:04:51 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/13 18:03:21 by rwintgen         ###   ########.fr       */
+/*   Created: 2024/05/13 17:37:52 by rwintgen          #+#    #+#             */
+/*   Updated: 2024/05/13 17:38:47 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	ft_unset(t_cmd *cmd, t_envp **envp)
+int	ft_strcmp(char *s1, char *s2)
 {
-	t_envp	*tmp;
-	int		i;
+    int    c;
 
-	i = 1;
-	while (cmd->cmd_and_args[i])
-	{
-		tmp = *envp;
-		while (tmp)
-		{
-			if (!ft_strcmp(tmp->key, cmd->cmd_and_args[i]))
-			{
-				free(tmp->key);
-				free(tmp->value);
-				tmp->key = NULL;
-				tmp->value = NULL;
-				break ;
-			}
-			tmp = tmp->next;
-		}
-		i++;
-	}
-	return (0);
+    c = 0;
+    while (s1[c] == s2[c] && (s1[c] != '\0' && s2[c] != '\0'))
+        c++;
+    return (s1[c] - s2[c]);
 }

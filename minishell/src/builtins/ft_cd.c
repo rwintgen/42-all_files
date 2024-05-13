@@ -6,72 +6,11 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 02:42:25 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/09 12:19:33 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/13 17:20:54 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-char	*get_home(t_envp *envp)
-{
-	t_envp	*tmp;
-
-	tmp = envp;
-	while (tmp)
-	{
-		if (!ft_strncmp(tmp->key, "HOME", 5))
-			return (tmp->value);
-		tmp = tmp->next;
-	}
-	ft_putstr_fd("minishell: cd: HOME not set\n", 2);
-	return (NULL);
-}
-
-char	*get_cwd(void)
-{
-	char	*cwd;
-
-	cwd = getcwd(NULL, 0);
-	if (!cwd)
-	{
-		ft_putstr_fd("minishell: error retrieving current directory\n", 2);
-	}
-	return (cwd);
-}
-
-void	update_old_cwd(t_envp *envp, char *old_cwd)
-{
-	t_envp	*tmp;
-
-	tmp = envp;
-	while (tmp)
-	{
-		if (!ft_strncmp(tmp->key, "OLDPWD", 7))
-		{
-			free(tmp->value);
-			tmp->value = ft_strdup(old_cwd);
-			return ;
-		}
-		tmp = tmp->next;
-	}
-}
-
-void	update_cwd(t_envp *envp, char *new_cwd)
-{
-	t_envp	*tmp;
-
-	tmp = envp;
-	while (tmp)
-	{
-		if (!ft_strncmp(tmp->key, "PWD", 4))
-		{
-			free(tmp->value);
-			tmp->value = ft_strdup(new_cwd);
-			return ;
-		}
-		tmp = tmp->next;
-	}
-}
 
 int	ft_cd(t_cmd *cmd, t_envp *envp)
 {
@@ -95,15 +34,7 @@ int	ft_cd(t_cmd *cmd, t_envp *envp)
 	if (old_cwd == NULL)
 		return (1);
 	if (chdir(new_cwd) == -1)
-	{
-		ft_putstr_fd("minishell: cd: ", STDERR_FILENO);
-		ft_putstr_fd(new_cwd, STDERR_FILENO);
-		ft_putstr_fd(": ", STDERR_FILENO);
-		ft_putstr_fd(strerror(errno), STDERR_FILENO);
-		ft_putstr_fd("\n", STDERR_FILENO);
-		free(old_cwd);
-		return (1);
-	}
+		return (err_msg_cd(old_cwd, new_cwd));
 	update_old_cwd(envp, old_cwd);
 	update_cwd(envp, new_cwd);
 	free(old_cwd);

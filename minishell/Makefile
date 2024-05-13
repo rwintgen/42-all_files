@@ -6,7 +6,7 @@
 #    By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/10 16:32:07 by deymons           #+#    #+#              #
-#    Updated: 2024/05/13 15:31:20 by rwintgen         ###   ########.fr        #
+#    Updated: 2024/05/13 17:24:05 by rwintgen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRCS		=	src/main.c									\
 				src/debug_print.c							\
 				src/builtins/builtin_handling.c				\
 				src/builtins/ft_cd.c						\
+				src/builtins/ft_cd_utils.c					\
 				src/builtins/ft_echo.c						\
 				src/builtins/ft_env.c						\
 				src/builtins/ft_exit.c						\

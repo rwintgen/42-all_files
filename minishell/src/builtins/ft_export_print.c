@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:07:17 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/09 15:56:17 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/13 17:46:11 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,5 @@ void	print_export(t_envp *envp)
 	print_key(first->key);
 	print_value(first->value);
 	first->is_printed = true;
-
 	return (print_export(envp));
 }

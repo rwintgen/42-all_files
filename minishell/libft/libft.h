@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 12:22:03 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/04/25 16:45:51 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/13 17:39:15 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ int			ft_printfptr(unsigned long n, char *base, int index);
 // new functions
 
 char		*ft_strrep(char *str, char *old, char *new);
+int			ft_strcmp(char *s1, char *s2);
 
 //	get_next_line
 

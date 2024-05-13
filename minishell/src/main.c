@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:59:56 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/13 17:06:45 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/13 18:02:20 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ int g_sig;
 // fix ctrl+C heredoc -> outfile created		??
 // fix error msg char by char					??
 // valgrind (open FDs, leaks)					OK-ish
+// fix export segfaults							TODO
 // reorganisation								TODO
 // norme										TODO
+// replace strncmp strcmp						TODO
 /////////////////////////
 
 /*

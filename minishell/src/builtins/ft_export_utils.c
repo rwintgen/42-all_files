@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:09:07 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/02 13:11:39 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/13 17:47:19 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ bool	is_invalid_key(char *key)
 	}
 	return (false);
 }
+
 char	*get_key(char *arg)
 {
 	int		i;
