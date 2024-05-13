@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 12:00:07 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/04/28 11:51:55 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/13 12:22:34 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,11 @@ void	check_inf_pipe(t_arg *to_check, t_arg **true_infile)
 }
 
 // checks if current cmd has a heredoc redirection
-bool	check_inf_delim(t_arg *to_check, char **heredoc_file)
+bool	check_inf_delim(t_arg *to_check, char **heredoc_file, t_sh *tofree)
 {
 	if (to_check && to_check->type == DELIM)
 	{
-		*heredoc_file = heredoc_handler(to_check->str_command);
+		*heredoc_file = heredoc_handler(to_check->str_command, tofree);
 		return (true);
 	}
 	return (false);

@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 14:36:32 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/13 12:06:56 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/13 12:23:00 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void sigint_heredoc(int sig)
 }
 
 // invoques the heredoc in the child process
-void prompt_heredoc(char *delimiter, int fd, char *file)
+void prompt_heredoc(char *delimiter, int fd, char *file, t_sh *sh)
 {
 	char	*line;
 
@@ -42,13 +42,13 @@ void prompt_heredoc(char *delimiter, int fd, char *file)
 		unlink(file);
 		free(file);
 		// TODO free all
-		exit(130);
+		sh->exit_code = 130;
 	}
-	exit(0);
+	exit(free_sh(sh));
 }
 
 // handles writing in tmp file
-char	*heredoc_handler(char *delimiter)
+char	*heredoc_handler(char *delimiter, t_sh *tofree)
 {
 	char	*file;
 	int		pid;
@@ -59,7 +59,7 @@ char	*heredoc_handler(char *delimiter)
 
 	pid = fork();
 	if (pid == 0)
-		prompt_heredoc(delimiter, fd, file);
+		prompt_heredoc(delimiter, fd, file, tofree);
 	else
 		waitpid(pid, NULL, 0);
 	return (file);

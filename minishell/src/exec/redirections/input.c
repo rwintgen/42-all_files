@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 16:07:33 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/09 13:23:25 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/13 12:22:15 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ bool	wc_piped(int stdfd_in, int fd, t_arg *cmd)
 }
 
 // finds right infile and opens it for current cmd
-int	set_infile(t_arg *cmd, int stdfd_in, int pipefd_in)
+int	set_infile(t_arg *cmd, int stdfd_in, int pipefd_in, t_sh *tofree)
 {
 	t_arg	*true_infile;
 	t_arg	*tmp;
@@ -86,7 +86,7 @@ int	set_infile(t_arg *cmd, int stdfd_in, int pipefd_in)
 		check_inf_pipe(cmd->prev, &true_infile);
 	while (cmd && cmd->type != PIPE)
 	{
-		if (!check_inf_delim(cmd, &heredoc_file))
+		if (!check_inf_delim(cmd, &heredoc_file, tofree))
 			check_inf_infile(cmd, &true_infile);
 		cmd = cmd->next;
 	}
