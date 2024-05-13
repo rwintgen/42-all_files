@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:59:56 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/13 13:21:11 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/13 14:20:22 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	init_sh(t_sh *sh, char **envp, int argc, char **argv)
 	sh->saved_stdfd[0] = dup(STDIN_FILENO);
 	sh->saved_stdfd[1] = dup(STDOUT_FILENO);
 	sh->pipefd[0] = -1;
-	sh->pipefd[1] = -1;
 	sh->exit_code = 0;
 	sh->envp = save_envp(envp);
 }

@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 12:31:29 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/13 12:21:27 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/13 13:48:30 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	save_commands(t_sh *sh)
 		}
 		tmp = tmp->next;
 	}
+	printf("exit_code: %d\n", sh->exit_code);
 }
 
 // adds a new t_cmd node to the linked list

@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 14:18:05 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/09 16:07:58 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/13 14:22:18 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	exec_commands(t_sh *sh)
 	int			status;
 	int			last_pid;
 
+	printf("exec_commands exit code: %d\n", sh->exit_code);
 	tmp = sh->cmd;
 	while (sh->cmd)
 	{
@@ -38,7 +39,9 @@ void	exec_commands(t_sh *sh)
 	}
 	sh->cmd = tmp;
 	waitpid(last_pid, &status, 0);
+	printf("exec_commands before exit_code_handler: %d\n", sh->exit_code);
 	sh->exit_code = exit_code_handler(errno, status);
+	printf("exec_commands end exit_code: %d\n", sh->exit_code);
 }
 
 int	ft_exec(t_sh *sh)
