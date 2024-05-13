@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:11:52 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/13 14:20:19 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/13 15:45:06 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -252,6 +252,7 @@ void	free_envp(t_envp *envp);
 bool	missing_heredoc_cmd(t_arg *arg);
 void	create_heredoc_cmd(t_arg *elem);
 char	**add_delimiter(t_arg *cmd);
+bool	last_cmd_is_heredoc(t_arg *arg);
 
 char	*heredoc_handler(char *delimiter, t_sh *sh);
 int		create_tmp_file(char **file);

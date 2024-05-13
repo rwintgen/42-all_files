@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 14:18:05 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/13 14:22:18 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/13 15:46:08 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,18 @@ void	exec_commands(t_sh *sh)
 				return ;
 			}
 		}
-		if (sh->cmd->input_fd != sh->saved_stdfd[0]/*&& sh->cmd->input_fd != STDIN_FILENO*/)
+		if (sh->cmd->input_fd != sh->saved_stdfd[0])
 			close_if_valid(sh->cmd->input_fd);
-		if (sh->cmd->output_fd != sh->saved_stdfd[1]/*&& sh->cmd->output_fd != STDOUT_FILENO*/)
+		if (sh->cmd->output_fd != sh->saved_stdfd[1])
 			close_if_valid(sh->cmd->output_fd);
 		sh->cmd = sh->cmd->next;
 	}
 	sh->cmd = tmp;
 	waitpid(last_pid, &status, 0);
 	printf("exec_commands before exit_code_handler: %d\n", sh->exit_code);
-	sh->exit_code = exit_code_handler(errno, status);
+	printf("errno: %d\nstatus: %d\n", errno, status);
+	if (!(last_cmd_is_heredoc(sh->arg) && sh->exit_code == 130))
+		sh->exit_code = exit_code_handler(errno, status);
 	printf("exec_commands end exit_code: %d\n", sh->exit_code);
 }
 

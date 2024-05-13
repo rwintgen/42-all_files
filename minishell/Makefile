@@ -6,7 +6,7 @@
 #    By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/10 16:32:07 by deymons           #+#    #+#              #
-#    Updated: 2024/05/09 12:39:21 by rwintgen         ###   ########.fr        #
+#    Updated: 2024/05/13 15:31:20 by rwintgen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ SRCS		=	src/main.c									\
 				src/exec/free_close/close.c					\
 				src/exec/free_close/free.c					\
 				src/exec/heredocs/empty_heredoc.c			\
+				src/exec/heredocs/heredoc_utils.c			\
 				src/exec/heredocs/heredoc.c					\
 				src/exec/redirections/input_utils.c			\
 				src/exec/file/file_creat_no_cmd.c			\
