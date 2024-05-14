@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 16:08:10 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/09 17:01:37 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/14 13:58:08 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ Output priority order:
 3 - writes to stdout if no outfile, no pipe
 	cmd 
 */
+
+static int	set_outf_fd(t_arg	*true_outfile, int pfd_out, int stdfd_out);
 
 // finds right outfile and opens it for current cmd
 int	set_outfile(t_arg *cmd, int stdfd_out, int pipefd_out)
@@ -40,7 +42,7 @@ int	set_outfile(t_arg *cmd, int stdfd_out, int pipefd_out)
 }
 
 // opens outfile and returns its FD
-int	set_outf_fd(t_arg	*true_outfile, int pfd_out, int stdfd_out)
+static int	set_outf_fd(t_arg	*true_outfile, int pfd_out, int stdfd_out)
 {
 	int	fd;
 

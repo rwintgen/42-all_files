@@ -6,45 +6,16 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 16:34:04 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/13 18:56:15 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/14 15:07:59 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	create_files(t_arg *arg)
-{
-	int	fd;
+static void	create_files_if_needed(t_arg *arg, int cmd_count, int file_count);
+static int	create_files(t_arg *arg);
 
-	go_to_start_of_block(&arg);
-	while (arg && arg->type != PIPE)
-	{
-		fd = -2;
-		if (arg->type == OUTFILE)
-			ft_open(arg->str_command, &fd, FLAG_WRITE);
-		else if (arg->type == INFILE)
-			ft_open(arg->str_command, &fd, FLAG_READ);
-		close_if_valid(fd);
-		if (fd == -1)
-		{
-			ft_putstr_fd(E_FILE_EXIST, STDERR_FILENO);
-			ft_putendl_fd(arg->str_command, STDERR_FILENO);
-			return (fd);
-		}
-		arg = arg->next;
-	}
-	return (fd);
-}
-
-void	create_files_if_needed(t_arg *arg, int cmd_count, int file_count)
-{
-	if (cmd_count == 0 && file_count > 0)
-	{
-		if (create_files(arg) == -1)
-			return ;
-	}
-}
-
+// handles file creation
 int	check_file_creation(t_arg *arg)
 {
 	t_arg	*tmp;
@@ -71,4 +42,39 @@ int	check_file_creation(t_arg *arg)
 		tmp = tmp->next;
 	}
 	return (0);
+}
+
+// handle files creation that have no command associated
+static void	create_files_if_needed(t_arg *arg, int cmd_count, int file_count)
+{
+	if (cmd_count == 0 && file_count > 0)
+	{
+		if (create_files(arg) == -1)
+			return ;
+	}
+}
+
+// creates files
+static int	create_files(t_arg *arg)
+{
+	int	fd;
+
+	go_to_start_of_block(&arg);
+	while (arg && arg->type != PIPE)
+	{
+		fd = -2;
+		if (arg->type == OUTFILE)
+			ft_open(arg->str_command, &fd, FLAG_WRITE);
+		else if (arg->type == INFILE)
+			ft_open(arg->str_command, &fd, FLAG_READ);
+		close_if_valid(fd);
+		if (fd == -1)
+		{
+			ft_putstr_fd(E_FILE_EXIST, STDERR_FILENO);
+			ft_putendl_fd(arg->str_command, STDERR_FILENO);
+			return (fd);
+		}
+		arg = arg->next;
+	}
+	return (fd);
 }

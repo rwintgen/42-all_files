@@ -6,11 +6,13 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 12:40:53 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/06 15:46:10 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/14 14:05:46 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static void	add_spaces(char **formatted, char *str);
 
 // formats input and expands variables
 char	*true_line(char *str, t_sh *sh)
@@ -38,7 +40,7 @@ char	*true_line(char *str, t_sh *sh)
 }
 
 // adds spaces in input where needed
-void	add_spaces(char **formatted, char *str)
+static void	add_spaces(char **formatted, char *str)
 {
 	int	i;
 	int	j;

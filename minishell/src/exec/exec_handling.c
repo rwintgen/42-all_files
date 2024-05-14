@@ -6,17 +6,19 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 17:59:02 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/09 15:29:44 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/14 15:02:14 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+static void	remove_all_quotes(t_sh *sh);
+
 // handles command execution and i.o redirection
 void	exec_handler(t_sh *sh)
 {
-	signal(SIGQUIT, &sig_quit_state);
-	signal(SIGINT, &sig_int_state);
+	signal(SIGQUIT, sig_quit_state);
+	signal(SIGINT, sig_int_state);
 	remove_all_quotes(sh);
 	save_commands(sh);
 	// print_t_cmd_struct(sh->cmd); // DEBUG
@@ -25,10 +27,10 @@ void	exec_handler(t_sh *sh)
 	if (count_commands(sh->cmd) == 0)
 		return ;
 	exec_commands(sh);
-	// printf("last cmd exit code: %d\n\n", sh->exit_code); // DEBUG
 }
 
-void	remove_all_quotes(t_sh *sh)
+// removes all quotes from the command line
+static void	remove_all_quotes(t_sh *sh)
 {
 	t_arg	*tmp;
 

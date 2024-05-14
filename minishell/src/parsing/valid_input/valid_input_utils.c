@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 12:22:55 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/14 10:27:29 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/14 14:18:00 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,22 @@ bool	check_redir(char *input, int i)
 	return (true);
 }
 
-// prints an error message and returns the given return value
-int	err_msg_syntax(char *msg, int ret)
+// checks for empty command line
+bool	empty_line(char *input)
 {
-	ft_putendl_fd(msg, STDERR_FILENO);
-	return (ret);
+	int	i;
+
+	i = 0;
+	while (input[i])
+	{
+		if (input[i] != ' '
+			&& input[i] != '\t'
+			&& input[i] != '\n'
+			&& input[i] != '\v'
+			&& input[i] != '\f'
+			&& input[i] != '\r')
+			return (false);
+		i++;
+	}
+	return (true);
 }

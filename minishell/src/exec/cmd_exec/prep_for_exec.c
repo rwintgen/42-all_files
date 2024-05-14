@@ -6,11 +6,16 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 12:31:29 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/13 18:38:36 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/14 13:17:27 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static void		add_to_list(t_sh *sh, char **cmd_and_args, int fd[2]);
+static t_cmd	*create_node(char **cmd_and_args, int fd[2]);
+static void		pipe_if_needed(t_arg *tmp, t_sh *sh);
+static void		reset_pipefd(int pipefd[2]);
 
 // saves the commands in a t_cmd linked list
 void	save_commands(t_sh *sh)
@@ -41,7 +46,7 @@ void	save_commands(t_sh *sh)
 }
 
 // adds a new t_cmd node to the linked list
-void	add_to_list(t_sh *sh, char **cmd_and_args, int fd[2])
+static void	add_to_list(t_sh *sh, char **cmd_and_args, int fd[2])
 {
 	t_cmd	*new_node;
 	t_cmd	*current;
@@ -62,7 +67,7 @@ void	add_to_list(t_sh *sh, char **cmd_and_args, int fd[2])
 }
 
 // creates a new t_cmd node
-t_cmd	*create_node(char **cmd_and_args, int fd[2])
+static t_cmd	*create_node(char **cmd_and_args, int fd[2])
 {
 	t_cmd	*new_node;
 
@@ -84,7 +89,7 @@ t_cmd	*create_node(char **cmd_and_args, int fd[2])
 }
 
 // checks if a pipe is needed and handles pipe error
-void	pipe_if_needed(t_arg *tmp, t_sh *sh)
+static void	pipe_if_needed(t_arg *tmp, t_sh *sh)
 {
 	if (!(last_cmd(tmp)))
 	{
@@ -97,7 +102,7 @@ void	pipe_if_needed(t_arg *tmp, t_sh *sh)
 }
 
 // resets the pipe file descriptors to -1
-void	reset_pipefd(int pipefd[2])
+static void	reset_pipefd(int pipefd[2])
 {
 	pipefd[0] = -1;
 	pipefd[1] = -1;

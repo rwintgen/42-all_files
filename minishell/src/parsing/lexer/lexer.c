@@ -6,11 +6,16 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 12:27:41 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/14 12:56:51 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/14 14:04:40 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static void	set_spec(t_arg *elem);
+static void	set_file(t_arg *elem);
+static void	set_cmd(t_arg *elem);
+static void	set_arg(t_arg *elem);
 
 // lexer that actually works
 void	lexer_v2(t_arg *head)
@@ -22,7 +27,7 @@ void	lexer_v2(t_arg *head)
 }
 
 // sets redirection and pipes
-void	set_spec(t_arg *elem)
+static void	set_spec(t_arg *elem)
 {
 	while (elem)
 	{
@@ -41,7 +46,7 @@ void	set_spec(t_arg *elem)
 }
 
 // sets infiles and outfiles
-void	set_file(t_arg *elem)
+static void	set_file(t_arg *elem)
 {
 	while (elem)
 	{
@@ -58,7 +63,7 @@ void	set_file(t_arg *elem)
 }
 
 // sets commands
-void	set_cmd(t_arg *elem)
+static void	set_cmd(t_arg *elem)
 {
 	while (elem->next)
 		elem = elem->next;
@@ -71,7 +76,7 @@ void	set_cmd(t_arg *elem)
 }
 
 // sets arguments and options
-void	set_arg(t_arg *elem)
+static void	set_arg(t_arg *elem)
 {
 	t_arg	*tmp;
 	int		cmd_count;

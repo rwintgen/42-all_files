@@ -6,34 +6,15 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 15:38:25 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/14 12:57:28 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/14 14:07:44 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// if the variable should be expanded
-bool	is_valid_var(char *input, int dollar)
-{
-	int	sq;
-	int	dq;
-	int	i;
-
-	sq = 0;
-	dq = 0;
-	i = 0;
-	while (input[i] && i < dollar)
-	{
-		if (input[i] == '\'' && !dq)
-			sq = !sq;
-		if (input[i] == '"' && !sq)
-			dq = !dq;
-		i++;
-	}
-	if (sq)
-		return (false);
-	return (true);
-}
+static bool	is_valid_var(char *input, int dollar);
+static char	*var_replace(char *input, int *i, t_envp *envp, int exit_code);
+static char	*find_value(char *key, t_envp *envp);
 
 // handles variable expansion 
 char	*var_expand(char *input, t_envp *envp, int exit_code)
@@ -55,8 +36,31 @@ char	*var_expand(char *input, t_envp *envp, int exit_code)
 	return (input);
 }
 
+// if the variable should be expanded
+static bool	is_valid_var(char *input, int dollar)
+{
+	int	sq;
+	int	dq;
+	int	i;
+
+	sq = 0;
+	dq = 0;
+	i = 0;
+	while (input[i] && i < dollar)
+	{
+		if (input[i] == '\'' && !dq)
+			sq = !sq;
+		if (input[i] == '"' && !sq)
+			dq = !dq;
+		i++;
+	}
+	if (sq)
+		return (false);
+	return (true);
+}
+
 // replaces the variable with its value
-char	*var_replace(char *input, int *i, t_envp *envp, int exit_code)
+static char	*var_replace(char *input, int *i, t_envp *envp, int exit_code)
 {
 	int		key_len;
 	char	*key;
@@ -85,7 +89,7 @@ char	*var_replace(char *input, int *i, t_envp *envp, int exit_code)
 }
 
 // finds value associated with key
-char	*find_value(char *key, t_envp *envp)
+static char	*find_value(char *key, t_envp *envp)
 {
 	while (envp)
 	{

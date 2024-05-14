@@ -6,22 +6,13 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 18:43:54 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/14 12:54:43 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/14 13:19:05 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// inits new envp node's variables
-static void	init_new_envp_node(t_envp *new_node, char *env_var)
-{
-	new_node->envar = ft_strdup(env_var);
-	new_node->key = NULL;
-	new_node->value = NULL;
-	new_node->is_printed = false;
-	new_node->next = NULL;
-	new_node->prev = NULL;
-}
+static void	init_new_envp_node(t_envp *new_node, char *env_var);
 
 // appends a new node to the envp linked list
 void	append_env_node(t_envp **env_cpy, char *env_var)
@@ -47,6 +38,17 @@ void	append_env_node(t_envp **env_cpy, char *env_var)
 		tmp->next = new_node;
 		new_node->prev = tmp;
 	}
+}
+
+// inits new envp node's variables
+static void	init_new_envp_node(t_envp *new_node, char *env_var)
+{
+	new_node->envar = ft_strdup(env_var);
+	new_node->key = NULL;
+	new_node->value = NULL;
+	new_node->is_printed = false;
+	new_node->next = NULL;
+	new_node->prev = NULL;
 }
 
 // sets the key of the envp linked list

@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 16:11:36 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/13 19:21:58 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/14 14:02:57 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	sigint_muted(int signal)
 	g_sig = SIGINT;
 }
 
-// ctrl+C handler for heredoc
 void	sigint_heredoc(int sig)
 {
 	(void)sig;

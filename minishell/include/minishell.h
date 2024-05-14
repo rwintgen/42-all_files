@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:11:52 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/14 10:26:39 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/14 15:09:16 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,9 @@ end-of-file (wanted '"
 # define INT_64_MAX "9223372036854775807"
 # define INT_64_MIN "9223372036854775808"
 
-#define ERROR -1
-#define SUCCESS 0
-#define FAILURE 1
+# define ERROR -1
+# define SUCCESS 0
+# define FAILURE 1
 
 /********************** GLOBAL VARIABLE *********************/
 
@@ -71,7 +71,7 @@ extern int	g_sig;
 /************************ STRUCTURES ************************/
 
 // TOKENS
-typedef enum	e_tokens
+typedef enum e_tokens
 {
 	INFILE,
 	OUTFILE,
@@ -88,7 +88,7 @@ typedef enum	e_tokens
 }				t_tokens;
 
 // OPEN FLAGS
-typedef enum	e_mod
+typedef enum e_mod
 {
 	FLAG_READ,
 	FLAG_HEREDOC,
@@ -98,7 +98,7 @@ typedef enum	e_mod
 }				t_mod;
 
 // ERRORS
-typedef enum	e_err
+typedef enum e_err
 {
 	ERR_OPEN,
 	ERR_PIPE,
@@ -108,7 +108,7 @@ typedef enum	e_err
 }				t_err;
 
 // CMD LINE WORDS
-typedef struct	s_arg
+typedef struct s_arg
 {
 	char			*str_command;
 	int				type;
@@ -118,7 +118,7 @@ typedef struct	s_arg
 }				t_arg;
 
 // EXEC READY DATA STRUCT
-typedef struct	s_cmd
+typedef struct s_cmd
 {
 	char			**cmd_and_args;
 
@@ -132,7 +132,7 @@ typedef struct	s_cmd
 }					t_cmd;
 
 // ENVP COPY
-typedef struct	s_envp
+typedef struct s_envp
 {
 	char			*envar;
 	char			*key;
@@ -145,7 +145,7 @@ typedef struct	s_envp
 }				t_envp;
 
 // SH STRUCT
-typedef struct	s_sh
+typedef struct s_sh
 {
 	struct s_arg		*arg;
 	struct s_cmd		*cmd;
@@ -158,12 +158,10 @@ typedef struct	s_sh
 
 /************************ PROTOTYPES ************************/
 
-// MAIN //
-
 void	print_t_arg_struct(t_arg *data);
 void	print_t_cmd_struct(t_cmd *cmd);
 
-// BUILTINS //
+	///// BUILTINS /////
 
 int		exec_builtin(t_cmd *cmd, t_envp **envp, t_sh *sh);
 bool	is_builtin(char *cmd);
@@ -176,7 +174,6 @@ void	update_cwd(t_envp *envp, char *new_cwd);
 int		err_msg_cd(char *old_cwd, char *new_cwd);
 
 int		ft_echo(t_cmd *cmd, t_envp *envp);
-bool	need_new_line(char *str);
 
 int		ft_env(char *arg, t_envp *envp);
 
@@ -184,36 +181,25 @@ int		ft_exit(t_cmd *cmd, t_sh *tofree);
 
 int		ft_export(t_cmd *cmd, t_envp **envp);
 void	print_export(t_envp *envp);
-char	*get_key(char *arg);
-char	*get_value(char *arg);
-void	update_envp(t_envp **envp, char *key, char *new_value);
-void	add_envp(t_envp **envp, char *key, char *value);
 int		err_msg_export(char *arg);
 bool	is_invalid_key(char *key);
 char	*get_key(char *arg);
+char	*get_value(char *arg);
 void	reset_export(t_envp *envp);
-void	print_export(t_envp *envp);
 
 int		ft_pwd(void);
 
 int		ft_unset(t_cmd *cmd, t_envp **envp);
 
-// EXEC //
+	///// EXEC /////
 
 void	exec_handler(t_sh *sh);
-void	remove_all_quotes(t_sh *sh);
 
-// cmd_exec
+	// cmd_exec
 void	cmd_err_msg(char *cmd);
-bool	ispath(char *cmd);
 
 void	exec_commands(t_sh *sh);
-int		ft_exec(t_sh *sh);
-void	exec_current_cmd(char *path_to_cmd, t_sh *sh, char **envp_c);
-bool	exec_solo_builtin(t_sh *sh, t_cmd *cmd, int *exit_code);
-void	exec_heredoc(t_cmd *cmd, t_sh *sh);
 
-int		current_command(t_cmd *cmd);
 int		count_commands(t_cmd *cmd);
 int		last_cmd(t_arg *arg);
 int		ft_fork(t_sh *sh);
@@ -223,20 +209,12 @@ int		exit_code_handler(int error_code, int status);
 int		set_exit_code(int error_code);
 
 char	**fetch_cmd_args(t_arg *current);
-void	increment_cmd_argc(int *cmd_argc, t_arg *current);
-void	fill_arg_arr(int cmd_argc, char ***result, t_arg *cmd);
 
 char	*get_path(t_cmd *cmd, t_envp *envp);
-char	*fetch_path_from_envp(t_envp *envp);
 
 void	save_commands(t_sh *sh);
-void	add_to_list(t_sh *sh, char **cmd_and_args, int fd[2]);
-t_cmd	*create_node(char **cmd_and_args, int fd[2]);
-void	pipe_if_needed(t_arg *tmp, t_sh *sh);
-void	reset_pipefd(int pipefd[2]);
 
-// envp
-
+	// envp
 void	append_env_node(t_envp **env_cpy, char *env_var);
 void	set_key(t_envp **env_cpy, char *env_var);
 void	set_value(t_envp **env_cpy, char *env_var);
@@ -244,7 +222,10 @@ void	set_value(t_envp **env_cpy, char *env_var);
 t_envp	*save_envp(char **env);
 char	**restore_envp(t_envp *envp);
 
-// free_close
+	// file
+int		check_file_creation(t_arg *arg);
+
+	// free_close
 void	close_all_fds(void);
 void	close_if_valid(int fd);
 void	close_saved_fds(int saved_stdfd[2]);
@@ -254,118 +235,84 @@ void	free_arg(t_arg *arg);
 void	free_cmd(t_cmd *cmd);
 void	free_envp(t_envp *envp);
 
-// heredocs
-bool	missing_heredoc_cmd(t_arg *arg);
-void	create_heredoc_cmd(t_arg *elem);
-char	**add_delimiter(t_arg *cmd);
+	// heredocs
+void	create_missing_heredoc_cmd(t_arg *arg);
 
 bool	last_cmd_is_heredoc(t_arg *arg);
 bool	check_eof(char *line, char *delimiter);
-void	create_missing_heredoc_cmd(t_arg *tmp);
 void	unlink_heredoc_file(char *heredoc_file);
 
 char	*heredoc_handler(char *delimiter, t_sh *sh);
-int		create_tmp_file(char **file);
-bool	try_file(char *base_filename, char *id_str, int *fd, char **file);
-bool	check_eof(char *line, char *delimiter);
 
-// redirections
-
+	// redirections
 void	check_valid_fds(t_sh *sh);
 
 void	check_input_piped_cmds(int *fd, t_arg *arg, int stdfd_in);
-bool	cat_piped(int stdfd_in, int fd, t_arg *cmd);
-bool	grep_piped(int stdfd_in, int fd, t_arg *cmd);
-bool	wc_piped(int stdfd_in, int fd, t_arg *cmd);
-
-int		create_files(t_arg *arg);
-int		check_file_creation(t_arg *arg);
 
 bool	last_inf(t_arg *cmd);
-bool	prev_cmd_out(t_arg *cmd);
 void	check_inf_pipe(t_arg *to_check, t_arg **true_infile);
 bool	check_inf_delim(t_arg *to_check, char **heredoc_file, t_sh *sh);
 void	check_inf_infile(t_arg *to_check, t_arg **true_infile);
 
-int		set_infile(t_arg *cmd, int stdfd_in, int pipefd_in, t_sh *sh);
-int		set_inf_fd(char *hd_file, t_arg *true_infile, int pfd_in, int stdfd_in);
-bool	infiles_ok(t_arg *cmd);
+int		set_infile(t_arg *cmd, int stdfd_in, int pipefd_in, t_sh *tofree);
+
+int		open_outfile(t_arg *cmd, int *fd);
+void	create_outfiles(t_arg *cmd);
 
 int		count_redir_out(t_arg *cmd);
 void	check_outf_pipe(t_arg *cmd, t_arg **true_outfile);
 bool	check_outf_outfile(t_arg *cmd, t_arg **true_outfile);
 bool	last_outf(t_arg *cmd);
-void	create_outfiles(t_arg *cmd);
 
-int		open_outfile(t_arg *cmd, int *fd);
-void	create_outfiles(t_arg *cmd);
-
-int		set_outf_fd(t_arg	*true_outfile, int pfd_out, int stdfd_out);
 int		set_outfile(t_arg *cmd, int stdfd_out, int pipefd_out);
 
 int		ft_open(char *file, int *fd, int flag);
 void	save_stdfd(int saved_stdfd[2]);
 void	go_to_start_of_block(t_arg **cmd);
-void	check_valid_fds(t_sh *sh);
 void	err_msg_file(char *infile);
 
 void	redirect_io(t_cmd *cmd);
 bool	redirect_io_nofork(t_sh *sh, t_cmd *cmd);
 void	restore_io_nofork(t_sh *sh, t_cmd *cmd);
 
-// signals
+	// signals
 void	sig_int_state(int sig);
 void	sig_quit_state(int sig);
 void	sigint_muted(int signal);
 void	sigint_heredoc(int sig);
 
-// PARSING //
+	///// PARSING /////
 
 int		parse_input(char *input, t_sh *sh);
-t_arg	*copy_args(char *input, t_sh *sh);
-void	append_arg_node(t_arg **arg_cpy, char *arg, t_sh *sh);
 
-// lexer
+	// lexer
 int		is_special_char(char c);
 int		is_special_symbol(char *c);
 
 void	lexer_v2(t_arg *head);
-void	set_spec(t_arg *elem);
-void	set_file(t_arg *elem);
-void	set_cmd(t_arg *elem);
-void	set_arg(t_arg *elem);
 
-//true_line
+	//true_line
 int		count_missing_spaces(char *str);
 bool	missing_space_before(char *str, int i);
 bool	missing_space_after(char *str, int i);
 bool	is_whitespace(char c);
-
-char	*true_line(char *str, t_sh *sh);
-void	add_spaces(char **formatted, char *str);
-
-char	*var_expand(char *input, t_envp *envp, int exit_code);
-char	*var_replace(char *input, int *i, t_envp *envp, int exit_code);
-char	*find_value(char *key, t_envp *envp);
 int		get_key_len(char *input, int i);
 
-// utils
-int		err_msg_syntax(char *msg, int ret);
+char	*true_line(char *str, t_sh *sh);
 
+char	*var_expand(char *input, t_envp *envp, int exit_code);
+
+	// utils
 char	**ms_split(char *s, char c);
 
 void	remove_quote(char *str);
-char	*ft_strdelchar(char *str, char c, unsigned int n);
 
-//valid_input
-bool	is_too_many_redir(char *input);
+	//valid_input
 int		is_quoted(char *input, char *c);
 bool	check_pipe(char *input, int i);
 bool	check_redir(char *input, int i);
+bool	empty_line(char *input);
 
 bool	valid_input(char *input, t_sh *sh);
-bool	open_quote(char *input);
-bool	empty_line(char *input);
-bool	syntax_error(char *input);
 
 #endif

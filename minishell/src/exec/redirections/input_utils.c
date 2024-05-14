@@ -6,11 +6,13 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 12:00:07 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/13 13:30:44 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/14 13:48:43 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static bool	prev_cmd_out(t_arg *cmd);
 
 // checks if cmd is the last input redirection
 bool	last_inf(t_arg *cmd)
@@ -27,8 +29,15 @@ bool	last_inf(t_arg *cmd)
 	return (false);
 }
 
+// checks if current cmd has a pipe input redirection
+void	check_inf_pipe(t_arg *to_check, t_arg **true_infile)
+{
+	if (to_check && to_check->type == PIPE && !prev_cmd_out(to_check))
+		*true_infile = to_check;
+}
+
 // checks if previous command has an output redirection
-bool	prev_cmd_out(t_arg *cmd)
+static bool	prev_cmd_out(t_arg *cmd)
 {
 	while (cmd && cmd->type != PIPE)
 		cmd = cmd->prev;
@@ -41,13 +50,6 @@ bool	prev_cmd_out(t_arg *cmd)
 		cmd = cmd->prev;
 	}
 	return (false);
-}
-
-// checks if current cmd has a pipe input redirection
-void	check_inf_pipe(t_arg *to_check, t_arg **true_infile)
-{
-	if (to_check && to_check->type == PIPE && !prev_cmd_out(to_check))
-		*true_infile = to_check;
 }
 
 // checks if current cmd has a heredoc redirection

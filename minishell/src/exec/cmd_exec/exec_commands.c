@@ -6,11 +6,16 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 14:18:05 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/14 12:55:08 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/14 13:13:36 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static int	ft_exec(t_sh *sh);
+static void	exec_current_cmd(char *path_to_cmd, t_sh *sh, char **envp_c);
+static bool	exec_solo_builtin(t_sh *sh, t_cmd *cmd, int *exit_code);
+static void	exec_heredoc(t_cmd *cmd, t_sh *sh);
 
 // loops until all commands are executed
 void	exec_commands(t_sh *sh)
@@ -41,7 +46,7 @@ void	exec_commands(t_sh *sh)
 }
 
 // executes single command
-int	ft_exec(t_sh *sh)
+static int	ft_exec(t_sh *sh)
 {
 	pid_t	pid;
 	int		exit_code;
@@ -70,7 +75,7 @@ int	ft_exec(t_sh *sh)
 }
 
 // executes current classic command
-void	exec_current_cmd(char *path_to_cmd, t_sh *sh, char **envp_c)
+static void	exec_current_cmd(char *path_to_cmd, t_sh *sh, char **envp_c)
 {
 	if (execve(path_to_cmd, sh->cmd->cmd_and_args, envp_c) == -1)
 	{
@@ -87,7 +92,7 @@ void	exec_current_cmd(char *path_to_cmd, t_sh *sh, char **envp_c)
 }
 
 // executes single builtin command
-bool	exec_solo_builtin(t_sh *sh, t_cmd *cmd, int *exit_code)
+static bool	exec_solo_builtin(t_sh *sh, t_cmd *cmd, int *exit_code)
 {
 	if (cmd->is_builtin && count_commands(cmd) == 1)
 	{
@@ -104,7 +109,7 @@ bool	exec_solo_builtin(t_sh *sh, t_cmd *cmd, int *exit_code)
 }
 
 // executes heredoc command
-void	exec_heredoc(t_cmd *cmd, t_sh *sh)
+static void	exec_heredoc(t_cmd *cmd, t_sh *sh)
 {
 	if (!ft_strcmp(cmd->cmd_and_args[0], "chibron"))
 	{

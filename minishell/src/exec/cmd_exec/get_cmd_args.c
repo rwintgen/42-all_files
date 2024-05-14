@@ -6,11 +6,15 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 11:46:24 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/14 12:54:03 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/14 13:39:37 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static void	increment_cmd_argc(int *cmd_argc, t_arg *current);
+static void	fill_arg_arr(int cmd_argc, char ***result, t_arg *cmd);
+static char	**add_delimiter(t_arg *cmd);
 
 // fetch the command name and its arguments from the command line
 char	**fetch_cmd_args(t_arg *current)
@@ -42,7 +46,7 @@ char	**fetch_cmd_args(t_arg *current)
 }
 
 // increment the command argument count for malloc
-void	increment_cmd_argc(int *cmd_argc, t_arg *current)
+static void	increment_cmd_argc(int *cmd_argc, t_arg *current)
 {
 	while (current && current->type != CMD && current->type != PIPE)
 	{
@@ -53,7 +57,7 @@ void	increment_cmd_argc(int *cmd_argc, t_arg *current)
 }
 
 // fills the argument array with the command name and its arguments
-void	fill_arg_arr(int cmd_argc, char ***result, t_arg *cmd)
+static void	fill_arg_arr(int cmd_argc, char ***result, t_arg *cmd)
 {
 	int	i;
 
@@ -68,4 +72,21 @@ void	fill_arg_arr(int cmd_argc, char ***result, t_arg *cmd)
 		cmd = cmd->next;
 	}
 	(*result)[cmd_argc] = NULL;
+}
+
+// adds heredoc delimiter to the command
+static char	**add_delimiter(t_arg *cmd)
+{
+	char	**result;
+
+	result = malloc(sizeof(char *) * 3);
+	if (!result)
+	{
+		ft_putendl_fd(E_MALLOC, STDERR_FILENO);
+		return (NULL);
+	}
+	result[0] = ft_strdup("chibron");
+	result[1] = ft_strdup(cmd->prev->str_command);
+	result[2] = NULL;
+	return (result);
 }

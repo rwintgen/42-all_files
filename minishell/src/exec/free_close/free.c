@@ -6,12 +6,13 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 13:45:29 by deymons           #+#    #+#             */
-/*   Updated: 2024/04/25 15:57:38 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/14 13:35:11 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+// frees the sh struct
 int	free_sh(t_sh *sh)
 {
 	int	exit_code;
@@ -24,6 +25,7 @@ int	free_sh(t_sh *sh)
 	return (exit_code);
 }
 
+// frees the arg linked list
 void	free_arg(t_arg *arg)
 {
 	t_arg	*tmp;
@@ -39,6 +41,7 @@ void	free_arg(t_arg *arg)
 	}
 }
 
+// frees the cmd linked list
 void	free_cmd(t_cmd *cmd)
 {
 	t_cmd	*tmp;
@@ -54,6 +57,7 @@ void	free_cmd(t_cmd *cmd)
 	}
 }
 
+// frees the envp linked list
 void	free_envp(t_envp *envp)
 {
 	t_envp	*tmp;

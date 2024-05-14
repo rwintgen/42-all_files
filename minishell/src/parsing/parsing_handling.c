@@ -6,11 +6,14 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:28:53 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/13 18:21:21 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/14 14:14:26 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static t_arg	*copy_args(char *input, t_sh *sh);
+static void		append_arg_node(t_arg **arg_cpy, char *arg, t_sh *sh);
 
 // handles input parsing functions
 int	parse_input(char *input, t_sh *sh)
@@ -28,7 +31,7 @@ int	parse_input(char *input, t_sh *sh)
 }
 
 // saves command line args into t_arg linked list
-t_arg	*copy_args(char *input, t_sh *sh)
+static t_arg	*copy_args(char *input, t_sh *sh)
 {
 	t_arg	*arg_cpy;
 	char	**args;
@@ -48,7 +51,7 @@ t_arg	*copy_args(char *input, t_sh *sh)
 }
 
 // appends a new node to the t_arg linked list
-void	append_arg_node(t_arg **arg_cpy, char *arg, t_sh *sh)
+static void	append_arg_node(t_arg **arg_cpy, char *arg, t_sh *sh)
 {
 	t_arg	*new_node;
 	t_arg	*tmp;

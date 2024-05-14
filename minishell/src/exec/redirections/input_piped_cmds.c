@@ -6,12 +6,17 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 18:52:36 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/14 12:56:36 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/14 13:47:00 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+static bool	cat_piped(int stdfd_in, int fd, t_arg *cmd);
+static bool	grep_piped(int stdfd_in, int fd, t_arg *cmd);
+static bool	wc_piped(int stdfd_in, int fd, t_arg *cmd);
+
+// changes fd's value if cat, grep or wc waits for input
 void	check_input_piped_cmds(int *fd, t_arg *arg, int stdfd_in)
 {
 	if (cat_piped(stdfd_in, *fd, arg))
@@ -22,7 +27,8 @@ void	check_input_piped_cmds(int *fd, t_arg *arg, int stdfd_in)
 		*fd = -4;
 }
 
-bool	cat_piped(int stdfd_in, int fd, t_arg *cmd)
+// checks if cat waits for input
+static bool	cat_piped(int stdfd_in, int fd, t_arg *cmd)
 {
 	t_arg	*tmp;
 
@@ -36,7 +42,8 @@ bool	cat_piped(int stdfd_in, int fd, t_arg *cmd)
 	return (true);
 }
 
-bool	grep_piped(int stdfd_in, int fd, t_arg *cmd)
+// checks if grep waits for input
+static bool	grep_piped(int stdfd_in, int fd, t_arg *cmd)
 {
 	t_arg	*tmp;
 
@@ -52,7 +59,8 @@ bool	grep_piped(int stdfd_in, int fd, t_arg *cmd)
 	return (true);
 }
 
-bool	wc_piped(int stdfd_in, int fd, t_arg *cmd)
+// checks if wc waits for input
+static bool	wc_piped(int stdfd_in, int fd, t_arg *cmd)
 {
 	t_arg	*tmp;
 

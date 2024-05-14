@@ -6,20 +6,14 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 17:23:03 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/14 12:56:14 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/14 13:15:59 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	join_path(char **cmd_path, char *sep_env_path, char *cmd)
-{
-	char	*tmp_path;
-
-	tmp_path = ft_strjoin(sep_env_path, "/");
-	*cmd_path = ft_strjoin(tmp_path, cmd);
-	free(tmp_path);
-}
+static char	*fetch_path_from_envp(t_envp *envp);
+static void	join_path(char **cmd_path, char *sep_env_path, char *cmd);
 
 // fetches the path of the command to execute
 char	*get_path(t_cmd *cmd, t_envp *envp)
@@ -51,7 +45,7 @@ char	*get_path(t_cmd *cmd, t_envp *envp)
 }
 
 // fetches the PATH value from envp
-char	*fetch_path_from_envp(t_envp *envp)
+static char	*fetch_path_from_envp(t_envp *envp)
 {
 	int		i;
 	char	*envp_key;
@@ -73,4 +67,13 @@ char	*fetch_path_from_envp(t_envp *envp)
 		envp = envp->next;
 	}
 	return (NULL);
+}
+
+static void	join_path(char **cmd_path, char *sep_env_path, char *cmd)
+{
+	char	*tmp_path;
+
+	tmp_path = ft_strjoin(sep_env_path, "/");
+	*cmd_path = ft_strjoin(tmp_path, cmd);
+	free(tmp_path);
 }

@@ -6,14 +6,38 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 14:36:32 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/13 18:51:32 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/14 13:41:53 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+static void	prompt_heredoc(char *delimiter, int fd, char *file, t_sh *tofree);
+static int	create_tmp_file(char **file);
+static bool	try_file(char *base_filename, char *id_str, int *fd, char **file);
+
+// handles writing in tmp file
+char	*heredoc_handler(char *delimiter, t_sh *sh)
+{
+	char	*file;
+	int		pid;
+	int		fd;
+	int		status;
+
+	file = NULL;
+	fd = create_tmp_file(&file);
+	pid = fork();
+	if (pid == 0)
+		prompt_heredoc(delimiter, fd, file, sh);
+	else
+		waitpid(pid, &status, 0);
+	if (WIFEXITED(status))
+		sh->exit_code = exit_code_handler(errno, status);
+	return (file);
+}
+
 // invoques the heredoc in the child process
-void	prompt_heredoc(char *delimiter, int fd, char *file, t_sh *tofree)
+static void	prompt_heredoc(char *delimiter, int fd, char *file, t_sh *tofree)
 {
 	char	*line;
 
@@ -40,28 +64,8 @@ void	prompt_heredoc(char *delimiter, int fd, char *file, t_sh *tofree)
 	exit(free_sh(tofree));
 }
 
-// handles writing in tmp file
-char	*heredoc_handler(char *delimiter, t_sh *sh)
-{
-	char	*file;
-	int		pid;
-	int		fd;
-	int		status;
-
-	file = NULL;
-	fd = create_tmp_file(&file);
-	pid = fork();
-	if (pid == 0)
-		prompt_heredoc(delimiter, fd, file, sh);
-	else
-		waitpid(pid, &status, 0);
-	if (WIFEXITED(status))
-		sh->exit_code = exit_code_handler(errno, status);
-	return (file);
-}
-
 // creates a temp file with new name
-int	create_tmp_file(char **file)
+static int	create_tmp_file(char **file)
 {
 	static char	filename[200];
 	char		*id_str;
@@ -91,7 +95,7 @@ int	create_tmp_file(char **file)
 }
 
 // tries to create a file with a new name
-bool	try_file(char *base_filename, char *id_str, int *fd, char **file)
+static bool	try_file(char *base_filename, char *id_str, int *fd, char **file)
 {
 	static char	filename[200];
 

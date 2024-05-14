@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 16:07:33 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/13 19:11:50 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/14 14:17:11 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,53 +24,56 @@ Input priority order:
 	cmd 1
 */
 
+static int	set_inf_fd(char *hd_file, t_arg *infile, int pfd_in, int stdfd_in);
+static bool	infiles_ok(t_arg *cmd);
+
 // finds right infile and opens it for current cmd
 int	set_infile(t_arg *cmd, int stdfd_in, int pipefd_in, t_sh *tofree)
 {
-	t_arg	*true_infile;
+	t_arg	*infile;
 	t_arg	*tmp;
 	char	*heredoc_file;
 	int		fd;
 
 	heredoc_file = NULL;
-	true_infile = NULL;
+	infile = NULL;
 	tmp = cmd;
 	go_to_start_of_block(&cmd);
 	if (!infiles_ok(cmd))
 		return (-1);
 	if (pipefd_in != -1)
-		check_inf_pipe(cmd->prev, &true_infile);
+		check_inf_pipe(cmd->prev, &infile);
 	while (cmd && cmd->type != PIPE)
 	{
 		if (!check_inf_delim(cmd, &heredoc_file, tofree))
-			check_inf_infile(cmd, &true_infile);
+			check_inf_infile(cmd, &infile);
 		cmd = cmd->next;
 	}
-	fd = set_inf_fd(heredoc_file, true_infile, pipefd_in, stdfd_in);
+	fd = set_inf_fd(heredoc_file, infile, pipefd_in, stdfd_in);
 	check_input_piped_cmds(&fd, tmp, stdfd_in);
 	unlink_heredoc_file(heredoc_file);
 	return (fd);
 }
 
 // returns the right fd for the infile
-int	set_inf_fd(char *hd_file, t_arg *true_infile, int pfd_in, int stdfd_in)
+static int	set_inf_fd(char *hd_file, t_arg *infile, int pfd_in, int stdfd_in)
 {
 	int	fd;
 
 	fd = -1;
 	if (hd_file)
 		ft_open(hd_file, &fd, FLAG_READ);
-	else if (true_infile && true_infile->type == INFILE)
-		ft_open(true_infile->str_command, &fd, FLAG_READ);
-	else if (true_infile && true_infile->type == PIPE)
+	else if (infile && infile->type == INFILE)
+		ft_open(infile->str_command, &fd, FLAG_READ);
+	else if (infile && infile->type == PIPE)
 		fd = pfd_in;
-	else if (!true_infile)
+	else if (!infile)
 		fd = stdfd_in;
 	return (fd);
 }
 
 // checks if all infiles exist and have correct permissions
-bool	infiles_ok(t_arg *cmd)
+static bool	infiles_ok(t_arg *cmd)
 {
 	int	fd;
 

@@ -6,11 +6,15 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 14:28:16 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/14 10:28:43 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/14 14:17:32 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static bool	open_quote(char *input);
+static bool	syntax_error(char *input);
+static int	err_msg_syntax(char *msg, int ret);
 
 // checks that command line entered is valid
 bool	valid_input(char *input, t_sh *sh)
@@ -32,7 +36,7 @@ bool	valid_input(char *input, t_sh *sh)
 }
 
 // checks for open quotes in command line
-bool	open_quote(char *input)
+static bool	open_quote(char *input)
 {
 	int		i;
 	char	quote;
@@ -57,28 +61,8 @@ bool	open_quote(char *input)
 	return (false);
 }
 
-// checks for empty command line
-bool	empty_line(char *input)
-{
-	int	i;
-
-	i = 0;
-	while (input[i])
-	{
-		if (input[i] != ' '
-			&& input[i] != '\t'
-			&& input[i] != '\n'
-			&& input[i] != '\v'
-			&& input[i] != '\f'
-			&& input[i] != '\r')
-			return (false);
-		i++;
-	}
-	return (true);
-}
-
 // checks for syntax errors in command line
-bool	syntax_error(char *input)
+static bool	syntax_error(char *input)
 {
 	int	i;
 
@@ -98,4 +82,11 @@ bool	syntax_error(char *input)
 		i++;
 	}
 	return (false);
+}
+
+// prints an error message and returns the given return value
+static int	err_msg_syntax(char *msg, int ret)
+{
+	ft_putendl_fd(msg, STDERR_FILENO);
+	return (ret);
 }
