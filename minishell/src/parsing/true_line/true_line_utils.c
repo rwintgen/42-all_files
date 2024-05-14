@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 13:19:51 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/06 15:27:44 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/14 10:03:01 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,22 @@ bool	missing_space_after(char *str, int i)
 	return (false);
 }
 
+// checks if a character is a whitespace
 bool	is_whitespace(char c)
 {
 	if (c == ' ' || c == '\t' || c == '\n'
 		|| c == '\v' || c == '\f' || c == '\r')
 		return (true);
 	return (false);
+}
+
+// gets the length of the key
+int	get_key_len(char *input, int i)
+{
+	int		key_len;
+
+	key_len = 1;
+	while (input[i + key_len] && ft_isalnum(input[i + key_len]))
+		key_len++;
+	return (key_len);
 }

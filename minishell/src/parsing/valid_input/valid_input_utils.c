@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 12:22:55 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/06 14:01:15 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/14 10:27:29 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ bool	check_pipe(char *input, int i)
 	return (true);
 }
 
+// checks if a redirection is followed by a valid character
 bool	check_redir(char *input, int i)
 {
 	int	redir_len;
@@ -61,7 +62,7 @@ bool	check_redir(char *input, int i)
 	redir_len = 0;
 	if (is_special_symbol(&input[i]) == -1 && !is_quoted(input, &input[i]))
 		return (false);
-	if (is_special_symbol(&input[i]) == 2 && !is_quoted(input, &input[i]))
+	if (is_special_symbol(&input[i]) == REDIR && !is_quoted(input, &input[i]))
 	{
 		while (is_special_char(input[i]))
 		{
@@ -76,4 +77,11 @@ bool	check_redir(char *input, int i)
 			return (false);
 	}
 	return (true);
+}
+
+// prints an error message and returns the given return value
+int	err_msg_syntax(char *msg, int ret)
+{
+	ft_putendl_fd(msg, STDERR_FILENO);
+	return (ret);
 }

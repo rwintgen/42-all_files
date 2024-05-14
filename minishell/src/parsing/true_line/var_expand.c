@@ -6,12 +6,13 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 15:38:25 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/09 17:01:08 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/14 10:18:16 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+// if the variable should be expanded
 bool	is_valid_var(char *input, int dollar)
 {
 	int	sq;
@@ -34,6 +35,7 @@ bool	is_valid_var(char *input, int dollar)
 	return (true);
 }
 
+// handles variable expansion 
 char	*var_expand(char *input, t_envp *envp, int exit_code)
 {
 	int	i;
@@ -53,15 +55,14 @@ char	*var_expand(char *input, t_envp *envp, int exit_code)
 	return (input);
 }
 
+// replaces the variable with its value
 char	*var_replace(char *input, int *i, t_envp *envp, int exit_code)
 {
 	int		key_len;
 	char	*key;
-	char	*var;
+	char	*value;
 	char	*tmp;
 
-	if (!input[*i + 1] || input[*i + 1] == '$' || input[*i + 1] == ' ')
-		return (input);
 	if (input[*i + 1] == '?')
 	{
 		tmp = ft_itoa(exit_code);
@@ -69,13 +70,13 @@ char	*var_replace(char *input, int *i, t_envp *envp, int exit_code)
 		free(tmp);
 		*i += 1;
 	}
-	else
+	else if (isalnum(input[*i + 1]) || input[*i + 1] == '_')
 	{
 		key_len = get_key_len(input, *i);
 		key = ft_substr(input, *i, key_len);
-		var = get_var(key, envp);
-		if (var)
-			input = ft_strrep(input, key, var);
+		value = find_value(key, envp);
+		if (value)
+			input = ft_strrep(input, key, value);
 		else
 			input = ft_strrep(input, key, "");
 		*i += key_len;
@@ -83,34 +84,14 @@ char	*var_replace(char *input, int *i, t_envp *envp, int exit_code)
 	return (input);
 }
 
-char	*get_var(char *key, t_envp *envp)
+// finds value associated with key
+char	*find_value(char *key, t_envp *envp)
 {
-	char	*envp_key;
-	int		i;
-
 	while (envp)
 	{
-		i = 0;
-		while (envp->envar[i] && envp->envar[i] != '=')
-			i++;
-		envp_key = ft_substr(envp->envar, 0, i);
-		if (ft_strncmp(envp_key, &key[1], ft_strlen(key)) == 0)
-		{
-			free(envp_key);
-			return (envp->envar + i + 1);
-		}
-		free(envp_key);
+		if (!ft_strncmp(envp->key, key + 1, ft_strlen(key)))
+			return (envp->value);
 		envp = envp->next;
 	}
 	return (NULL);
-}
-
-int	get_key_len(char *input, int i)
-{
-	int		key_len;
-
-	key_len = 1;
-	while (input[i + key_len] && ft_isalnum(input[i + key_len]))
-		key_len++;
-	return (key_len);
 }

@@ -6,12 +6,13 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 15:50:10 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/04/25 16:23:58 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/14 10:23:18 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+// removes quotes from a string
 void	remove_quote(char *str)
 {
 	int		i;
@@ -37,6 +38,7 @@ void	remove_quote(char *str)
 	}
 }
 
+// removes a character from a string
 char	*ft_strdelchar(char *str, char c, unsigned int n)
 {
 	size_t	i;

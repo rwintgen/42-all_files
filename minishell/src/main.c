@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:59:56 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/13 19:24:58 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/14 10:35:18 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,20 @@ int	g_sig;
 // fix ctrl+C heredoc -> outfile created		??
 // fix error msg char by char					??
 // valgrind (open FDs, leaks)					OK-ish
+// norme										OK-ish
 // fix export segfaults							TODO
 // reorganisation								TODO
-// norme										TODO
-// replace strncmp strcmp						TODO
-// replace 0 and 1 with EXIT_...				TODO
+//// replace strncmp strcmp						TODO
+//// make functions static						TODO
+//// put functions in the right order			TODO
+//// replace 0 and 1 with SUCCES/FAILURE		TODO
 /////////////////////////
 
 /*
 clear && valgrind --trace-children=yes --track-fds=yes --leak-check=full --track-origins=yes --show-leak-kinds=all --suppressions=.vsupp ./minishell
 */
 
+// initializes sh struct at program launch
 void	init_sh(t_sh *sh, char **envp, int argc, char **argv)
 {
 	(void) argc;
@@ -44,6 +47,7 @@ void	init_sh(t_sh *sh, char **envp, int argc, char **argv)
 	sh->envp = save_envp(envp);
 }
 
+// resets sh structure elements after each propmpt
 void	reset_sh(t_sh *sh)
 {
 	free_arg(sh->arg);

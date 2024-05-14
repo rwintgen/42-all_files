@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:11:52 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/13 19:20:55 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/14 10:26:39 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,10 @@ end-of-file (wanted '"
 # define INT_64_MAX "9223372036854775807"
 # define INT_64_MIN "9223372036854775808"
 
+#define ERROR -1
+#define SUCCESS 0
+#define FAILURE 1
+
 /********************** GLOBAL VARIABLE *********************/
 
 extern int	g_sig;
@@ -71,15 +75,16 @@ typedef enum	e_tokens
 {
 	INFILE,
 	OUTFILE,
-	INPUT, // "<"
-	HEREDOC, // "<<"
-	DELIM, // delimiter
-	OUTPUT, // ">"
-	APPEND, // ">>"
-	PIPE, // "|"
-	CMD, // command
-	ARG, // argument
-	OPTION // option
+	INPUT,
+	HEREDOC,
+	DELIM,
+	OUTPUT,
+	APPEND,
+	PIPE,
+	CMD,
+	ARG,
+	OPTION,
+	REDIR
 }				t_tokens;
 
 // OPEN FLAGS
@@ -108,8 +113,8 @@ typedef struct	s_arg
 	char			*str_command;
 	int				type;
 
-	struct s_arg *prev;
-	struct s_arg *next;
+	struct s_arg	*prev;
+	struct s_arg	*next;
 }				t_arg;
 
 // EXEC READY DATA STRUCT
@@ -186,7 +191,6 @@ void	add_envp(t_envp **envp, char *key, char *value);
 int		err_msg_export(char *arg);
 bool	is_invalid_key(char *key);
 char	*get_key(char *arg);
-char	*get_value(char *arg);
 void	reset_export(t_envp *envp);
 void	print_export(t_envp *envp);
 
@@ -342,7 +346,7 @@ void	add_spaces(char **formatted, char *str);
 
 char	*var_expand(char *input, t_envp *envp, int exit_code);
 char	*var_replace(char *input, int *i, t_envp *envp, int exit_code);
-char	*get_var(char *key, t_envp *envp);
+char	*find_value(char *key, t_envp *envp);
 int		get_key_len(char *input, int i);
 
 // utils

@@ -6,12 +6,13 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 14:28:16 by amalangi          #+#    #+#             */
-/*   Updated: 2024/04/28 15:31:11 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/14 10:28:43 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+// checks that command line entered is valid
 bool	valid_input(char *input, t_sh *sh)
 {
 	if (empty_line(input))
@@ -30,6 +31,7 @@ bool	valid_input(char *input, t_sh *sh)
 	return (true);
 }
 
+// checks for open quotes in command line
 bool	open_quote(char *input)
 {
 	int		i;
@@ -55,6 +57,7 @@ bool	open_quote(char *input)
 	return (false);
 }
 
+// checks for empty command line
 bool	empty_line(char *input)
 {
 	int	i;
@@ -74,6 +77,7 @@ bool	empty_line(char *input)
 	return (true);
 }
 
+// checks for syntax errors in command line
 bool	syntax_error(char *input)
 {
 	int	i;
@@ -85,13 +89,10 @@ bool	syntax_error(char *input)
 		return (err_msg_syntax(E_SYNTAX_PIPE, true));
 	while (input[i])
 	{
-		// checks that non-quoted pipes are followed by alphanum characters
 		if (!check_pipe(input, i))
 			return (err_msg_syntax(E_SYNTAX_PIPE, true));
-		// checks that non-quoted special characters are not at end of line
 		if (is_special_char(input[i]) && empty_line(input + i + 1))
 			return (err_msg_syntax(E_SYNTAX_NL, true));
-		// checks that non quotes redirection symbols are valid
 		if (is_special_char(input[i]) && !check_redir(input, i))
 			return (err_msg_syntax(E_SYNTAX_REDIR, true));
 		i++;
