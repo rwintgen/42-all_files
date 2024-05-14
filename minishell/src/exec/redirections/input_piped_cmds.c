@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 18:52:36 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/13 19:02:57 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/14 12:56:36 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ bool	cat_piped(int stdfd_in, int fd, t_arg *cmd)
 	t_arg	*tmp;
 
 	tmp = cmd;
-	if (ft_strncmp(cmd->str_command, "cat", 4) || fd != stdfd_in)
+	if (ft_strcmp(cmd->str_command, "cat") || fd != stdfd_in)
 		return (false);
 	while (tmp && tmp->type != PIPE)
 		tmp = tmp->prev;
@@ -41,7 +41,7 @@ bool	grep_piped(int stdfd_in, int fd, t_arg *cmd)
 	t_arg	*tmp;
 
 	tmp = cmd;
-	if (ft_strncmp(cmd->str_command, "grep", 5) || fd != stdfd_in)
+	if (ft_strcmp(cmd->str_command, "grep") || fd != stdfd_in)
 		return (false);
 	if (!cmd->next || cmd->next->type != ARG)
 		return (false);
@@ -57,7 +57,7 @@ bool	wc_piped(int stdfd_in, int fd, t_arg *cmd)
 	t_arg	*tmp;
 
 	tmp = cmd;
-	if (ft_strncmp(cmd->str_command, "wc", 3) || fd != stdfd_in)
+	if (ft_strcmp(cmd->str_command, "wc") || fd != stdfd_in)
 		return (false);
 	while (tmp && tmp->type != PIPE)
 		tmp = tmp->prev;

@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 17:16:03 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/13 17:21:24 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/14 12:50:49 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*get_home(t_envp *envp)
 	tmp = envp;
 	while (tmp)
 	{
-		if (!ft_strncmp(tmp->key, "HOME", 5))
+		if (!ft_strcmp(tmp->key, "HOME"))
 			return (tmp->value);
 		tmp = tmp->next;
 	}
@@ -46,7 +46,7 @@ void	update_old_cwd(t_envp *envp, char *old_cwd)
 	tmp = envp;
 	while (tmp)
 	{
-		if (!ft_strncmp(tmp->key, "OLDPWD", 7))
+		if (!ft_strcmp(tmp->key, "OLDPWD"))
 		{
 			free(tmp->value);
 			tmp->value = ft_strdup(old_cwd);
@@ -63,7 +63,7 @@ void	update_cwd(t_envp *envp, char *new_cwd)
 	tmp = envp;
 	while (tmp)
 	{
-		if (!ft_strncmp(tmp->key, "PWD", 4))
+		if (!ft_strcmp(tmp->key, "PWD"))
 		{
 			free(tmp->value);
 			tmp->value = ft_strdup(new_cwd);

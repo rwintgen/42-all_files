@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 11:46:24 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/06 13:27:48 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/14 12:54:03 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	**fetch_cmd_args(t_arg *current)
 	cmd = current;
 	cmd_argc = 1;
 	current = current->next;
-	if (!ft_strncmp(cmd->str_command, "heredoc", 7))
+	if (!ft_strcmp(cmd->str_command, "heredoc"))
 	{
 		result = add_delimiter(cmd);
 		if (result == NULL)

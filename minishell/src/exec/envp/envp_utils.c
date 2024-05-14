@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 18:43:54 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/13 18:46:50 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/14 12:54:43 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	set_key(t_envp **env_cpy, char *env_var)
 	key = ft_substr(env_var, 0, i);
 	while (tmp)
 	{
-		if (ft_strncmp(tmp->envar, env_var, INT_MAX) == 0)
+		if (!ft_strcmp(tmp->envar, env_var))
 		{
 			free(tmp->key);
 			tmp->key = key;
@@ -87,7 +87,7 @@ void	set_value(t_envp **env_cpy, char *env_var)
 	value = ft_substr(env_var, i + 1, ft_strlen(env_var) - i - 1);
 	while (tmp)
 	{
-		if (ft_strncmp(tmp->envar, env_var, INT_MAX) == 0)
+		if (!ft_strcmp(tmp->envar, env_var))
 		{
 			free(tmp->value);
 			tmp->value = value;

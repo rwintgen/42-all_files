@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 02:42:25 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/13 17:20:54 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/14 12:51:05 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	ft_cd(t_cmd *cmd, t_envp *envp)
 		ft_putstr_fd("minishell: cd: too many arguments\n", 2);
 		return (1);
 	}
-	if (!cmd->cmd_and_args[1] || !ft_strncmp(cmd->cmd_and_args[1], "~", 2))
+	if (!cmd->cmd_and_args[1] || !ft_strcmp(cmd->cmd_and_args[1], "~"))
 	{
 		new_cwd = get_home(envp);
 		if (!new_cwd)

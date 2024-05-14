@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 17:23:03 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/13 18:34:04 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/14 12:56:14 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ char	*fetch_path_from_envp(t_envp *envp)
 		while (envp->envar[i] && envp->envar[i] != '=')
 			i++;
 		envp_key = ft_substr(envp->envar, 0, i);
-		if (!ft_strncmp(envp_key, "PATH", 4))
+		if (!ft_strcmp(envp_key, "PATH"))
 		{
 			free(envp_key);
 			return (envp->envar + i + 1);

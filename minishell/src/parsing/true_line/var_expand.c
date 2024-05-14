@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 15:38:25 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/14 10:18:16 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/14 12:57:28 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ char	*find_value(char *key, t_envp *envp)
 {
 	while (envp)
 	{
-		if (!ft_strncmp(envp->key, key + 1, ft_strlen(key)))
+		if (!ft_strcmp(envp->key, key + 1))
 			return (envp->value);
 		envp = envp->next;
 	}

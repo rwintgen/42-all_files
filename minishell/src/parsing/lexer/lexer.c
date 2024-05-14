@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 12:27:41 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/14 09:42:42 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/14 12:56:51 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,15 @@ void	set_spec(t_arg *elem)
 {
 	while (elem)
 	{
-		if (ft_strncmp(elem->str_command, "<<", 2) == 0)
+		if (ft_strcmp(elem->str_command, "<<") == 0)
 			elem->type = HEREDOC;
-		else if (ft_strncmp(elem->str_command, "<", 1) == 0)
+		else if (ft_strcmp(elem->str_command, "<") == 0)
 			elem->type = INPUT;
-		else if (ft_strncmp(elem->str_command, ">>", 2) == 0)
+		else if (ft_strcmp(elem->str_command, ">>") == 0)
 			elem->type = APPEND;
-		else if (ft_strncmp(elem->str_command, ">", 1) == 0)
+		else if (ft_strcmp(elem->str_command, ">") == 0)
 			elem->type = OUTPUT;
-		else if (ft_strncmp(elem->str_command, "|", 1) == 0)
+		else if (ft_strcmp(elem->str_command, "|") == 0)
 			elem->type = PIPE;
 		elem = elem->next;
 	}

@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 15:30:54 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/13 19:04:18 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/14 12:55:19 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ bool	check_eof(char *line, char *delimiter)
 		ft_putendl_fd("')", STDERR_FILENO);
 		return (true);
 	}
-	else if (!ft_strncmp(line, delimiter, INT_MAX))
+	else if (!ft_strcmp(line, delimiter))
 		return (true);
 	else
 		return (false);
