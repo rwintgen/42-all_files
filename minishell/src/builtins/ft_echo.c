@@ -6,11 +6,13 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 02:42:25 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/13 17:24:18 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/14 13:04:04 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static bool	need_new_line(char *str);
 
 int	ft_echo(t_cmd *cmd, t_envp *envp)
 {
@@ -32,7 +34,7 @@ int	ft_echo(t_cmd *cmd, t_envp *envp)
 	return (0);
 }
 
-bool	need_new_line(char *str)
+static bool	need_new_line(char *str)
 {
 	int	i;
 

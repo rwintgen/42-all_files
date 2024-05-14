@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:59:56 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/14 12:48:51 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/14 13:01:23 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ int	g_sig;
 // exit does not print "exit"					TODO
 // fix export segfaults							TODO
 // reorganisation
-//// replace strncmp strcmp						TODO
 //// make functions static						TODO
 //// put functions in the right order			TODO
 //// replace 0 and 1 with SUCCES/FAILURE		TODO
+//// redo .h file								TODO
 /////////////////////////
 
 /*

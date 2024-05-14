@@ -6,41 +6,14 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:07:17 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/14 12:53:32 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/14 13:08:12 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	reset_export(t_envp *envp)
-{
-	t_envp	*tmp;
-
-	tmp = envp;
-	while (tmp)
-	{
-		tmp->is_printed = false;
-		tmp = tmp->next;
-	}
-}
-
-static void	print_key(char *key)
-{
-	ft_putstr_fd("declare -x ", STDOUT_FILENO);
-	ft_putstr_fd(key, STDOUT_FILENO);
-}
-
-static void	print_value(char *value)
-{
-	if (value)
-	{
-		ft_putstr_fd("=\"", STDOUT_FILENO);
-		ft_putstr_fd(value, STDOUT_FILENO);
-		ft_putstr_fd("\"\n", STDOUT_FILENO);
-	}
-	else
-		ft_putstr_fd("\n", STDOUT_FILENO);
-}
+static void	print_key(char *key);
+static void	print_value(char *value);
 
 void	print_export(t_envp *envp)
 {
@@ -65,4 +38,22 @@ void	print_export(t_envp *envp)
 	print_value(first->value);
 	first->is_printed = true;
 	return (print_export(envp));
+}
+
+static void	print_key(char *key)
+{
+	ft_putstr_fd("declare -x ", STDOUT_FILENO);
+	ft_putstr_fd(key, STDOUT_FILENO);
+}
+
+static void	print_value(char *value)
+{
+	if (value)
+	{
+		ft_putstr_fd("=\"", STDOUT_FILENO);
+		ft_putstr_fd(value, STDOUT_FILENO);
+		ft_putstr_fd("\"\n", STDOUT_FILENO);
+	}
+	else
+		ft_putstr_fd("\n", STDOUT_FILENO);
 }

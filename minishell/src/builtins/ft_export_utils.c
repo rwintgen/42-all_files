@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:09:07 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/13 17:47:19 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/14 13:08:42 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,16 @@ char	*get_value(char *arg)
 		return (NULL);
 	value = ft_strdup(arg + i + 1);
 	return (value);
+}
+
+void	reset_export(t_envp *envp)
+{
+	t_envp	*tmp;
+
+	tmp = envp;
+	while (tmp)
+	{
+		tmp->is_printed = false;
+		tmp = tmp->next;
+	}
 }
