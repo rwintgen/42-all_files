@@ -2,6 +2,7 @@
 Welcome to my coding journey at 42!
 
 ## Piscine
+![42 (9)](https://github.com/rwintgen/42/assets/150167832/dceb1291-5d06-4ab9-8421-86d859140d2a)
 #### Passed in September 2023
 The 42 piscine is the month-long entry exam for 42.
 
