@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:09:07 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/14 13:08:42 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/14 15:14:50 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	err_msg_export(char *arg)
 {
 	ft_putstr_fd(E_EXPORT_ID, STDERR_FILENO);
 	ft_putendl_fd(arg, STDERR_FILENO);
-	return (1);
+	return (FAILURE);
 }
 
 bool	is_invalid_key(char *key)

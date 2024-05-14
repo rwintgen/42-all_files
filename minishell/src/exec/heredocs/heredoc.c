@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 14:36:32 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/14 13:41:53 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/14 15:30:43 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ static int	create_tmp_file(char **file)
 		free(id_str);
 	}
 	free(id_str);
-	return (-1);
+	return (ERROR);
 }
 
 // tries to create a file with a new name

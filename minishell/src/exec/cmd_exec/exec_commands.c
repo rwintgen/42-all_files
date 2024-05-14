@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 14:18:05 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/14 13:13:36 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/14 15:16:33 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,13 +71,13 @@ static int	ft_exec(t_sh *sh)
 	path_to_cmd = get_path(sh->cmd, sh->envp);
 	envp_c = restore_envp(sh->envp);
 	exec_current_cmd(path_to_cmd, sh, envp_c);
-	return (-1);
+	return (ERROR);
 }
 
 // executes current classic command
 static void	exec_current_cmd(char *path_to_cmd, t_sh *sh, char **envp_c)
 {
-	if (execve(path_to_cmd, sh->cmd->cmd_and_args, envp_c) == -1)
+	if (execve(path_to_cmd, sh->cmd->cmd_and_args, envp_c) == ERROR)
 	{
 		cmd_err_msg(sh->cmd->cmd_and_args[0]);
 		ft_free_char_tab(envp_c);
@@ -116,6 +116,6 @@ static void	exec_heredoc(t_cmd *cmd, t_sh *sh)
 		redirect_io(cmd);
 		free_sh(sh);
 		close_all_fds();
-		exit(0);
+		exit(EXIT_SUCCESS);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 12:31:29 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/14 13:17:27 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/14 15:18:54 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ static void	pipe_if_needed(t_arg *tmp, t_sh *sh)
 {
 	if (!(last_cmd(tmp)))
 	{
-		if (pipe(sh->pipefd) == -1)
+		if (pipe(sh->pipefd) == ERROR)
 		{
 			ft_putendl_fd(E_PIPE, STDERR_FILENO);
 			return ;

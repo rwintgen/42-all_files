@@ -6,13 +6,13 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 16:34:04 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/14 15:07:59 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/14 15:21:50 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	create_files_if_needed(t_arg *arg, int cmd_count, int file_count);
+static int	create_files_if_needed(t_arg *arg, int cmd_count, int file_count);
 static int	create_files(t_arg *arg);
 
 // handles file creation
@@ -33,7 +33,8 @@ int	check_file_creation(t_arg *arg)
 			file_count++;
 		if (!tmp->next || tmp->type == PIPE)
 		{
-			create_files_if_needed(tmp, cmd_count, file_count);
+			if (create_files_if_needed(tmp, cmd_count, file_count) == ERROR)
+				return (ERROR);
 			tmp = tmp->next;
 			cmd_count = 0;
 			file_count = 0;
@@ -41,17 +42,18 @@ int	check_file_creation(t_arg *arg)
 		}
 		tmp = tmp->next;
 	}
-	return (0);
+	return (SUCCESS);
 }
 
 // handle files creation that have no command associated
-static void	create_files_if_needed(t_arg *arg, int cmd_count, int file_count)
+static int	create_files_if_needed(t_arg *arg, int cmd_count, int file_count)
 {
 	if (cmd_count == 0 && file_count > 0)
 	{
-		if (create_files(arg) == -1)
-			return ;
+		if (create_files(arg) == ERROR)
+			return (ERROR);
 	}
+	return (SUCCESS);
 }
 
 // creates files

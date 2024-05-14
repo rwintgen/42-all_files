@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 17:23:03 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/14 13:15:59 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/14 15:18:25 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*get_path(t_cmd *cmd, t_envp *envp)
 	while (sep_env_paths[i])
 	{
 		join_path(&cmd_path, sep_env_paths[i], cmd->cmd_and_args[0]);
-		if (access(cmd_path, F_OK | X_OK) == 0)
+		if (access(cmd_path, F_OK | X_OK) == SUCCESS)
 		{
 			ft_free_char_tab(sep_env_paths);
 			return (cmd_path);

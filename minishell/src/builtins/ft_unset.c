@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 15:04:51 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/13 18:03:21 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/14 15:15:13 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,5 @@ int	ft_unset(t_cmd *cmd, t_envp **envp)
 		}
 		i++;
 	}
-	return (0);
+	return (SUCCESS);
 }

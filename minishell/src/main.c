@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:59:56 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/14 15:01:45 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/14 15:44:20 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,8 @@ int	g_sig;
 // valgrind (open FDs, leaks)					OK-ish
 // norme										OK-ish
 // exit does not print "exit"					TODO
+// ctrl+C in empty line 130						TODO
 // fix export segfaults							TODO
-// reorganisation
-//// put functions in the right order			TODO
-//// replace 0 and 1 with SUCCES/FAILURE		TODO
-//// redo .h file								TODO
 /////////////////////////
 
 /*
@@ -43,7 +40,7 @@ int	main(int argc, char **argv, char **envp)
 
 	sh = malloc(sizeof(t_sh));
 	if (!sh)
-		return (1);
+		return (EXIT_FAILURE);
 	init_sh(sh, envp, argc, argv);
 	while (true)
 	{
@@ -52,7 +49,7 @@ int	main(int argc, char **argv, char **envp)
 		input = readline("minishell $> ");
 		if (!input)
 			break ;
-		if (!valid_input(input, sh) || parse_input(input, sh) == -1)
+		if (!valid_input(input, sh) || parse_input(input, sh) == ERROR)
 			continue ;
 		exec_handler(sh);
 		ft_wait_all();
@@ -61,7 +58,7 @@ int	main(int argc, char **argv, char **envp)
 	close_all_fds();
 	free_sh(sh);
 	write (1, "exit\n", 5);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 // initializes sh struct at program launch

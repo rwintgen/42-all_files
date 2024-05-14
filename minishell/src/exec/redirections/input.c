@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 16:07:33 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/14 14:17:11 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/14 15:39:30 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	set_infile(t_arg *cmd, int stdfd_in, int pipefd_in, t_sh *tofree)
 	tmp = cmd;
 	go_to_start_of_block(&cmd);
 	if (!infiles_ok(cmd))
-		return (-1);
+		return (ERROR);
 	if (pipefd_in != -1)
 		check_inf_pipe(cmd->prev, &infile);
 	while (cmd && cmd->type != PIPE)

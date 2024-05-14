@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 19:08:12 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/13 19:11:28 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/14 15:39:45 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ int	open_outfile(t_arg *cmd, int *fd)
 	if (*fd == -1)
 	{
 		err_msg_file(cmd->str_command);
-		return (1);
+		return (FAILURE);
 	}
 	close(*fd);
-	return (0);
+	return (SUCCESS);
 }
 
 // creates all outfiles

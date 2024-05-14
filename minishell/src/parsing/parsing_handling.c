@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:28:53 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/14 14:14:26 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/14 15:43:53 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ int	parse_input(char *input, t_sh *sh)
 	if (!*input)
 	{
 		free(input);
-		return (-1);
+		return (ERROR);
 	}
 	sh->arg = copy_args(input, sh);
 	free(input);
 	// print_t_arg_struct(sh->arg); // DEBUG
-	return (0);
+	return (SUCCESS);
 }
 
 // saves command line args into t_arg linked list
@@ -62,7 +62,7 @@ static void	append_arg_node(t_arg **arg_cpy, char *arg, t_sh *sh)
 		ft_putendl_fd(E_MALLOC, STDERR_FILENO);
 		free_sh(sh);
 		close_all_fds();
-		exit(1);
+		exit(EXIT_FAILURE);
 	}
 	new_node->str_command = ft_strdup(arg);
 	new_node->type = -1;

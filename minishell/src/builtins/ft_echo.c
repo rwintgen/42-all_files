@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 02:42:25 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/14 13:04:04 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/14 15:13:09 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	ft_echo(t_cmd *cmd, t_envp *envp)
 	}
 	if (need_new_line(cmd->cmd_and_args[1]))
 		ft_putstr_fd("\n", STDOUT_FILENO);
-	return (0);
+	return (SUCCESS);
 }
 
 static bool	need_new_line(char *str)

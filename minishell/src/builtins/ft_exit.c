@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 15:14:32 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/14 13:06:13 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/14 15:14:35 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,5 +100,5 @@ static int	err_msg_exit(char *msg, t_sh *tofree)
 		close_all_fds();
 		return (2);
 	}
-	return (0);
+	return (SUCCESS);
 }

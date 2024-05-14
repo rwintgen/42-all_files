@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 19:15:27 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/14 13:45:16 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/14 15:38:54 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	check_grep(int fd, t_sh *tofree)
 		close_all_fds();
 		errno = 0;
 		free_sh(tofree);
-		exit(1);
+		exit(EXIT_FAILURE);
 	}
 }
 
@@ -54,6 +54,6 @@ static void	check_cat_wc(int fd, t_sh *tofree)
 		close_all_fds();
 		errno = 0;
 		free_sh(tofree);
-		exit(0);
+		exit(EXIT_SUCCESS);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 15:02:13 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/14 12:52:08 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/14 15:13:18 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_env(char *arg, t_envp *envp)
 	if (arg && ft_strcmp(arg, "env"))
 	{
 		ft_putendl_fd(E_ENV_ARGC, STDERR_FILENO);
-		return (1);
+		return (FAILURE);
 	}
 	tmp = envp;
 	while (tmp)
@@ -32,5 +32,5 @@ int	ft_env(char *arg, t_envp *envp)
 		}
 		tmp = tmp->next;
 	}
-	return (0);
+	return (SUCCESS);
 }
