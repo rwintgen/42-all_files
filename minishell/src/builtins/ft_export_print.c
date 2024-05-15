@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:07:17 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/14 13:08:12 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/15 12:42:53 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ void	print_export(t_envp *envp)
 	{
 		if (!tmp->is_printed)
 		{
-			if (!first
-				|| ft_strcmp(tmp->key, first->key) < 0)
+			if (!first || ft_strcmp(tmp->key, first->key) < 0)
 				first = tmp;
 		}
 		tmp = tmp->next;
