@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 15:14:32 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/14 15:14:35 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/15 12:32:44 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	ft_exit(t_cmd *cmd, t_sh *tofree)
 	if (!cmd->cmd_and_args[1])
 	{
 		free_sh(tofree);
+		write(3, "exit\n", 5);
 		close_all_fds();
 		exit(exit_code);
 	}
@@ -35,6 +36,7 @@ int	ft_exit(t_cmd *cmd, t_sh *tofree)
 	else
 		exit_code = ft_atoi(cmd->cmd_and_args[1]);
 	free_sh(tofree);
+	write(3, "exit\n", 5);
 	close_all_fds();
 	exit(exit_code);
 }

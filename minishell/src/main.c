@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:59:56 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/15 12:27:48 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/15 12:34:06 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int	g_sig;
 // fix error msg char by char					??
 // valgrind (open FDs, leaks)					OK-ish
 // norme										OK-ish
-// exit does not print "exit"					TODO
 // fix export segfaults							TODO
 /////////////////////////
 
@@ -58,7 +57,7 @@ int	main(int argc, char **argv, char **envp)
 	}
 	close_all_fds();
 	free_sh(sh);
-	write (1, "exit\n", 5);
+	write (STDOUT_FILENO, "exit\n", 5);
 	return (EXIT_SUCCESS);
 }
 
