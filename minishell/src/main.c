@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:59:56 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/15 12:34:06 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/15 12:39:39 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	g_sig;
 
 ///////// TODO //////////
-// file name with spaces 						??
 // fix ctrl+C heredoc							??
 //// ctrl+C heredoc -> outfile created
 //// ctrl+C heredoc -> next commands executed
