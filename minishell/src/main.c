@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:59:56 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/15 12:06:54 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/15 12:27:48 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ int	g_sig;
 
 ///////// TODO //////////
 // file name with spaces 						??
-// fix ctrl+C heredoc -> outfile created		??
+// fix ctrl+C heredoc							??
+//// ctrl+C heredoc -> outfile created
+//// ctrl+C heredoc -> next commands executed
 // fix error msg char by char					??
 // valgrind (open FDs, leaks)					OK-ish
 // norme										OK-ish
