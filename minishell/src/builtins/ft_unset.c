@@ -6,11 +6,13 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 15:04:51 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/15 13:41:59 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/15 13:51:46 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static void	free_node(t_envp *node, t_envp **envp);
 
 int	ft_unset(t_cmd *cmd, t_envp **envp)
 {
@@ -25,15 +27,7 @@ int	ft_unset(t_cmd *cmd, t_envp **envp)
 		{
 			if (!ft_strcmp(tmp->key, cmd->cmd_and_args[i]))
 			{
-				if (tmp->prev)
-					tmp->prev->next = tmp->next;
-				if (tmp->next)
-					tmp->next->prev = tmp->prev;
-				if (tmp == *envp)
-					*envp = tmp->next;
-				free(tmp->key);
-				free(tmp->value);
-				free(tmp);
+				free_node(tmp, envp);
 				break ;
 			}
 			tmp = tmp->next;
@@ -41,4 +35,17 @@ int	ft_unset(t_cmd *cmd, t_envp **envp)
 		i++;
 	}
 	return (SUCCESS);
+}
+
+static void	free_node(t_envp *node, t_envp **envp)
+{
+	if (node->prev)
+		node->prev->next = node->next;
+	if (node->next)
+		node->next->prev = node->prev;
+	if (node == *envp)
+		*envp = node->next;
+	free(node->key);
+	free(node->value);
+	free(node);
 }

@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 12:50:26 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/15 13:26:39 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/15 14:04:54 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ export with =VALUE is an error
 // minishell $> unset a
 // minishell $> export
 
+static bool	check_key(char *key, t_cmd *cmd, int *i, int *exit_code);
 static void	update_envp(t_envp **envp, char *key, char *new_value);
 static void	init_new_envp_node(t_envp *new, char *key, char *value);
 static void	add_envp(t_envp **envp, char *key, char *value);
@@ -55,19 +56,13 @@ int	ft_export(t_cmd *cmd, t_envp **envp)
 	{
 		print_export(*envp);
 		reset_export(*envp);
-		return (0);
+		return (SUCCESS);
 	}
 	while (cmd->cmd_and_args[i])
 	{
 		key = get_key(cmd->cmd_and_args[i]);
-		if (is_invalid_key(key))
-		{
-			free(key);
-			exit_code = 1;
-			err_msg_export(cmd->cmd_and_args[i]);
-			i++;
+		if (!check_key(key, cmd, &i, &exit_code))
 			continue ;
-		}
 		value = get_value(cmd->cmd_and_args[i]);
 		update_envp(envp, key, value);
 		free(value);
@@ -75,6 +70,19 @@ int	ft_export(t_cmd *cmd, t_envp **envp)
 		i++;
 	}
 	return (exit_code);
+}
+
+static bool	check_key(char *key, t_cmd *cmd, int *i, int *exit_code)
+{
+	if (is_invalid_key(key))
+	{
+		free(key);
+		*exit_code = 1;
+		err_msg_export(cmd->cmd_and_args[*i]);
+		*i += 1;
+		return (false);
+	}
+	return (true);
 }
 
 static void	update_envp(t_envp **envp, char *key, char *new_value)
