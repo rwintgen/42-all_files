@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:59:56 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/14 15:44:20 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/15 12:06:54 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int	g_sig;
 // valgrind (open FDs, leaks)					OK-ish
 // norme										OK-ish
 // exit does not print "exit"					TODO
-// ctrl+C in empty line 130						TODO
 // fix export segfaults							TODO
 /////////////////////////
 

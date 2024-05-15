@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 15:38:25 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/14 14:07:44 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/15 12:18:09 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static bool	is_valid_var(char *input, int dollar);
 static char	*var_replace(char *input, int *i, t_envp *envp, int exit_code);
+static char	*replace_exit_code(char *input, int *i, int exit_code);
 static char	*find_value(char *key, t_envp *envp);
 
 // handles variable expansion 
@@ -65,15 +66,17 @@ static char	*var_replace(char *input, int *i, t_envp *envp, int exit_code)
 	int		key_len;
 	char	*key;
 	char	*value;
-	char	*tmp;
 
 	if (input[*i + 1] == '?')
-	{
-		tmp = ft_itoa(exit_code);
-		input = ft_strrep(input, "$?", tmp);
-		free(tmp);
-		*i += 1;
-	}
+		input = replace_exit_code(input, i, exit_code);
+	// {
+	// 	if (g_sig == SIGINT)
+	// 		exit_code = 130;
+	// 	tmp = ft_itoa(exit_code);
+	// 	input = ft_strrep(input, "$?", tmp);
+	// 	free(tmp);
+	// 	*i += 1;
+	// }
 	else if (isalnum(input[*i + 1]) || input[*i + 1] == '_')
 	{
 		key_len = get_key_len(input, *i);
@@ -85,6 +88,19 @@ static char	*var_replace(char *input, int *i, t_envp *envp, int exit_code)
 			input = ft_strrep(input, key, "");
 		*i += key_len;
 	}
+	return (input);
+}
+
+static char	*replace_exit_code(char *input, int *i, int exit_code)
+{
+	char	*exit_code_str;
+
+	if (g_sig == SIGINT)
+		exit_code = 130;
+	exit_code_str = ft_itoa(exit_code);
+	input = ft_strrep(input, "$?", exit_code_str);
+	free(exit_code_str);
+	*i += 1;
 	return (input);
 }
 
