@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 12:50:26 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/14 13:10:45 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/15 13:26:39 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,6 @@ export with =VALUE is an error
 */
 
 // TODO segfaults
-
-// minishell $> export a=value
-// minishell $> export a
 
 // minishell $> export a
 // minishell $> unset a
@@ -87,10 +84,12 @@ static void	update_envp(t_envp **envp, char *key, char *new_value)
 	tmp = *envp;
 	while (tmp)
 	{
-		if (strcmp(tmp->key, key) == 0)
+		if (!strcmp(tmp->key, key))
 		{
-			free(tmp->value);
-			tmp->value = ft_strdup(new_value);
+			if (tmp->value && new_value)
+				free(tmp->value);
+			if (new_value)
+				tmp->value = ft_strdup(new_value);
 			return ;
 		}
 		tmp = tmp->next;
