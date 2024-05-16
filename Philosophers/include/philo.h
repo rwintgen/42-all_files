@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 17:01:14 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/16 16:37:03 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/16 17:23:59 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <sys/time.h>
 # include <stdbool.h>
 # include <limits.h>
+# include <errno.h>
 
 /************************** DEFINES *************************/
 
@@ -33,13 +34,24 @@
 
 # define MSG_USAGE "Usage: ./philo nb_philo time_to_die time_to_eat\
  time_to_sleep [meals_needed]\n"
-# define MSG_NUM "philo: arguments must be positive integers\n"
+# define MSG_NUM "philo: arguments must be positive integers (limit: INT_MAX)\n"
 
 /************************ STRUCTURES ************************/
 
 typedef pthread_mutex_t	t_mutex;
 typedef long			t_time;
 typedef struct s_table	t_table;
+
+typedef enum e_action
+{
+	LOCK,
+	UNLOCK,
+	INIT,
+	DESTROY,
+	CREATE,
+	JOIN,
+	DETACH
+}				t_action;
 
 typedef struct s_fork
 {

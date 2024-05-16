@@ -6,8 +6,13 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 14:20:10 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/16 15:21:26 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/16 17:19:57 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+void	welcome_guests(t_table *table)
+{
+	
+}

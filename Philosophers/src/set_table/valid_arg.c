@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 14:56:05 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/16 16:39:31 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/16 16:55:12 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,9 @@ static bool	valid_nb(char *nb)
 
 bool	is_num(char c)
 {
-	if (!c || c < '0' || c > '9')
-		return (false);
-	return (true);
+	return (c >= '0' && c <= '9');
 }
+
 
 bool	is_whitespace(char c)
 {
