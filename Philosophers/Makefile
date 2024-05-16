@@ -6,7 +6,7 @@
 #    By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/15 16:52:17 by rwintgen          #+#    #+#              #
-#    Updated: 2024/05/15 17:12:07 by rwintgen         ###   ########.fr        #
+#    Updated: 2024/05/16 16:36:14 by rwintgen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,16 @@ HEADER		=	-I ./include
 CC			=	gcc
 CFLAGS		=	-Werror -Wall -Wextra -g
 
-SRCS		=	src/main.c
+SRCS		=	src/main.c \
+				src/do_dishes.c \
+				src/eat_dinner.c \
+				src/set_table/set_table.c \
+				src/set_table/valid_arg.c \
+				src/utils.c \
+				src/welcome_guests.c \
+				src/utils/ph_nblen.c \
+				src/utils/ph_strlen.c \
+				src/utils/ph_atol.c \
 
 GREEN	=	\033[0;32m
 RED		=	\033[0;31m
@@ -54,4 +63,4 @@ fclean		:	clean
 
 re			:	fclean all
 
-.PHONY: all clean fclean re
+.philoNY: all clean fclean re

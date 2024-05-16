@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ph_nblen.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/15 16:53:03 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/16 16:19:22 by rwintgen         ###   ########.fr       */
+/*   Created: 2024/05/16 14:24:38 by rwintgen          #+#    #+#             */
+/*   Updated: 2024/05/16 16:24:41 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int argc, char **argv)
+size_t	ph_nblen(const char *s)
 {
-	t_table	table;
+	size_t	i;
 
-	if (argc != 5 && argc != 6)
-		err_exit(E_ARGC, MSG_USAGE);
-	set_table(argc, argv, &table);
-	// welcome_guests(&table);
-	// eat_dinner(&table);
-	// do_dishes(&table);
-	return (EXIT_SUCCESS);
+	i = 0;
+	while (s[i] && is_num(s[i]))
+		i++;
+	return (i);
 }

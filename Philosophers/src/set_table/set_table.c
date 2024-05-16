@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   set_table.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/15 16:53:03 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/16 16:19:22 by rwintgen         ###   ########.fr       */
+/*   Created: 2024/05/16 14:18:47 by rwintgen          #+#    #+#             */
+/*   Updated: 2024/05/16 16:18:41 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int argc, char **argv)
+void	set_table(int argc, char **argv, t_table *table)
 {
-	t_table	table;
+	int	i;
 
-	if (argc != 5 && argc != 6)
-		err_exit(E_ARGC, MSG_USAGE);
-	set_table(argc, argv, &table);
-	// welcome_guests(&table);
-	// eat_dinner(&table);
-	// do_dishes(&table);
-	return (EXIT_SUCCESS);
+	i = 1;
+	while (i < argc)
+	{
+		if (!valid_arg(argv[i]))
+			err_exit(E_ARGV, MSG_NUM);
+		i++;
+	}
+	table->nb_philo = ph_atol(argv[1]);
+	table->time_to_die = ph_atol(argv[2]);
+	table->time_to_eat = ph_atol(argv[3]);
+	table->time_to_sleep = ph_atol(argv[4]);
+	table->nb_meals = NO_MEALS;
+	if (argv[5])
+		table->nb_meals = ph_atol(argv[5]);
 }
