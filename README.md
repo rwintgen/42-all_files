@@ -39,7 +39,7 @@ __My get_next_line passed with final grade of 125/100. Check out my work [here](
 #### Born2beroot
 The goal of this project is to manually partition and setup a VM running on Debian. Several services have been configured like phpmyadmin, wordpress, MariaDB, ufw...
 
-I'm afraid you're gonna have to figure this one out by yourself. __Passed with final grade of 125/100. You can check out my monitoring script [here](https://github.com/rwintgen/42/tree/main/Born2beroot) though.__
+I'm afraid you're gonna have to figure this one out by yourself. __You can check out my monitoring script [here](https://github.com/rwintgen/42/tree/main/Born2beroot) though. Passed with final grade of 125/100.__
 
 -----
 
