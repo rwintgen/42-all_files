@@ -6,7 +6,7 @@
 #    By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/15 16:52:17 by rwintgen          #+#    #+#              #
-#    Updated: 2024/05/22 16:13:18 by rwintgen         ###   ########.fr        #
+#    Updated: 2024/05/23 14:28:33 by rwintgen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,13 +22,15 @@ SRCS		=	src/main.c \
 				src/debug.c \
 				src/print.c \
 				src/do_dishes.c \
-				src/eat_dinner.c \
+				src/eat_dinner/eat_dinner.c \
+				src/eat_dinner/monitoring.c \
 				src/set_table/set_table.c \
 				src/set_table/valid_arg.c \
 				src/welcome_guests/welcome_guests.c \
 				src/utils/actions.c \
 				src/utils/utils.c \
-				src/utils/get_set.c \
+				src/utils/get_set/get.c \
+				src/utils/get_set/set.c \
 				src/utils/sync.c \
 				src/utils/functions/ph_nblen.c \
 				src/utils/functions/ph_strlen.c \

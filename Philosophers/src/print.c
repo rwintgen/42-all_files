@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 16:13:31 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/22 16:30:20 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/23 12:47:50 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	print_status(t_philo *philo, t_state state)
 		return ;
 	elapsed = get_time(MILLISECONDS) - philo->table->start;
 	mutex_action(&philo->table->wr_mutex, LOCK);
-	if (!dinner_finished)
+	if (!dinner_finished(philo->table))
 	{
 		if (state == TAKE_FORK_ONE || state == TAKE_FORK_TWO)
 			printf(W "%-6ld" RST "%d has taken a fork\n", elapsed, philo->id);

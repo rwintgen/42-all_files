@@ -1,31 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sync.c                                             :+:      :+:    :+:   */
+/*   get.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/22 15:05:41 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/23 13:41:15 by rwintgen         ###   ########.fr       */
+/*   Created: 2024/05/22 14:25:53 by rwintgen          #+#    #+#             */
+/*   Updated: 2024/05/23 14:11:46 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	wait_all(t_table *table)
+bool	get_bool(t_mutex *mutex, bool *var)
 {
-	while (!get_bool(&table->rd_mutex, &table->threads_ready))
-		;
+	bool	value;
+
+	mutex_action(mutex, LOCK);
+	value = *var;
+	mutex_action(mutex, UNLOCK);
+	return (value);
 }
 
-bool	all_threads_running(t_mutex *mutex, long nb_threads, long nb_philos)
+long	get_long(t_mutex *mutex, long *var)
+{
+	long	value;
+
+	mutex_action(mutex, LOCK);
+	value = *var;
+	mutex_action(mutex, UNLOCK);
+	return (value);
+}
+
+bool	dinner_finished(t_table *table)
 {
 	bool	ret;
 
-	ret = false;
-	mutex_action(mutex, LOCK);
-	if (nb_threads == nb_philos)
-		ret = true;
-	mutex_action(mutex, UNLOCK);
+	ret = get_bool(&table->rd_mutex, &table->finish);
+	if (ret == true)
+		printf("dinner finished\n");
 	return (ret);
 }

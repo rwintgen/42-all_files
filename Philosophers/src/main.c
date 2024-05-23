@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 16:53:03 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/22 13:30:57 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/23 14:14:33 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int argc, char **argv)
 	debug_parsing(table);
 
 	welcome_guests(&table);
-	debug_init(table);
+	// debug_init(table);
 
 	eat_dinner(&table);
 

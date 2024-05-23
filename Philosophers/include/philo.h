@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 17:01:14 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/22 16:24:26 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/23 13:43:42 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ typedef enum e_unit
 typedef struct s_fork
 {
 	int		id;
-	t_mutex	fork;
+	t_mutex	mutex;
 }				t_fork;
 
 typedef struct s_philo
@@ -132,6 +132,7 @@ typedef struct s_philo
 
 	t_fork		*fork_one;
 	t_fork		*fork_two;
+	t_mutex		mutex;
 
 	pthread_t	thrd_id;
 
@@ -140,22 +141,26 @@ typedef struct s_philo
 
 typedef struct s_table
 {
-	long	nb_philo;
-	t_time	time_to_die;
-	t_time	time_to_eat;
-	t_time	time_to_sleep;
+	long		nb_philo;
+	t_time		time_to_die;
+	t_time		time_to_eat;
+	t_time		time_to_sleep;
 
-	long	nb_meals;
-	bool	threads_ready;
+	long		nb_threads;
 
-	t_time	start;
-	bool	finish;
+	long		nb_meals;
+	bool		threads_ready;
 
-	t_fork	*forks;
-	t_philo	*philos;
+	t_time		start;
+	bool		finish;
 
-	t_mutex	rd_mutex;
-	t_mutex	wr_mutex;
+	t_fork		*forks;
+	t_philo		*philos;
+
+	t_mutex		rd_mutex;
+	t_mutex		wr_mutex;
+
+	pthread_t	monitoring;
 }				t_table;
 
 /************************ PROTOTYPES ************************/
@@ -164,11 +169,14 @@ void	debug_parsing(t_table table);
 void	debug_init(t_table table);
 
 void	thread_action(pthread_t *thread, void *(*func)(void *), void *data, t_action action);
+bool	all_threads_running(t_mutex *mutex, long nb_threads, long nb_philos);
 int		ph_strncmp(const char *s1, const char *s2, size_t n);
 void	set_table(int argc, char **argv, t_table *table);
 void	set_bool(t_mutex *mutex, bool *var, bool value);
 void	set_long(t_mutex *mutex, long *var, long value);
 void	mutex_action(t_mutex *mutex, t_action action);
+void	print_status(t_philo *philo, t_state state);
+void	increment_long(t_mutex *mutex, long *var);
 void	ph_usleep(t_time time, t_table *table);
 void	exit_if_err(int err, t_action action);
 bool	get_bool(t_mutex *mutex, bool *var);
@@ -179,11 +187,12 @@ void	err_exit(int err, char *msg);
 size_t	ph_strlen(const char *str);
 void	eat_dinner(t_table *table);
 void	wait_all(t_table *table);
-t_time	get_time(t_unit unit);
 void	*ph_malloc(size_t size);
 size_t	ph_nblen(const char *s);
+t_time	get_time(t_unit unit);
 bool	is_whitespace(char c);
 bool	valid_arg(char *arg);
+void	*monitor(void *param);
 long	ph_atol(char *str);
 bool	is_num(char c);
 

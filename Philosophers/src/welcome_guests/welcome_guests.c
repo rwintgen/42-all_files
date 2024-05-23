@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 14:20:10 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/22 16:12:26 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/23 14:17:50 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,14 @@ void	welcome_guests(t_table *table)
 	i = 0;
 	table->finish = false;
 	table->threads_ready = false;
+	table->nb_threads = 0;
 	table->philos = ph_malloc(sizeof(t_philo) * table->nb_philo);
 	table->forks = ph_malloc(sizeof(t_fork) * table->nb_philo);
 	mutex_action(&table->rd_mutex, INIT);
 	mutex_action(&table->wr_mutex, INIT);
 	while (i < table->nb_philo)
 	{
-		mutex_action(&table->forks[i].fork, INIT);
+		mutex_action(&table->forks[i].mutex, INIT);
 		table->forks[i].id = i;
 		i++;
 	}
@@ -48,7 +49,9 @@ static void	sit_guests(t_table *table)
 		philo->id = i + 1;
 		philo->nb_meals = 0;
 		philo->full = false;
+		philo->last_meal = get_time(MILLISECONDS);
 		philo->table = table;
+		mutex_action(&philo->mutex, INIT);
 		give_forks(philo, table->forks, i);
 		i++;
 	}
