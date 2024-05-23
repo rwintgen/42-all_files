@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ph_malloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/15 16:53:03 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/22 13:30:57 by rwintgen         ###   ########.fr       */
+/*   Created: 2024/05/22 12:08:14 by rwintgen          #+#    #+#             */
+/*   Updated: 2024/05/22 12:08:29 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int argc, char **argv)
+void	*ph_malloc(size_t size)
 {
-	t_table	table;
+	void	*ptr;
 
-	if (argc != 5 && argc != 6)
-		err_exit(E_ARGC, MSG_USAGE);
-
-	set_table(argc, argv, &table);
-	debug_parsing(table);
-
-	welcome_guests(&table);
-	debug_init(table);
-
-	eat_dinner(&table);
-
-	// do_dishes(&table);
-	return (EXIT_SUCCESS);
+	ptr = malloc(size);
+	if (!ptr)
+		err_exit(E_MALLOC, MSG_MALLOC);
+	return (ptr);
 }

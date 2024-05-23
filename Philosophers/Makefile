@@ -6,7 +6,7 @@
 #    By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/15 16:52:17 by rwintgen          #+#    #+#              #
-#    Updated: 2024/05/21 11:01:14 by rwintgen         ###   ########.fr        #
+#    Updated: 2024/05/22 16:13:18 by rwintgen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,15 +20,21 @@ CFLAGS		=	-Werror -Wall -Wextra -g
 
 SRCS		=	src/main.c \
 				src/debug.c \
+				src/print.c \
 				src/do_dishes.c \
 				src/eat_dinner.c \
 				src/set_table/set_table.c \
 				src/set_table/valid_arg.c \
 				src/welcome_guests/welcome_guests.c \
-				src/utils.c \
-				src/utils/ph_nblen.c \
-				src/utils/ph_strlen.c \
-				src/utils/ph_atol.c \
+				src/utils/actions.c \
+				src/utils/utils.c \
+				src/utils/get_set.c \
+				src/utils/sync.c \
+				src/utils/functions/ph_nblen.c \
+				src/utils/functions/ph_strlen.c \
+				src/utils/functions/ph_atol.c \
+				src/utils/functions/ph_malloc.c \
+				src/utils/functions/ph_usleep.c
 
 GREEN	=	\033[0;32m
 RED		=	\033[0;31m

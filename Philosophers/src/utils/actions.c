@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 12:27:50 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/21 12:41:47 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/22 12:25:54 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,16 @@
 static void	thr_exit_if_err(int err, t_action action);
 static void	mtx_exit_if_err(int err, t_action action);
 
-void	thread_action(t_philo *philo, void *(*func)(void *), void *data, t_action action)
+void	thread_action(pthread_t *thread, void *(*func)(void *), void *data, t_action action)
 {
 	if (action == CREATE)
-		thr_exit_if_err(pthread_create(philo, NULL, func, data), action);
+		thr_exit_if_err(pthread_create(thread, NULL, func, data), action);
 	else if (action == JOIN)
-		thr_exit_if_err(pthread_join(*philo, NULL), action);
+		thr_exit_if_err(pthread_join(*thread, NULL), action);
 	else if (action == DETACH)
-		thr_exit_if_err(pthread_detach(*philo), action);
+		thr_exit_if_err(pthread_detach(*thread), action);
 	else
 		err_exit(E_THR_ACTION, MSG_THR_ACTION);
-
 }
 
 void	mutex_action(t_mutex *mutex, t_action action)
@@ -48,7 +47,9 @@ static void	thr_exit_if_err(int err, t_action action)
 		err_exit(E_THR_AGAIN, MSG_THR_AGAIN);
 	else if (err == EPERM)
 		err_exit(E_THR_PERM, MSG_THR_PERM);
-	else if (err == EINVAL)
+	else if (err == EINVAL && action == CREATE)
+		err_exit(E_THR_ATTR_VAL, MSG_THR_ATTR_VAL);
+	else if (err == EINVAL && (action == JOIN || action == DETACH))
 		err_exit(E_THR_VAL, MSG_THR_VAL);
 	else if (err == ESRCH)
 		err_exit(E_THR_SRCH, MSG_THR_SRCH);
@@ -61,7 +62,7 @@ static void	mtx_exit_if_err(int err, t_action action)
 	if (err == EINVAL)
 	{
 		if (action == INIT)
-			err_exit(E_ATTR_VAL, MSG_MTX_ATTR_VAL);
+			err_exit(E_MTX_ATTR_VAL, MSG_MTX_ATTR_VAL);
 		else if (action < INIT)
 			err_exit(E_MTX_VAL, MSG_MTX_VAL);
 	}
