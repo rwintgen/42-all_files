@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 17:01:14 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/23 13:43:42 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/23 15:11:38 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,13 +187,18 @@ void	err_exit(int err, char *msg);
 size_t	ph_strlen(const char *str);
 void	eat_dinner(t_table *table);
 void	wait_all(t_table *table);
+void	ph_sleep(t_philo *philo);
+void	ph_think(t_philo *philo);
 void	*ph_malloc(size_t size);
 size_t	ph_nblen(const char *s);
+void	*eat_alone(void *param);
+void	ph_eat(t_philo *philo);
 t_time	get_time(t_unit unit);
+void	*monitor(void *param);
 bool	is_whitespace(char c);
 bool	valid_arg(char *arg);
-void	*monitor(void *param);
 long	ph_atol(char *str);
+void	*dine(void *param);
 bool	is_num(char c);
 
 #endif

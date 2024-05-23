@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 14:25:53 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/23 14:11:46 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/23 14:47:10 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,5 @@ long	get_long(t_mutex *mutex, long *var)
 
 bool	dinner_finished(t_table *table)
 {
-	bool	ret;
-
-	ret = get_bool(&table->rd_mutex, &table->finish);
-	if (ret == true)
-		printf("dinner finished\n");
-	return (ret);
+	return (get_bool(&table->rd_mutex, &table->finish));
 }

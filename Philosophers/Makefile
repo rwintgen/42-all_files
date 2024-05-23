@@ -6,7 +6,7 @@
 #    By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/15 16:52:17 by rwintgen          #+#    #+#              #
-#    Updated: 2024/05/23 14:28:33 by rwintgen         ###   ########.fr        #
+#    Updated: 2024/05/23 15:41:29 by rwintgen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,12 +16,13 @@ NAME		=	philo
 HEADER		=	-I ./include
 
 CC			=	gcc
-CFLAGS		=	-Werror -Wall -Wextra -g
+CFLAGS		=	-Werror -Wall -Wextra -g -fsanitize=thread
 
 SRCS		=	src/main.c \
 				src/debug.c \
 				src/print.c \
-				src/do_dishes.c \
+				src/do_dishes/do_dishes.c \
+				src/eat_dinner/dinner_utils.c \
 				src/eat_dinner/eat_dinner.c \
 				src/eat_dinner/monitoring.c \
 				src/set_table/set_table.c \

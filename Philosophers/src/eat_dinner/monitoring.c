@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 13:07:03 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/23 14:27:16 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/23 15:48:31 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ void	*monitor(void *param)
 	int		i;
 
 	table = (t_table *)param;
-	// TODO check if below is necessary
+	// TODO data race in while below. check if necessary
 	// while (!all_threads_running(&table->rd_mutex,
 	// 		table->nb_threads, table->nb_philo))
-	// 	;
+	// 	usleep(1e3);
 	while (!dinner_finished(table))
 	{
 		i = 0;
@@ -35,6 +35,7 @@ void	*monitor(void *param)
 				set_bool(&table->wr_mutex, &table->finish, true);
 				print_status(&table->philos[i], DEAD);
 			}
+			i++;
 		}
 	}
 	return (NULL);

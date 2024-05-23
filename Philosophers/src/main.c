@@ -6,11 +6,17 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 16:53:03 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/23 14:14:33 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/23 16:08:22 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+// TODO
+// only 1 philo -> err says that rd_mutex not init
+// data race when several philos
+// err with several philos
+// do dishes
 
 int	main(int argc, char **argv)
 {
