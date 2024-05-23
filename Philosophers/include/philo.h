@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 17:01:14 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/23 15:11:38 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/23 16:21:04 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,6 +186,7 @@ void	welcome_guests(t_table *table);
 void	err_exit(int err, char *msg);
 size_t	ph_strlen(const char *str);
 void	eat_dinner(t_table *table);
+void	do_dishes(t_table *table);
 void	wait_all(t_table *table);
 void	ph_sleep(t_philo *philo);
 void	ph_think(t_philo *philo);
