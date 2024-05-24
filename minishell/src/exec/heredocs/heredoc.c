@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 14:36:32 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/24 11:32:26 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/24 13:01:45 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ char	*heredoc_handler(char *delimiter, t_sh *sh)
 		waitpid(pid, &status, 0);
 	if (WIFEXITED(status))
 		sh->exit_code = exit_code_handler(errno, status);
-	// here g_sig is 130 if ctrl+c is pressed
 	return (file);
 }
 
@@ -49,6 +48,7 @@ static void	prompt_heredoc(char *delimiter, int fd, char *file, t_sh *tofree)
 		line = readline("> ");
 		if (check_eof(line, delimiter))
 			break ;
+		line = var_expand(line, tofree->envp, tofree->exit_code);
 		ft_putendl_fd(line, fd);
 		free(line);
 	}
