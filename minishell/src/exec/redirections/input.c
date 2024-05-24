@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 16:07:33 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/14 15:39:30 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/24 11:34:26 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,9 @@ int	set_infile(t_arg *cmd, int stdfd_in, int pipefd_in, t_sh *tofree)
 		check_inf_pipe(cmd->prev, &infile);
 	while (cmd && cmd->type != PIPE)
 	{
-		if (!check_inf_delim(cmd, &heredoc_file, tofree))
+		if (check_inf_delim(cmd, &heredoc_file, tofree) == CTRLC)
+			return (CTRLC);
+		else if (!check_inf_delim(cmd, &heredoc_file, tofree))
 			check_inf_infile(cmd, &infile);
 		cmd = cmd->next;
 	}

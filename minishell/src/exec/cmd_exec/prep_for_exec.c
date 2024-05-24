@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 12:31:29 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/14 15:18:54 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/24 11:30:03 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	save_commands(t_sh *sh)
 			reset_pipefd(sh->pipefd);
 			pipe_if_needed(tmp, sh);
 			fd[0] = set_infile(tmp, sh->saved_stdfd[0], prev_fd_in, sh);
+			if (fd[0] == CTRLC)
+				return ;
 			fd[1] = set_outfile(tmp, sh->saved_stdfd[1], sh->pipefd[1]);
 			cmd_and_args = fetch_cmd_args(tmp);
 			if (!cmd_and_args)

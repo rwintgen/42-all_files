@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 12:00:07 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/14 13:48:43 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/24 11:33:25 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,13 @@ static bool	prev_cmd_out(t_arg *cmd)
 }
 
 // checks if current cmd has a heredoc redirection
-bool	check_inf_delim(t_arg *to_check, char **heredoc_file, t_sh *sh)
+int	check_inf_delim(t_arg *to_check, char **heredoc_file, t_sh *sh)
 {
 	if (to_check && to_check->type == DELIM)
 	{
 		*heredoc_file = heredoc_handler(to_check->str_command, sh);
+		if (g_sig == 130)
+			return (CTRLC); // the heredoc ctrl+c is caught
 		return (true);
 	}
 	return (false);

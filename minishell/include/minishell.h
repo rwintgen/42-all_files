@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:11:52 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/14 15:09:16 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/24 11:29:37 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ end-of-file (wanted '"
 # define INT_64_MAX "9223372036854775807"
 # define INT_64_MIN "9223372036854775808"
 
+# define CTRLC -130
 # define ERROR -1
 # define SUCCESS 0
 # define FAILURE 1
@@ -251,7 +252,7 @@ void	check_input_piped_cmds(int *fd, t_arg *arg, int stdfd_in);
 
 bool	last_inf(t_arg *cmd);
 void	check_inf_pipe(t_arg *to_check, t_arg **true_infile);
-bool	check_inf_delim(t_arg *to_check, char **heredoc_file, t_sh *sh);
+int		check_inf_delim(t_arg *to_check, char **heredoc_file, t_sh *sh);
 void	check_inf_infile(t_arg *to_check, t_arg **true_infile);
 
 int		set_infile(t_arg *cmd, int stdfd_in, int pipefd_in, t_sh *tofree);
