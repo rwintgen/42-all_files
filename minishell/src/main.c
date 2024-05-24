@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:59:56 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/24 12:24:45 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/24 13:03:22 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 int	g_sig;
 
 ///////// TODO //////////
-// var expand heredoc							??
-// fix error msg char by char					??
+// fix error msg char by char
 /////////////////////////
 
 /*
