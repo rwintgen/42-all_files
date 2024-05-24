@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 12:05:24 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/13 19:15:42 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/24 14:33:29 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,18 +51,9 @@ void	go_to_start_of_block(t_arg **cmd)
 void	err_msg_file(char *infile)
 {
 	if (errno == EACCES)
-	{
-		ft_putstr_fd(E_FILE_PERM, STDERR_FILENO);
-		ft_putendl_fd(infile, STDERR_FILENO);
-	}
+		print_err(E_FILE_PERM, infile, NULL, NULL);
 	else if (errno == ENOENT)
-	{
-		ft_putstr_fd(E_FILE_EXIST, STDERR_FILENO);
-		ft_putendl_fd(infile, STDERR_FILENO);
-	}
+		print_err(E_FILE_EXIST, infile, NULL, NULL);
 	else
-	{
-		ft_putstr_fd(E_FILE_OPEN, STDERR_FILENO);
-		ft_putendl_fd(infile, STDERR_FILENO);
-	}
+		print_err(E_FILE_OPEN, infile, NULL, NULL);
 }

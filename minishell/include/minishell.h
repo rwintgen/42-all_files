@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:11:52 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/24 12:45:08 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/24 14:27:27 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,10 @@
 
 # define E_DELIM "minishell: warning: here-document delimited by \
 end-of-file (wanted '"
+
+# define E_CD_HOME "minishell: cd: HOME not set"
+# define E_CD_DIR "minishell: error retrieving current directory"
+# define E_CD_ARGC "minishell: cd: too many arguments"
 
 # define INT_64_MAX "9223372036854775807"
 # define INT_64_MIN "9223372036854775808"
@@ -182,7 +186,6 @@ int		ft_exit(t_cmd *cmd, t_sh *tofree);
 
 int		ft_export(t_cmd *cmd, t_envp **envp);
 void	print_export(t_envp *envp);
-int		err_msg_export(char *arg);
 bool	is_invalid_key(char *key);
 char	*get_key(char *arg);
 char	*get_value(char *arg);
@@ -309,6 +312,8 @@ char	*var_expand(char *input, t_envp *envp, int exit_code);
 
 	// utils
 char	**ms_split(char *s, char c);
+
+void	print_err(char *s1, char *s2, char *s3, char *s4);
 
 void	remove_quote(char *str);
 

@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 02:42:25 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/14 15:13:01 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/24 14:16:16 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_cd(t_cmd *cmd, t_envp *envp)
 
 	if (cmd->cmd_and_args[1] && cmd->cmd_and_args[2])
 	{
-		ft_putstr_fd("minishell: cd: too many arguments\n", 2);
+		print_err(E_CD_ARGC, NULL, NULL, NULL);
 		return (FAILURE);
 	}
 	if (!cmd->cmd_and_args[1] || !ft_strcmp(cmd->cmd_and_args[1], "~"))

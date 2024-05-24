@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 12:50:26 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/15 14:04:54 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/24 14:27:16 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static bool	check_key(char *key, t_cmd *cmd, int *i, int *exit_code)
 	{
 		free(key);
 		*exit_code = 1;
-		err_msg_export(cmd->cmd_and_args[*i]);
+		print_err(E_EXPORT_ID, cmd->cmd_and_args[*i], NULL, NULL);
 		*i += 1;
 		return (false);
 	}

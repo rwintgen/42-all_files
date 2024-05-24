@@ -6,7 +6,7 @@
 #    By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/10 16:32:07 by deymons           #+#    #+#              #
-#    Updated: 2024/05/24 12:42:35 by rwintgen         ###   ########.fr        #
+#    Updated: 2024/05/24 14:17:16 by rwintgen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,6 +65,7 @@ SRCS		=	src/main.c									\
 				src/parsing/true_line/var_expand_utils.c	\
 				src/parsing/true_line/var_expand.c			\
 				src/parsing/utils/ms_split.c				\
+				src/parsing/utils/print_err.c				\
 				src/parsing/utils/rm_quotes.c				\
 				src/parsing/valid_input/valid_input_utils.c	\
 				src/parsing/valid_input/valid_input.c		\

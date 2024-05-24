@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 16:34:04 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/14 15:21:50 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/24 14:30:21 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,7 @@ static int	create_files(t_arg *arg)
 		close_if_valid(fd);
 		if (fd == -1)
 		{
-			ft_putstr_fd(E_FILE_EXIST, STDERR_FILENO);
-			ft_putendl_fd(arg->str_command, STDERR_FILENO);
+			print_err(E_FILE_EXIST, arg->str_command, NULL, NULL);
 			return (fd);
 		}
 		arg = arg->next;

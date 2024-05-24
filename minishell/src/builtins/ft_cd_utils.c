@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 17:16:03 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/14 12:50:49 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/24 14:23:36 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*get_home(t_envp *envp)
 			return (tmp->value);
 		tmp = tmp->next;
 	}
-	ft_putstr_fd("minishell: cd: HOME not set\n", 2);
+	print_err(E_CD_HOME, NULL, NULL, NULL);
 	return (NULL);
 }
 
@@ -33,9 +33,7 @@ char	*get_cwd(void)
 
 	cwd = getcwd(NULL, 0);
 	if (!cwd)
-	{
-		ft_putstr_fd("minishell: error retrieving current directory\n", 2);
-	}
+		print_err(E_CD_DIR, NULL, NULL, NULL);
 	return (cwd);
 }
 
@@ -75,11 +73,13 @@ void	update_cwd(t_envp *envp, char *new_cwd)
 
 int	err_msg_cd(char *old_cwd, char *new_cwd)
 {
-	ft_putstr_fd("minishell: cd: ", STDERR_FILENO);
-	ft_putstr_fd(new_cwd, STDERR_FILENO);
-	ft_putstr_fd(": ", STDERR_FILENO);
-	ft_putstr_fd(strerror(errno), STDERR_FILENO);
+	char	*result;
+
+	result = ft_strjoin("minishell: cd: ", new_cwd);
+	result = ft_strjoin(result, ": ");
+	result = ft_strjoin(result, strerror(errno));
+	write(STDERR_FILENO, result, ft_strlen(result));
 	ft_putstr_fd("\n", STDERR_FILENO);
 	free(old_cwd);
-	return (1);
+	return (FAILURE);
 }
