@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:11:52 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/24 11:29:37 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/24 12:45:08 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -300,6 +300,10 @@ bool	is_whitespace(char c);
 int		get_key_len(char *input, int i);
 
 char	*true_line(char *str, t_sh *sh);
+
+char	*replace_exit_code(char *input, int *i, int exit_code);
+char	*find_value(char *key, t_envp *envp);
+bool	is_hd_delimiter(char *str, int i);
 
 char	*var_expand(char *input, t_envp *envp, int exit_code);
 
