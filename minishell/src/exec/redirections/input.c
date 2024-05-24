@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 16:07:33 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/24 11:34:26 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/24 12:19:16 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,10 @@ Input priority order:
 	cmd 1
 */
 
+static int	hd_check(t_arg *cmd, t_sh *tofree, t_arg **infile, char **file);
 static int	set_inf_fd(char *hd_file, t_arg *infile, int pfd_in, int stdfd_in);
 static bool	infiles_ok(t_arg *cmd);
+
 
 // finds right infile and opens it for current cmd
 int	set_infile(t_arg *cmd, int stdfd_in, int pipefd_in, t_sh *tofree)
@@ -45,16 +47,23 @@ int	set_infile(t_arg *cmd, int stdfd_in, int pipefd_in, t_sh *tofree)
 		check_inf_pipe(cmd->prev, &infile);
 	while (cmd && cmd->type != PIPE)
 	{
-		if (check_inf_delim(cmd, &heredoc_file, tofree) == CTRLC)
-			return (CTRLC);
-		else if (!check_inf_delim(cmd, &heredoc_file, tofree))
-			check_inf_infile(cmd, &infile);
+		hd_check(cmd, tofree, &infile, &heredoc_file);
 		cmd = cmd->next;
 	}
 	fd = set_inf_fd(heredoc_file, infile, pipefd_in, stdfd_in);
 	check_input_piped_cmds(&fd, tmp, stdfd_in);
 	unlink_heredoc_file(heredoc_file);
 	return (fd);
+}
+
+static int	hd_check(t_arg *cmd, t_sh *tofree, t_arg **infile, char **file)
+{
+	int	ret;
+
+	ret = check_inf_delim(cmd, file, tofree);
+	if (!ret)
+		check_inf_infile(cmd, infile);
+	return (ret);
 }
 
 // returns the right fd for the infile

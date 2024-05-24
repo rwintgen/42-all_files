@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:59:56 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/24 11:16:26 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/24 11:53:11 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,8 @@
 int	g_sig;
 
 ///////// TODO //////////
-// fix ctrl+C heredoc							??
-//// ctrl+C heredoc -> outfile created
-//// ctrl+C heredoc -> next commands executed
 // var expand heredoc							??
+// leaks when 2 consecutive heredocs			??
 // fix error msg char by char					??
 // fix export segfaults							TODO
 /////////////////////////
