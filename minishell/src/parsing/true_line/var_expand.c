@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 15:38:25 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/24 12:49:34 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/24 13:16:21 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ static char	*var_replace(char *input, int *i, t_envp *envp, int exit_code)
 			input = ft_strrep(input, key, value);
 		else
 			input = ft_strrep(input, key, "");
+		free(key);
 		*i += key_len;
 	}
 	return (input);

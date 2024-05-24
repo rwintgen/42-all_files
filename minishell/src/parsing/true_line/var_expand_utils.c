@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 12:41:14 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/24 12:57:29 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/24 13:27:02 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ char	*find_value(char *key, t_envp *envp)
 // checks if $KEY is a heredoc delimiter
 bool	is_hd_delimiter(char *str, int i)
 {
-	i--;
+	if (i > 0)
+		i--;
 	while (str[i] && is_whitespace(str[i]))
 		i--;
 	if (str[i] && str[i] == '<' && str[i - 1] && str[i - 1] == '<')
