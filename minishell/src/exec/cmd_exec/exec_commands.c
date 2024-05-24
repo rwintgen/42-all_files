@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 14:18:05 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/24 17:49:11 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/24 18:18:55 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,11 +77,12 @@ static int	ft_exec(t_sh *sh)
 // executes current classic command
 static void	exec_current_cmd(char *path_to_cmd, t_sh *sh, char **envp_c)
 {
-	if (execve(path_to_cmd, sh->cmd->cmd_and_args, envp_c) == ERROR)
+	if (!path_to_cmd || execve(path_to_cmd, sh->cmd->cmd_and_args, envp_c) == ERROR)
 	{
 		cmd_err_msg(sh->cmd->cmd_and_args[0]);
 		ft_free_char_tab(envp_c);
 		close_all_fds();
+		// free(path_to_cmd);
 		if (!sh->cmd->cmd_and_args[0][0])
 		{
 			free_sh(sh);

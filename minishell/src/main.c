@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:59:56 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/24 17:55:16 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/24 18:30:39 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 int	g_sig;
 
 ///////// TODO //////////
-// ctrl C lock 130 exit code
-// unset path + cmd leak
+// All good for now!
 /////////////////////////
 
 /*

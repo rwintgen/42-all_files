@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 18:43:54 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/14 13:19:05 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/24 18:01:33 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	append_env_node(t_envp **env_cpy, char *env_var)
 	{
 		ft_putendl_fd(E_MALLOC, STDERR_FILENO);
 		close_all_fds();
-		exit(1);
+		exit(EXIT_FAILURE);
 	}
 	init_new_envp_node(new_node, env_var);
 	if (*env_cpy == NULL)

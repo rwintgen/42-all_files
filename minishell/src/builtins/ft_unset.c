@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 15:04:51 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/15 13:51:46 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/24 18:02:06 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,6 @@ static void	free_node(t_envp *node, t_envp **envp)
 		*envp = node->next;
 	free(node->key);
 	free(node->value);
+	free(node->envar);
 	free(node);
 }
