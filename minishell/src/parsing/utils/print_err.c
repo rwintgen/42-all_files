@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 13:50:15 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/24 14:20:07 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/24 14:36:29 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,5 @@ void	print_err(char *s1, char *s2, char *s3, char *s4)
 		result = ft_strjoin(result, s4);
 	write(STDERR_FILENO, result, ft_strlen(result));
 	ft_putstr_fd("\n", STDERR_FILENO);
+	free(result);
 }
