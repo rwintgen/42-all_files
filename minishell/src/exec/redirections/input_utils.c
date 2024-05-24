@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 12:00:07 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/24 11:33:25 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/24 15:58:19 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	check_inf_delim(t_arg *to_check, char **heredoc_file, t_sh *sh)
 	{
 		*heredoc_file = heredoc_handler(to_check->str_command, sh);
 		if (g_sig == 130)
-			return (CTRLC); // the heredoc ctrl+c is caught
+			return (CTRLC);
 		return (true);
 	}
 	return (false);

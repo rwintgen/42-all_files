@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 02:42:25 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/14 15:13:09 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/24 17:37:04 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_echo(t_cmd *cmd, t_envp *envp)
 
 	(void)envp;
 	to_print = 1;
-	if (!need_new_line(cmd->cmd_and_args[1]))
+	while (!need_new_line(cmd->cmd_and_args[to_print]))
 		to_print++;
 	while (cmd->cmd_and_args[to_print])
 	{

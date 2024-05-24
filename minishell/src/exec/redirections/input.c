@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 16:07:33 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/24 12:19:16 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/24 15:58:43 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ Input priority order:
 static int	hd_check(t_arg *cmd, t_sh *tofree, t_arg **infile, char **file);
 static int	set_inf_fd(char *hd_file, t_arg *infile, int pfd_in, int stdfd_in);
 static bool	infiles_ok(t_arg *cmd);
-
 
 // finds right infile and opens it for current cmd
 int	set_infile(t_arg *cmd, int stdfd_in, int pipefd_in, t_sh *tofree)

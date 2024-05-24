@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:59:56 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/24 14:50:39 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/24 15:59:02 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ static void	init_sh(t_sh *sh, char **envp, int argc, char **argv)
 	sh->exit_code = 0;
 	sh->envp = save_envp(envp);
 }
-
 
 // resets sh structure elements after each propmpt
 static void	reset_sh(t_sh *sh)
