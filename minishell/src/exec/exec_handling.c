@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 17:59:02 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/24 18:28:53 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/27 13:55:42 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	exec_handler(t_sh *sh)
 	g_sig = 0;
 	signal(SIGQUIT, sig_quit_state);
 	signal(SIGINT, sig_int_state);
-	remove_all_quotes(sh);
+	remove_all_quotes(sh); // NO MALLOC
 	save_commands(sh);
 	// print_t_cmd_struct(sh->cmd); // DEBUG
 	if (check_file_creation(sh->arg) == ERROR)
