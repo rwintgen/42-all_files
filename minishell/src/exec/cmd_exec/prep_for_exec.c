@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 12:31:29 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/24 11:30:03 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/27 14:46:40 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	save_commands(t_sh *sh)
 	t_arg		*tmp;
 
 	tmp = sh->arg;
-	create_missing_heredoc_cmd(tmp);
+	create_missing_heredoc_cmd(tmp); // MALLOC PROTECT OK
 	while (tmp)
 	{
 		if (tmp->type == CMD)
@@ -38,10 +38,10 @@ void	save_commands(t_sh *sh)
 			if (fd[0] == CTRLC)
 				return ;
 			fd[1] = set_outfile(tmp, sh->saved_stdfd[1], sh->pipefd[1]);
-			cmd_and_args = fetch_cmd_args(tmp);
+			cmd_and_args = fetch_cmd_args(tmp); // MALLOC PROTECT OK
 			if (!cmd_and_args)
-				continue ;
-			add_to_list(sh, cmd_and_args, fd);
+				exit(free_sh(sh));
+			add_to_list(sh, cmd_and_args, fd); // MALLOC PROTECT OK
 		}
 		tmp = tmp->next;
 	}
@@ -55,7 +55,12 @@ static void	add_to_list(t_sh *sh, char **cmd_and_args, int fd[2])
 
 	new_node = create_node(cmd_and_args, fd);
 	if (!new_node)
-		return ;
+	{
+		ft_free_char_tab(cmd_and_args);
+		free_sh(sh);
+		close_all_fds();
+		exit(EXIT_FAILURE);
+	}
 	if (!(sh->cmd))
 		sh->cmd = new_node;
 	else
@@ -97,7 +102,7 @@ static void	pipe_if_needed(t_arg *tmp, t_sh *sh)
 	{
 		if (pipe(sh->pipefd) == ERROR)
 		{
-			ft_putendl_fd(E_PIPE, STDERR_FILENO);
+			print_err(E_PIPE, NULL, NULL, NULL);
 			return ;
 		}
 	}

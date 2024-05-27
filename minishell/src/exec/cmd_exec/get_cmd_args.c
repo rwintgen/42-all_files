@@ -6,14 +6,14 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 11:46:24 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/14 13:39:37 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/27 14:28:16 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 static void	increment_cmd_argc(int *cmd_argc, t_arg *current);
-static void	fill_arg_arr(int cmd_argc, char ***result, t_arg *cmd);
+static int	fill_arg_arr(int cmd_argc, char ***result, t_arg *cmd);
 static char	**add_delimiter(t_arg *cmd);
 
 // fetch the command name and its arguments from the command line
@@ -28,20 +28,27 @@ char	**fetch_cmd_args(t_arg *current)
 	current = current->next;
 	if (!ft_strcmp(cmd->str_command, "heredoc"))
 	{
-		result = add_delimiter(cmd);
-		if (result == NULL)
+		result = add_delimiter(cmd); // MALLOC PROTECT OK
+		if (!result || !*result)
 			return (NULL);
 		return (result);
 	}
 	increment_cmd_argc(&cmd_argc, current);
-	result = malloc(sizeof(char *) * (cmd_argc + 1));
+	result = malloc(sizeof(char *) * (cmd_argc + 1)); // MALLOC PROTECT OK
 	if (!result)
 	{
-		ft_putendl_fd(E_MALLOC, STDERR_FILENO);
+		print_err(E_MALLOC, NULL, NULL, NULL);
+		close_all_fds();
 		return (NULL);
 	}
 	current = cmd;
-	fill_arg_arr(cmd_argc, &result, current);
+	if (fill_arg_arr(cmd_argc, &result, current) == ERROR) // MALLOC PROTECT OK
+	{
+		print_err(E_MALLOC, NULL, NULL, NULL);
+		ft_free_char_tab(result);
+		close_all_fds();
+		return (NULL);
+	}
 	return (result);
 }
 
@@ -57,7 +64,7 @@ static void	increment_cmd_argc(int *cmd_argc, t_arg *current)
 }
 
 // fills the argument array with the command name and its arguments
-static void	fill_arg_arr(int cmd_argc, char ***result, t_arg *cmd)
+static int	fill_arg_arr(int cmd_argc, char ***result, t_arg *cmd)
 {
 	int	i;
 
@@ -67,11 +74,14 @@ static void	fill_arg_arr(int cmd_argc, char ***result, t_arg *cmd)
 		if (cmd->type == CMD || cmd->type == ARG || cmd->type == OPTION)
 		{
 			(*result)[i] = ft_strdup(cmd->str_command);
+			if (!(*result)[i])
+				return (ERROR);
 			i++;
 		}
 		cmd = cmd->next;
 	}
 	(*result)[cmd_argc] = NULL;
+	return (SUCCESS);
 }
 
 // adds heredoc delimiter to the command
@@ -82,6 +92,7 @@ static char	**add_delimiter(t_arg *cmd)
 	result = malloc(sizeof(char *) * 3);
 	if (!result)
 	{
+		close_all_fds();
 		ft_putendl_fd(E_MALLOC, STDERR_FILENO);
 		return (NULL);
 	}
