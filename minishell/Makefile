@@ -6,7 +6,7 @@
 #    By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/10 16:32:07 by deymons           #+#    #+#              #
-#    Updated: 2024/05/24 14:17:16 by rwintgen         ###   ########.fr        #
+#    Updated: 2024/05/27 17:11:49 by rwintgen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ SRCS		=	src/main.c									\
 				src/exec/envp/envp_utils.c					\
 				src/exec/envp/envp.c						\
 				src/exec/free_close/close.c					\
+				src/exec/free_close/err_handlers.c			\
 				src/exec/free_close/free.c					\
 				src/exec/heredocs/empty_heredoc.c			\
 				src/exec/heredocs/heredoc_utils.c			\

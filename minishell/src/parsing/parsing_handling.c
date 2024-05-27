@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:28:53 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/27 13:53:20 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/27 17:20:32 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,7 @@ static t_arg	*copy_args(char *input, t_sh *sh)
 	args = ms_split(input, ' '); // MALLOC PROTECT OK
 	if (!args)
 	{
-		ft_putendl_fd(E_MALLOC, STDERR_FILENO);
-		free_sh(sh);
-		free(input);
-		close_all_fds();
+		err_close_args_list(sh, input);
 		exit(EXIT_FAILURE);
 	}
 	arg_cpy = NULL;
@@ -71,12 +68,7 @@ static int	append_arg_node(t_arg **arg_cpy, char *arg, t_sh *sh)
 
 	new_node = malloc(sizeof(t_arg)); // MALLOC PROTECT OK
 	if (!new_node)
-	{
-		ft_putendl_fd(E_MALLOC, STDERR_FILENO);
-		free_sh(sh);
-		close_all_fds();
-		return (ERROR);
-	}
+		return (err_close_args_list(sh, NULL));
 	new_node->str_command = ft_strdup(arg);
 	new_node->type = -1;
 	new_node->next = NULL;

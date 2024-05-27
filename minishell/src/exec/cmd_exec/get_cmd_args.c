@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 11:46:24 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/27 15:06:42 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/27 17:11:23 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,19 +36,10 @@ char	**fetch_cmd_args(t_arg *current)
 	increment_cmd_argc(&cmd_argc, current);
 	result = malloc(sizeof(char *) * (cmd_argc + 1)); // MALLOC PROTECT OK
 	if (!result)
-	{
-		print_err(E_MALLOC, NULL, NULL, NULL);
-		close_all_fds();
-		return (NULL);
-	}
+		return (err_close_args());
 	current = cmd;
 	if (fill_arg_arr(cmd_argc, &result, current) == ERROR) // MALLOC PROTECT OK
-	{
-		print_err(E_MALLOC, NULL, NULL, NULL);
-		ft_free_char_tab(result);
-		close_all_fds();
-		return (NULL);
-	}
+		return (err_close_args());
 	return (result);
 }
 
@@ -75,7 +66,10 @@ static int	fill_arg_arr(int cmd_argc, char ***result, t_arg *cmd)
 		{
 			(*result)[i] = ft_strdup(cmd->str_command);
 			if (!(*result)[i])
+			{
+				ft_free_char_tab(*result);
 				return (ERROR);
+			}
 			i++;
 		}
 		cmd = cmd->next;

@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 14:18:05 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/27 16:42:22 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/27 17:31:24 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,22 +62,11 @@ static int	ft_exec(t_sh *sh)
 	exec_heredoc(sh->cmd, sh);
 	redirect_io(sh->cmd);
 	if (sh->cmd->is_builtin)
-	{
-		exit_code = exec_builtin(sh->cmd, &sh->envp, sh);
-		close_all_fds();
-		free_sh(sh);
-		exit(exit_code);
-	}
+		exit(exec_and_exit(sh->cmd, &sh->envp, sh, exit_code));
 	path_to_cmd = get_path(sh->cmd, sh->envp);
 	envp_c = restore_envp(sh->envp);
 	if (!envp_c)
-	{
-		print_err(E_MALLOC, ": \"", sh->cmd->cmd_and_args[0], "\"");
-		close_all_fds();
-		free_sh(sh);
-		free(path_to_cmd);
-		exit(EXIT_FAILURE);
-	}
+		err_exit_envp(sh, path_to_cmd);
 	exec_current_cmd(path_to_cmd, sh, envp_c);
 	return (ERROR);
 }
@@ -85,7 +74,8 @@ static int	ft_exec(t_sh *sh)
 // executes current classic command
 static void	exec_current_cmd(char *path_to_cmd, t_sh *sh, char **envp_c)
 {
-	if (!path_to_cmd || execve(path_to_cmd, sh->cmd->cmd_and_args, envp_c) == ERROR)
+	if (!path_to_cmd
+		|| execve(path_to_cmd, sh->cmd->cmd_and_args, envp_c) == ERROR)
 	{
 		cmd_err_msg(sh->cmd->cmd_and_args[0]);
 		ft_free_char_tab(envp_c);

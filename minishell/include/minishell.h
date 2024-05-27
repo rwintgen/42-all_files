@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:11:52 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/27 15:47:07 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/27 17:30:21 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ end-of-file (wanted '"
 
 # define INT_64_MAX "9223372036854775807"
 # define INT_64_MIN "9223372036854775808"
-
 
 # define CTRLC -130
 # define ERROR -1
@@ -225,6 +224,7 @@ void	save_commands(t_sh *sh);
 void	append_env_node(t_envp **env_cpy, char *env_var, t_sh *tofree);
 void	set_key(t_envp **env_cpy, char *env_var);
 void	set_value(t_envp **env_cpy, char *env_var);
+int		count_vars(t_envp *envp);
 
 t_envp	*save_envp(char **env, t_sh *tofree);
 char	**restore_envp(t_envp *envp);
@@ -236,6 +236,11 @@ int		check_file_creation(t_arg *arg);
 void	close_all_fds(void);
 void	close_if_valid(int fd);
 void	close_saved_fds(int saved_stdfd[2]);
+
+void	*err_close_args(void);
+void	err_exit_envp(t_sh *sh, char *path_to_cmd);
+int		err_close_args_list(t_sh *sh, char *tofree);
+int		exec_and_exit(t_cmd *cmd, t_envp **envp, t_sh *sh, int exit_code);
 
 int		free_sh(t_sh *sh);
 void	free_arg(t_arg *arg);
