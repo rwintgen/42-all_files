@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 12:41:14 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/24 13:27:02 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/27 15:47:23 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*replace_exit_code(char *input, int *i, int exit_code)
 {
 	char	*exit_code_str;
 
-	if (g_sig == SIGINT)
+	if (g_sig == SIGINT || g_sig == 130)
 		exit_code = 130;
 	exit_code_str = ft_itoa(exit_code);
 	input = ft_strrep(input, "$?", exit_code_str);

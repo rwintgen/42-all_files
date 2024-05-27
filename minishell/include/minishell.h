@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:11:52 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/27 12:21:59 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/27 15:47:07 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,11 @@ end-of-file (wanted '"
 # define E_CD_DIR "minishell: error retrieving current directory"
 # define E_CD_ARGC "minishell: cd: too many arguments"
 
+# define EMPTY_HEREDOC "empty_heredoc_file"
+
 # define INT_64_MAX "9223372036854775807"
 # define INT_64_MIN "9223372036854775808"
+
 
 # define CTRLC -130
 # define ERROR -1

@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 14:18:05 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/27 14:55:50 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/27 15:04:23 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ static bool	exec_solo_builtin(t_sh *sh, t_cmd *cmd, int *exit_code)
 // executes heredoc command
 static void	exec_heredoc(t_cmd *cmd, t_sh *sh)
 {
-	if (!ft_strcmp(cmd->cmd_and_args[0], "chibron"))
+	if (!ft_strcmp(cmd->cmd_and_args[0], EMPTY_HEREDOC))
 	{
 		redirect_io(cmd);
 		free_sh(sh);

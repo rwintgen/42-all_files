@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 12:50:26 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/24 14:27:16 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/27 15:10:34 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,6 @@ creates new env var with VALUE = NULL
 
 export with =VALUE is an error
 */
-
-// TODO segfaults
-
-// minishell $> export a
-// minishell $> unset a
-// minishell $> export
 
 static bool	check_key(char *key, t_cmd *cmd, int *i, int *exit_code);
 static void	update_envp(t_envp **envp, char *key, char *new_value);

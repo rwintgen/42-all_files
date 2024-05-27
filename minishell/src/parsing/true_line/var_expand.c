@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 15:38:25 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/24 13:16:21 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/27 15:47:48 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ char	*var_expand(char *input, t_envp *envp, int exit_code)
 	int	i;
 	int	len;
 
+	if (!input)
+		return (NULL);
 	len = ft_strlen(input);
 	i = 0;
 	while (input[i])

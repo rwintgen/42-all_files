@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 11:46:24 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/27 14:28:16 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/27 15:06:42 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ static char	**add_delimiter(t_arg *cmd)
 		ft_putendl_fd(E_MALLOC, STDERR_FILENO);
 		return (NULL);
 	}
-	result[0] = ft_strdup("chibron");
+	result[0] = ft_strdup(EMPTY_HEREDOC);
 	result[1] = ft_strdup(cmd->prev->str_command);
 	result[2] = NULL;
 	return (result);
