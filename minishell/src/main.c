@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:59:56 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/27 15:37:50 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/27 16:16:14 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ clear && valgrind --trace-children=yes --track-fds=yes --leak-check=full
 static void	init_sig(void);
 static void	init_sh(t_sh *sh, char **envp, int argc, char **argv);
 static void	reset_sh(t_sh *sh);
+static int	exit_handler(t_sh *sh);
 
 int	main(int argc, char **argv, char **envp)
 {
 	t_sh	*sh;
 	char	*input;
-	int		exit_code;
 
 	sh = malloc(sizeof(t_sh));
 	if (!sh)
@@ -50,11 +50,7 @@ int	main(int argc, char **argv, char **envp)
 		ft_wait_all();
 		reset_sh(sh);
 	}
-	close_all_fds();
-	exit_code = sh->exit_code;
-	free_sh(sh);
-	write(STDOUT_FILENO, "exit\n", 5);
-	return (exit_code);
+	return (exit_handler(sh));
 }
 
 // initializes signals for each command line
@@ -88,4 +84,17 @@ static void	reset_sh(t_sh *sh)
 	sh->cmd = NULL;
 	sh->pipefd[0] = -1;
 	sh->pipefd[1] = -1;
+}
+
+static int	exit_handler(t_sh *sh)
+{
+	int	exit_code;
+
+	exit_code = sh->exit_code;
+	free_sh(sh);
+	close_all_fds();
+	write(STDOUT_FILENO, "exit\n", 5);
+	if (g_sig == SIGINT || g_sig == 130)
+		exit_code = 130;
+	return (exit_code);
 }
