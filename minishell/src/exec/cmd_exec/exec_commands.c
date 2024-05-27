@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 14:18:05 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/27 15:04:23 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/27 16:42:22 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,14 @@ static int	ft_exec(t_sh *sh)
 	}
 	path_to_cmd = get_path(sh->cmd, sh->envp);
 	envp_c = restore_envp(sh->envp);
+	if (!envp_c)
+	{
+		print_err(E_MALLOC, ": \"", sh->cmd->cmd_and_args[0], "\"");
+		close_all_fds();
+		free_sh(sh);
+		free(path_to_cmd);
+		exit(EXIT_FAILURE);
+	}
 	exec_current_cmd(path_to_cmd, sh, envp_c);
 	return (ERROR);
 }

@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:59:56 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/27 16:16:14 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/27 16:18:05 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 int	g_sig;
 
 ///////// TODO //////////
-// Fix export not builtin cmds dont work after export
-// fix ctrlc + exit exit code
+// Non-builtins do not exec after export
 /////////////////////////
 
 /*

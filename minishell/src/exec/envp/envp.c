@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 13:44:40 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/27 12:21:45 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/27 16:47:53 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,19 @@ char	**restore_envp(t_envp *envp)
 		i++;
 		envp = envp->next;
 	}
-	result = ft_calloc(i + 1, sizeof(char *));
+	result = ft_calloc(i + 1, sizeof(char *)); // MALLOC PROTECT OK
+	if (!result)
+		return (NULL);
 	envp = head;
 	i = 0;
-	while (envp)
+	while (envp->next)
 	{
-		result[i] = ft_strdup(envp->envar);
+		result[i] = ft_strdup(envp->envar); // MALLOC PROTECT OK
+		if (!result[i])
+		{
+			ft_free_char_tab(result);
+			return (NULL);
+		}
 		i++;
 		envp = envp->next;
 	}
