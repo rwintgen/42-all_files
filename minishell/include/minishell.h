@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:11:52 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/24 14:27:27 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/27 12:21:59 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -219,11 +219,11 @@ char	*get_path(t_cmd *cmd, t_envp *envp);
 void	save_commands(t_sh *sh);
 
 	// envp
-void	append_env_node(t_envp **env_cpy, char *env_var);
+void	append_env_node(t_envp **env_cpy, char *env_var, t_sh *tofree);
 void	set_key(t_envp **env_cpy, char *env_var);
 void	set_value(t_envp **env_cpy, char *env_var);
 
-t_envp	*save_envp(char **env);
+t_envp	*save_envp(char **env, t_sh *tofree);
 char	**restore_envp(t_envp *envp);
 
 	// file

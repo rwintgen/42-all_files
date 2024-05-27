@@ -6,25 +6,25 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:28:53 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/14 15:43:53 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/27 13:53:20 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 static t_arg	*copy_args(char *input, t_sh *sh);
-static void		append_arg_node(t_arg **arg_cpy, char *arg, t_sh *sh);
+static int		append_arg_node(t_arg **arg_cpy, char *arg, t_sh *sh);
 
 // handles input parsing functions
 int	parse_input(char *input, t_sh *sh)
 {
-	input = true_line(input, sh);
-	if (!*input)
+	input = true_line(input, sh); // MALLOC PROTECT OK
+	if (!input || !*input)
 	{
 		free(input);
 		return (ERROR);
 	}
-	sh->arg = copy_args(input, sh);
+	sh->arg = copy_args(input, sh); // MALLOC PROTECT OK
 	free(input);
 	// print_t_arg_struct(sh->arg); // DEBUG
 	return (SUCCESS);
@@ -37,12 +37,25 @@ static t_arg	*copy_args(char *input, t_sh *sh)
 	char	**args;
 	int		i;
 
-	args = ms_split(input, ' ');
+	args = ms_split(input, ' '); // MALLOC PROTECT OK
+	if (!args)
+	{
+		ft_putendl_fd(E_MALLOC, STDERR_FILENO);
+		free_sh(sh);
+		free(input);
+		close_all_fds();
+		exit(EXIT_FAILURE);
+	}
 	arg_cpy = NULL;
 	i = 0;
 	while (args[i])
 	{
-		append_arg_node(&arg_cpy, args[i], sh);
+		if (append_arg_node(&arg_cpy, args[i], sh) == ERROR) // MALLOC PROTECT OK
+		{
+			ft_free_char_tab(args);
+			free(input);
+			exit(EXIT_FAILURE);
+		}
 		i++;
 	}
 	lexer_v2(arg_cpy);
@@ -51,18 +64,18 @@ static t_arg	*copy_args(char *input, t_sh *sh)
 }
 
 // appends a new node to the t_arg linked list
-static void	append_arg_node(t_arg **arg_cpy, char *arg, t_sh *sh)
+static int	append_arg_node(t_arg **arg_cpy, char *arg, t_sh *sh)
 {
 	t_arg	*new_node;
 	t_arg	*tmp;
 
-	new_node = malloc(sizeof(t_arg));
+	new_node = malloc(sizeof(t_arg)); // MALLOC PROTECT OK
 	if (!new_node)
 	{
 		ft_putendl_fd(E_MALLOC, STDERR_FILENO);
 		free_sh(sh);
 		close_all_fds();
-		exit(EXIT_FAILURE);
+		return (ERROR);
 	}
 	new_node->str_command = ft_strdup(arg);
 	new_node->type = -1;
@@ -78,4 +91,5 @@ static void	append_arg_node(t_arg **arg_cpy, char *arg, t_sh *sh)
 		tmp->next = new_node;
 		new_node->prev = tmp;
 	}
+	return (SUCCESS);
 }

@@ -6,14 +6,14 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 13:44:40 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/13 18:46:42 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/27 12:21:45 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 // converts a char **envp to a t_envp linked list
-t_envp	*save_envp(char **env)
+t_envp	*save_envp(char **env, t_sh *tofree)
 {
 	t_envp	*env_cpy;
 	int		i;
@@ -22,7 +22,7 @@ t_envp	*save_envp(char **env)
 	i = 0;
 	while (env[i])
 	{
-		append_env_node(&env_cpy, env[i]);
+		append_env_node(&env_cpy, env[i], tofree);
 		set_key(&env_cpy, env[i]);
 		set_value(&env_cpy, env[i]);
 		i++;

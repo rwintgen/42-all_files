@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 18:43:54 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/24 18:01:33 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/27 12:22:33 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	init_new_envp_node(t_envp *new_node, char *env_var);
 
 // appends a new node to the envp linked list
-void	append_env_node(t_envp **env_cpy, char *env_var)
+void	append_env_node(t_envp **env_cpy, char *env_var, t_sh *tofree)
 {
 	t_envp	*new_node;
 	t_envp	*tmp;
@@ -24,6 +24,7 @@ void	append_env_node(t_envp **env_cpy, char *env_var)
 	if (!new_node)
 	{
 		ft_putendl_fd(E_MALLOC, STDERR_FILENO);
+		free_sh(tofree);
 		close_all_fds();
 		exit(EXIT_FAILURE);
 	}
