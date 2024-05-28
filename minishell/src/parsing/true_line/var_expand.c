@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 15:38:25 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/27 15:47:48 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/28 16:40:58 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ static char	*var_replace(char *input, int *i, t_envp *envp, int exit_code)
 
 	if (input[*i + 1] == '?')
 		input = replace_exit_code(input, i, exit_code);
+    // if (input[*i + 1] == '\'' || input[*i + 1] == '"')
+	// 	input = ft_strrep(input, "$", " ");
 	else if (isalnum(input[*i + 1]) || input[*i + 1] == '_')
 	{
 		key_len = get_key_len(input, *i);
