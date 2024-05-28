@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:11:52 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/27 17:30:21 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/28 15:14:10 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -241,6 +241,7 @@ void	*err_close_args(void);
 void	err_exit_envp(t_sh *sh, char *path_to_cmd);
 int		err_close_args_list(t_sh *sh, char *tofree);
 int		exec_and_exit(t_cmd *cmd, t_envp **envp, t_sh *sh, int exit_code);
+int		exit_handler(t_sh *sh);
 
 int		free_sh(t_sh *sh);
 void	free_arg(t_arg *arg);

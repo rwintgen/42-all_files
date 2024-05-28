@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 17:59:02 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/28 14:59:42 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/28 15:19:00 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	remove_all_quotes(t_sh *sh);
 // handles command execution and i.o redirection
 void	exec_handler(t_sh *sh)
 {
-	g_sig = 0;
+	// g_sig = 0;
 	signal(SIGQUIT, sig_quit_state);
 	signal(SIGINT, sig_int_state);
 	remove_all_quotes(sh);

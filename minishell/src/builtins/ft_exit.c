@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 15:14:32 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/24 11:15:27 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/28 15:15:03 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,7 @@ int	ft_exit(t_cmd *cmd, t_sh *tofree)
 
 	exit_code = tofree->exit_code;
 	if (!cmd->cmd_and_args[1])
-	{
-		free_sh(tofree);
-		write(3, "exit\n", 5);
-		close_all_fds();
-		exit(exit_code);
-	}
+		exit(exit_handler(tofree));
 	if (!is_full_digit(cmd->cmd_and_args[1]))
 		exit(err_msg_exit(E_EXIT_NUM, tofree));
 	if (cmd->cmd_and_args[2])
