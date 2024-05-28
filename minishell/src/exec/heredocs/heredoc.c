@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 14:36:32 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/27 15:22:39 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/28 15:34:52 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ char	*heredoc_handler(char *delimiter, t_sh *sh)
 		waitpid(pid, &status, 0);
 	if (WIFEXITED(status))
 		sh->exit_code = exit_code_handler(errno, status);
+	printf("sh->exit_code = %d\n", sh->exit_code);
 	return (file);
 }
 
@@ -43,7 +44,7 @@ static void	prompt_heredoc(char *delimiter, int fd, char *file, t_sh *tofree)
 
 	line = NULL;
 	signal(SIGINT, sigint_heredoc);
-	while (g_sig != SIGINT)
+	while (g_sig != SIGINT && tofree->exit_code != 130)
 	{
 		line = readline("> ");
 		if (check_eof(line, delimiter))
@@ -54,7 +55,7 @@ static void	prompt_heredoc(char *delimiter, int fd, char *file, t_sh *tofree)
 	}
 	free(line);
 	close_all_fds();
-	if (g_sig == SIGINT)
+	if (g_sig == SIGINT || tofree->exit_code == 130)
 	{
 		unlink(file);
 		free(file);
