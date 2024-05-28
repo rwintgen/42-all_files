@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 19:15:27 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/14 15:38:54 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/28 15:40:34 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@ void	check_valid_fds(t_sh *sh)
 {
 	check_grep(sh->cmd->input_fd, sh);
 	check_cat_wc(sh->cmd->input_fd, sh);
+	if (g_sig == SIGINT || g_sig == 130)
+	{
+		close_all_fds();
+		errno = 0;
+		exit(free_sh(sh));
+	}
 	if (sh->cmd->input_fd < 0)
 	{
 		close_all_fds();

@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 14:36:32 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/28 15:34:52 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/28 15:38:14 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ char	*heredoc_handler(char *delimiter, t_sh *sh)
 		waitpid(pid, &status, 0);
 	if (WIFEXITED(status))
 		sh->exit_code = exit_code_handler(errno, status);
-	printf("sh->exit_code = %d\n", sh->exit_code);
 	return (file);
 }
 
