@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:59:56 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/27 16:49:28 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/28 14:59:16 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ static void	reset_sh(t_sh *sh)
 	sh->cmd = NULL;
 	sh->pipefd[0] = -1;
 	sh->pipefd[1] = -1;
+	g_sig = 0;
 }
 
 static int	exit_handler(t_sh *sh)
