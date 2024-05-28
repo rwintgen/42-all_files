@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 18:43:54 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/27 17:09:55 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/27 17:37:19 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ void	set_value(t_envp **env_cpy, char *env_var)
 	}
 }
 
+// counts the number of envp variables
 int	count_vars(t_envp *envp)
 {
 	int	i;
