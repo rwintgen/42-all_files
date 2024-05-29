@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 17:16:03 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/24 14:23:36 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/29 14:41:14 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,13 +73,7 @@ void	update_cwd(t_envp *envp, char *new_cwd)
 
 int	err_msg_cd(char *old_cwd, char *new_cwd)
 {
-	char	*result;
-
-	result = ft_strjoin("minishell: cd: ", new_cwd);
-	result = ft_strjoin(result, ": ");
-	result = ft_strjoin(result, strerror(errno));
-	write(STDERR_FILENO, result, ft_strlen(result));
-	ft_putstr_fd("\n", STDERR_FILENO);
+	print_err("minishell: cd: ", new_cwd, ": ", strerror(errno));
 	free(old_cwd);
 	return (FAILURE);
 }
