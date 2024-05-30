@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 15:38:25 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/30 14:03:40 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/30 14:42:37 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ char	*var_expand(char *input, t_envp *envp, int exit_code, int i)
 {
 	char	*result;
 
+	if (i < 0)
+		i = 0;
 	if (!input)
 		return (NULL);
 	while (input[i])
@@ -90,6 +92,10 @@ static char	*var_replace(char *input, int *i, t_envp *envp, int exit_code)
 		free(key);
 	}
 	else
+	{
+		printf("I'm fucking up with the rest of the input lol\n");
+		// TODO stop from deleting all input after $" or $'
 		input = ft_strrep(input, &input[*i], "");
+	}
 	return (input);
 }

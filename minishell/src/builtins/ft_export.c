@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 12:50:26 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/27 15:10:34 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/30 14:42:05 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ export with =VALUE is an error
 
 static bool	check_key(char *key, t_cmd *cmd, int *i, int *exit_code);
 static void	update_envp(t_envp **envp, char *key, char *new_value);
-static void	init_new_envp_node(t_envp *new, char *key, char *value);
 static void	add_envp(t_envp **envp, char *key, char *value);
+static void	init_new_envp_node(t_envp *new, char *key, char *value);
 
 int	ft_export(t_cmd *cmd, t_envp **envp)
 {
@@ -99,18 +99,6 @@ static void	update_envp(t_envp **envp, char *key, char *new_value)
 	add_envp(envp, key, new_value);
 }
 
-static void	init_new_envp_node(t_envp *new, char *key, char *value)
-{
-	new->key = ft_strdup(key);
-	new->value = NULL;
-	if (value)
-		new->value = ft_strdup(value);
-	new->envar = NULL;
-	new->next = NULL;
-	new->prev = NULL;
-	new->is_printed = false;
-}
-
 static void	add_envp(t_envp **envp, char *key, char *value)
 {
 	t_envp	*new;
@@ -133,4 +121,16 @@ static void	add_envp(t_envp **envp, char *key, char *value)
 	}
 	else
 		*envp = new;
+}
+
+static void	init_new_envp_node(t_envp *new, char *key, char *value)
+{
+	new->key = ft_strdup(key);
+	new->value = NULL;
+	if (value)
+		new->value = ft_strdup(value);
+	new->envar = NULL; // TODO fill up envar
+	new->next = NULL;
+	new->prev = NULL;
+	new->is_printed = false;
 }
