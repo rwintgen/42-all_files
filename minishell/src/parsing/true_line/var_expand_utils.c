@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 12:41:14 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/29 17:16:23 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/30 16:15:34 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ bool	is_hd_delimiter(char *str, int i)
 {
 	if (i > 0)
 		i--;
-	while (str[i] && is_whitespace(str[i]))
+	while (i > 0 && str[i] && is_whitespace(str[i]))
 		i--;
 	if (str[i] && str[i] == '<' && str[i - 1] && str[i - 1] == '<')
 		return (true);
