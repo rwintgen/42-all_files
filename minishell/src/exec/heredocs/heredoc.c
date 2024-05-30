@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 14:36:32 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/28 15:38:14 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/30 11:40:49 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	prompt_heredoc(char *delimiter, int fd, char *file, t_sh *tofree)
 		line = readline("> ");
 		if (check_eof(line, delimiter))
 			break ;
-		line = var_expand(line, tofree->envp, tofree->exit_code);
+		line = var_expand(line, tofree->envp, tofree->exit_code, 0);
 		ft_putendl_fd(line, fd);
 		free(line);
 	}

@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 15:38:25 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/29 17:32:40 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/30 12:09:20 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,20 @@ static bool	is_valid_var(char *input, int dollar);
 static char	*var_replace(char *input, int *i, t_envp *envp, int exit_code);
 
 // handles variable expansion 
-char	*var_expand(char *input, t_envp *envp, int exit_code)
+char	*var_expand(char *input, t_envp *envp, int exit_code, int i)
 {
-	int	i;
-	int	len;
+	char	*result;
 
-	if (!input)
-		return (NULL);
-	i = 0;
-	while ((size_t)i < ft_strlen(input))
+	while (input[i])
 	{
-		len = ft_strlen(input);
 		if (input[i] == '$' && is_valid_var(input, i))
-			input = var_replace(input, &i, envp, exit_code);
-		if (i < len - 1)
-			i++;
-		else
-			break ;
+		{
+			result = var_replace(input, &i, envp, exit_code);
+			if (input != result)
+				free(input);
+			return (var_expand(result, envp, exit_code, i));
+		}
+		i++;
 	}
 	return (input);
 }
@@ -89,6 +86,11 @@ static char	*var_replace(char *input, int *i, t_envp *envp, int exit_code)
 			*i -= 1;
 		}
 		free(key);
+	}
+	else
+	{
+		input = ft_strrep(input, &input[*i], "");
+		*i -= 1;
 	}
 	return (input);
 }
