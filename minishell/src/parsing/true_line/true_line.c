@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 12:40:53 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/30 11:44:57 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/30 17:59:27 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,8 @@ char	*true_line(char *str, t_sh *sh)
 		return (NULL);
 	}
 	add_spaces(&formatted, str);
-	// printf("formatted: \"%s\"\n", formatted); // DEBUG
 	free(str);
 	formatted = var_expand(formatted, sh->envp, sh->exit_code, 0);
-	// printf("expanded: \"%s\"\n", formatted); // DEBUG
 	return (formatted);
 }
 
