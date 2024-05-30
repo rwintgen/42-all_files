@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 15:38:25 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/30 12:09:20 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/30 13:57:28 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ char	*var_expand(char *input, t_envp *envp, int exit_code, int i)
 {
 	char	*result;
 
+	if (!input)
+		return (NULL);
 	while (input[i])
 	{
 		if (input[i] == '$' && is_valid_var(input, i))
@@ -88,9 +90,6 @@ static char	*var_replace(char *input, int *i, t_envp *envp, int exit_code)
 		free(key);
 	}
 	else
-	{
 		input = ft_strrep(input, &input[*i], "");
-		*i -= 1;
-	}
 	return (input);
 }
