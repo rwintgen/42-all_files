@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 12:27:41 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/14 14:04:40 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/30 16:22:37 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static void	set_file(t_arg *elem)
 // sets commands
 static void	set_cmd(t_arg *elem)
 {
-	while (elem->next)
+	while (elem && elem->next)
 		elem = elem->next;
 	while (elem)
 	{

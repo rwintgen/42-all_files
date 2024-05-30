@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 13:19:51 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/29 15:06:50 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/30 16:36:11 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,8 @@ int	get_key_len(char *input, int i)
 	int		key_len;
 
 	key_len = 1;
-	while (input[i + key_len] && ft_isalnum(input[i + key_len]))
+	while (input[i + key_len] && (ft_isalnum(input[i + key_len])
+			|| input[i + key_len] == '_'))
 		key_len++;
 	return (key_len);
 }
