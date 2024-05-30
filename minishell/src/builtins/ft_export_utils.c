@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:09:07 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/30 15:04:12 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/30 15:26:55 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,19 @@ void	reset_export(t_envp *envp)
 	}
 }
 
-// char	*assemble_envar(char *key, char *value)
-// {
-// 	char	*result;
+char	*assemble_envar(char *key, char *value)
+{
+	int		len;
+	char	*result;
 
-// 	result = malloc(ft_strlen(key) + ft_strlen(value));
-// 	ft_str
-// }
+	if (!value)
+		return (ft_strdup(key));
+	len = ft_strlen(key) + ft_strlen(value) + 1;
+	result = malloc(len);
+	if (!result)
+		return (NULL);
+	ft_strlcpy(result, key, ft_strlen(key) + 1);
+	ft_strlcat(result, "=", len);
+	ft_strlcat(result, value, len);
+	return (result);
+}

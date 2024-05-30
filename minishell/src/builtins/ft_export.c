@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 12:50:26 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/30 14:42:05 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/30 15:21:14 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ static void	init_new_envp_node(t_envp *new, char *key, char *value)
 	new->value = NULL;
 	if (value)
 		new->value = ft_strdup(value);
-	new->envar = NULL; // TODO fill up envar
+	new->envar = assemble_envar(key, value);
 	new->next = NULL;
 	new->prev = NULL;
 	new->is_printed = false;

@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:11:52 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/30 11:36:21 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/30 15:09:04 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,6 +192,7 @@ bool	is_invalid_key(char *key);
 char	*get_key(char *arg);
 char	*get_value(char *arg);
 void	reset_export(t_envp *envp);
+char	*assemble_envar(char *key, char *value);
 
 int		ft_pwd(void);
 
