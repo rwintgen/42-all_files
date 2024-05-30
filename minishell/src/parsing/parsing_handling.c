@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:28:53 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/28 14:59:40 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/30 16:02:06 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ static int		append_arg_node(t_arg **arg_cpy, char *arg, t_sh *sh);
 // handles input parsing functions
 int	parse_input(char *input, t_sh *sh)
 {
-	input = true_line(input, sh); // MALLOC PROTECT OK
+	input = true_line(input, sh);
 	if (!input || !*input)
 	{
 		free(input);
 		return (ERROR);
 	}
-	sh->arg = copy_args(input, sh); // MALLOC PROTECT OK
+	sh->arg = copy_args(input, sh);
 	free(input);
 	// print_t_arg_struct(sh->arg); // DEBUG
 	return (SUCCESS);
@@ -37,7 +37,7 @@ static t_arg	*copy_args(char *input, t_sh *sh)
 	char	**args;
 	int		i;
 
-	args = ms_split(input, ' '); // MALLOC PROTECT OK
+	args = ms_split(input, ' ');
 	if (!args)
 	{
 		err_close_args_list(sh, input);
@@ -47,7 +47,7 @@ static t_arg	*copy_args(char *input, t_sh *sh)
 	i = 0;
 	while (args[i])
 	{
-		if (append_arg_node(&arg_cpy, args[i], sh) == ERROR) // MALLOC PROTECT OK
+		if (append_arg_node(&arg_cpy, args[i], sh) == ERROR)
 		{
 			ft_free_char_tab(args);
 			free(input);
@@ -66,7 +66,7 @@ static int	append_arg_node(t_arg **arg_cpy, char *arg, t_sh *sh)
 	t_arg	*new_node;
 	t_arg	*tmp;
 
-	new_node = malloc(sizeof(t_arg)); // MALLOC PROTECT OK
+	new_node = malloc(sizeof(t_arg));
 	if (!new_node)
 		return (err_close_args_list(sh, NULL));
 	new_node->str_command = ft_strdup(arg);

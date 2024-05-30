@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 12:31:29 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/27 14:46:40 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/30 16:01:38 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	save_commands(t_sh *sh)
 	t_arg		*tmp;
 
 	tmp = sh->arg;
-	create_missing_heredoc_cmd(tmp); // MALLOC PROTECT OK
+	create_missing_heredoc_cmd(tmp);
 	while (tmp)
 	{
 		if (tmp->type == CMD)
@@ -38,10 +38,10 @@ void	save_commands(t_sh *sh)
 			if (fd[0] == CTRLC)
 				return ;
 			fd[1] = set_outfile(tmp, sh->saved_stdfd[1], sh->pipefd[1]);
-			cmd_and_args = fetch_cmd_args(tmp); // MALLOC PROTECT OK
+			cmd_and_args = fetch_cmd_args(tmp);
 			if (!cmd_and_args)
 				exit(free_sh(sh));
-			add_to_list(sh, cmd_and_args, fd); // MALLOC PROTECT OK
+			add_to_list(sh, cmd_and_args, fd);
 		}
 		tmp = tmp->next;
 	}

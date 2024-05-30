@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 11:46:24 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/27 17:11:23 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/30 16:01:30 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,17 @@ char	**fetch_cmd_args(t_arg *current)
 	current = current->next;
 	if (!ft_strcmp(cmd->str_command, "heredoc"))
 	{
-		result = add_delimiter(cmd); // MALLOC PROTECT OK
+		result = add_delimiter(cmd);
 		if (!result || !*result)
 			return (NULL);
 		return (result);
 	}
 	increment_cmd_argc(&cmd_argc, current);
-	result = malloc(sizeof(char *) * (cmd_argc + 1)); // MALLOC PROTECT OK
+	result = malloc(sizeof(char *) * (cmd_argc + 1));
 	if (!result)
 		return (err_close_args());
 	current = cmd;
-	if (fill_arg_arr(cmd_argc, &result, current) == ERROR) // MALLOC PROTECT OK
+	if (fill_arg_arr(cmd_argc, &result, current) == ERROR)
 		return (err_close_args());
 	return (result);
 }

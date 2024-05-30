@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 13:52:27 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/27 13:57:18 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/30 16:01:51 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	create_heredoc_cmd(t_arg *elem)
 {
 	t_arg	*new_node;
 
-	new_node = malloc(sizeof(t_arg)); // MALLOC PROTECT OK
+	new_node = malloc(sizeof(t_arg));
 	if (!new_node)
 	{
 		ft_putendl_fd(E_MALLOC, STDERR_FILENO);

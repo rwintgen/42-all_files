@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 13:44:40 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/27 17:10:26 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/30 16:01:47 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,14 @@ char	**restore_envp(t_envp *envp)
 
 	head = envp;
 	i = count_vars(envp);
-	result = ft_calloc(i + 1, sizeof(char *)); // MALLOC PROTECT OK
+	result = ft_calloc(i + 1, sizeof(char *));
 	if (!result)
 		return (NULL);
 	envp = head;
 	i = 0;
 	while (envp->next)
 	{
-		result[i] = ft_strdup(envp->envar); // MALLOC PROTECT OK
+		result[i] = ft_strdup(envp->envar);
 		if (!result[i])
 		{
 			ft_free_char_tab(result);
