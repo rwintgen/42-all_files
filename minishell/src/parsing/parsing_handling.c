@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:28:53 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/30 16:02:06 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/30 17:52:18 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int	parse_input(char *input, t_sh *sh)
 	}
 	sh->arg = copy_args(input, sh);
 	free(input);
-	// print_t_arg_struct(sh->arg); // DEBUG
 	return (SUCCESS);
 }
 

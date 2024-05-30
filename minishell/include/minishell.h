@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:11:52 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/30 17:02:47 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/30 17:57:46 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -317,6 +317,7 @@ char	*true_line(char *str, t_sh *sh);
 char	*replace_exit_code(char *input, int *i, int exit_code);
 char	*find_value(char *key, t_envp *envp);
 bool	is_hd_delimiter(char *str, int i);
+char	*replace_var_with_value(char *input, int *i, t_envp *envp);
 
 char	*var_expand(char *input, t_envp *envp, int exit_code, int i);
 

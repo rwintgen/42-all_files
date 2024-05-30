@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 13:44:40 by deymons           #+#    #+#             */
-/*   Updated: 2024/05/30 16:58:03 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/30 17:51:28 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ char	**restore_envp(t_envp *envp)
 static void	create_envp(t_envp **envp)
 {
 	t_envp	*new_node;
+	t_envp	*oldpwd_node;
 
 	new_node = malloc(sizeof(t_envp));
 	if (!new_node)
@@ -76,8 +77,7 @@ static void	create_envp(t_envp **envp)
 	new_node->prev = NULL;
 	new_node->next = NULL;
 	*envp = new_node;
-
-	t_envp *oldpwd_node = malloc(sizeof(t_envp));
+	oldpwd_node = malloc(sizeof(t_envp));
 	if (!oldpwd_node)
 		return ;
 	oldpwd_node->key = ft_strdup("OLDPWD");

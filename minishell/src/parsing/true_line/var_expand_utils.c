@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 12:41:14 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/30 16:15:34 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/30 17:56:29 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,28 @@ bool	is_hd_delimiter(char *str, int i)
 	if (str[i] && str[i] == '<' && str[i - 1] && str[i - 1] == '<')
 		return (true);
 	return (false);
+}
+
+// replaces input with right expansion
+char	*replace_var_with_value(char *input, int *i, t_envp *envp)
+{
+	int		key_len;
+	char	*key;
+	char	*value;
+
+	key_len = get_key_len(input, *i);
+	key = ft_substr(input, *i, key_len);
+	value = find_value(key, envp);
+	if (value)
+	{
+		input = ft_strrep(input, key, value);
+		*i += ft_strlen(value) - key_len;
+	}
+	else
+	{
+		input = ft_strrep(input, key, "");
+		*i -= 1;
+	}
+	free(key);
+	return (input);
 }
