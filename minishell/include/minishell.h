@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:11:52 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/30 15:09:04 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/30 17:02:47 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,7 +177,7 @@ int		ft_cd(t_cmd *cmd, t_envp *envp);
 char	*get_home(t_envp *envp);
 char	*get_cwd(void);
 void	update_old_cwd(t_envp *envp, char *old_cwd);
-void	update_cwd(t_envp *envp, char *new_cwd);
+void	update_cwd(t_envp *envp);
 int		err_msg_cd(char *old_cwd, char *new_cwd);
 
 int		ft_echo(t_cmd *cmd, t_envp *envp);

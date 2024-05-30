@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 17:16:03 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/29 14:41:14 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/30 17:03:30 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	update_old_cwd(t_envp *envp, char *old_cwd)
 	}
 }
 
-void	update_cwd(t_envp *envp, char *new_cwd)
+void	update_cwd(t_envp *envp)
 {
 	t_envp	*tmp;
 
@@ -64,7 +64,7 @@ void	update_cwd(t_envp *envp, char *new_cwd)
 		if (!ft_strcmp(tmp->key, "PWD"))
 		{
 			free(tmp->value);
-			tmp->value = ft_strdup(new_cwd);
+			tmp->value = getcwd(NULL, 0);
 			return ;
 		}
 		tmp = tmp->next;

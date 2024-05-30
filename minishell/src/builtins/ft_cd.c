@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 02:42:25 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/24 14:16:16 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/30 17:02:27 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	ft_cd(t_cmd *cmd, t_envp *envp)
 	if (chdir(new_cwd) == -1)
 		return (err_msg_cd(old_cwd, new_cwd));
 	update_old_cwd(envp, old_cwd);
-	update_cwd(envp, new_cwd);
+	update_cwd(envp);
 	free(old_cwd);
 	return (SUCCESS);
 }
