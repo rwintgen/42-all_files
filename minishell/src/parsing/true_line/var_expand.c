@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 15:38:25 by amalangi          #+#    #+#             */
-/*   Updated: 2024/05/30 13:57:28 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/30 14:03:40 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static bool	is_valid_var(char *input, int dollar)
 	sq = 0;
 	dq = 0;
 	i = 0;
-	if (!input[dollar + 1])
+	if (!input[dollar + 1] || is_whitespace(input[dollar + 1]))
 		return (false);
 	if (is_hd_delimiter(input, dollar))
 		return (false);
@@ -58,7 +58,7 @@ static bool	is_valid_var(char *input, int dollar)
 			dq = !dq;
 		i++;
 	}
-	if (sq)
+	if (sq || (dq && input[dollar + 1] == '"'))
 		return (false);
 	return (true);
 }
