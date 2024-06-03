@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 12:41:14 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/30 17:56:29 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/05/30 18:00:43 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ bool	is_hd_delimiter(char *str, int i)
 	return (false);
 }
 
-// replaces input with right expansion
+// replaces variable in input with its value
 char	*replace_var_with_value(char *input, int *i, t_envp *envp)
 {
 	int		key_len;
