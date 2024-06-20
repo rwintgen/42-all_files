@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 13:37:16 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/06/19 12:55:53 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/06/20 16:27:44 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	set_long(pthread_mutex_t *mutex, long *var, long value)
 void	increment_long(pthread_mutex_t *mutex, long *var)
 {
 	mutex_action(mutex, LOCK);
-	*var += 1;
+	(*var)++;
 	mutex_action(mutex, UNLOCK);
 }
 

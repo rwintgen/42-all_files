@@ -6,7 +6,7 @@
 #    By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/15 16:52:17 by rwintgen          #+#    #+#              #
-#    Updated: 2024/06/19 17:35:13 by rwintgen         ###   ########.fr        #
+#    Updated: 2024/06/20 16:09:38 by rwintgen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,19 +16,18 @@ NAME		=	philo
 HEADER		=	-I ./include
 
 CC			=	gcc
-CFLAGS		=	-Werror -Wall -Wextra -g
-#-fsanitize=thread
+CFLAGS		=	-Werror -Wall -Wextra -g -fsanitize=thread
 
 SRCS		=	main.c \
 				src/data_init.c \
 				src/dinner.c \
+				src/monitoring.c \
 				src/parsing.c \
 				src/print.c \
 				src/sync.c \
 				src/utils/actions.c \
 				src/utils/utils.c \
 				src/utils/functions/ph_atol.c \
-				src/utils/functions/ph_malloc.c \
 				src/utils/functions/ph_nblen.c \
 				src/utils/functions/ph_strlen.c \
 				src/utils/functions/ph_usleep.c \

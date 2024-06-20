@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 13:26:35 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/06/19 17:34:18 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/06/20 16:25:44 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	start_dinner(t_table *table)
 	i = 0;
 	if (table->meals_needed == 0)
 		return ;
-	// else if (table->philo_count == 1)
-		// TODO
+	else if (table->philo_count == 1)
+		return ; // TODO eat alone
 	else
 	{
 		while (i < table->philo_count)
@@ -41,8 +41,9 @@ void	*dinner_routine(void *data)
 {
 	t_philo	*philo;
 
-	philo = data;
+	philo = (t_philo *)data;
 	wait_all_threads(philo->table);
+	increment_long(&philo->table->table_mutex, &philo->table->running_threads_count);
 	while (!dinner_finished(philo->table))
 	{
 		if (philo->full)

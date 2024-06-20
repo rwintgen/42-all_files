@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 12:08:13 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/06/19 17:19:31 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/06/20 16:31:03 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,8 +137,10 @@ typedef struct s_table
 	long			start_time;
 	bool			end_simulation;
 	bool			all_threads_ready;
+	long			running_threads_count;
 	t_fork			*forks;
 	t_philo			*philos;
+	pthread_t		monitor;
 	pthread_mutex_t	table_mutex;
 	pthread_mutex_t	print_mutex;
 }				t_table;
@@ -152,7 +154,6 @@ bool	is_whitespace(char c);
 void	parse_input(int argc, char **argv, t_table *table);
 
 long	ph_atol(char *str);
-void	*ph_malloc(size_t size);
 size_t	ph_nblen(const char *s);
 size_t	ph_strlen(const char *str);
 void	ph_usleep(long time, t_table *table);
@@ -179,5 +180,7 @@ void	increment_long(pthread_mutex_t *mutex, long *var);
 void	wait_all_threads(t_table *table);
 
 void	print_status(t_philo *philo, t_state state);
+
+bool	all_threads_running(pthread_mutex_t *mutex, long nb_threads, long nb_philos);
 
 #endif
