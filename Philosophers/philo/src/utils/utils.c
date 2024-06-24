@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 12:31:34 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/06/19 16:42:41 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/06/24 13:39:52 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,22 @@ long	get_time(t_unit unit)
 	else
 		err_exit(E_UNIT, MSG_UNIT);
 	return (ERROR);
+}
+
+void	clean(t_table *table)
+{
+	t_philo *current;
+	int		i;
+
+	i = 0;
+	while (i < table->philo_count)
+	{
+		current = &table->philos[i];
+		mutex_action(&current->mutex, DESTROY);
+		i++;
+	}
+	mutex_action(&table->table_mutex, DESTROY);
+	mutex_action(&table->print_mutex, DESTROY);
+	free(table->forks);
+	free(table->philos);
 }

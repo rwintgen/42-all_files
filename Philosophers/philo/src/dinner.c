@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 13:26:35 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/06/24 13:27:19 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/06/24 13:35:10 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	start_dinner(t_table *table)
 		thread_action(&table->philos[i].thread_id, NULL, NULL, JOIN);
 		i++;
 	}
+	set_bool(&table->table_mutex, &table->end_simulation, true);
+	thread_action(&table->monitor, NULL, NULL, JOIN);
 }
 
 // routine to be executed by each thread
