@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 12:08:13 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/06/24 13:06:18 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/06/24 13:23:23 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,6 +168,7 @@ void	init_data(t_table *table);
 
 void	start_dinner(t_table *table);
 void	*dinner_routine(void *data);
+void	*alone_dinner_routine(void *data);
 
 bool	get_bool(pthread_mutex_t *mutex, bool *var);
 long	get_long(pthread_mutex_t *mutex, long *var);

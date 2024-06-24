@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 13:26:35 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/06/24 13:21:28 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/06/24 13:27:19 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	start_dinner(t_table *table)
 	if (table->meals_needed == 0)
 		return ;
 	else if (table->philo_count == 1)
-		return ; // TODO eat alone
+		thread_action(&table->philos[0].thread_id, alone_dinner_routine, &table->philos[0], CREATE);
 	else
 	{
 		while (i < table->philo_count)
@@ -64,6 +64,20 @@ void	*dinner_routine(void *data)
 	}
 
 
+	return (NULL);
+}
+
+void	*alone_dinner_routine(void *data)
+{
+	t_philo	*philo;
+
+	philo = (t_philo *)data;
+	wait_all_threads(philo->table);
+	set_long(&philo->mutex, &philo->last_meal_time, get_time(MILLISECONDS));
+	increment_long(&philo->table->table_mutex, &philo->table->running_threads_count);
+	print_status(philo, TAKE_FORK);
+	while (!dinner_finished(philo->table))
+		usleep(200);
 	return (NULL);
 }
 
