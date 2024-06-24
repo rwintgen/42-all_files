@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 13:37:16 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/06/20 16:27:44 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/06/24 17:30:02 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,3 @@ void	increment_long(pthread_mutex_t *mutex, long *var)
 	(*var)++;
 	mutex_action(mutex, UNLOCK);
 }
-

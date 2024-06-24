@@ -6,12 +6,13 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 12:28:56 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/06/24 17:14:08 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/06/24 17:18:33 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+static bool	valid_arg(char *arg);
 static bool	valid_nb(char *nb);
 
 // parses argv and stores it in table
@@ -33,6 +34,23 @@ void	parse_input(int argc, char **argv, t_table *table)
 	table->meals_needed = NO_MEALS;
 	if (argv[5])
 		table->meals_needed = ph_atol(argv[5]);
+}
+
+// checks if a char is a digit
+bool	is_num(char c)
+{
+	return (c >= '0' && c <= '9');
+}
+
+// checks if a char is a whitespace
+bool	is_whitespace(char c)
+{
+	return (c == ' '
+		|| c == '\t'
+		|| c == '\n'
+		|| c == '\v'
+		|| c == '\f'
+		|| c == '\r');
 }
 
 // checks that argv[i] is valid
@@ -71,21 +89,4 @@ static bool	valid_nb(char *nb)
 	if (n == ERROR || n == 0)
 		return (false);
 	return (true);
-}
-
-// checks if a char is a digit
-static bool	is_num(char c)
-{
-	return (c >= '0' && c <= '9');
-}
-
-// checks if a char is a whitespace
-static bool	is_whitespace(char c)
-{
-	return (c == ' '
-		|| c == '\t'
-		|| c == '\n'
-		|| c == '\v'
-		|| c == '\f'
-		|| c == '\r');
 }

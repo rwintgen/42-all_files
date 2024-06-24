@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 13:48:06 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/06/24 17:00:07 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/06/24 17:26:12 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void	wait_all_threads(t_table *table)
 }
 
 // waits until all threads start their routines
-bool	all_threads_running(pthread_mutex_t *mutex, long *nb_threads, long nb_philos)
+bool	all_threads_running(pthread_mutex_t *mutex, \
+							long *nb_threads, long nb_philos)
 {
 	bool	ret;
 

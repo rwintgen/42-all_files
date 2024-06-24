@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 12:31:34 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/06/24 17:05:34 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/06/24 17:28:54 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	err_exit(int err, char *msg)
 // gets current time in specified unit
 long	get_time(t_unit unit)
 {
-	struct timeval tv;
+	struct timeval	tv;
 
 	if (gettimeofday(&tv, NULL))
 		err_exit(E_GETTOD, MSG_GETTOD);
@@ -41,7 +41,7 @@ long	get_time(t_unit unit)
 // frees allocated resources and destroys mutexes
 void	clean(t_table *table)
 {
-	t_philo *current;
+	t_philo	*current;
 	int		i;
 
 	i = 0;

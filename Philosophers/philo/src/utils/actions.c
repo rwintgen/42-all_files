@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 12:27:50 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/06/24 17:07:04 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/06/24 17:29:46 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 static void	thr_exit_if_err(int err, t_action action);
 static void	mtx_exit_if_err(int err, t_action action);
 
-void	thread_action(pthread_t *thread, void *(*func)(void *), void *data, t_action action)
+void	thread_action(pthread_t *thread, void *(*func)(void *), \
+					void *data, t_action action)
 {
 	if (action == CREATE)
 		thr_exit_if_err(pthread_create(thread, NULL, func, data), action);

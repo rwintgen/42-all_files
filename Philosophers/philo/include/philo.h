@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 12:08:13 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/06/24 17:14:31 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/06/24 17:39:23 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,6 @@ typedef struct s_table
 	pthread_mutex_t	print_mutex;
 }				t_table;
 
-
 /************************ PROTOTYPES ************************/
 
 // SRC
@@ -153,20 +152,24 @@ typedef struct s_table
 void	init_data(t_table *table);
 
 void	start_dinner(t_table *table);
-void	*dinner_routine(void *data);
-void	*alone_dinner_routine(void *data);
 void	think(t_philo *philo, bool pre_simulation);
+void	eat(t_philo *philo);
 
 void	*monitor(void *param);
 
 void	parse_input(int argc, char **argv, t_table *table);
+bool	is_num(char c);
+bool	is_whitespace(char c);
 
 void	print_status(t_philo *philo, t_state state);
 
-void	wait_all_threads(t_table *table);
-bool	all_threads_running(pthread_mutex_t *mutex, long *nb_threads, long nb_philos);
-void	offset_philos(t_philo *philo);
+void	*dinner_routine(void *data);
+void	*alone_dinner_routine(void *data);
 
+void	wait_all_threads(t_table *table);
+bool	all_threads_running(pthread_mutex_t *mutex, \
+							long *nb_threads, long nb_philos);
+void	offset_philos(t_philo *philo);
 
 // UTILS
 
@@ -177,13 +180,14 @@ void	ph_usleep(long time, t_table *table);
 
 bool	get_bool(pthread_mutex_t *mutex, bool *var);
 long	get_long(pthread_mutex_t *mutex, long *var);
-inline bool	dinner_finished(t_table *table);
+bool	dinner_finished(t_table *table);
 
 void	set_bool(pthread_mutex_t *mutex, bool *var, bool value);
 void	set_long(pthread_mutex_t *mutex, long *var, long value);
 void	increment_long(pthread_mutex_t *mutex, long *var);
 
-void	thread_action(pthread_t *thread, void *(*func)(void *), void *data, t_action action);
+void	thread_action(pthread_t *thread, void *(*func)(void *), \
+					void *data, t_action action);
 void	mutex_action(pthread_mutex_t *mutex, t_action action);
 
 void	err_exit(int err, char *msg);
