@@ -6,14 +6,13 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 13:26:35 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/06/24 13:35:10 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/06/24 17:12:05 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
 static void	eat(t_philo *philo);
-static void	think(t_philo *philo);
 
 // creates threads and launches simulation
 void	start_dinner(t_table *table)
@@ -55,6 +54,7 @@ void	*dinner_routine(void *data)
 	wait_all_threads(philo->table);
 	set_long(&philo->mutex, &philo->last_meal_time, get_time(MILLISECONDS));
 	increment_long(&philo->table->table_mutex, &philo->table->running_threads_count);
+	offset_philos(philo);
 	while (!dinner_finished(philo->table))
 	{
 		if (philo->full)
@@ -62,13 +62,12 @@ void	*dinner_routine(void *data)
 		eat(philo);
 		print_status(philo, SLEEPING);
 		ph_usleep(philo->table->time_to_sleep, philo->table);
-		think(philo);
+		think(philo, false);
 	}
-
-
 	return (NULL);
 }
 
+// routine for a single philosopher
 void	*alone_dinner_routine(void *data)
 {
 	t_philo	*philo;
@@ -83,6 +82,28 @@ void	*alone_dinner_routine(void *data)
 	return (NULL);
 }
 
+// handles thinking of each philo thread
+void	think(t_philo *philo, bool pre_simulation)
+{
+	long	t_eat;
+	long	t_sleep;
+	long	t_think;
+
+	(void)pre_simulation;
+
+	// if (pre_simulation)
+		print_status(philo, THINKING);
+	if (philo->table->philo_count % 2 == 0)
+		return ;
+	t_eat = philo->table->time_to_eat;
+	t_sleep = philo->table->time_to_sleep;
+	t_think = t_eat * 2 - t_sleep;
+	if (t_think < 0)
+		t_think = 0;
+	ph_usleep(t_think * 0.42, philo->table);
+}
+
+// handles the eating of each philo thread
 static void	eat(t_philo *philo)
 {
 	mutex_action(&philo->fork_one->mutex, LOCK);
@@ -99,9 +120,4 @@ static void	eat(t_philo *philo)
 
 	mutex_action(&philo->fork_one->mutex, UNLOCK);
 	mutex_action(&philo->fork_two->mutex, UNLOCK);
-}
-
-static void	think(t_philo *philo)
-{
-	print_status(philo, THINKING);
 }

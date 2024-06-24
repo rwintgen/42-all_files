@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 13:48:06 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/06/20 16:29:21 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/06/24 17:00:07 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,30 @@ void	wait_all_threads(t_table *table)
 		;
 }
 
-bool	all_threads_running(pthread_mutex_t *mutex, long nb_threads, long nb_philos)
+// waits until all threads start their routines
+bool	all_threads_running(pthread_mutex_t *mutex, long *nb_threads, long nb_philos)
 {
 	bool	ret;
 
 	ret = false;
 	mutex_action(mutex, LOCK);
-	if (nb_threads == nb_philos)
+	if (*nb_threads == nb_philos)
 		ret = true;
 	mutex_action(mutex, UNLOCK);
 	return (ret);
+}
+
+// offsets philo sync to force think 
+void	offset_philos(t_philo *philo)
+{
+	if (philo->table->philo_count % 2 == 0)
+	{
+		if (philo->id % 2 == 0)
+			ph_usleep(42e3, philo->table);
+	}
+	else
+	{
+		if (philo->id % 2)
+			think(philo, true);
+	}
 }

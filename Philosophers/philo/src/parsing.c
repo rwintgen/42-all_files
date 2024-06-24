@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 12:28:56 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/06/19 12:54:23 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/06/24 17:14:08 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	parse_input(int argc, char **argv, t_table *table)
 }
 
 // checks that argv[i] is valid
-bool	valid_arg(char *arg)
+static bool	valid_arg(char *arg)
 {
 	int	i;
 	int	start;
@@ -74,13 +74,13 @@ static bool	valid_nb(char *nb)
 }
 
 // checks if a char is a digit
-bool	is_num(char c)
+static bool	is_num(char c)
 {
 	return (c >= '0' && c <= '9');
 }
 
 // checks if a char is a whitespace
-bool	is_whitespace(char c)
+static bool	is_whitespace(char c)
 {
 	return (c == ' '
 		|| c == '\t'

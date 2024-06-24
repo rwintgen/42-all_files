@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 16:09:17 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/06/24 13:19:52 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/06/24 17:04:46 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static bool	philo_died(t_philo *philo);
 
+// routine to check if any philo died
 void	*monitor(void *param)
 {
 	t_table	*table;
@@ -21,7 +22,7 @@ void	*monitor(void *param)
 
 	table = (t_table*)param;
 	while (!all_threads_running(&table->table_mutex,
-			table->running_threads_count, table->philo_count))
+			&table->running_threads_count, table->philo_count))
 		;
 	while (!dinner_finished(table))
 	{
@@ -30,8 +31,8 @@ void	*monitor(void *param)
 		{
 			if (philo_died(&table->philos[i]))
 			{
-				set_bool(&table->table_mutex, &table->end_simulation, true);
 				print_status(&table->philos[i], DEAD);
+				set_bool(&table->table_mutex, &table->end_simulation, true);
 			}
 			i++;
 		}
@@ -39,6 +40,7 @@ void	*monitor(void *param)
 	return (NULL);
 }
 
+// checks if a specific philo has died
 static bool	philo_died(t_philo *philo)
 {
 	long	elapsed;

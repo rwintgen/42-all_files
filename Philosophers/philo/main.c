@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 12:02:31 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/06/24 13:36:27 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/06/24 16:09:14 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ int	main(int argc, char **argv)
 	parse_input(argc, argv, &table);
 	init_data(&table);
 	start_dinner(&table);
-	while (true)
-		;
 	clean(&table);
 	return (EXIT_SUCCESS);
 }

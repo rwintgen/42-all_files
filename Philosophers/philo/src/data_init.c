@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 12:51:55 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/06/20 16:19:42 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/06/24 15:27:16 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ static void	init_philos(t_table *table)
 		philo->meals_count = 0;
 		philo->table = table;
 		mutex_action(&philo->mutex, INIT);
-		give_forks(philo, table->forks, table->philo_count);
+		printf("philo %d:\t", philo->id);
+		give_forks(philo, table->forks, i);
 		i++;
 	}
 }
@@ -66,7 +67,7 @@ static void	give_forks(t_philo *philo, t_fork *forks, int index)
 	int	philo_count;
 
 	philo_count = philo->table->philo_count;
-	if (philo->id % 2 == 0)
+	if (philo->id % 2)
 	{
 		philo->fork_one = &forks[index];
 		philo->fork_two = &forks[(index + 1) % philo_count];
@@ -76,4 +77,6 @@ static void	give_forks(t_philo *philo, t_fork *forks, int index)
 		philo->fork_one = &forks[(index + 1) % philo_count];
 		philo->fork_two = &forks[index];
 	}
+	printf("fork one: %d\t", forks[index].id);
+	printf("fork two: %d\n", forks[(index + 1)].id);
 }

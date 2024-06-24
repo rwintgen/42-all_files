@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 14:25:53 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/06/19 13:44:23 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/06/24 16:09:40 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ long	get_long(pthread_mutex_t *mutex, long *var)
 }
 
 // checks if the simulation is over
-bool	dinner_finished(t_table *table)
+inline bool	dinner_finished(t_table *table)
 {
-	return (get_bool(&table->table_mutex, &table->end_simulation));
+	return (get_bool(&table->table_mutex, &table->end_simulation) == true);
 }

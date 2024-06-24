@@ -6,11 +6,14 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 12:27:50 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/06/19 13:01:46 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/06/24 17:07:04 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+// Set of helper functions to conveniently call pthread functions.
+// Used for threads, mutexes and error management
 
 static void	thr_exit_if_err(int err, t_action action);
 static void	mtx_exit_if_err(int err, t_action action);

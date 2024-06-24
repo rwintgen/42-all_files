@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 12:08:13 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/06/24 13:40:25 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/06/24 17:14:31 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,44 +148,46 @@ typedef struct s_table
 
 /************************ PROTOTYPES ************************/
 
-bool	valid_arg(char *arg);
-bool	is_num(char c);
-bool	is_whitespace(char c);
-void	parse_input(int argc, char **argv, t_table *table);
-
-long	ph_atol(char *str);
-size_t	ph_nblen(const char *s);
-size_t	ph_strlen(const char *str);
-void	ph_usleep(long time, t_table *table);
-
-void	err_exit(int err, char *msg);
-long	get_time(t_unit unit);
-
-void	thread_action(pthread_t *thread, void *(*func)(void *), void *data, t_action action);
-void	mutex_action(pthread_mutex_t *mutex, t_action action);
+// SRC
 
 void	init_data(t_table *table);
 
 void	start_dinner(t_table *table);
 void	*dinner_routine(void *data);
 void	*alone_dinner_routine(void *data);
+void	think(t_philo *philo, bool pre_simulation);
+
+void	*monitor(void *param);
+
+void	parse_input(int argc, char **argv, t_table *table);
+
+void	print_status(t_philo *philo, t_state state);
+
+void	wait_all_threads(t_table *table);
+bool	all_threads_running(pthread_mutex_t *mutex, long *nb_threads, long nb_philos);
+void	offset_philos(t_philo *philo);
+
+
+// UTILS
+
+long	ph_atol(char *str);
+size_t	ph_nblen(const char *s);
+size_t	ph_strlen(const char *str);
+void	ph_usleep(long time, t_table *table);
 
 bool	get_bool(pthread_mutex_t *mutex, bool *var);
 long	get_long(pthread_mutex_t *mutex, long *var);
-bool	dinner_finished(t_table *table);
+inline bool	dinner_finished(t_table *table);
 
 void	set_bool(pthread_mutex_t *mutex, bool *var, bool value);
 void	set_long(pthread_mutex_t *mutex, long *var, long value);
 void	increment_long(pthread_mutex_t *mutex, long *var);
 
-void	wait_all_threads(t_table *table);
+void	thread_action(pthread_t *thread, void *(*func)(void *), void *data, t_action action);
+void	mutex_action(pthread_mutex_t *mutex, t_action action);
 
-void	print_status(t_philo *philo, t_state state);
-
-bool	all_threads_running(pthread_mutex_t *mutex, long nb_threads, long nb_philos);
-
-void	*monitor(void *param);
-
+void	err_exit(int err, char *msg);
+long	get_time(t_unit unit);
 void	clean(t_table *table);
 
 #endif
