@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 13:26:35 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/06/20 16:25:44 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/06/24 13:21:28 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,15 @@ void	start_dinner(t_table *table)
 			i++;
 		}
 	}
+	thread_action(&table->monitor, monitor, table, CREATE);
+	table->start_time = get_time(MILLISECONDS);
 	set_bool(&table->table_mutex, &table->all_threads_ready, true);
+	i = 0;
+	while (i < table->philo_count)
+	{
+		thread_action(&table->philos[i].thread_id, NULL, NULL, JOIN);
+		i++;
+	}
 }
 
 // routine to be executed by each thread
@@ -43,6 +51,7 @@ void	*dinner_routine(void *data)
 
 	philo = (t_philo *)data;
 	wait_all_threads(philo->table);
+	set_long(&philo->mutex, &philo->last_meal_time, get_time(MILLISECONDS));
 	increment_long(&philo->table->table_mutex, &philo->table->running_threads_count);
 	while (!dinner_finished(philo->table))
 	{

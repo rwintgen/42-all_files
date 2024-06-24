@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 12:08:13 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/06/20 16:31:03 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/06/24 13:06:18 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,5 +182,7 @@ void	wait_all_threads(t_table *table);
 void	print_status(t_philo *philo, t_state state);
 
 bool	all_threads_running(pthread_mutex_t *mutex, long nb_threads, long nb_philos);
+
+void	*monitor(void *param);
 
 #endif
