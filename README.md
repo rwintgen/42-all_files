@@ -67,11 +67,13 @@ __My push_swap passed with final grade of 100/100. Check out my work [here](http
 
 -----
 
-![8](https://github.com/rwintgen/42/assets/150167832/67fd7929-a451-4aee-8e45-33191e095af8)
+![42](https://github.com/rwintgen/42/assets/150167832/b9d5b99c-a609-4573-ad50-3ee17b6da0ef)
 #### Philosophers
 Classic computer science problem solved in C. Built upon [Oceano](https://github.com/suspectedoceano)'s [solution](https://youtu.be/zOpzGHwJ3MU?si=kNvIcqguiE0a-Xkt), thank you my friend!
 
 __I haven't completed this project yet, but you can steal my work [here](https://github.com/rwintgen/42/tree/main/Philosophers).__
+
+-----
 
 ![8](https://github.com/rwintgen/42/assets/150167832/67fd7929-a451-4aee-8e45-33191e095af8)
 #### Minishell
