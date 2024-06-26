@@ -6,7 +6,7 @@
 #    By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/15 16:52:17 by rwintgen          #+#    #+#              #
-#    Updated: 2024/06/24 17:39:39 by rwintgen         ###   ########.fr        #
+#    Updated: 2024/06/26 11:50:48 by rwintgen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,8 @@ MAKEFLAGS	+=	--no-print-directory
 NAME		=	philo
 HEADER		=	-I ./include
 
-CC			=	gcc
-CFLAGS		=	-Werror -Wall -Wextra -g -fsanitize=thread
+CC			=	cc
+CFLAGS		=	-Werror -Wall -Wextra
 
 SRCS		=	main.c \
 				src/data_init.c \
