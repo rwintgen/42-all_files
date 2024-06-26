@@ -71,7 +71,7 @@ __My push_swap passed with final grade of 100/100. Check out my work [here](http
 #### Philosophers
 Minishell is a custom shell that replicates basic features of the BASH shell.
 
-__I haven't completed this project yet, but you can steal my work [here](https://github.com/rwintgen/42/tree/main/philosophers).__
+__I haven't completed this project yet, but you can steal my work [here](https://github.com/rwintgen/42/tree/main/Philosophers).__
 
 ![8](https://github.com/rwintgen/42/assets/150167832/67fd7929-a451-4aee-8e45-33191e095af8)
 #### Minishell
