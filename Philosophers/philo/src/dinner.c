@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 13:26:35 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/06/24 17:38:54 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/06/27 15:18:43 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ void	start_dinner(t_table *table)
 	int	i;
 
 	i = 0;
-	if (table->meals_needed == 0)
-		return ;
 	else if (table->philo_count == 1)
 		thread_action(&table->philos[0].thread_id, \
 					alone_dinner_routine, &table->philos[0], CREATE);
