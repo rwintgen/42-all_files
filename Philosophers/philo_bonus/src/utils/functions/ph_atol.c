@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ph_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/26 16:22:19 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/06/27 14:42:46 by rwintgen         ###   ########.fr       */
+/*   Created: 2024/05/16 14:26:13 by rwintgen          #+#    #+#             */
+/*   Updated: 2024/06/27 13:42:21 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
 
-int	main(int argc, char **argv)
+long	ph_atol(char *str)
 {
-	t_table	table;
+	long	nb;
+	int		i;
 
-	if (argc != 5 && argc != 6)
-		err_exit(E_ARGC, MSG_USAGE);
-	parse_input(argc, argv, &table);
-	init_philos(&table);
-	start_processes(&table);
-	// clean(&table);
-	return (EXIT_SUCCESS);
+	nb = 0;
+	i = 0;
+	while (is_whitespace(str[i]) || str[i] == '+')
+		i++;
+	while (is_num(str[i]))
+	{
+		nb = nb * 10 + str[i] - '0';
+		i++;
+	}
+	if (i > 10 || nb > INT_MAX)
+		return (ERROR);
+	return (nb);
 }

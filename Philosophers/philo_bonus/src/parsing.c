@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 16:58:03 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/06/26 16:58:32 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/06/27 13:51:07 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	parse_input(int argc, char **argv, t_table *table)
 	table->meals_needed = NO_MEALS;
 	if (argv[5])
 		table->meals_needed = ph_atol(argv[5]);
+	init_semaphores(table);
 }
 
 // checks if a char is a digit

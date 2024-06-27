@@ -1,32 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ph_atol.c                                          :+:      :+:    :+:   */
+/*   ph_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/16 14:26:13 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/16 16:31:12 by rwintgen         ###   ########.fr       */
+/*   Created: 2024/06/27 14:33:50 by rwintgen          #+#    #+#             */
+/*   Updated: 2024/06/27 14:37:39 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_bonus.h"
 
-long	ph_atol(char *str)
+char	*ph_strjoin(char const *s1, char const *s2)
 {
-	long	nb;
 	int		i;
+	int		j;
+	int		combsize;
+	char	*combstr;
 
-	nb = 0;
+	if (!s1)
+		return (NULL);
+	combsize = ph_strlen(s1) + ph_strlen(s2) + 1;
+	combstr = malloc(sizeof(char) * combsize);
+	if (!combstr)
+		return (NULL);
 	i = 0;
-	while (is_whitespace(str[i]) || str[i] == '+')
-		i++;
-	while (is_num(str[i]))
+	j = 0;
+	while (s1[i])
 	{
-		nb = nb * 10 + str[i] - '0';
+		combstr[i] = s1[i];
 		i++;
 	}
-	if (i > 10 || nb > INT_MAX)
-		return (ERROR);
-	return (nb);
+	while (s2[j])
+	{
+		combstr[i + j] = s2[j];
+		j++;
+	}
+	combstr[i + j] = '\0';
+	return (combstr);
 }

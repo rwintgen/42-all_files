@@ -6,7 +6,7 @@
 #    By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/26 16:54:24 by rwintgen          #+#    #+#              #
-#    Updated: 2024/06/26 17:01:49 by rwintgen         ###   ########.fr        #
+#    Updated: 2024/06/27 15:59:52 by rwintgen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,15 +16,21 @@ NAME		=	philo
 HEADER		=	-I ./include
 
 CC			=	cc
-CFLAGS		=	-Werror -Wall -Wextra
+CFLAGS		=	-Werror -Wall -Wextra -g
 
 SRCS		=	main.c \
+				src/data_init.c \
+				src/monitoring.c \
 				src/parsing.c \
-				src/function/ph_atol.c \
-				src/function/ph_nblen.c \
-				src/function/ph_strlen.c \
-				src/function/ph_usleep.c
-
+				src/process.c \
+				src/utils/utils.c \
+				src/utils/functions/ph_atol.c \
+				src/utils/functions/ph_itoa.c \
+				src/utils/functions/ph_nblen.c \
+				src/utils/functions/ph_strjoin.c \
+				src/utils/functions/ph_strlen.c \
+				src/utils/functions/ph_usleep.c
+				
 GREEN	=	\033[0;32m
 RED		=	\033[0;31m
 NC		=	\033[0m

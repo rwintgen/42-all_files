@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 16:53:48 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/06/26 17:04:41 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/06/27 16:06:31 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,12 @@
 # include <sys/wait.h>
 # include <pthread.h>
 # include <stdbool.h>
+# include <unistd.h>
 # include <stdlib.h>
 # include <signal.h>
+# include <limits.h>
 # include <stdio.h>
+# include <fcntl.h>
 # include <time.h>
 
 /************************** DEFINES *************************/
@@ -36,8 +39,11 @@
 # define MSG_MALLOC "philo: memory allocation failed\n"
 # define MSG_GETTOD "philo: could not get time of day\n"
 # define MSG_UNIT "philo: invalid time unit\n"
+# define MSG_THRD "philo: thread creation failed\n"
 
 /************************ STRUCTURES ************************/
+
+typedef struct s_table	t_table;
 
 typedef enum e_errs
 {
@@ -45,15 +51,35 @@ typedef enum e_errs
 	E_ARGV,
 	E_MALLOC,
 	E_GETTOD,
-	E_UNIT
+	E_UNIT,
+	E_THRD
 }				t_errs;
+
+typedef enum e_unit
+{
+	SECONDS,
+	MILLISECONDS,
+	MICROSECONDS
+}				t_unit;
+
+typedef enum e_state
+{
+	THINKING,
+	EATING,
+	SLEEPING,
+	TAKE_FORK,
+	DEAD
+}				t_state;
 
 typedef struct s_philo
 {
 	int				id;
-	long			meals_count;
 	bool			full;
-	long			last_meal_time;
+	long			meals_count;
+	long			last_meal;
+
+	pid_t			pid;
+	sem_t			*sem_last_meal;
 	t_table			*table;
 }				t_philo;
 
@@ -64,13 +90,33 @@ typedef struct s_table
 	long			time_to_eat;
 	long			time_to_sleep;
 	long			meals_needed;
-
 	long			start_time;
-	bool			end_simulation;
-	long			running_threads_count;
+
+	pthread_t		death_monitor;
+	sem_t			*end_simulation;
+	sem_t			*sem_forks;
+	sem_t			*sem_print;
 	t_philo			*philos;
 }				t_table;
 
 /************************ PROTOTYPES ************************/
 
-#endif PHILO_BONUS_H
+void	err_exit(int err, char *msg);
+void	err_free_exit(t_table *table, int err, char *msg);
+void	parse_input(int argc, char **argv, t_table *table);
+long	ph_atol(char *str);
+size_t	ph_nblen(const char *s);
+size_t	ph_strlen(const char *str);
+bool	is_num(char c);
+bool	is_whitespace(char c);
+void	ph_usleep(long time);
+long	get_time(t_unit unit);
+void	init_semaphores(t_table *table);
+void	init_philos(t_table *table);
+char	*ph_itoa(int n);
+char	*ph_strjoin(char const *s1, char const *s2);
+void	*wait_death(void *param);
+int		start_processes(t_table *table);
+void	print_status(t_philo *philo, t_state state);
+
+#endif

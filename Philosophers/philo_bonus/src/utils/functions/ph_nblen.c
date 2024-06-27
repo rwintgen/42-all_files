@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ph_usleep.c                                        :+:      :+:    :+:   */
+/*   ph_nblen.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/22 15:52:19 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/06/26 15:38:34 by rwintgen         ###   ########.fr       */
+/*   Created: 2024/05/16 16:48:38 by rwintgen          #+#    #+#             */
+/*   Updated: 2024/06/27 13:42:23 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_bonus.h"
 
-void	ph_usleep(long time, t_table *table)
+size_t	ph_nblen(const char *s)
 {
-	long	start;
+	size_t	i;
 
-	start = get_time(MICROSECONDS);
-	while (get_time(MICROSECONDS) - start < time)
-	{
-		if (dinner_finished(table))
-			break ;
-		while (get_time(MICROSECONDS) - start < time \
-				&& !dinner_finished(table))
-			usleep(50);
-	}
+	i = 0;
+	while (s[i] && is_num(s[i]))
+		i++;
+	return (i);
 }

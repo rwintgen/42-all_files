@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ph_nblen.c                                         :+:      :+:    :+:   */
+/*   ph_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/16 16:48:38 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/05/16 16:48:43 by rwintgen         ###   ########.fr       */
+/*   Created: 2024/05/16 16:35:26 by rwintgen          #+#    #+#             */
+/*   Updated: 2024/06/27 13:42:25 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_bonus.h"
 
-size_t	ph_nblen(const char *s)
+size_t	ph_strlen(const char *str)
 {
 	size_t	i;
 
 	i = 0;
-	while (s[i] && is_num(s[i]))
+	while (str[i])
 		i++;
 	return (i);
 }

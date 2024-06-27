@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ph_strlen.c                                        :+:      :+:    :+:   */
+/*   ph_usleep.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/16 16:35:26 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/06/24 17:08:08 by rwintgen         ###   ########.fr       */
+/*   Created: 2024/05/22 15:52:19 by rwintgen          #+#    #+#             */
+/*   Updated: 2024/06/27 15:59:07 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_bonus.h"
 
-size_t	ph_strlen(const char *str)
+void	ph_usleep(long time)
 {
-	size_t	i;
+	long	start;
 
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
+	start = get_time(MICROSECONDS);
+	while (get_time(MICROSECONDS) - start < time)
+		usleep(50);
 }
