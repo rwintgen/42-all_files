@@ -6,7 +6,7 @@
 #    By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/15 16:52:17 by rwintgen          #+#    #+#              #
-#    Updated: 2024/06/26 11:50:48 by rwintgen         ###   ########.fr        #
+#    Updated: 2024/06/27 15:24:47 by rwintgen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,6 @@ SRCS		=	main.c \
 				src/dinner.c \
 				src/monitoring.c \
 				src/parsing.c \
-				src/print.c \
 				src/routines.c \
 				src/sync.c \
 				src/utils/actions.c \
