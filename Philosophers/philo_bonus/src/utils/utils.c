@@ -6,12 +6,13 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 13:39:27 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/06/27 15:58:55 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/07/01 12:02:01 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
 
+// frees all allocated memory and closes semaphores
 void	free_all(t_table *table)
 {
 	free(table->philos);

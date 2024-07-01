@@ -6,7 +6,7 @@
 #    By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/26 16:54:24 by rwintgen          #+#    #+#              #
-#    Updated: 2024/06/27 15:59:52 by rwintgen         ###   ########.fr        #
+#    Updated: 2024/07/01 12:42:31 by rwintgen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME		=	philo
 HEADER		=	-I ./include
 
 CC			=	cc
-CFLAGS		=	-Werror -Wall -Wextra -g
+CFLAGS		=	-Werror -Wall -Wextra
 
 SRCS		=	main.c \
 				src/data_init.c \

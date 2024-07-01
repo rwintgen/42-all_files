@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 16:53:48 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/06/27 16:06:31 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/07/01 12:09:47 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,5 +118,7 @@ char	*ph_strjoin(char const *s1, char const *s2);
 void	*wait_death(void *param);
 int		start_processes(t_table *table);
 void	print_status(t_philo *philo, t_state state);
+int		wait_all_processes(t_table *table);
+void	free_all(t_table *table);
 
 #endif
