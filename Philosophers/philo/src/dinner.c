@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 13:26:35 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/07/01 12:44:52 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/07/04 16:52:06 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	think(t_philo *philo, bool pre_simulation)
 	t_think = t_eat * 2 - t_sleep;
 	if (t_think < 0)
 		t_think = 0;
+	print_status(philo, THINKING);
 	ph_usleep(t_think * 0.42, philo->table);
 }
 
