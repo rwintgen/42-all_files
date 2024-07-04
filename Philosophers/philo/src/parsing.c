@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 12:28:56 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/06/24 17:18:33 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/07/01 15:23:56 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static bool	valid_arg(char *arg);
 static bool	valid_nb(char *nb);
 
 // parses argv and stores it in table
-void	parse_input(int argc, char **argv, t_table *table)
+int	parse_input(int argc, char **argv, t_table *table)
 {
 	int	i;
 
@@ -24,7 +24,7 @@ void	parse_input(int argc, char **argv, t_table *table)
 	while (i < argc)
 	{
 		if (!valid_arg(argv[i]))
-			err_exit(E_ARGV, MSG_NUM);
+			return (ERROR);
 		i++;
 	}
 	table->philo_count = ph_atol(argv[1]);
@@ -34,6 +34,7 @@ void	parse_input(int argc, char **argv, t_table *table)
 	table->meals_needed = NO_MEALS;
 	if (argv[5])
 		table->meals_needed = ph_atol(argv[5]);
+	return (SUCCESS);
 }
 
 // checks if a char is a digit

@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 12:08:13 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/06/26 16:59:08 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/07/01 15:28:22 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 
 # define NO_MEALS -1
 # define ERROR -1
+# define SUCCESS 0
 
 # define MSG_USAGE "Usage: ./philo nb_philo time_to_die time_to_eat\
  time_to_sleep [meals_needed]\n"
@@ -149,7 +150,7 @@ typedef struct s_table
 
 // SRC
 
-void	init_data(t_table *table);
+int		init_data(t_table *table);
 
 void	start_dinner(t_table *table);
 void	think(t_philo *philo, bool pre_simulation);
@@ -157,7 +158,7 @@ void	eat(t_philo *philo);
 
 void	*monitor(void *param);
 
-void	parse_input(int argc, char **argv, t_table *table);
+int		parse_input(int argc, char **argv, t_table *table);
 bool	is_num(char c);
 bool	is_whitespace(char c);
 
@@ -190,7 +191,7 @@ void	thread_action(pthread_t *thread, void *(*func)(void *), \
 					void *data, t_action action);
 void	mutex_action(pthread_mutex_t *mutex, t_action action);
 
-void	err_exit(int err, char *msg);
+int		err_msg(int err, char *msg);
 long	get_time(t_unit unit);
 void	clean(t_table *table);
 

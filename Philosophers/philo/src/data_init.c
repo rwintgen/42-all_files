@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 12:51:55 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/06/24 17:40:02 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/07/01 15:29:47 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	init_philos(t_table *table);
 static void	give_forks(t_philo *philo, t_fork *forks, int index);
 
 // inits table data before threading
-void	init_data(t_table *table)
+int	init_data(t_table *table)
 {
 	int	i;
 
@@ -24,9 +24,14 @@ void	init_data(t_table *table)
 	table->all_threads_ready = false;
 	table->running_threads_count = 0;
 	table->philos = malloc(sizeof(t_philo) * table->philo_count);
+	if (!table->philos)
+		return (ERROR);
 	table->forks = malloc(sizeof(t_fork) * table->philo_count);
-	if (!table->philos || !table->forks)
-		err_exit(E_MALLOC, MSG_MALLOC);
+	if (!table->forks)
+	{
+		free(table->philos);
+		return (ERROR);
+	}
 	mutex_action(&table->table_mutex, INIT);
 	mutex_action(&table->print_mutex, INIT);
 	i = 0;
@@ -37,6 +42,7 @@ void	init_data(t_table *table)
 		i++;
 	}
 	init_philos(table);
+	return (SUCCESS);
 }
 
 // inits each philo's elements
