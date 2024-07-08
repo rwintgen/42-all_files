@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 12:39:52 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/07/08 15:44:01 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/07/08 16:16:44 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 class PhoneBook
 {
 	public:
-		void	addContact(const std::string& FirstName, const std::string& Surname, \
-							const std::string& Nickname, const std::string& Phone, \
-							const std::string& Secret);
+		void	addContact(const std::string& firstname, const std::string& surname, \
+							const std::string& nickname, const std::string& phone, \
+							const std::string& secret);
 		void	displayAll();
 		void	displayOne(int index);
 	

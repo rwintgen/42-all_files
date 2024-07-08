@@ -6,17 +6,17 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 12:39:49 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/07/08 16:02:02 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/07/08 16:16:44 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 
 void	AddContact(std::string firstname, std::string surname, \
-					std::string nickname, std::string phone, \
-					std::string secret)
+					std::string nickname, std::string phone, std::string secret)
 {
-	if (firstame.empty || surname.empty || nickname.empty || phone.empty || secret.empty)
+	if (firstame.empty() || surname.empty() || nickname.empty() \
+		|| phone.empty() || secret.empty())
 	{
 		std::cout << "Error: empty fields in contact" << std::endl;
 		return ;
@@ -29,7 +29,16 @@ void	AddContact(std::string firstname, std::string surname, \
 	Contact[this->currentIndex].set
 	Contact[this->currentIndex].set
 }
+/*
+ ____________________________________________
+|Index     |Name      |Surname   |Nickname  |
+|‾‾‾‾‾‾‾‾‾‾|‾‾‾‾‾‾‾‾‾‾|‾‾‾‾‾‾‾‾‾‾|‾‾‾‾‾‾‾‾‾‾|
+|__________|__________|__________|__________|
+|‾‾‾‾‾‾‾‾‾‾|‾‾‾‾‾‾‾‾‾‾|‾‾‾‾‾‾‾‾‾‾|‾‾‾‾‾‾‾‾‾‾|
+|__________|__________|__________|__________|
 
+
+*/
 void	DisplayAll()
 {
 
