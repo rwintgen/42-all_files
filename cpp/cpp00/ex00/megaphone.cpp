@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 11:52:58 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/07/08 12:20:29 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/07/08 12:30:50 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 int main(int argc, char **argv)
 {
 	std::string result = "";
-
-	(void)argc;
 
 	if (!argv[1])
 	{
