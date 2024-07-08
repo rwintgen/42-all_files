@@ -6,7 +6,7 @@
 #    By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/08 11:53:02 by rwintgen          #+#    #+#              #
-#    Updated: 2024/07/08 12:34:29 by rwintgen         ###   ########.fr        #
+#    Updated: 2024/07/08 15:25:52 by rwintgen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,9 @@ NAME		=	megaphone
 CC			=	c++
 FLAGS		=	-Wall -Wextra -Werror -std=c++98
 
-SRCS		=	megaphone.cpp
-OBJ			=	$(SRCS:.cpp=.o)
+SRC			=	megaphone.cpp
+
+OBJ			=	$(SRC:.cpp=.o)
 
 .cpp.o:
 	$(CC) $(FLAGS) -c $< -o $@
