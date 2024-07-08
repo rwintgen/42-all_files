@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 12:38:54 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/07/08 13:02:09 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/07/08 13:26:41 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,23 +18,23 @@
 class Contact
 {
 	public:
-		std::string	GetFirstName(void);
-		void		SetFirstName(std::string);
-		std::string	GetLastName(void);
-		void		SetLastName(std::string);
-		std::string	GetNickname(void);
-		void		SetNickname(std::string);
-		std::string	GetPhone(void);
-		void		SetPhone(std::string);
-		std::string	GetSecret(void);
-		void		SetSecret(std::string);
+		inline std::string	getFirstName(void) const { return (firstName); }
+		inline void			setFirstName(std::string str) { firstName = str; }
+		inline std::string	getLastName(void) const { return (lastName); }
+		inline void			setLastName(std::string str) { lastName = str; }
+		inline std::string	getNickname(void) const { return (nickname); }
+		inline void			setNickname(std::string str) { nickname = str; }
+		inline std::string	getPhone(void) const { return (phone); }
+		inline void			setPhone(std::string str) { phone = str; }
+		inline std::string	getSecret(void) const {return (secret); }
+		inline void			setSecret(std::string str) { secret = str; }
 	
 	private:
-		std::string	FirstName;
-		std::string	LastName;
-		std::string	Nickname;
-		std::string	Phone;
-		std::string	Secret;
+		std::string	firstName;
+		std::string	lastName;
+		std::string	nickname;
+		std::string	phone;
+		std::string	secret;
 };
 
 #endif
