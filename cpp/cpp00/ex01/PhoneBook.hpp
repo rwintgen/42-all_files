@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 12:39:52 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/07/08 16:16:44 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/07/19 20:42:37 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ class PhoneBook
 		inline void	createPhoneBook(void) { this->currentIndex = 0; };
 		int			currentIndex;
 		Contact		contacts[8];
-
 };
 
 #endif

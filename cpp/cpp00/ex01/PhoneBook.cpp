@@ -3,31 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 12:39:49 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/07/08 17:22:05 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/07/19 20:46:47 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 
-void	AddContact(std::string firstname, std::string surname, \
+void	addContact(std::string firstname, std::string surname, \
 					std::string nickname, std::string phone, std::string secret)
 {
-	if (firstame.empty() || surname.empty() || nickname.empty() \
+	if (firstname.empty() || surname.empty() || nickname.empty() \
 		|| phone.empty() || secret.empty())
 	{
-		std::cout << "Error: empty fields in contact" << std::endl;
+		std::cout << "Error: empty field in contact" << std::endl;
 		return ;
 	}
 	if (this->index == 8)
 		this->index = 0;
-	Contact[this->currentIndex].setFirstName(FirstName);
-	Contact[this->currentIndex].setSurname(Surname);
-	Contact[this->currentIndex].set
-	Contact[this->currentIndex].set
-	Contact[this->currentIndex].set
+	Contact[this->currentIndex].setFirstName(firstname);
+	Contact[this->currentIndex].setSurname(surname);
+	Contact[this->currentIndex].setNickname(nickname);
+	Contact[this->currentIndex].setPhone(phone);
+	Contact[this->currentIndex].setSecret(secret);
 	this->index++;
 }
 

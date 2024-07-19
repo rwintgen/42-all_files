@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Contact.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 12:38:54 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/07/08 15:44:26 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/07/19 20:41:29 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 class Contact
 {
 	public:
-		inline std::string	getFirstName(void) const { return (firstName); }
-		inline void			setFirstName(std::string str) { firstName = str; }
-		inline std::string	getSurname(void) const { return (Surname); }
+		inline std::string	getFirstName(void) const { return (firstname); }
+		inline void			setFirstName(std::string str) { firstname = str; }
+		inline std::string	getSurname(void) const { return (surname); }
 		inline void			setSurname(std::string str) { surname = str; }
 		inline std::string	getNickname(void) const { return (nickname); }
 		inline void			setNickname(std::string str) { nickname = str; }
@@ -30,7 +30,7 @@ class Contact
 		inline void			setSecret(std::string str) { secret = str; }
 	
 	private:
-		std::string	firstName;
+		std::string	firstname;
 		std::string	surname;
 		std::string	nickname;
 		std::string	phone;
