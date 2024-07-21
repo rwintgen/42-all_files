@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 12:39:52 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/07/19 20:42:37 by romain           ###   ########.fr       */
+/*   Updated: 2024/07/21 07:48:07 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ class PhoneBook
 		void	displayOne(int index);
 	
 	private:
-		inline void	createPhoneBook(void) { this->currentIndex = 0; };
-		int			currentIndex;
+		inline void	createPhoneBook(void) { this->index = 0; };
+		int			index;
 		Contact		contacts[8];
 };
 

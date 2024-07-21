@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 11:52:58 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/07/19 20:39:39 by romain           ###   ########.fr       */
+/*   Updated: 2024/07/21 08:24:16 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int main(int argc, char **argv)
 		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
 		return (0);
 	}
-
 	for (int i = 1; i < argc; i++)
 	{
 		std::string tmp = argv[i];
@@ -33,6 +32,5 @@ int main(int argc, char **argv)
 		result += ' ';
 	}
 	std::cout << result << std::endl;
-
 	return (0);
 }
