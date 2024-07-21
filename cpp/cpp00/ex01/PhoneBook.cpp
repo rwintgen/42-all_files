@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 12:39:49 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/07/21 22:56:42 by romain           ###   ########.fr       */
+/*   Updated: 2024/07/21 22:58:24 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,12 @@ void	PhoneBook::displayAll()
 		surname = surname.length() > 10 ? surname.substr(0, 9) + "." : surname;
 		nickname = nickname.length() > 10 ? nickname.substr(0, 9) + "." : nickname;
 
+		index += std::string(10 - index.length(), ' ');
 		name += std::string(10 - name.length(), ' ');
         surname += std::string(10 - surname.length(), ' ');
         nickname += std::string(10 - nickname.length(), ' ');
 
-		std::cout << "|" << index << std::string(10 - index.length(), ' ') << "|" << name << "|" << surname << "|" << nickname << "|" << std::endl;
+		std::cout << "|" << index << "|" << name << "|" << surname << "|" << nickname << "|" << std::endl;
 	}
 	std::cout << " ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾ " << std::endl;
 }
