@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 12:39:33 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/07/21 08:54:15 by romain           ###   ########.fr       */
+/*   Updated: 2024/07/21 22:52:25 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,21 @@ void	addContact(PhoneBook* phonebook)
 
 void	searchContact(PhoneBook* phonebook)
 {
-	
+	std::string	input;
+
+	phonebook->displayAll();
+	while (!std::cin.eof())
+	{
+		std::cout << "Enter index of the contact you want to display: ";
+		std::getline(std::cin, input);
+		if (input.length() == 1 && input[0] >= '0' && input[0] <= '7')
+		{
+			phonebook->displayOne(input[0] - '0');
+			break ;
+		}
+		else
+			std::cout << "Please enter a valid index" << std::endl;
+	}
 }
 
 int	main(void)
@@ -40,8 +54,10 @@ int	main(void)
 	std::string	input;
 	PhoneBook	phonebook;
 
+	std::cout << "PhoneBook opened" << std::endl;
 	while (true)
 	{
+		std::cout << "Please enter ADD, SEARCH or EXIT: ";
 		std::getline(std::cin, input);
 		if (input == "ADD")
 			addContact(&phonebook);
@@ -49,8 +65,6 @@ int	main(void)
 			searchContact(&phonebook);
 		else if (input == "EXIT" || std::cin.eof())
 			break ;
-		else
-			std::cout << "Please enter ADD, SEARCH or EXIT " << std::endl;
 	}
 	std::cout << "PhoneBook closed" << std::endl;
 	return (0);
