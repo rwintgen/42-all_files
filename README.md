@@ -72,7 +72,7 @@ __My push_swap passed with final grade of 100/100. Check out my work [here](http
 Classic computer science problem solved in C. Built upon [Oceano](https://github.com/suspectedoceano)'s [solution](https://youtu.be/zOpzGHwJ3MU?si=kNvIcqguiE0a-Xkt), thank you my friend!  
 !! Bonus part largely dysfunctional !!
 
-__I haven't completed this project yet, but you can steal my work [here](https://github.com/rwintgen/42/tree/main/Philosophers).__
+__My Philosophers passed with final grade of 100/100. Check out my work [here](https://github.com/rwintgen/42/tree/main/Philosophers).__
 
 -----
 
@@ -80,4 +80,12 @@ __I haven't completed this project yet, but you can steal my work [here](https:/
 #### Minishell
 Minishell is a custom shell that replicates basic features of the BASH shell.
 
-__My Minishell passed with final grade of 101/100. Check out my work [here](https://github.com/rwintgen/42/tree/main/minishell).__
+__My Minishell passed with final grade of 101/100. Check out my work [here](https://github.com/rwintgen/42/tree/main/Minishell).__
+
+-----
+
+![42](https://github.com/user-attachments/assets/c054122e-10fb-4426-bb3d-03bd836f08b6)
+#### cub3D
+A FPS coded fully in C using Raycasting - just like the very first FPS to ever run smoothly on old hardware, Wolfenstein 3D and Doom.
+
+__I haven't completed this project yet, but you can steal my work [here](https://github.com/rwintgen/42/tree/main/Cub3d).__
