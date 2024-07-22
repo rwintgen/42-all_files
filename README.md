@@ -80,7 +80,7 @@ __My Philosophers passed with final grade of 100/100. Check out my work [here](h
 #### Minishell
 Minishell is a custom shell that replicates basic features of the BASH shell.
 
-__My Minishell passed with final grade of 101/100. Check out my work [here](https://github.com/rwintgen/42/tree/main/Minishell).__
+__My Minishell passed with final grade of 101/100. Check out my work [here](https://github.com/rwintgen/42/tree/main/minishell).__
 
 -----
 
