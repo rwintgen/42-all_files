@@ -86,6 +86,6 @@ __My Minishell passed with final grade of 101/100. Check out my work [here](http
 
 ![42](https://github.com/user-attachments/assets/c054122e-10fb-4426-bb3d-03bd836f08b6)
 #### cub3D
-A FPS coded fully in C using Raycasting - just like the very first FPS to ever run smoothly on old hardware, Wolfenstein 3D and Doom.
+A FPS coded fully in C using Raycasting - just like the very first FPS to ever run smoothly on old hardware, Wolfenstein 3D.
 
 __I haven't completed this project yet, but you can steal my work [here](https://github.com/rwintgen/42/tree/main/Cub3d).__
