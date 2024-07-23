@@ -6,21 +6,21 @@
 #    By: romain <romain@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/21 23:13:09 by romain            #+#    #+#              #
-#    Updated: 2024/07/22 17:11:26 by romain           ###   ########.fr        #
+#    Updated: 2024/07/23 21:46:38 by romain           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME            =       zombie
+NAME		=		zombie
 
-CC                      =       c++
-FLAGS           =       -Wall -Wextra -Werror -std=c++98
+CC			=		c++
+FLAGS		=		-Wall -Wextra -Werror -std=c++98
 
-SRC                     =       main.cpp \
+SRC			=		main.cpp \
 								Zombie.cpp \
 								newZombie.cpp \
 								randomChump.cpp
 
-OBJ                     =       $(SRC:.cpp=.o)
+OBJ			=		$(SRC:.cpp=.o)
 
 .cpp.o:
 	$(CC) $(FLAGS) -c $< -o $@

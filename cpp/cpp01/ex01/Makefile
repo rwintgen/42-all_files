@@ -6,20 +6,20 @@
 #    By: romain <romain@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/21 23:13:09 by romain            #+#    #+#              #
-#    Updated: 2024/07/23 21:35:24 by romain           ###   ########.fr        #
+#    Updated: 2024/07/23 21:46:28 by romain           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME            =       zombiehorde
+NAME		=		zombiehorde
 
-CC                      =       c++
-FLAGS           =       -Wall -Wextra -Werror -std=c++98
+CC			=		c++
+FLAGS		=		-Wall -Wextra -Werror -std=c++98
 
-SRC                     =       main.cpp \
+SRC			=		main.cpp \
 								Zombie.cpp \
 								zombieHorde.cpp
 
-OBJ                     =       $(SRC:.cpp=.o)
+OBJ			=		$(SRC:.cpp=.o)
 
 .cpp.o:
 	$(CC) $(FLAGS) -c $< -o $@
