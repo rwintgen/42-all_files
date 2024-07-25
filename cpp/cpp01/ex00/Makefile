@@ -6,7 +6,7 @@
 #    By: romain <romain@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/21 23:13:09 by romain            #+#    #+#              #
-#    Updated: 2024/07/23 21:46:38 by romain           ###   ########.fr        #
+#    Updated: 2024/07/25 17:40:28 by romain           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,9 @@ CC			=		c++
 FLAGS		=		-Wall -Wextra -Werror -std=c++98
 
 SRC			=		main.cpp \
-								Zombie.cpp \
-								newZombie.cpp \
-								randomChump.cpp
+					Zombie.cpp \
+					newZombie.cpp \
+					randomChump.cpp
 
 OBJ			=		$(SRC:.cpp=.o)
 
