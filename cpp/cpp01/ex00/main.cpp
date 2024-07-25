@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 23:13:05 by romain            #+#    #+#             */
-/*   Updated: 2024/07/22 17:13:56 by romain           ###   ########.fr       */
+/*   Updated: 2024/07/25 13:16:33 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,5 @@ int	main(void)
 	zombie2->announce();
 	delete (zombie2);
 
-	return (0);
+	return (EXIT_SUCCESS);
 }

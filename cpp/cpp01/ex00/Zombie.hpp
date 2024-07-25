@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 23:13:19 by romain            #+#    #+#             */
-/*   Updated: 2024/07/22 17:02:12 by romain           ###   ########.fr       */
+/*   Updated: 2024/07/25 13:15:54 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ class Zombie {
 
         void announce(void);
     private:
-        std::string name;
+        std::string _name;
 };
 
 void randomChump(std::string name);
