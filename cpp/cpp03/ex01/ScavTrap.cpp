@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 12:58:40 by romain            #+#    #+#             */
-/*   Updated: 2024/08/12 13:58:45 by romain           ###   ########.fr       */
+/*   Updated: 2024/08/12 14:00:03 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	ScavTrap::guardGate(void)
 		std::cout << "ScavTrap " << this->_name << " can't guard the gate right now." << std::endl;
 }
 
-void	ScavTrap::scavAttack(std::string const &target)
+void	ScavTrap::attack(std::string const &target)
 {
 	if (this->_energyPoints > 0 && this->_healthPoints > 0)
 	{
