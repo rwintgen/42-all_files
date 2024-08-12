@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 12:41:13 by romain            #+#    #+#             */
-/*   Updated: 2024/07/26 15:15:28 by romain           ###   ########.fr       */
+/*   Updated: 2024/08/12 13:04:10 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <iostream>
 # include <cmath>
 
-class Fixed
+class	Fixed
 {
 	public:
 		Fixed&	operator=(const Fixed &obj);

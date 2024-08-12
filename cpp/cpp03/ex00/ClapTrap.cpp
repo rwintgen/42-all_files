@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 12:30:59 by romain            #+#    #+#             */
-/*   Updated: 2024/08/12 12:51:27 by romain           ###   ########.fr       */
+/*   Updated: 2024/08/12 13:02:40 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@ ClapTrap::~ClapTrap(void)
 
 void	ClapTrap::attack(std::string const &target)
 {
-	if (this->_energyPoints > 0)
+	if (this->_energyPoints > 0 && this->_healthPoints > 0)
 	{
 		std::cout << "ClapTrap " << _name << " attacks " << target \
 			<< ", causing " << _attackDamage << " points of damage!" << std::endl;
 		this->_energyPoints--;	
 	}
 	else
-		std::cout << "ClapTrap " << _name << " is out of energy!" << std::endl;
+		std::cout << "ClapTrap " << _name << " can't attack right now." << std::endl;
 }
 
 void	ClapTrap::takeDamage(unsigned int amount)
@@ -54,10 +54,11 @@ void	ClapTrap::takeDamage(unsigned int amount)
 
 void	ClapTrap::beRepaired(unsigned int amount)
 {
-	if (this->_healthPoints > 0)
+	if (this->_energyPoints > 0 && this->_healthPoints > 0)
 	{
 		std::cout << "ClapTrap " << _name << " gets repaired for " << amount << " points." << std::endl;
 		this->_healthPoints += amount;
+		this->_energyPoints--;
 		if (this->_healthPoints > 10)
 		{
 			this->_healthPoints = 10;
@@ -65,5 +66,5 @@ void	ClapTrap::beRepaired(unsigned int amount)
 		}
 	}
 	else
-		std::cout << "ClapTrap " << _name << " is beyond repair..." << std::endl;
+		std::cout << "ClapTrap " << _name << " can't repair itself right now..." << std::endl;
 }

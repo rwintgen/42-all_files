@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 12:30:42 by romain            #+#    #+#             */
-/*   Updated: 2024/08/12 12:39:31 by romain           ###   ########.fr       */
+/*   Updated: 2024/08/12 13:03:56 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <iostream>
 
-class ClapTrap
+class	ClapTrap
 {
 	public:
 		ClapTrap(void);
