@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 12:30:59 by romain            #+#    #+#             */
-/*   Updated: 2024/08/12 13:55:25 by romain           ###   ########.fr       */
+/*   Updated: 2024/08/12 14:03:09 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ ClapTrap::ClapTrap(std::string name) : _name(name), _healthPoints(10), _energyPo
 
 ClapTrap::~ClapTrap(void)
 {
-	std::cout << _name << " destroyed!" << std::endl;
+	std::cout << "ClapTrap "<< _name << " destroyed!" << std::endl;
 }
 
 void	ClapTrap::attack(std::string const &target)
