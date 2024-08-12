@@ -1,35 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ClapTrap.hpp                                       :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/12 12:30:42 by romain            #+#    #+#             */
-/*   Updated: 2024/08/12 12:39:31 by romain           ###   ########.fr       */
+/*   Created: 2024/07/26 12:41:15 by romain            #+#    #+#             */
+/*   Updated: 2024/08/12 11:50:45 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CLAPTRAP_HPP
-# define CLAPTRAP_HPP
+#include "Fixed.hpp"
 
-# include <iostream>
-
-class ClapTrap
+int	main(void)
 {
-	public:
-		ClapTrap(void);
-		ClapTrap(std::string name);
-		~ClapTrap(void);
+	Fixed		a;
+	Fixed const	b( Fixed( 5.05f ) * Fixed( 2 ) );
 
-		void	attack(std::string const &target);
-		void	takeDamage(unsigned int amount);
-		void	beRepaired(unsigned int amount);
-	private:
-		std::string	_name;
-		int			_healthPoints;
-		int			_energyPoints;
-		int			_attackDamage;
-};
-
-#endif
+	std::cout << a << std::endl;
+	std::cout << ++a << std::endl;
+	std::cout << a << std::endl;
+	std::cout << a++ << std::endl;
+	std::cout << a << std::endl;
+	std::cout << b << std::endl;
+	std::cout << Fixed::max( a, b ) << std::endl;
+	return 0;
+}
