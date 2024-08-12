@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 12:30:48 by romain            #+#    #+#             */
-/*   Updated: 2024/08/12 14:02:34 by romain           ###   ########.fr       */
+/*   Updated: 2024/08/12 14:29:00 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,20 @@
 
 int	main(void)
 {
-	ClapTrap	jackie;
+	ClapTrap	jack;
 	ClapTrap	maya("Maya");
 	ScavTrap	krieg;
 	ScavTrap	zero("Zero");
 
 	std::cout << std::endl;
-	jackie.attack("Maya");
+	jack.attack("Maya");
 	maya.takeDamage(0);
 	maya.beRepaired(5);
 
 	std::cout << std::endl;
-	zero.attack("Jackie");
-	jackie.takeDamage(20);
-	jackie.beRepaired(10);
+	zero.attack("Jack");
+	jack.takeDamage(20);
+	jack.beRepaired(5);
 
 	std::cout << std::endl;
 	krieg.guardGate();

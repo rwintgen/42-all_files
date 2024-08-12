@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 12:30:59 by romain            #+#    #+#             */
-/*   Updated: 2024/08/12 14:32:18 by romain           ###   ########.fr       */
+/*   Updated: 2024/08/12 14:32:02 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,47 +24,47 @@ ClapTrap::ClapTrap(std::string name) : _name(name), _hitPoints(10), _energyPoint
 
 ClapTrap::~ClapTrap(void)
 {
-	std::cout << "ClapTrap " << _name << " destroyed!" << std::endl;
+	std::cout << "ClapTrap "<< _name << " destroyed!" << std::endl;
 }
 
 void	ClapTrap::attack(std::string const &target)
 {
 	if (this->_energyPoints > 0 && this->_hitPoints > 0)
 	{
-		std::cout << "ClapTrap " << _name << " attacks " << target \
+		std::cout << _name << " attacks " << target \
 			<< ", causing " << _attackDamage << " points of damage!" << std::endl;
 		this->_energyPoints--;	
 	}
 	else
-		std::cout << "ClapTrap " << _name << " can't attack right now." << std::endl;
+		std::cout << _name << " can't attack right now." << std::endl;
 }
 
 void	ClapTrap::takeDamage(unsigned int amount)
 {
 	if (this->_hitPoints > 0)
 	{
-		std::cout << "ClapTrap " << _name << " takes " << amount << " points of damage!" << std::endl;
+		std::cout << _name << " takes " << amount << " points of damage!" << std::endl;
 		this->_hitPoints -= amount;
 		if (this->_hitPoints <= 0)
-			std::cout << "ClapTrap " << _name << " is dead..." << std::endl;
+			std::cout << _name << " is dead..." << std::endl;
 	}
 	else
-		std::cout << "ClapTrap " << _name << " is already dead..." << std::endl;
+		std::cout << _name << " is already dead..." << std::endl;
 }
 
 void	ClapTrap::beRepaired(unsigned int amount)
 {
 	if (this->_energyPoints > 0 && this->_hitPoints > 0)
 	{
-		std::cout << "ClapTrap " << _name << " gets repaired for " << amount << " points." << std::endl;
+		std::cout << _name << " gets repaired for " << amount << " points." << std::endl;
 		this->_hitPoints += amount;
 		this->_energyPoints--;
 		if (this->_hitPoints > 10)
 		{
 			this->_hitPoints = 10;
-			std::cout << "ClapTrap " << _name << " is at full life!" << std::endl;
+			std::cout << _name << " is at full life!" << std::endl;
 		}
 	}
 	else
-		std::cout << "ClapTrap " << _name << " can't repair itself right now..." << std::endl;
+		std::cout << _name << " can't repair itself right now..." << std::endl;
 }
