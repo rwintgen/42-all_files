@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 12:58:43 by romain            #+#    #+#             */
-/*   Updated: 2024/08/12 13:42:58 by romain           ###   ########.fr       */
+/*   Updated: 2024/08/12 13:57:13 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ class	ScavTrap : public ClapTrap
 		~ScavTrap(void);
 
 		void	guardGate(void);
+		void	scavAttack(std::string const &target);
 	private:
 		bool	_keeperMode;
 };
