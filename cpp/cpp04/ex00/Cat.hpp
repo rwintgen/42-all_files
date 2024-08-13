@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animals.hpp                                        :+:      :+:    :+:   */
+/*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/12 15:37:43 by romain            #+#    #+#             */
-/*   Updated: 2024/08/13 12:32:33 by romain           ###   ########.fr       */
+/*   Created: 2024/08/13 12:06:21 by romain            #+#    #+#             */
+/*   Updated: 2024/08/13 12:31:25 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMALS_HPP
-# define ANIMALS_HPP
+#ifndef CAT_HPP
+# define CAT_HPP
 
-# include <iostream>
-# include <string>
+# include "Animals.hpp"
 
-class	Animal
+class	Cat : public Animal
 {
 	public:
-		Animal(void);
-		Animal(std::string type);
-		~Animal(void);
-
-		std::string	getType(void) const;
-		void		setType(std::string type);
-
-		virtual void	makeSound(void) const;
-	protected:
-		std::string	_type;
+		Cat(void);
+		~Cat(void);
+	
+		virtual void	makeSound(void) const;	
 };
 
 #endif

@@ -6,7 +6,7 @@
 #    By: romain <romain@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/12 15:40:45 by romain            #+#    #+#              #
-#    Updated: 2024/08/12 15:41:27 by romain           ###   ########.fr        #
+#    Updated: 2024/08/13 12:12:12 by romain           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,10 @@ NAME		=		Polymorphism
 CC			=		c++
 FLAGS		=		-Wall -Wextra -Werror -std=c++98
 
-SRC			=		main.cpp
+SRC			=		main.cpp \
+					Animals.cpp \
+					Dog.cpp \
+					Cat.cpp \
 
 OBJ			=		$(SRC:.cpp=.o)
 
