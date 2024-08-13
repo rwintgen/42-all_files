@@ -6,7 +6,7 @@
 #    By: romain <romain@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/12 15:40:45 by romain            #+#    #+#              #
-#    Updated: 2024/08/13 12:12:12 by romain           ###   ########.fr        #
+#    Updated: 2024/08/13 13:59:03 by romain           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,10 @@ CC			=		c++
 FLAGS		=		-Wall -Wextra -Werror -std=c++98
 
 SRC			=		main.cpp \
-					Animals.cpp \
+					Animal.cpp \
 					Dog.cpp \
 					Cat.cpp \
+					WrongAnimal.cpp
 
 OBJ			=		$(SRC:.cpp=.o)
 
