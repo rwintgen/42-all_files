@@ -21,7 +21,11 @@ class	Animal
 	public:
 		Animal(void);
 		Animal(std::string type);
+		Animal(const Animal &copy);
 		virtual ~Animal(void);
+
+		void	swap(Animal &obj1, Animal &obj2);
+		Animal	&operator=(const Animal &copy);
 
 		std::string	getType(void) const;
 		void		setType(std::string type);

@@ -22,9 +22,27 @@ Animal::Animal(std::string type) : _type(type)
 	std::cout << "Animal type constructor called" << std::endl;
 }
 
+Animal::Animal(const Animal &copy)
+{
+	std::cout << "Animal copy constructor called" << std::endl;
+	_type = copy.getType();}
+
 Animal::~Animal(void)
 {
 	std::cout << "Animal destructor called" << std::endl;
+}
+
+void	Animal::swap(Animal &obj1, Animal &obj2)
+{
+	std::cout << "Animal swap called" << std::endl;
+	std::swap(obj1._type, obj2._type);
+}
+Animal	&Animal::operator=(const Animal &copy)
+{
+	std::cout << "Animal assignation operator called" << std::endl;
+	if (this != &copy)
+		_type = copy.getType();
+	return (*this);
 }
 
 std::string	Animal::getType(void) const
