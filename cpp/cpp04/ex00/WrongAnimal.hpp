@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 13:43:54 by romain            #+#    #+#             */
-/*   Updated: 2024/08/13 13:55:29 by romain           ###   ########.fr       */
+/*   Updated: 2024/08/15 17:24:08 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,12 @@ class	WrongAnimal
 {
 	public:
 		WrongAnimal();
+		WrongAnimal(const WrongAnimal &copy);
 		WrongAnimal(std::string type);
 		virtual ~WrongAnimal();
+
+		void	swap(WrongAnimal &obj1, WrongAnimal &obj2);
+		WrongAnimal	&operator=(const WrongAnimal &copy);
 
 		std::string	getType() const;
 		void		setType(std::string type);

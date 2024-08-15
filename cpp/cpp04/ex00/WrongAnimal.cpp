@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 13:43:49 by romain            #+#    #+#             */
-/*   Updated: 2024/08/13 14:00:32 by romain           ###   ########.fr       */
+/*   Updated: 2024/08/15 17:24:28 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,12 @@ WrongAnimal::WrongAnimal() : _type("WrongAnimal")
 
 }
 
+WrongAnimal::WrongAnimal(const WrongAnimal &copy)
+{
+	std::cout << "WrongAnimal copy constructor called" << std::endl;
+	*this = copy;
+}
+
 WrongAnimal::WrongAnimal(std::string type) : _type(type)
 {
 	std::cout << "WrongAnimal type constructor called" << std::endl;
@@ -26,6 +32,21 @@ WrongAnimal::WrongAnimal(std::string type) : _type(type)
 WrongAnimal::~WrongAnimal()
 {
 	std::cout << "WrongAnimal destructor called" << std::endl;
+}
+
+void	WrongAnimal::swap(WrongAnimal &obj1, WrongAnimal &obj2)
+{
+	WrongAnimal	tmp = obj1;
+
+	obj1 = obj2;
+	obj2 = tmp;
+}
+
+WrongAnimal	&WrongAnimal::operator=(const WrongAnimal &copy)
+{
+	std::cout << "WrongAnimal assignation operator called" << std::endl;
+	this->_type = copy._type;
+	return (*this);
 }
 
 std::string	WrongAnimal::getType(void) const
