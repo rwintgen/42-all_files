@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 13:43:49 by romain            #+#    #+#             */
-/*   Updated: 2024/08/13 14:00:32 by romain           ###   ########.fr       */
+/*   Updated: 2024/08/15 17:03:19 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,12 @@ WrongAnimal::WrongAnimal() : _type("WrongAnimal")
 
 }
 
+WrongAnimal::WrongAnimal(const WrongAnimal &copy)
+{
+	std::cout << "WrongAnimal copy constructor called" << std::endl;
+	_type = copy.getType();
+}
+
 WrongAnimal::WrongAnimal(std::string type) : _type(type)
 {
 	std::cout << "WrongAnimal type constructor called" << std::endl;
@@ -26,6 +32,18 @@ WrongAnimal::WrongAnimal(std::string type) : _type(type)
 WrongAnimal::~WrongAnimal()
 {
 	std::cout << "WrongAnimal destructor called" << std::endl;
+}
+
+WrongAnimal &WrongAnimal::operator=(WrongAnimal other)
+{
+	std::cout << "WrongAnimal assignation operator called" << std::endl;
+	swap(*this, other);
+	return (*this);
+}
+
+void	WrongAnimal::swap(WrongAnimal &first, WrongAnimal &second)
+{
+	std::swap(first._type, second._type);
 }
 
 std::string	WrongAnimal::getType(void) const

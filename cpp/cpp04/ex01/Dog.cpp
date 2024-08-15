@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:06:07 by romain            #+#    #+#             */
-/*   Updated: 2024/08/13 18:00:19 by romain           ###   ########.fr       */
+/*   Updated: 2024/08/15 17:10:51 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,27 @@ Dog	&Dog::operator=(const Dog &copy)
 void	Dog::makeSound(void) const
 {
 	std::cout << "Woof woof!" << std::endl;
+}
+
+void	Dog::addIdea(std::string newIdea)
+{
+	for (int i = 0; i < 100; i++)
+	{
+		if (this->_brain->getIdea(i) == "")
+		{
+			this->_brain->setIdea(i, newIdea);
+			return ;
+		}
+	}
+	std::cout << "Dog's brain is full" << std::endl;
+}
+
+void	Dog::printAllIdeas(void) const
+{
+	std::cout << "What's happening in the dogs' brain:" << std::endl;
+	for (int i = 0; i < 100; i++)
+	{
+		if (this->_brain->getIdea(i) != "")
+			std::cout << "Idea " << i << ": " << this->_brain->getIdea(i) << std::endl;
+	}
 }

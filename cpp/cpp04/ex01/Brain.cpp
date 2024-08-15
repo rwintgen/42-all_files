@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 18:04:46 by romain            #+#    #+#             */
-/*   Updated: 2024/08/13 18:22:49 by romain           ###   ########.fr       */
+/*   Updated: 2024/08/15 17:14:04 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 Brain::Brain()
 {
 	std::cout << "Brain default constructor called" << std::endl;
+	this->_ideas = new std::string[100];
 }
 
 Brain::Brain(const Brain &copy)
@@ -49,16 +50,22 @@ Brain	&Brain::operator=(Brain copy)
 	return (*this);
 }
 
-std::string	*Brain::getIdeas(void) const
+std::string Brain::getIdea(unsigned int index) const
 {
-	return (this->_ideas);
+	if (index > 99)
+	{
+		std::cout << "Can't get idea " << index << std::endl;
+		return "";
+	}
+	return this->_ideas[index];
 }
 
-void	Brain::setIdeas(std::string *ideas)
+void Brain::setIdea(unsigned int index, std::string idea)
 {
-	if (this->_ideas)
-		delete [] this->_ideas;
-	this->_ideas = new std::string[100];
-	for (int i = 0; i < 100; i++)
-		this->_ideas[i] = ideas[i];
+	if (index > 99)
+	{
+		std::cout << "Can't set idea " << index << std::endl;
+		return;
+	}
+	this->_ideas[index] = idea;
 }

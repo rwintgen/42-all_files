@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 15:41:01 by romain            #+#    #+#             */
-/*   Updated: 2024/08/13 18:26:07 by romain           ###   ########.fr       */
+/*   Updated: 2024/08/15 17:22:37 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,18 @@ int main()
 	delete doggo;
 	delete pussy;
 	delete wrongCat;
+
+	std::cout << std::endl;
+	Animal	*animals[100];
+	for (int i = 0; i < 100; i++)
+	{
+		if (i % 2 == 0)
+			animals[i] = new Dog();
+		else
+			animals[i] = new Cat();
+	}
+	for (int i = 0; i < 100; i++)
+		delete animals[i];
 
 	std::cout << std::endl;
 	

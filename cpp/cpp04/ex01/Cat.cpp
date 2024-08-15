@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:06:35 by romain            #+#    #+#             */
-/*   Updated: 2024/08/13 17:57:29 by romain           ###   ########.fr       */
+/*   Updated: 2024/08/15 17:10:40 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,27 @@ Cat	&Cat::operator=(const Cat &copy)
 void	Cat::makeSound(void) const
 {
 	std::cout << "Meow meow!" << std::endl;
+}
+
+void	Cat::addIdea(std::string newIdea)
+{
+	for (int i = 0; i < 100; i++)
+	{
+		if (this->_brain->getIdea(i) == "")
+		{
+			this->_brain->setIdea(i, newIdea);
+			return ;
+		}
+	}
+	std::cout << "The cat's brain is full" << std::endl;
+}
+
+void	Cat::printAllIdeas(void) const
+{
+	std::cout << "What's happening in the cats' brain:" << std::endl;
+	for (int i = 0; i < 100; i++)
+	{
+		if (this->_brain->getIdea(i) != "")
+			std::cout << "Idea " << i << ": " << this->_brain->getIdea(i) << std::endl;
+	}
 }
