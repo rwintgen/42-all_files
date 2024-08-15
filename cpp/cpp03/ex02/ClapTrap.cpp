@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 12:30:59 by romain            #+#    #+#             */
-/*   Updated: 2024/08/12 14:32:02 by romain           ###   ########.fr       */
+/*   Updated: 2024/08/15 17:34:09 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,28 @@ ClapTrap::ClapTrap(std::string name) : _name(name), _hitPoints(10), _energyPoint
 	std::cout << "ClapTrap " << _name << " created!" << std::endl;
 }
 
+ClapTrap::ClapTrap(const ClapTrap &obj)
+{
+    this->_name = obj._name;
+    this->_hitPoints = obj._hitPoints;
+    this->_energyPoints = obj._energyPoints;
+    this->_attackDamage = obj._attackDamage;
+    std::cout << "Copy constructor of ClapTrap called!" << std::endl;
+}
+
 ClapTrap::~ClapTrap(void)
 {
 	std::cout << "ClapTrap "<< _name << " destroyed!" << std::endl;
+}
+
+ClapTrap	&ClapTrap::operator=(const ClapTrap &obj)
+{
+	this->_name = obj._name;
+	this->_hitPoints = obj._hitPoints;
+	this->_energyPoints = obj._energyPoints;
+	this->_attackDamage = obj._attackDamage;
+	std::cout << "Assignment operator of ClapTrap called!" << std::endl;
+	return (*this);
 }
 
 void	ClapTrap::attack(std::string const &target)

@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 12:58:40 by romain            #+#    #+#             */
-/*   Updated: 2024/08/12 14:22:35 by romain           ###   ########.fr       */
+/*   Updated: 2024/08/15 17:37:33 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,16 @@ ScavTrap::ScavTrap(void) : ClapTrap("Krieg") , _keeperMode(false)
 	std::cout << "ClapTrap " << this->_name << " just became a ScavTrap!" << std::endl;
 }
 
+ScavTrap::ScavTrap(const ScavTrap &obj)
+{
+	this->_name = obj._name;
+	this->_hitPoints = obj._hitPoints;
+	this->_energyPoints = obj._energyPoints;
+	this->_attackDamage = obj._attackDamage;
+	this->_keeperMode = obj._keeperMode;
+	std::cout << "Copy constructor of ScavTrap called!" << std::endl;
+}
+
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name) , _keeperMode(false)
 {
 	this->_hitPoints = 100;
@@ -31,6 +41,17 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name) , _keeperMode(false)
 ScavTrap::~ScavTrap(void)
 {
 	std::cout << "ScavTrap " << this->_name << " destroyed!" << std::endl;
+}
+
+ScavTrap	&ScavTrap::operator=(const ScavTrap &obj)
+{
+	this->_name = obj._name;
+	this->_hitPoints = obj._hitPoints;
+	this->_energyPoints = obj._energyPoints;
+	this->_attackDamage = obj._attackDamage;
+	this->_keeperMode = obj._keeperMode;
+	std::cout << "Assignment operator of ScavTrap called!" << std::endl;
+	return (*this);
 }
 
 void	ScavTrap::guardGate(void)
