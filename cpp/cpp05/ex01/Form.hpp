@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:36:08 by romain            #+#    #+#             */
-/*   Updated: 2024/08/20 15:06:18 by romain           ###   ########.fr       */
+/*   Updated: 2024/08/20 16:09:38 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ class	Form
 		};	
 	private:
 		std::string const	_name;
-		int					_signGrade;
-		int					_execGrade;
+		int const			_signGrade;
+		int const			_execGrade;
 		bool				_signed;
 };
 
