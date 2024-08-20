@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 19:57:20 by romain            #+#    #+#             */
-/*   Updated: 2024/08/18 20:14:41 by romain           ###   ########.fr       */
+/*   Updated: 2024/08/20 13:48:52 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ class	Bureaucrat
 		Bureaucrat(Bureaucrat const &copy);
 		~Bureaucrat();
 
-		Bureaucrat	&operator=(Bureaucrat const &b);
+		Bureaucrat	&operator=(Bureaucrat const &src);
 
 		std::string const	&getName() const;
 		int					getGrade() const;
@@ -48,7 +48,7 @@ class	Bureaucrat
 				}
 		};
 
-		class NameEmptyException : public std::exception
+		class EmptyNameException : public std::exception
 		{
 			public:
 				virtual const char	*what() const throw()
