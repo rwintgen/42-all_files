@@ -6,7 +6,7 @@
 #    By: romain <romain@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/18 19:57:10 by romain            #+#    #+#              #
-#    Updated: 2024/08/18 20:01:18 by romain           ###   ########.fr        #
+#    Updated: 2024/08/20 14:25:57 by romain           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CC			=		c++
 FLAGS		=		-Wall -Wextra -Werror -std=c++98
 
 SRC			=		main.cpp \
-					BUreaucrat.cpp
+					Bureaucrat.cpp
 
 OBJ			=		$(SRC:.cpp=.o)
 

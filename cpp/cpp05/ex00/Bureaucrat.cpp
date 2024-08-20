@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 19:57:16 by romain            #+#    #+#             */
-/*   Updated: 2024/08/20 13:51:59 by romain           ###   ########.fr       */
+/*   Updated: 2024/08/20 14:23:02 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,14 @@ int	Bureaucrat::getGrade() const
 void	Bureaucrat::incrementGrade()
 {
 	if (this->_grade - 1 < 1)
-		throw Bureaucrat::GradeTooLowException();
+		throw Bureaucrat::GradeTooHighException();
 	this->_grade--;
 }
 
 void	Bureaucrat::decrementGrade()
 {
 	if (this->_grade + 1 > 150)
-		throw Bureaucrat::GradeTooHighException();
+		throw Bureaucrat::GradeTooLowException();
 	this->_grade++;
 }
 
