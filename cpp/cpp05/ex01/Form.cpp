@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:36:14 by romain            #+#    #+#             */
-/*   Updated: 2024/08/20 15:02:41 by romain           ###   ########.fr       */
+/*   Updated: 2024/08/20 15:06:18 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ bool	Form::isSigned() const
 	return (_signed);
 }
 
-void	Form::signForm(Bureaucrat const &bureaucrat)
+void	Form::beSigned(Bureaucrat const &bureaucrat)
 {
 	if (bureaucrat.getGrade() > _signGrade)
 		throw Form::GradeTooLowException();

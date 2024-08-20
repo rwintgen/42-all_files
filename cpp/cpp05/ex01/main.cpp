@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 19:57:12 by romain            #+#    #+#             */
-/*   Updated: 2024/08/20 15:04:00 by romain           ###   ########.fr       */
+/*   Updated: 2024/08/20 15:06:18 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(void)
 			arnold.incrementGrade();
 			std::cout << arnold << std::endl;
 			std::cout << contract << std::endl;
-			contract.signForm(arnold);
+			contract.beSigned(arnold);
 			std::cout << contract << std::endl;
 			return (0);
 		}

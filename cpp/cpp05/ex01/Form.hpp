@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:36:08 by romain            #+#    #+#             */
-/*   Updated: 2024/08/20 14:54:11 by romain           ###   ########.fr       */
+/*   Updated: 2024/08/20 15:06:18 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ class	Form
 		int			getSignGrade() const;
 		int			getExecGrade() const;
 		bool		isSigned() const;
-		void		signForm(Bureaucrat const &bureaucrat);
+		void		beSigned(Bureaucrat const &bureaucrat);
 
 		class	GradeTooHighException : public std::exception
 		{
