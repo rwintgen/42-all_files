@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 16:12:15 by romain            #+#    #+#             */
-/*   Updated: 2024/08/20 16:25:04 by romain           ###   ########.fr       */
+/*   Updated: 2024/08/20 16:25:54 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ ShrubberyCreationForm	&ShrubberyCreationForm::operator=(ShrubberyCreationForm co
 	return (*this);
 }
 
-void	ShrubberyCreationForm::execute(Bureaucrat const &bureaucrat)
+void	ShrubberyCreationForm::execute(Bureaucrat const &obj)
 {
 	// Draw ascii tree
 }
