@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 19:57:16 by romain            #+#    #+#             */
-/*   Updated: 2024/08/20 14:23:02 by romain           ###   ########.fr       */
+/*   Updated: 2024/08/20 14:49:43 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ Bureaucrat::Bureaucrat(std::string const &name, int grade) : _name(name)
 
 Bureaucrat::Bureaucrat(Bureaucrat const &copy) : _name(copy._name), _grade(copy._grade)
 {
-	std::cout << "Bureaucrat " << this->_name << " created" << std::endl;
+	std::cout << "Bureaucrat " << this->_name << " created from copy constructor" << std::endl;
 }
 
 Bureaucrat::~Bureaucrat()
