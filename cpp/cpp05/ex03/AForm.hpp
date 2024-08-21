@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:36:08 by romain            #+#    #+#             */
-/*   Updated: 2024/08/20 16:09:21 by romain           ###   ########.fr       */
+/*   Updated: 2024/08/21 12:58:25 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,15 @@ class	AForm
 				virtual const char	*what() const throw()
 				{
 					return ("File could not be opened");
+				}
+		};
+		
+		class	InvalidFormException : public std::exception
+		{
+			public:
+				virtual const char	*what() const throw()
+				{
+					return ("Invalid form");
 				}
 		};
 

@@ -6,11 +6,11 @@
 #    By: romain <romain@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/18 19:57:10 by romain            #+#    #+#              #
-#    Updated: 2024/08/21 12:00:49 by romain           ###   ########.fr        #
+#    Updated: 2024/08/21 13:27:06 by romain           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=		Forms
+NAME		=		Intern
 
 CC			=		c++
 FLAGS		=		-Wall -Wextra -Werror -std=c++98
@@ -20,7 +20,8 @@ SRC			=		main.cpp \
 					AForm.cpp \
 					ShrubberyCreationForm.cpp \
 					RobotomyRequestForm.cpp \
-					PresidentialPardonForm.cpp
+					PresidentialPardonForm.cpp \
+					Intern.cpp
 
 OBJ			=		$(SRC:.cpp=.o)
 

@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 19:57:12 by romain            #+#    #+#             */
-/*   Updated: 2024/08/21 12:16:46 by romain           ###   ########.fr       */
+/*   Updated: 2024/08/21 13:28:29 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
+#include "Intern.hpp"
+#include "AForm.hpp"
 
 int	main(void)
 {
@@ -23,6 +25,8 @@ int	main(void)
 		ShrubberyCreationForm	scf("DeathNote");
 		RobotomyRequestForm		rrf("A public service agent");
 		PresidentialPardonForm	ppf("A CROUS machine hacker");
+		Intern					unpaidIntern;
+		AForm					*form = NULL;
 		try
 		{
 			std::cout << std::endl << "========= Bureaucrat ========" << std::endl;
@@ -34,9 +38,9 @@ int	main(void)
 
 			std::cout << std::endl << "=== ShrubberyCreationForm ===" << std::endl;
 			std::cout << scf << std::endl;
-            arnold.signForm(scf);
-            std::cout << scf << std::endl;
-            arnold.executeForm(scf);
+			arnold.signForm(scf);
+			std::cout << scf << std::endl;
+			arnold.executeForm(scf);
 
 			std::cout << std::endl << "==== RobotomyRequestForm ====" << std::endl;
 			std::cout << rrf << std::endl;
@@ -49,6 +53,15 @@ int	main(void)
 			arnold.signForm(ppf);
 			std::cout << ppf << std::endl;
 			arnold.executeForm(ppf);
+
+			std::cout << std::endl << "=========== Intern ==========" << std::endl;
+			form = unpaidIntern.makeForm("RobotomyRequestForm", "A CROUS accountant");
+			std::cout << *form << std::endl;
+			arnold.signForm(*form);
+			std::cout << *form << std::endl;
+			arnold.executeForm(*form);
+			std::cout << std::endl;
+			delete form;
 
 			std::cout << std::endl;
 			return (0);

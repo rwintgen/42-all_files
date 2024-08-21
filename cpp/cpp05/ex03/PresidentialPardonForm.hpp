@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 11:56:06 by romain            #+#    #+#             */
-/*   Updated: 2024/08/21 11:57:08 by romain           ###   ########.fr       */
+/*   Updated: 2024/08/21 13:13:45 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ class	PresidentialPardonForm : public AForm
 		
 		std::string	getTarget() const;
 
-		void		execute(Bureaucrat const &executor) const;
+		void			execute(Bureaucrat const &executor) const;
+		static AForm	*create(std::string const &target);
 
 	private:
 		std::string	_target;

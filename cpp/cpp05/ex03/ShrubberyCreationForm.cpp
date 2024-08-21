@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 16:12:15 by romain            #+#    #+#             */
-/*   Updated: 2024/08/21 11:41:41 by romain           ###   ########.fr       */
+/*   Updated: 2024/08/21 13:15:30 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,9 @@ void	ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 		file << "      // \\      " << std::endl;
 		file.close();
 	}
+}
+
+AForm	*ShrubberyCreationForm::create(std::string const &target)
+{
+	return (new ShrubberyCreationForm(target));
 }

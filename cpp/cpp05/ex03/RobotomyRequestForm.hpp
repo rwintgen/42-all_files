@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 11:32:09 by romain            #+#    #+#             */
-/*   Updated: 2024/08/21 11:40:19 by romain           ###   ########.fr       */
+/*   Updated: 2024/08/21 13:15:24 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,9 @@ class	RobotomyRequestForm : public AForm
 		
 		std::string	getTarget() const;
 
-		void		execute(Bureaucrat const &executor) const;
+		void			execute(Bureaucrat const &executor) const;
+		static AForm	*create(std::string const &target);
+
 
 	private:
 		std::string	_target;

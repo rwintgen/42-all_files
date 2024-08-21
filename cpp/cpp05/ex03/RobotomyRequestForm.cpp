@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 11:32:21 by romain            #+#    #+#             */
-/*   Updated: 2024/08/21 11:51:21 by romain           ###   ########.fr       */
+/*   Updated: 2024/08/21 13:15:13 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,9 @@ void	RobotomyRequestForm::execute(Bureaucrat const &executor) const
 		std::cout << "*wrrzzzzzz, wrzz-wrrrrzzzzz*, " << this->_target << " has been robotomized" << std::endl;
 	else
 		std::cout << this->_target << " couldn't get robotomized" << std::endl;
+}
+
+AForm	*RobotomyRequestForm::create(std::string const &target)
+{
+	return (new RobotomyRequestForm(target));
 }
