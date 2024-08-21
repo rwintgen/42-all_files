@@ -6,7 +6,7 @@
 #    By: romain <romain@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/18 19:57:10 by romain            #+#    #+#              #
-#    Updated: 2024/08/21 11:46:47 by romain           ###   ########.fr        #
+#    Updated: 2024/08/21 12:00:49 by romain           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRC			=		main.cpp \
 					AForm.cpp \
 					ShrubberyCreationForm.cpp \
 					RobotomyRequestForm.cpp \
+					PresidentialPardonForm.cpp
 
 OBJ			=		$(SRC:.cpp=.o)
 
