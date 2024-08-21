@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 19:57:12 by romain            #+#    #+#             */
-/*   Updated: 2024/08/21 12:06:05 by romain           ###   ########.fr       */
+/*   Updated: 2024/08/21 12:16:46 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(void)
 	try
 	{
 		Bureaucrat				arnold("Arnold", 3);
-		ShrubberyCreationForm	scf("random_file");
+		ShrubberyCreationForm	scf("DeathNote");
 		RobotomyRequestForm		rrf("A public service agent");
 		PresidentialPardonForm	ppf("A CROUS machine hacker");
 		try
