@@ -6,7 +6,7 @@
 #    By: romain <romain@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/18 19:57:10 by romain            #+#    #+#              #
-#    Updated: 2024/08/20 16:01:41 by romain           ###   ########.fr        #
+#    Updated: 2024/08/21 10:27:35 by romain           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ FLAGS		=		-Wall -Wextra -Werror -std=c++98
 
 SRC			=		main.cpp \
 					Bureaucrat.cpp \
-					Form.cpp
+					AForm.cpp \
+					ShrubberyCreationForm.cpp \
 
 OBJ			=		$(SRC:.cpp=.o)
 

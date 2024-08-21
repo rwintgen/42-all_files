@@ -6,16 +6,16 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 16:12:15 by romain            #+#    #+#             */
-/*   Updated: 2024/08/20 16:25:54 by romain           ###   ########.fr       */
+/*   Updated: 2024/08/21 10:47:08 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ShrubberyCreationForm.hpp"
 
 ShrubberyCreationForm::ShrubberyCreationForm(std::string const &target) \
-: AForm("ShrubberyCreationForm", 145, 137), _target(target)
+: AForm("SCF", 145, 137), _target(target)
 {
-	std::cout << "ShrubberyCreationForm constructor called" << std::endl;
+	std::cout << "ShrubberyCreationForm " << AForm::getName() << " created"  << std::endl;
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const &copy) \
@@ -26,7 +26,7 @@ ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const &copy) 
 
 ShrubberyCreationForm::~ShrubberyCreationForm()
 {
-	std::cout << "ShrubberyCreationForm destructor called" << std::endl;
+	std::cout << "ShrubberyCreationForm " << AForm::getName() << " created from copy constructor"  << std::endl;
 }
 
 ShrubberyCreationForm	&ShrubberyCreationForm::operator=(ShrubberyCreationForm const &src)
@@ -39,12 +39,31 @@ ShrubberyCreationForm	&ShrubberyCreationForm::operator=(ShrubberyCreationForm co
 	return (*this);
 }
 
-void	ShrubberyCreationForm::execute(Bureaucrat const &obj)
-{
-	// Draw ascii tree
-}
-
 std::string	ShrubberyCreationForm::getTarget() const
 {
 	return (_target);
+}
+
+void	ShrubberyCreationForm::execute(Bureaucrat const &obj) const
+{
+	if (this->isSigned() == false)
+		throw AForm::FormNotSignedException();
+	if (obj.getGrade() > this->getExecGrade())
+		throw AForm::GradeTooLowException();
+	std::ofstream	file(this->_target + "_shrubbery");
+	if (file.is_open() == false)
+		throw AForm::FileNotOpenException();
+	else
+	{
+		file << "       _-_       " << std::endl;
+		file << "    /~~   ~~\\    " << std::endl;
+		file << " /~~         ~~\\ " << std::endl;
+		file << "{               }" << std::endl;
+		file << " \\  _-     -_  / " << std::endl;
+		file << "   ~  \\ //  ~   " << std::endl;
+		file << "_- -   | | _- _  " << std::endl;
+		file << "  _ -  | |   -_  " << std::endl;
+		file << "      // \\      " << std::endl;
+		file.close();
+	}
 }
