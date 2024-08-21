@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 16:12:18 by romain            #+#    #+#             */
-/*   Updated: 2024/08/21 10:20:07 by romain           ###   ########.fr       */
+/*   Updated: 2024/08/21 11:40:25 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ class	ShrubberyCreationForm : public AForm
 		
 		std::string	getTarget() const;
 
-		void		execute(Bureaucrat const &obj) const;
+		void		execute(Bureaucrat const &executor) const;
 
 	private:
 		std::string	_target;

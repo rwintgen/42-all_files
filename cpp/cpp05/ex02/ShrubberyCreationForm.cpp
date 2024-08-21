@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 16:12:15 by romain            #+#    #+#             */
-/*   Updated: 2024/08/21 10:47:08 by romain           ###   ########.fr       */
+/*   Updated: 2024/08/21 11:41:41 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const &copy) 
 
 ShrubberyCreationForm::~ShrubberyCreationForm()
 {
-	std::cout << "ShrubberyCreationForm " << AForm::getName() << " created from copy constructor"  << std::endl;
+	std::cout << "ShrubberyCreationForm " << AForm::getName() << " destroyed"  << std::endl;
 }
 
 ShrubberyCreationForm	&ShrubberyCreationForm::operator=(ShrubberyCreationForm const &src)
@@ -44,11 +44,11 @@ std::string	ShrubberyCreationForm::getTarget() const
 	return (_target);
 }
 
-void	ShrubberyCreationForm::execute(Bureaucrat const &obj) const
+void	ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 {
 	if (this->isSigned() == false)
 		throw AForm::FormNotSignedException();
-	if (obj.getGrade() > this->getExecGrade())
+	if (executor.getGrade() > this->getExecGrade())
 		throw AForm::GradeTooLowException();
 	std::ofstream	file(this->_target + "_shrubbery");
 	if (file.is_open() == false)
