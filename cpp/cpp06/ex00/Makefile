@@ -6,11 +6,11 @@
 #    By: romain <romain@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/26 10:13:15 by romain            #+#    #+#              #
-#    Updated: 2024/08/26 12:29:54 by romain           ###   ########.fr        #
+#    Updated: 2024/08/26 12:57:49 by romain           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=		ScalarConverter
+NAME		=		convert
 
 CC			=		c++
 FLAGS		=		-Wall -Wextra -Werror -std=c++98

@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 10:22:32 by romain            #+#    #+#             */
-/*   Updated: 2024/08/26 12:32:35 by romain           ###   ########.fr       */
+/*   Updated: 2024/08/26 12:56:56 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # define BASE 10
 # define FLOAT 0
 # define DOUBLE 1
-# define POWER 6
 
 class AScalarConverter
 {
@@ -35,12 +34,12 @@ class AScalarConverter
 };
 
 template <typename T>
-void	printDecimals(T value, unsigned int type)
+void printDecimals(T value, unsigned int type)
 {
-    T	number = type ? static_cast<double>(value) : static_cast<float>(value);
-    int	integer = static_cast<int>(number);
-    int	decimals = static_cast<int>((number - integer) * std::pow(10, POWER) + 0.5);
-    std::cout << integer << "." << decimals;
+	T number = type ? static_cast<double>(value) : static_cast<float>(value);
+	int integer = static_cast<int>(number);
+	int decimals = static_cast<int>((number - integer) * 10 + 0.5);
+	std::cout << integer << "." << decimals;
 }
 
 void toChar(std::string const &str) /* __attribute__((unused)) */;

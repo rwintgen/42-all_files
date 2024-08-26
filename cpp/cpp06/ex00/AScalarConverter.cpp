@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 10:22:34 by romain            #+#    #+#             */
-/*   Updated: 2024/08/26 12:28:46 by romain           ###   ########.fr       */
+/*   Updated: 2024/08/26 13:06:06 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	toInt(std::string const &str)
 
 void	toFloat(std::string const &str)
 {
-	if (!(str == "nan" || str == "nanf" || str == "+inf" \
+	if ((str == "nan" || str == "nanf" || str == "+inf" \
 		|| str == "+inff" || str == "-inf" || str == "-inff"))
 	{
 		std::cout << "float: " << str << "f" << std::endl;
@@ -83,7 +83,7 @@ void	toFloat(std::string const &str)
 	}
 	char	*str_end;
 	float	f = std::strtof(str.c_str(), &str_end);
-	if (*str_end == '\0' || (*str_end == '.' && str.length() != 1))
+	if (*str_end == '\0' || std::isdigit(*(str_end - 1)))
 	{
 		std::cout << "float: ";
 		printDecimals(f, FLOAT);
@@ -95,7 +95,7 @@ void	toFloat(std::string const &str)
 
 void	toDouble(std::string const &str)
 {
-	if (!(str == "nan" || str == "nanf" || str == "+inf" \
+	if ((str == "nan" || str == "nanf" || str == "+inf" \
 		|| str == "+inff" || str == "-inf" || str == "-inff"))
 	{
 		std::cout << "double: " << str << std::endl;
@@ -103,7 +103,7 @@ void	toDouble(std::string const &str)
 	}
 	char	*str_end;
 	double	d = std::strtod(str.c_str(), &str_end);
-	if (*str_end == '\0' || (*str_end == '.' && str.length() != 1))
+	if (*str_end == '\0' || std::isdigit(*(str_end - 1)))
 	{
 		std::cout << "double: ";
 		printDecimals(d, DOUBLE);
