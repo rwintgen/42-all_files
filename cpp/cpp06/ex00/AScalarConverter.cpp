@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 10:22:34 by romain            #+#    #+#             */
-/*   Updated: 2024/08/26 11:47:50 by romain           ###   ########.fr       */
+/*   Updated: 2024/08/26 12:28:46 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,44 @@ void	toInt(std::string const &str)
 		}
 	}
 	std::cout << "int: impossible" << std::endl;
+}
+
+void	toFloat(std::string const &str)
+{
+	if (!(str == "nan" || str == "nanf" || str == "+inf" \
+		|| str == "+inff" || str == "-inf" || str == "-inff"))
+	{
+		std::cout << "float: " << str << "f" << std::endl;
+		return ;
+	}
+	char	*str_end;
+	float	f = std::strtof(str.c_str(), &str_end);
+	if (*str_end == '\0' || (*str_end == '.' && str.length() != 1))
+	{
+		std::cout << "float: ";
+		printDecimals(f, FLOAT);
+		std::cout << "f" << std::endl;
+		return ;
+	}
+	std::cout << "float: impossible" << std::endl;
+}
+
+void	toDouble(std::string const &str)
+{
+	if (!(str == "nan" || str == "nanf" || str == "+inf" \
+		|| str == "+inff" || str == "-inf" || str == "-inff"))
+	{
+		std::cout << "double: " << str << std::endl;
+		return ;
+	}
+	char	*str_end;
+	double	d = std::strtod(str.c_str(), &str_end);
+	if (*str_end == '\0' || (*str_end == '.' && str.length() != 1))
+	{
+		std::cout << "double: ";
+		printDecimals(d, DOUBLE);
+		std::cout << std::endl;
+		return ;
+	}
+	std::cout << "double: impossible" << std::endl;
 }
