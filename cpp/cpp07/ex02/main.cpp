@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 22:05:01 by romain            #+#    #+#             */
-/*   Updated: 2024/08/21 22:13:55 by romain           ###   ########.fr       */
+/*   Updated: 2024/08/26 10:09:02 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	main(void)
 {
-	Array<int> arrayInt(10);
-    Array<char> arrayChar(10);
+	Array<int>	arrayInt(10);
+    Array<char>	arrayChar(10);
 
 	for (unsigned int i = 0; i < arrayInt.size(); i++)
 		arrayInt[i] = i;
