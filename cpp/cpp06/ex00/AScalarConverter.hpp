@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 10:22:32 by romain            #+#    #+#             */
-/*   Updated: 2024/08/26 12:56:56 by romain           ###   ########.fr       */
+/*   Updated: 2024/08/27 10:59:38 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,13 @@ class AScalarConverter
 };
 
 template <typename T>
-void printDecimals(T value, unsigned int type)
-{
-	T number = type ? static_cast<double>(value) : static_cast<float>(value);
-	int integer = static_cast<int>(number);
-	int decimals = static_cast<int>((number - integer) * 10 + 0.5);
-	std::cout << integer << "." << decimals;
-}
+void printDecimals(T value, unsigned int type);
 
 void toChar(std::string const &str) /* __attribute__((unused)) */;
 void toInt(std::string const &str) /* __attribute__((unused)) */;
 void toFloat(std::string const &str) /* __attribute__((unused)) */;
 void toDouble(std::string const &str) /* __attribute__((unused)) */;
+
+# include "AScalarConverter.tpp"
 
 #endif
