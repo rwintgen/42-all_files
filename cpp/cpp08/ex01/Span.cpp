@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 10:47:04 by romain            #+#    #+#             */
-/*   Updated: 2024/08/28 11:18:43 by romain           ###   ########.fr       */
+/*   Updated: 2024/08/28 11:28:22 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 Span::Span(unsigned int n) : _id(0)
 {
+	std::cout << "Default ccleaonstructor called" << std::endl;
 	if (n == 0 || n > INT_MAX)
 		throw std::invalid_argument("Invalid size");
 	this->_size = n;
@@ -22,11 +23,13 @@ Span::Span(unsigned int n) : _id(0)
 
 Span::Span(const Span &src)
 {
+	std::cout << "Copy constructor called" << std::endl;
 	*this = src;
 }
 
 Span::~Span()
 {
+	std::cout << "Destructor called" << std::endl;
 	delete[] this->_numbers;
 }
 
