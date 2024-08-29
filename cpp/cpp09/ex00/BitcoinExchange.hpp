@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 16:56:19 by romain            #+#    #+#             */
-/*   Updated: 2024/08/28 17:41:23 by romain           ###   ########.fr       */
+/*   Updated: 2024/08/29 14:32:03 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,17 @@
 
 # include <iostream>
 # include <string>
-# include <regex.h>
+# include <regex>
 # include <map>
 # include <fstream>
+# include <sstream>
+
+# define WHITESPACES " \t\n\r\f\v"
 
 class	BitcoinExchange
 {
 	public:
 		BitcoinExchange();
-		BitcoinExchange(std::string const &filename);
 		BitcoinExchange(BitcoinExchange const &src);
 		~BitcoinExchange();
 
@@ -31,6 +33,11 @@ class	BitcoinExchange
 
 	private:
 		std::map<std::string, double>	_data;
+
+		void	trimWhitespaces(std::string &str);
+		bool	isValidDate(std::string const &date);
+		void	readFile(std::string const &filename);
+		
 };
 
 #endif

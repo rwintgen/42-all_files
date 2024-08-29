@@ -6,23 +6,24 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 16:59:20 by romain            #+#    #+#             */
-/*   Updated: 2024/08/28 17:54:56 by romain           ###   ########.fr       */
+/*   Updated: 2024/08/29 14:34:13 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
 
-int	main()
+int	main(int argc, char **argv)
 {
-	try 
+	if (argc == 2)
 	{
-		BitcoinExchange	exchange;
-		// code
-	}
-	catch (std::exception &e)
-	{
-		std::cerr << e.what() << std::endl;
-	}
+		BitcoinExchange exchange;
 
+		exchange.readFile(argv[1]);
+	}
+	else
+	{
+		std::cerr << "Usage: " << argv[0] << " [filename]" << std::endl;
+		return (1);	
+	}
 	return (0);
 }
