@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 16:56:11 by romain            #+#    #+#             */
-/*   Updated: 2024/08/29 14:32:36 by romain           ###   ########.fr       */
+/*   Updated: 2024/08/30 16:49:51 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,7 @@ BitcoinExchange::BitcoinExchange()
 	std::ifstream	file("./data.csv");
 
 	if (!file.is_open())
-	{
-		throw std::runtime_error("Cannot open file");
-		return ;
-	}
+		throw std::runtime_error("Cannot open file: data.csv");
 
 	std::string	line;
 	bool		isHeader = true;
@@ -45,7 +42,7 @@ BitcoinExchange::BitcoinExchange()
 		{
 			isHeader = false;
 			if (line != "date,exchange_rate")
-				throw std::runtime_error("Invalid file header");
+				throw std::runtime_error("Invalid file header: " + line);
 			continue ;
 		}
 
@@ -53,24 +50,24 @@ BitcoinExchange::BitcoinExchange()
 		std::string			date;
 		std::string			exchangeRate;
 
-		std::getline(inputStringStream, date, ',');
-		std::getline(inputStringStream, exchangeRate, ',');
+		if (!std::getline(inputStringStream, date, ',') || \
+			!std::getline(inputStringStream, exchangeRate, ','))
+			throw std::runtime_error("Invalid line: " + line);
 		if (date.empty() || exchangeRate.empty())
-			throw std::runtime_error("Invalid file line");
+			throw std::runtime_error("Empty field in line: " + line);
 		trimWhitespaces(date);
 		trimWhitespaces(exchangeRate);
 		if (!isValidDate(date))
-			throw std::runtime_error("Invalid date");
+			throw std::runtime_error("Invalid date: " + date);
 		try
 		{
 			this->_data[date] = std::stod(exchangeRate);
 		}
 		catch (std::exception &e)
 		{
-			throw std::runtime_error("Invalid exchange rate");
+			throw std::runtime_error("Invalid exchange rate: " + exchangeRate);
 		}
 	}
-	file.close();
 }
 
 BitcoinExchange::BitcoinExchange(BitcoinExchange const &src)
@@ -129,4 +126,52 @@ bool	BitcoinExchange::isValidDate(std::string const &date)
 			return (false);
 	}
 	return (true);
+}
+
+// TODO function should not return after error -> replace throw calls by print error and continue ;
+// TODO function should check that bitcoin amount is valid (negative number, values over 1000, etc) -> add function isValidAmount
+// TODO add function to print data in a nice way
+void	BitcoinExchange::readFile(std::string const &filename)
+{
+	std::ifstream	file(filename);
+
+	if (!file.is_open())
+		throw std::runtime_error("Cannot open file: " + filename);
+
+	std::string	line;
+	bool		isHeader = true;
+
+	while (std::getline(file, line))
+	{
+		trimWhitespaces(line);
+		if (isHeader)
+		{
+			isHeader = false;
+			if (line != "date | value")
+				throw std::runtime_error("Invalid file header: " + line);
+			continue ;
+		}
+
+		std::istringstream	inputStringStream(line);
+		std::string			date;
+		std::string			value;
+
+		if (!std::getline(inputStringStream, date, '|') || \
+			!std::getline(inputStringStream, value, '|'))
+    		throw std::runtime_error("Invalid line: " + line);
+		if (date.empty() || value.empty())
+			throw std::runtime_error("Empty field in line: " + line);
+		trimWhitespaces(date);
+		trimWhitespaces(value);
+		if (!isValidDate(date))
+			throw std::runtime_error("Invalid date: " + date);
+		try
+		{
+			this->_data[date] = std::stod(value);
+		}
+		catch (std::exception &e)
+		{
+			throw std::runtime_error("Invalid value: " + value);
+		}
+	}
 }

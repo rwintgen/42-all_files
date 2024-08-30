@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 16:56:19 by romain            #+#    #+#             */
-/*   Updated: 2024/08/29 14:32:03 by romain           ###   ########.fr       */
+/*   Updated: 2024/08/30 16:50:01 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,15 @@ class	BitcoinExchange
 
 		BitcoinExchange	&operator=(BitcoinExchange const &src);
 
+		void	readFile(std::string const &filename);
+
 	private:
 		std::map<std::string, double>	_data;
 
 		void	trimWhitespaces(std::string &str);
 		bool	isValidDate(std::string const &date);
-		void	readFile(std::string const &filename);
+		// bool	isValidAmount(std::string const &amount);
+		void	printData();
 		
 };
 
