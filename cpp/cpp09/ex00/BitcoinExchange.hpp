@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 16:56:19 by romain            #+#    #+#             */
-/*   Updated: 2024/08/30 16:50:01 by romain           ###   ########.fr       */
+/*   Updated: 2024/08/31 12:10:43 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <sstream>
 
 # define WHITESPACES " \t\n\r\f\v"
+# define OUTPUT_HEADER "date\t\t|\tqty\t|\tprice\t->\tresult"
 
 class	BitcoinExchange
 {
@@ -38,9 +39,8 @@ class	BitcoinExchange
 
 		void	trimWhitespaces(std::string &str);
 		bool	isValidDate(std::string const &date);
-		// bool	isValidAmount(std::string const &amount);
-		void	printData();
-		
+		bool	isValidAmount(std::string const &amount);
+		void	printLine(std::map<std::string, double> &data, std::string const &date, std::string const &value);		
 };
 
 #endif

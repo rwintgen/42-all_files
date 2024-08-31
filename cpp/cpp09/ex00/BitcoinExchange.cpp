@@ -6,24 +6,11 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 16:56:11 by romain            #+#    #+#             */
-/*   Updated: 2024/08/30 16:49:51 by romain           ###   ########.fr       */
+/*   Updated: 2024/08/31 12:16:07 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
-
-// rm whitespaces
-// file header is "date,exchange_rate"
-	// if invalid header, throw std::runtime_error("Invalid file header");
-// file will contains lines formatted "2009-01-02,0"
-	// if invalid line
-		// throw std::runtime_error("Invalid file line");
-	// else
-		// split line into <date>, <exchange_rate>
-		// rm whitespaces
-		// check if <date> is valid
-			// if not, throw std::runtime_error("Invalid date");
-		// store data into map: this->_data
 
 BitcoinExchange::BitcoinExchange()
 {
@@ -96,7 +83,7 @@ bool	BitcoinExchange::isValidDate(std::string const &date)
 {
 	std::regex	regex("^[0-9]{4}-[0-9]{2}-[0-9]{2}$");
 
-	if (!std::regex_match(date, regex) == true)
+	if (!std::regex_match(date, regex))
 		return (false);
 	
 	int	year = std::stoi(date.substr(0, 4));
@@ -128,9 +115,58 @@ bool	BitcoinExchange::isValidDate(std::string const &date)
 	return (true);
 }
 
-// TODO function should not return after error -> replace throw calls by print error and continue ;
-// TODO function should check that bitcoin amount is valid (negative number, values over 1000, etc) -> add function isValidAmount
-// TODO add function to print data in a nice way
+bool	BitcoinExchange::isValidAmount(std::string const &amount)
+{
+    std::regex pattern("^\\d+(\\.\\d+)?$");
+
+    if (!std::regex_match(amount, pattern))
+        return (false);
+	
+	try
+	{
+		double	value = std::stod(amount);
+		if (value < 0 || value > 1000)
+			return (false);
+	}
+	catch (std::exception &e)
+	{
+		return (false);
+	}
+	return (true);
+}
+
+void BitcoinExchange::printLine(std::map<std::string, double> &data, std::string const &date, std::string const &value)
+{
+    double amount;
+    try
+    {
+        amount = std::stod(value);
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << "Invalid value: " << value << std::endl;
+        return ;
+    }
+
+    std::map<std::string, double>::iterator it = data.lower_bound(date);
+
+    if (it == data.end() || it->first != date)
+    {
+        if (it == data.begin())
+        {
+            std::cerr << "No valid date found for: " << date << std::endl;
+            return ;
+        }
+        it--;
+    }
+
+    double exchangeRate = it->second;
+    double result = amount * exchangeRate;
+
+    std::cout << date << "\t|\t" << value << "\t|\t" << exchangeRate << "\t->\t" \
+			  << std::fixed << std::setprecision(2) << result << std::endl;
+}
+
 void	BitcoinExchange::readFile(std::string const &filename)
 {
 	std::ifstream	file(filename);
@@ -144,34 +180,37 @@ void	BitcoinExchange::readFile(std::string const &filename)
 	while (std::getline(file, line))
 	{
 		trimWhitespaces(line);
-		if (isHeader)
-		{
-			isHeader = false;
-			if (line != "date | value")
-				throw std::runtime_error("Invalid file header: " + line);
+
+		if (line.empty())
 			continue ;
-		}
-
-		std::istringstream	inputStringStream(line);
-		std::string			date;
-		std::string			value;
-
-		if (!std::getline(inputStringStream, date, '|') || \
-			!std::getline(inputStringStream, value, '|'))
-    		throw std::runtime_error("Invalid line: " + line);
-		if (date.empty() || value.empty())
-			throw std::runtime_error("Empty field in line: " + line);
-		trimWhitespaces(date);
-		trimWhitespaces(value);
-		if (!isValidDate(date))
-			throw std::runtime_error("Invalid date: " + date);
 		try
 		{
-			this->_data[date] = std::stod(value);
+			std::istringstream	inputStringStream(line);
+			std::string			date;
+			std::string			value;
+
+			if (!std::getline(inputStringStream, date, '|') || \
+				!std::getline(inputStringStream, value, '|'))
+				throw std::runtime_error("Invalid line format");
+			if (date.empty() || value.empty())
+				throw std::runtime_error("Empty field in line");
+			trimWhitespaces(date);
+			trimWhitespaces(value);
+			if (isHeader)
+			{
+				isHeader = false;
+				if (date != "date" || value != "value")
+					throw std::runtime_error("Invalid file header");
+				std::cout << OUTPUT_HEADER << std::endl;
+				continue ;
+			}
+			if (!isValidDate(date) || !isValidAmount(value))
+				throw std::runtime_error("Invalid date or value");
+			printLine(this->_data, date, value);
 		}
-		catch (std::exception &e)
+		catch (std::exception const &e)
 		{
-			throw std::runtime_error("Invalid value: " + value);
+			std::cerr << "Error on line: \"" << line << "\" - " << e.what() << std::endl;
 		}
 	}
 }
