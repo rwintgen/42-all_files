@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 10:42:55 by romain            #+#    #+#             */
-/*   Updated: 2024/09/07 12:33:56 by romain           ###   ########.fr       */
+/*   Updated: 2024/09/07 12:59:17 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ class	PmergeMe
 		std::vector<int>	convertToVector(std::string const &str);
 		// Step 2.2 - convert argv into a deque of integers
 		std::deque<int>		convertToDeque(std::string const &str);
-		// Step 3 - sort the containers
+		// Step 3 - sorting algorithm
+		
 };
 
 #endif
