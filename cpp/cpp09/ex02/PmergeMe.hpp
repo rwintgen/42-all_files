@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 10:42:55 by romain            #+#    #+#             */
-/*   Updated: 2024/09/07 12:59:17 by romain           ###   ########.fr       */
+/*   Updated: 2024/09/09 12:41:09 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@
 # include <string>
 # include <stdexcept>
 # include <deque>
+# include <sstream>
+# include <cctype>
 
-class	PmergeMe
+class PmergeMe
 {
 	public:
 		PmergeMe(std::string const &str);
@@ -29,22 +31,31 @@ class	PmergeMe
 
 		PmergeMe	&operator=(PmergeMe const &src);
 
-		void	sortNumbers(void);
-		void	printResult(void) const;
+		void	sortVector(void);
+		void	sortDeque(void);
+
+		void	printVector(void) const;
+		void	printDeque(void) const;
 
 	private:
 		std::string			_input;
-		std::vector<int>	_vector;
-		std::deque<int>		_deque;
+		std::vector<int>	_vec;
+		std::deque<int>		_deq;
 
-		// Step 1 - check that argv contains valid numbers
-		bool				isValidInput(std::string const &str);
-		// Step 2.1 - convert argv into a vector of integers
-		std::vector<int>	convertToVector(std::string const &str);
-		// Step 2.2 - convert argv into a deque of integers
-		std::deque<int>		convertToDeque(std::string const &str);
-		// Step 3 - sorting algorithm
-		
+		bool	isValidInput(std::string const &str);
+		void	convertToVector(void);
+		void	convertToDeque(void);
 };
+
+template <typename Container>
+void convertToContainer(const std::string &input, Container &container);
+
+template <typename Container>
+void fordJohnsonSort(Container &container);
+
+template <typename Container>
+void printContainer(const Container &container);
+
+# include "PmergeMe.tpp"
 
 #endif
