@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 20:34:45 by romain            #+#    #+#             */
-/*   Updated: 2024/07/23 21:34:19 by romain           ###   ########.fr       */
+/*   Updated: 2024/09/12 12:04:09 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	
-	int zombiesNb = std::stoi(argv[1]);
+	int	zombiesNb = std::stoi(argv[1]);
 	Zombie	*horde = zombieHorde(zombiesNb, argv[2]);
 
 	for (int i = 0; i < zombiesNb; i++)
