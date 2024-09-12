@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 13:19:02 by romain            #+#    #+#             */
-/*   Updated: 2024/09/12 12:04:58 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/09/12 12:07:48 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ class	HumanB
 {
 	public:
 		HumanB(std::string name);
-		~HumanB();
+		~HumanB(void);
 
 		void	setWeapon(Weapon& weapon);
-		void	attack();
+		void	attack(void);
 
 	private:
 		std::string	_name;

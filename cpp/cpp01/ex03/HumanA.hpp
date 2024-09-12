@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 13:18:24 by romain            #+#    #+#             */
-/*   Updated: 2024/09/12 12:05:06 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/09/12 12:07:49 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ class	HumanA
 {
 	public:
 		HumanA(std::string name, Weapon& weapon);
-		~HumanA();
+		~HumanA(void);
 
-		void	attack();
+		void	attack(void);
 
 	private:
 		std::string	_name;
