@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 12:39:49 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/09/12 11:59:02 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/09/12 12:09:16 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	PhoneBook::addContact(const std::string& firstname, \
 	this->_index++;
 }
 
-void	PhoneBook::displayAll()
+void	PhoneBook::displayAll(void)
 {
 	std::cout << " ___________________________________________ " << std::endl;
 	std::cout << "|Index     |Name      |Surname   |Nickname  |" << std::endl;
