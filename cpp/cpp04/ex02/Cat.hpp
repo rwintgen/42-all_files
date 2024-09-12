@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:06:21 by romain            #+#    #+#             */
-/*   Updated: 2024/08/15 17:09:03 by romain           ###   ########.fr       */
+/*   Updated: 2024/09/12 13:16:05 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ class	Cat : public Animal
 		virtual void	makeSound(void) const;
 		void			addIdea(std::string newIdea);
 		void			printAllIdeas(void) const;
+
 	private:
 		Brain	*_brain;
 };

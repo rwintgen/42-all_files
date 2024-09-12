@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   WrongAnimal.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 13:43:49 by romain            #+#    #+#             */
-/*   Updated: 2024/08/15 17:03:19 by romain           ###   ########.fr       */
+/*   Updated: 2024/09/12 13:16:03 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "WrongAnimal.hpp"
 
-WrongAnimal::WrongAnimal() : _type("WrongAnimal")
+WrongAnimal::WrongAnimal(void) : _type("WrongAnimal")
 {
 		std::cout << "WrongAnimal default constructor called" << std::endl;
 
@@ -21,7 +21,7 @@ WrongAnimal::WrongAnimal() : _type("WrongAnimal")
 WrongAnimal::WrongAnimal(const WrongAnimal &copy)
 {
 	std::cout << "WrongAnimal copy constructor called" << std::endl;
-	_type = copy.getType();
+	_type = copy.getType(void);
 }
 
 WrongAnimal::WrongAnimal(std::string type) : _type(type)
@@ -29,7 +29,7 @@ WrongAnimal::WrongAnimal(std::string type) : _type(type)
 	std::cout << "WrongAnimal type constructor called" << std::endl;
 }
 
-WrongAnimal::~WrongAnimal()
+WrongAnimal::~WrongAnimal(void)
 {
 	std::cout << "WrongAnimal destructor called" << std::endl;
 }

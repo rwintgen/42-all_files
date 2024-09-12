@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:06:35 by romain            #+#    #+#             */
-/*   Updated: 2024/08/13 17:57:29 by romain           ###   ########.fr       */
+/*   Updated: 2024/09/12 13:13:18 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ Cat::Cat(void)
 Cat::Cat(const Cat &copy)
 {
 	std::cout << "Cat copy constructor called" << std::endl;
-	_type = copy.getType();
+	_type = copy.getType(void);
 }
 
 Cat::~Cat(void)
@@ -39,7 +39,7 @@ Cat	&Cat::operator=(const Cat &copy)
 {
 	std::cout << "Cat assignation operator called" << std::endl;
 	if (this != &copy)
-		_type = copy.getType();
+		_type = copy.getType(void);
 	return (*this);
 }
 

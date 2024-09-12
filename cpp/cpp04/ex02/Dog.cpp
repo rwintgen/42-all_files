@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Dog.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:06:07 by romain            #+#    #+#             */
-/*   Updated: 2024/08/15 17:10:51 by romain           ###   ########.fr       */
+/*   Updated: 2024/09/12 13:16:05 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ Dog::Dog(void)
 Dog::Dog(const Dog &copy)
 {
 	std::cout << "Dog copy constructor called" << std::endl;
-	_type = copy.getType();
+	_type = copy.getType(void);
 }
 
 Dog::~Dog(void)
@@ -39,7 +39,7 @@ Dog	&Dog::operator=(const Dog &copy)
 {
 	std::cout << "Dog assignation operator called" << std::endl;
 	if (this != &copy)
-		_type = copy.getType();
+		_type = copy.getType(void);
 	return (*this);
 }
 

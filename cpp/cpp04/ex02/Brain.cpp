@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   Brain.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 18:04:46 by romain            #+#    #+#             */
-/*   Updated: 2024/08/15 17:14:04 by romain           ###   ########.fr       */
+/*   Updated: 2024/09/12 13:16:06 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Brain.hpp"
 
-Brain::Brain()
+Brain::Brain(void)
 {
 	std::cout << "Brain default constructor called" << std::endl;
 	this->_ideas = new std::string[100];
@@ -31,7 +31,7 @@ Brain::Brain(const Brain &copy)
 		this->_ideas[i] = copy._ideas[i];
 }
 
-Brain::~Brain()
+Brain::~Brain(void)
 {
 	std::cout << "Brain destructor called" << std::endl;
 	if (this->_ideas)

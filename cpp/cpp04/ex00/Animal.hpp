@@ -31,6 +31,7 @@ class	Animal
 		void		setType(std::string type);
 
 		virtual void	makeSound(void) const;
+
 	protected:
 		std::string	_type;
 };

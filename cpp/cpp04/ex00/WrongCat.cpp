@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   WrongCat.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 13:43:57 by romain            #+#    #+#             */
-/*   Updated: 2024/08/15 17:25:46 by romain           ###   ########.fr       */
+/*   Updated: 2024/09/12 13:13:15 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "WrongCat.hpp"
 
-WrongCat::WrongCat() : WrongAnimal("WrongCat")
+WrongCat::WrongCat(void) : WrongAnimal("WrongCat")
 {
 	std::cout << "WrongCat default constructor called" << std::endl;
 }
@@ -23,7 +23,7 @@ WrongCat::WrongCat(const WrongCat &copy)
 	*this = copy;
 }
 
-WrongCat::~WrongCat()
+WrongCat::~WrongCat(void)
 {
 	std::cout << "WrongCat destructor called" << std::endl;
 }
@@ -31,7 +31,7 @@ WrongCat::~WrongCat()
 WrongCat	&WrongCat::operator=(const WrongCat &copy)
 {
 	std::cout << "WrongCat assignation operator called" << std::endl;
-	this->setType(copy.getType());
+	this->setType(copy.getType(void));
 	return (*this);
 }
 

@@ -26,6 +26,7 @@ class	Animal
 		void		setType(std::string type);
 
 		virtual void	makeSound(void) const;
+
 	protected:
 		Animal(void);
 		Animal(std::string type);

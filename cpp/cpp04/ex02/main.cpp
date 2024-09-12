@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 15:41:01 by romain            #+#    #+#             */
-/*   Updated: 2024/08/15 17:22:37 by romain           ###   ########.fr       */
+/*   Updated: 2024/09/12 13:16:04 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,24 @@
 #include "WrongAnimal.hpp"
 #include "Brain.hpp"
 
-int main()
+int main(void)
 {
-	const Animal* randomAnimal = new Animal();
-	const Animal* doggo = new Dog();
-	const Animal* pussy = new Cat();
-	const WrongAnimal* wrongCat = new WrongAnimal();
+	const Animal* randomAnimal = new Animal(void);
+	const Animal* doggo = new Dog(void);
+	const Animal* pussy = new Cat(void);
+	const WrongAnimal* wrongCat = new WrongAnimal(void);
 	
 	std::cout << std::endl;
-	std::cout << randomAnimal->getType() << std::endl;
-	std::cout << doggo->getType() << std::endl;
-	std::cout << pussy->getType() << std::endl;
-	std::cout << wrongCat->getType() << std::endl;
+	std::cout << randomAnimal->getType(void) << std::endl;
+	std::cout << doggo->getType(void) << std::endl;
+	std::cout << pussy->getType(void) << std::endl;
+	std::cout << wrongCat->getType(void) << std::endl;
 	
 	std::cout << std::endl;
-	randomAnimal->makeSound();
-	doggo->makeSound();
-	pussy->makeSound();
-	wrongCat->makeSound();
+	randomAnimal->makeSound(void);
+	doggo->makeSound(void);
+	pussy->makeSound(void);
+	wrongCat->makeSound(void);
 	
 	std::cout << std::endl;
 	delete randomAnimal;
@@ -46,9 +46,9 @@ int main()
 	for (int i = 0; i < 100; i++)
 	{
 		if (i % 2 == 0)
-			animals[i] = new Dog();
+			animals[i] = new Dog(void);
 		else
-			animals[i] = new Cat();
+			animals[i] = new Cat(void);
 	}
 	for (int i = 0; i < 100; i++)
 		delete animals[i];
