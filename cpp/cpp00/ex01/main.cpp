@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 12:39:33 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/07/21 22:52:25 by romain           ###   ########.fr       */
+/*   Updated: 2024/09/12 10:40:58 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	searchContact(PhoneBook* phonebook)
 			break ;
 		}
 		else
-			std::cout << "Please enter a valid index" << std::endl;
+			std::cout << std::endl << "Please enter a valid index" << std::endl;
 	}
 }
 
@@ -55,7 +55,7 @@ int	main(void)
 	PhoneBook	phonebook;
 
 	std::cout << "PhoneBook opened" << std::endl;
-	while (true)
+	while (!std::cin.eof())
 	{
 		std::cout << "Please enter ADD, SEARCH or EXIT: ";
 		std::getline(std::cin, input);
