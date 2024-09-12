@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 16:56:11 by romain            #+#    #+#             */
-/*   Updated: 2024/08/31 12:16:07 by romain           ###   ########.fr       */
+/*   Updated: 2024/09/12 13:37:52 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
 
-BitcoinExchange::BitcoinExchange()
+BitcoinExchange::BitcoinExchange(void)
 {
 	std::ifstream	file("./data.csv");
 
@@ -62,7 +62,7 @@ BitcoinExchange::BitcoinExchange(BitcoinExchange const &src)
 	*this = src;
 }
 
-BitcoinExchange::~BitcoinExchange()
+BitcoinExchange::~BitcoinExchange(void)
 {
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RPN.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/01 13:09:16 by romain            #+#    #+#             */
-/*   Updated: 2024/09/01 15:43:22 by romain           ###   ########.fr       */
+/*   Updated: 2024/09/12 13:38:23 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ RPN::RPN(RPN const &src)
 	*this = src;
 }
 
-RPN::~RPN()
+RPN::~RPN(void)
 {
 }
 
@@ -106,7 +106,7 @@ bool RPN::isValidInput(std::string const &input)
 	return (operandCount == 1);
 }
 
-void	RPN::printResult() const
+void	RPN::printResult(void) const
 {
 	std::cout << "Result: " << _stack.top() << std::endl;
 }

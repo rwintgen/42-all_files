@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 16:56:19 by romain            #+#    #+#             */
-/*   Updated: 2024/08/31 12:10:43 by romain           ###   ########.fr       */
+/*   Updated: 2024/09/12 13:37:51 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@
 class	BitcoinExchange
 {
 	public:
-		BitcoinExchange();
+		BitcoinExchange(void);
 		BitcoinExchange(BitcoinExchange const &src);
-		~BitcoinExchange();
+		~BitcoinExchange(void);
 
 		BitcoinExchange	&operator=(BitcoinExchange const &src);
 

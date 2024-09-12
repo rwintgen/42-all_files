@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 18:40:16 by romain            #+#    #+#             */
-/*   Updated: 2024/09/09 12:47:47 by romain           ###   ########.fr       */
+/*   Updated: 2024/09/12 13:38:58 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ PmergeMe::PmergeMe(std::string const &str)
 		throw std::invalid_argument("Invalid input");
 	this->_vec.clear();
 	this->_deq.clear();
-	convertToVector();
-	convertToDeque();
+	convertToVector(void);
+	convertToDeque(void);
 }
 
 PmergeMe::PmergeMe(PmergeMe const &src)
@@ -27,7 +27,7 @@ PmergeMe::PmergeMe(PmergeMe const &src)
 	*this = src;
 }
 
-PmergeMe::~PmergeMe()
+PmergeMe::~PmergeMe(void)
 {
 }
 
