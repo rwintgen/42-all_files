@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Array.tpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 21:57:39 by romain            #+#    #+#             */
-/*   Updated: 2024/08/21 22:12:58 by romain           ###   ########.fr       */
+/*   Updated: 2024/09/12 13:32:41 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ Array<T>::Array(unsigned int n) : _array(new T[n]), _size(n)
 }
 
 template <typename T>
-Array<T>::Array(Array const &src) : _array(new T[src.size()]), _size(src.size())
+Array<T>::Array(Array const &src) : _array(new T[src.size(void)]), _size(src.size(void))
 {
-    for (unsigned int i = 0; i < src.size(); i++)
+    for (unsigned int i = 0; i < src.size(void); i++)
         _array[i] = src[i];
 }
 
@@ -45,9 +45,9 @@ Array<T> &Array<T>::operator=(Array const &src)
     if (this != &src)
     {
         delete [] this->_array;
-        _array = new T[src.size()];
-        _size = src.size();
-        for (unsigned int i = 0; i < src.size(); i++)
+        _array = new T[src.size(void)];
+        _size = src.size(void);
+        for (unsigned int i = 0; i < src.size(void); i++)
             _array[i] = src[i];
     }
     return (*this);
