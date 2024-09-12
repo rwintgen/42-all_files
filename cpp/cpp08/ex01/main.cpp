@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 10:47:08 by romain            #+#    #+#             */
-/*   Updated: 2024/08/28 11:24:43 by romain           ###   ########.fr       */
+/*   Updated: 2024/09/12 13:34:22 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
 
-int main()
+int main(void)
 {
 	// Span sp = Span(5);
 	// sp.addNumber(6);
@@ -32,8 +32,8 @@ int main()
 		{
 			sp.addRandomNumbers(10000);
 			std::cout << std::endl;
-			std::cout << "Shortest span: " << sp.shortestSpan() << std::endl;
-			std::cout << "Longest span: " << sp.longestSpan() << std::endl;
+			std::cout << "Shortest span: " << sp.shortestSpan(void) << std::endl;
+			std::cout << "Longest span: " << sp.longestSpan(void) << std::endl;
 		}
 		catch (std::exception &e)
 		{

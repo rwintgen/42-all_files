@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Span.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 10:47:04 by romain            #+#    #+#             */
-/*   Updated: 2024/08/28 11:28:22 by romain           ###   ########.fr       */
+/*   Updated: 2024/09/12 13:34:22 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ Span::Span(const Span &src)
 	*this = src;
 }
 
-Span::~Span()
+Span::~Span(void)
 {
 	std::cout << "Destructor called" << std::endl;
 	delete[] this->_numbers;

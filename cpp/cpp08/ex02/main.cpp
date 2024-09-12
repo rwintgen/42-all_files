@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 11:30:22 by romain            #+#    #+#             */
-/*   Updated: 2024/08/28 12:04:39 by romain           ###   ########.fr       */
+/*   Updated: 2024/09/12 13:36:10 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ static void	testMutantStack(void)
     mstack.push(737);
     mstack.push(0);
     
-    MutantStack<int>::iterator it = mstack.begin();
-    MutantStack<int>::iterator ite = mstack.end();
+    MutantStack<int>::iterator it = mstack.begin(void);
+    MutantStack<int>::iterator ite = mstack.end(void);
     
     ++it;
     --it;
@@ -63,8 +63,8 @@ static void	testList(void)
     lst.push_back(737);
     lst.push_back(0);
     
-    std::list<int>::iterator it = lst.begin();
-    std::list<int>::iterator ite = lst.end();
+    std::list<int>::iterator it = lst.begin(void);
+    std::list<int>::iterator ite = lst.end(void);
     
     ++it;
     --it;
@@ -77,13 +77,13 @@ static void	testList(void)
     std::list<int> s(lst);
 }
 
-int main()
+int main(void)
 {
     std::cout << "Testing MutantStack:" << std::endl;
-    testMutantStack();
+    testMutantStack(void);
 	std::cout << std::endl;
     std::cout << "Testing std::list:" << std::endl;
-    testList();
+    testList(void);
     
     return 0;
 }

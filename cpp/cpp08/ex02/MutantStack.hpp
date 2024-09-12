@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   MutantStack.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 11:31:38 by romain            #+#    #+#             */
-/*   Updated: 2024/08/28 11:54:34 by romain           ###   ########.fr       */
+/*   Updated: 2024/09/12 13:36:09 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ template <typename T>
 class MutantStack : public std::stack<T>
 {
 	public:
-		MutantStack();
+		MutantStack(void);
 		MutantStack(MutantStack const &src);
-		~MutantStack();
+		~MutantStack(void);
 
 		MutantStack	&operator=(MutantStack const &src);
 
