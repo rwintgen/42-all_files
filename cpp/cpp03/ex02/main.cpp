@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 12:30:48 by romain            #+#    #+#             */
-/*   Updated: 2024/08/12 14:30:06 by romain           ###   ########.fr       */
+/*   Updated: 2024/09/12 13:11:27 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ int	main(void)
 	jack.beRepaired(5);
 
 	std::cout << std::endl;
-	krieg.guardGate();
+	krieg.guardGate(void);
 	zero.attack("the gate");
 	krieg.takeDamage(20);
-	krieg.guardGate();
+	krieg.guardGate(void);
 
 	std::cout << std::endl;
 	axton.attack("Zero");
@@ -44,8 +44,8 @@ int	main(void)
 	zero.beRepaired(10);
 
 	std::cout << std::endl;
-	salvador.highFivesGuys();
-	axton.highFivesGuys();
+	salvador.highFivesGuys(void);
+	axton.highFivesGuys(void);
 
 	std::cout << std::endl;
 
