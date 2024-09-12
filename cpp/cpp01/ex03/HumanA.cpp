@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   HumanA.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 13:28:18 by romain            #+#    #+#             */
-/*   Updated: 2024/07/25 13:39:30 by romain           ###   ########.fr       */
+/*   Updated: 2024/09/12 12:10:19 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ HumanA::~HumanA(void)
 {
 }
 
-void	HumanA::attack()
+void	HumanA::attack(void)
 {
 	std::cout << this->_name << " attacks with their " << this->_weapon.getType() << std::endl;
 }
