@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AScalarConverter.hpp                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 10:22:32 by romain            #+#    #+#             */
-/*   Updated: 2024/08/27 10:59:38 by romain           ###   ########.fr       */
+/*   Updated: 2024/09/12 13:29:15 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@
 class AScalarConverter
 {
 	private:
-		AScalarConverter();
+		AScalarConverter(void);
 		AScalarConverter(AScalarConverter const &src);
-		~AScalarConverter();
+		~AScalarConverter(void);
 		
 		virtual AScalarConverter &operator=(AScalarConverter const &src) const = 0;
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ASerializer.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 14:29:43 by romain            #+#    #+#             */
-/*   Updated: 2024/08/26 15:12:06 by romain           ###   ########.fr       */
+/*   Updated: 2024/09/12 13:29:30 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ class	Data
 class	ASerializer
 {
 	private:
-		ASerializer();
+		ASerializer(void);
 		ASerializer(ASerializer const &src);
-		~ASerializer();
+		~ASerializer(void);
 
 		virtual ASerializer	&operator=(ASerializer const &src) = 0;
 

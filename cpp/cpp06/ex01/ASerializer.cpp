@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ASerializer.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 14:29:45 by romain            #+#    #+#             */
-/*   Updated: 2024/08/26 14:56:49 by romain           ###   ########.fr       */
+/*   Updated: 2024/09/12 13:29:26 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ASerializer.hpp"
 
-ASerializer::ASerializer()
+ASerializer::ASerializer(void)
 {
 	std::cout << "ASerializer constructor called" << std::endl;
 }
@@ -23,7 +23,7 @@ ASerializer::ASerializer(ASerializer const &src)
 	*this = src;
 }
 
-ASerializer::~ASerializer()
+ASerializer::~ASerializer(void)
 {
 	std::cout << "ASerializer destructor called" << std::endl;
 }

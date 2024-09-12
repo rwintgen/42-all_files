@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:25:16 by romain            #+#    #+#             */
-/*   Updated: 2024/08/26 16:01:45 by romain           ###   ########.fr       */
+/*   Updated: 2024/09/12 13:30:00 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	main(void)
 {
 	srand(static_cast<unsigned int>(time(0)));
 
-	Base	*obj = generate();
+	Base	*obj = generate(void);
 
 	identifyPtr(obj);
 	identifyRef(*obj);

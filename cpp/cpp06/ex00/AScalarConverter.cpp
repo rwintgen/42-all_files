@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   AScalarConverter.cpp                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 10:22:34 by romain            #+#    #+#             */
-/*   Updated: 2024/08/26 13:06:06 by romain           ###   ########.fr       */
+/*   Updated: 2024/09/12 13:29:14 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AScalarConverter.hpp"
 
-AScalarConverter::AScalarConverter()
+AScalarConverter::AScalarConverter(void)
 {
 
 }
@@ -22,7 +22,7 @@ AScalarConverter::AScalarConverter(AScalarConverter const &src)
 	*this = src;
 }
 
-AScalarConverter::~AScalarConverter()
+AScalarConverter::~AScalarConverter(void)
 {
 
 }

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 10:14:22 by romain            #+#    #+#             */
-/*   Updated: 2024/08/26 15:14:25 by romain           ###   ########.fr       */
+/*   Updated: 2024/09/12 13:29:36 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ASerializer.hpp"
 
-int main()
+int main(void)
 {
 	Data		data;
 	uintptr_t	rawValue;
