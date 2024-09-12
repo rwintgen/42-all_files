@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   Intern.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 12:17:51 by romain            #+#    #+#             */
-/*   Updated: 2024/08/21 13:16:54 by romain           ###   ########.fr       */
+/*   Updated: 2024/09/12 13:27:56 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Intern.hpp"
 
-Intern::Intern()
+Intern::Intern(void)
 {
 	std::cout << "Intern created" << std::endl;
 }
@@ -23,7 +23,7 @@ Intern::Intern(Intern const &src)
 	std::cout << "Intern created from copy constructor" << std::endl;
 }
 
-Intern::~Intern()
+Intern::~Intern(void)
 {
 	std::cout << "Intern destroyed" << std::endl;
 }

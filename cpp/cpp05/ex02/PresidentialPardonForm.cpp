@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PresidentialPardonForm.cpp                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 11:57:20 by romain            #+#    #+#             */
-/*   Updated: 2024/08/21 11:59:24 by romain           ###   ########.fr       */
+/*   Updated: 2024/09/12 13:24:52 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 PresidentialPardonForm::PresidentialPardonForm(std::string const &target) \
 : AForm("PPF", 25, 5), _target(target)
 {
-	std::cout << "PresidentialPardonForm " << AForm::getName() << " created"  << std::endl;
+	std::cout << "PresidentialPardonForm " << AForm::getName(void) << " created"  << std::endl;
 }
 
 PresidentialPardonForm::PresidentialPardonForm(PresidentialPardonForm const &copy) \
@@ -24,9 +24,9 @@ PresidentialPardonForm::PresidentialPardonForm(PresidentialPardonForm const &cop
 	std::cout << "PresidentialPardonForm copy constructor called" << std::endl;
 }
 
-PresidentialPardonForm::~PresidentialPardonForm()
+PresidentialPardonForm::~PresidentialPardonForm(void)
 {
-	std::cout << "PresidentialPardonForm " << AForm::getName() << " destroyed"  << std::endl;
+	std::cout << "PresidentialPardonForm " << AForm::getName(void) << " destroyed"  << std::endl;
 }
 
 PresidentialPardonForm	&PresidentialPardonForm::operator=(PresidentialPardonForm const &src)
@@ -39,16 +39,16 @@ PresidentialPardonForm	&PresidentialPardonForm::operator=(PresidentialPardonForm
 	return (*this);
 }
 
-std::string	PresidentialPardonForm::getTarget() const
+std::string	PresidentialPardonForm::getTarget(void) const
 {
 	return (_target);
 }
 
 void	PresidentialPardonForm::execute(Bureaucrat const &executor) const
 {
-	if (this->isSigned() == false)
+	if (this->isSigned(void) == false)
 		throw AForm::FormNotSignedException();
-	if (executor.getGrade() > this->getExecGrade())
+	if (executor.getGrade(void) > this->getExecGrade(void))
 		throw AForm::GradeTooLowException();
 	std::cout << this->_target << " has been pardoned by Zafod Beeblebrox" << std::endl;
 }

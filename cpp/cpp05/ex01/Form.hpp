@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Form.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:36:08 by romain            #+#    #+#             */
-/*   Updated: 2024/08/20 16:09:38 by romain           ###   ########.fr       */
+/*   Updated: 2024/09/12 13:20:54 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ class	Form
 	public:
 		Form(std::string const &name, int signGrade, int execGrade);
 		Form(Form const &copy);
-		~Form();
+		~Form(void);
 
 		Form	&operator=(Form const &src);
 		
-		std::string	getName() const;
-		int			getSignGrade() const;
-		int			getExecGrade() const;
-		bool		isSigned() const;
+		std::string	getName(void) const;
+		int			getSignGrade(void) const;
+		int			getExecGrade(void) const;
+		bool		isSigned(void) const;
 		void		beSigned(Bureaucrat const &bureaucrat);
 
 		class	GradeTooHighException : public std::exception

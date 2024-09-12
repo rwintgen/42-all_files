@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RobotomyRequestForm.cpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 11:32:21 by romain            #+#    #+#             */
-/*   Updated: 2024/08/21 13:15:13 by romain           ###   ########.fr       */
+/*   Updated: 2024/09/12 13:27:54 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 RobotomyRequestForm::RobotomyRequestForm(std::string const &target) \
 : AForm("RRF", 72, 45), _target(target)
 {
-	std::cout << "RobotomyRequestForm " << AForm::getName() << " created"  << std::endl;
+	std::cout << "RobotomyRequestForm " << AForm::getName(void) << " created"  << std::endl;
 }
 
 RobotomyRequestForm::RobotomyRequestForm(RobotomyRequestForm const &copy) \
@@ -24,9 +24,9 @@ RobotomyRequestForm::RobotomyRequestForm(RobotomyRequestForm const &copy) \
 	std::cout << "RobotomyRequestForm copy constructor called" << std::endl;
 }
 
-RobotomyRequestForm::~RobotomyRequestForm()
+RobotomyRequestForm::~RobotomyRequestForm(void)
 {
-	std::cout << "RobotomyRequestForm " << AForm::getName() << " destroyed"  << std::endl;
+	std::cout << "RobotomyRequestForm " << AForm::getName(void) << " destroyed"  << std::endl;
 }
 
 RobotomyRequestForm	&RobotomyRequestForm::operator=(RobotomyRequestForm const &src)
@@ -39,16 +39,16 @@ RobotomyRequestForm	&RobotomyRequestForm::operator=(RobotomyRequestForm const &s
 	return (*this);
 }
 
-std::string	RobotomyRequestForm::getTarget() const
+std::string	RobotomyRequestForm::getTarget(void) const
 {
 	return (_target);
 }
 
 void	RobotomyRequestForm::execute(Bureaucrat const &executor) const
 {
-	if (this->isSigned() == false)
+	if (this->isSigned(void) == false)
 		throw AForm::FormNotSignedException();
-	if (executor.getGrade() > this->getExecGrade())
+	if (executor.getGrade(void) > this->getExecGrade(void))
 		throw AForm::GradeTooLowException();
 	std::srand(std::time(NULL));
 	if (std::rand() % 2 == 0)

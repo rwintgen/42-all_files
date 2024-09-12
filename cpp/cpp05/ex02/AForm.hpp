@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:36:08 by romain            #+#    #+#             */
-/*   Updated: 2024/08/20 16:09:21 by romain           ###   ########.fr       */
+/*   Updated: 2024/09/12 13:24:54 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ class	AForm
 	public:
 		AForm(std::string const &name, int signGrade, int execGrade);
 		AForm(AForm const &copy);
-		virtual ~AForm();
+		virtual ~AForm(void);
 
 		AForm	&operator=(AForm const &src);
 		
-		std::string		getName() const;
-		int				getSignGrade() const;
-		int				getExecGrade() const;
-		bool			isSigned() const;
+		std::string		getName(void) const;
+		int				getSignGrade(void) const;
+		int				getExecGrade(void) const;
+		bool			isSigned(void) const;
 		void			beSigned(Bureaucrat const &bureaucrat);
 		virtual void	execute(Bureaucrat const &executor) const = 0;
 

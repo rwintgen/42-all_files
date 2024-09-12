@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ShrubberyCreationForm.cpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 16:12:15 by romain            #+#    #+#             */
-/*   Updated: 2024/08/21 11:41:41 by romain           ###   ########.fr       */
+/*   Updated: 2024/09/12 13:24:50 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 ShrubberyCreationForm::ShrubberyCreationForm(std::string const &target) \
 : AForm("SCF", 145, 137), _target(target)
 {
-	std::cout << "ShrubberyCreationForm " << AForm::getName() << " created"  << std::endl;
+	std::cout << "ShrubberyCreationForm " << AForm::getName(void) << " created"  << std::endl;
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const &copy) \
@@ -24,9 +24,9 @@ ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const &copy) 
 	std::cout << "ShrubberyCreationForm copy constructor called" << std::endl;
 }
 
-ShrubberyCreationForm::~ShrubberyCreationForm()
+ShrubberyCreationForm::~ShrubberyCreationForm(void)
 {
-	std::cout << "ShrubberyCreationForm " << AForm::getName() << " destroyed"  << std::endl;
+	std::cout << "ShrubberyCreationForm " << AForm::getName(void) << " destroyed"  << std::endl;
 }
 
 ShrubberyCreationForm	&ShrubberyCreationForm::operator=(ShrubberyCreationForm const &src)
@@ -39,16 +39,16 @@ ShrubberyCreationForm	&ShrubberyCreationForm::operator=(ShrubberyCreationForm co
 	return (*this);
 }
 
-std::string	ShrubberyCreationForm::getTarget() const
+std::string	ShrubberyCreationForm::getTarget(void) const
 {
 	return (_target);
 }
 
 void	ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 {
-	if (this->isSigned() == false)
+	if (this->isSigned(void) == false)
 		throw AForm::FormNotSignedException();
-	if (executor.getGrade() > this->getExecGrade())
+	if (executor.getGrade(void) > this->getExecGrade(void))
 		throw AForm::GradeTooLowException();
 	std::ofstream	file(this->_target + "_shrubbery");
 	if (file.is_open() == false)

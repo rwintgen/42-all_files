@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AForm.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:36:14 by romain            #+#    #+#             */
-/*   Updated: 2024/08/21 10:29:52 by romain           ###   ########.fr       */
+/*   Updated: 2024/09/12 13:24:54 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ AForm::AForm(AForm const &copy) \
 	std::cout << "Form " << _name << " created from copy constructor" << std::endl;
 }
 
-AForm::~AForm()
+AForm::~AForm(void)
 {
 	std::cout << "Form " << _name << " destroyed" << std::endl;
 }
@@ -42,29 +42,29 @@ AForm	&AForm::operator=(AForm const &src)
 	return (*this);
 }
 
-std::string	AForm::getName() const
+std::string	AForm::getName(void) const
 {
 	return (_name);
 }
 
-int	AForm::getSignGrade() const
+int	AForm::getSignGrade(void) const
 {
 	return (_signGrade);
 }
 
-int	AForm::getExecGrade() const
+int	AForm::getExecGrade(void) const
 {
 	return (_execGrade);
 }
 
-bool	AForm::isSigned() const
+bool	AForm::isSigned(void) const
 {
 	return (_signed);
 }
 
 void	AForm::beSigned(Bureaucrat const &bureaucrat)
 {
-	if (bureaucrat.getGrade() > _signGrade)
+	if (bureaucrat.getGrade(void) > _signGrade)
 		throw AForm::GradeTooLowException();
 	if (this->_signed)
 		throw AForm::FormSignedException();
@@ -73,7 +73,7 @@ void	AForm::beSigned(Bureaucrat const &bureaucrat)
 
 std::ostream	&operator<<(std::ostream &out, AForm const &form)
 {
-	out << "Form " << form.getName() << " is " \
-		<< (form.isSigned() ? "" : "not ") << "signed";
+	out << "Form " << form.getName(void) << " is " \
+		<< (form.isSigned(void) ? "" : "not ") << "signed";
 	return (out);
 }

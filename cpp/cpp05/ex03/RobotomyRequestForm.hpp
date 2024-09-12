@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 11:32:09 by romain            #+#    #+#             */
-/*   Updated: 2024/08/21 13:15:24 by romain           ###   ########.fr       */
+/*   Updated: 2024/09/12 13:27:53 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ class	RobotomyRequestForm : public AForm
 	public:
 		RobotomyRequestForm(std::string const &target);
 		RobotomyRequestForm(RobotomyRequestForm const &copy);
-		virtual ~RobotomyRequestForm();
+		virtual ~RobotomyRequestForm(void);
 
 		RobotomyRequestForm	&operator=(RobotomyRequestForm const &src);
 		
-		std::string	getTarget() const;
+		std::string	getTarget(void) const;
 
 		void			execute(Bureaucrat const &executor) const;
 		static AForm	*create(std::string const &target);

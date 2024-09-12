@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 19:57:12 by romain            #+#    #+#             */
-/*   Updated: 2024/08/21 12:16:46 by romain           ###   ########.fr       */
+/*   Updated: 2024/09/12 13:24:52 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ int	main(void)
 		{
 			std::cout << std::endl << "========= Bureaucrat ========" << std::endl;
 			std::cout << arnold << std::endl;
-			arnold.incrementGrade();
+			arnold.incrementGrade(void);
 			std::cout << arnold << std::endl;
-			arnold.decrementGrade();
+			arnold.decrementGrade(void);
 			std::cout << arnold << std::endl;
 
 			std::cout << std::endl << "=== ShrubberyCreationForm ===" << std::endl;
