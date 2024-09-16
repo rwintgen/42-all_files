@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   megaphone.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 11:52:58 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/07/21 08:24:16 by romain           ###   ########.fr       */
+/*   Updated: 2024/09/16 13:28:10 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int main(int argc, char **argv)
 		{
 			result += std::toupper(tmp[j]);
 		}
-		result += ' ';
 	}
 	std::cout << result << std::endl;
 	return (0);

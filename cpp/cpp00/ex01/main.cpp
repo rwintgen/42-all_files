@@ -6,14 +6,14 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 12:39:33 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/09/12 10:40:58 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/09/16 13:28:25 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 #include <cstdio>
 
-void	addContact(PhoneBook* phonebook)
+void	addContactFromTerminal(PhoneBook* phonebook)
 {
 	std::string fields[5];
 
