@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   MateriaSource.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 10:59:52 by romain            #+#    #+#             */
-/*   Updated: 2024/09/13 11:32:57 by romain           ###   ########.fr       */
+/*   Updated: 2024/09/16 11:44:31 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 class	MateriaSource : public IMateriaSource
 {
 	public:
-		MateriaSource();
+		MateriaSource(void);
 		MateriaSource(MateriaSource const &src);
-		virtual ~MateriaSource();
+		virtual ~MateriaSource(void);
 
 		MateriaSource	&operator=(MateriaSource const &src);
 
