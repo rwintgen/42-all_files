@@ -6,7 +6,7 @@
 #    By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/08 12:39:28 by rwintgen          #+#    #+#              #
-#    Updated: 2024/07/08 15:25:54 by rwintgen         ###   ########.fr        #
+#    Updated: 2024/09/16 11:04:37 by rwintgen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ CC			=	c++
 FLAGS		=	-Wall -Wextra -Werror -std=c++98
 
 SRC			=	main.cpp \
-				PhoneBook.cpp
+				PhoneBook.cpp \
+				Contact.cpp
 
 OBJ			=	$(SRC:.cpp=.o)
 

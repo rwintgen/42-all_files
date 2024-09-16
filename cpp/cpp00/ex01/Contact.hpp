@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Contact.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 12:38:54 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/07/19 20:41:29 by romain           ###   ########.fr       */
+/*   Updated: 2024/09/16 11:05:43 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,16 @@
 class Contact
 {
 	public:
-		inline std::string	getFirstName(void) const { return (firstname); }
-		inline void			setFirstName(std::string str) { firstname = str; }
-		inline std::string	getSurname(void) const { return (surname); }
-		inline void			setSurname(std::string str) { surname = str; }
-		inline std::string	getNickname(void) const { return (nickname); }
-		inline void			setNickname(std::string str) { nickname = str; }
-		inline std::string	getPhone(void) const { return (phone); }
-		inline void			setPhone(std::string str) { phone = str; }
-		inline std::string	getSecret(void) const {return (secret); }
-		inline void			setSecret(std::string str) { secret = str; }
+		std::string	getFirstName(void) const;
+		void		setFirstName(std::string str);
+		std::string	getSurname(void) const;
+		void		setSurname(std::string str);
+		std::string	getNickname(void) const;
+		void		setNickname(std::string str);
+		std::string	getPhone(void) const;
+		void		setPhone(std::string str);
+		std::string	getSecret(void) const;
+		void		setSecret(std::string str);
 	
 	private:
 		std::string	firstname;
