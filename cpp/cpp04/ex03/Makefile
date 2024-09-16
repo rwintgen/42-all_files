@@ -6,11 +6,11 @@
 #    By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/16 14:18:25 by rwintgen          #+#    #+#              #
-#    Updated: 2024/09/16 14:18:58 by rwintgen         ###   ########.fr        #
+#    Updated: 2024/09/16 15:44:02 by rwintgen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=		AbstractClass
+NAME		=		Materia
 
 CC			=		c++
 FLAGS		=		-Wall -Wextra -Werror -std=c++98
