@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 12:39:33 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/09/16 13:28:25 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/09/16 13:32:25 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	searchContact(PhoneBook* phonebook)
 {
 	std::string	input;
 
-	phonebook->displayAll();
+	phonebook->displayAll(void);
 	while (!std::cin.eof())
 	{
 		std::cout << "Enter index of the contact you want to display: ";
@@ -60,7 +60,7 @@ int	main(void)
 		std::cout << "Please enter ADD, SEARCH or EXIT: ";
 		std::getline(std::cin, input);
 		if (input == "ADD")
-			addContact(&phonebook);
+			addContactFromTerminal(&phonebook);
 		else if (input == "SEARCH")
 			searchContact(&phonebook);
 		else if (input == "EXIT" || std::cin.eof())

@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 11:52:58 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/09/16 13:28:10 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/09/16 14:16:14 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,7 @@ int main(int argc, char **argv)
 		std::string tmp = argv[i];
 
 		for (int j = 0; j < (int)tmp.length(); j++)
-		{
 			result += std::toupper(tmp[j]);
-		}
 	}
 	std::cout << result << std::endl;
 	return (0);
