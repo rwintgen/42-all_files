@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 12:39:49 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/09/12 12:09:16 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/09/17 11:53:13 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,26 +17,55 @@ PhoneBook::PhoneBook(void)
 	this->_index = 0;
 }
 
-void	PhoneBook::addContact(const std::string& firstname, \
-								const std::string& surname, \
-								const std::string& nickname, \
-								const std::string& phone, \
-								const std::string& secret)
+void	PhoneBook::addContact(void)
 {
-	if (firstname.empty() || surname.empty() || nickname.empty() \
-		|| phone.empty() || secret.empty())
+	std::string	data[5];
+
+	std::cout << "Enter first name: ";
+	std::getline(std::cin, data[0]);
+	std::cout << "Enter surname: ";
+	std::getline(std::cin, data[1]);
+	std::cout << "Enter nickname: ";
+	std::getline(std::cin, data[2]);
+	std::cout << "Enter phone number: ";
+	std::getline(std::cin, data[3]);
+	std::cout << "Enter darkest secret: ";
+	std::getline(std::cin, data[4]);
+
+	if (data[0].empty() || data[1].empty() || data[2].empty() \
+		|| data[3].empty() || data[4].empty())
 	{
 		std::cout << std::endl << "Error: empty field in contact" << std::endl;
 		return ;
 	}
 	if (this->_index == 8)
 		this->_index = 0;
-	this->_contacts[this->_index].setFirstName(firstname);
-	this->_contacts[this->_index].setSurname(surname);
-	this->_contacts[this->_index].setNickname(nickname);
-	this->_contacts[this->_index].setPhone(phone);
-	this->_contacts[this->_index].setSecret(secret);
+
+	this->_contacts[this->_index].setFirstName(data[0]);
+	this->_contacts[this->_index].setSurname(data[1]);
+	this->_contacts[this->_index].setNickname(data[2]);
+	this->_contacts[this->_index].setPhone(data[3]);
+	this->_contacts[this->_index].setSecret(data[4]);
 	this->_index++;
+}
+
+void	PhoneBook::searchContact(void)
+{
+	std::string	input;
+
+	this->displayAll();
+	while (!std::cin.eof())
+	{
+		std::cout << "Enter index of the contact you want to display: ";
+		std::getline(std::cin, input);
+		if (input.length() == 1 && input[0] >= '0' && input[0] <= '7')
+		{
+			this->displayOne(input[0] - '0');
+			break ;
+		}
+		else
+			std::cout << "Please enter a valid index" << std::endl;
+	}
 }
 
 void	PhoneBook::displayAll(void)

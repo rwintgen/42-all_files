@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 11:03:57 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/09/16 11:13:06 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/09/17 11:43:14 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,50 +14,50 @@
 
 std::string Contact::getFirstName(void) const
 {
-	return (this->firstName);
+	return (this->_firstname);
 }
 
 void Contact::setFirstName(std::string str)
 {
-	this->firstName = str;
+	this->_firstname = str;
 }
 
 std::string Contact::getSurname(void) const
 {
-	return (this->surname);
+	return (this->_surname);
 }
 
 void Contact::setSurname(std::string str)
 {
-	this->surname = str;
+	this->_surname = str;
 }
 
 std::string Contact::getNickname(void) const
 {
-	return (this->nickname);
+	return (this->_nickname);
 }
 
 void Contact::setNickname(std::string str)
 {
-	this->nickname = str;
+	this->_nickname = str;
 }
 
 std::string Contact::getPhone(void) const
 {
-	return (this->phone);
+	return (this->_phone);
 }
 
 void Contact::setPhone(std::string str)
 {
-	this->phone = str;
+	this->_phone = str;
 }
 
 std::string Contact::getSecret(void) const
 {
-	return (this->secret);
+	return (this->_secret);
 }
 
 void Contact::setSecret(std::string str)
 {
-	this->secret = str;
+	this->_secret = str;
 }

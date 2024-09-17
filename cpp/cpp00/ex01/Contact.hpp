@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 12:38:54 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/09/16 11:05:43 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/09/17 11:42:44 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ class Contact
 		void		setSecret(std::string str);
 	
 	private:
-		std::string	firstname;
-		std::string	surname;
-		std::string	nickname;
-		std::string	phone;
-		std::string	secret;
+		std::string	_firstname;
+		std::string	_surname;
+		std::string	_nickname;
+		std::string	_phone;
+		std::string	_secret;
 };
 
 #endif
