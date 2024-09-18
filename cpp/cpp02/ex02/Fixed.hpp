@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 12:41:13 by romain            #+#    #+#             */
-/*   Updated: 2024/08/12 13:04:06 by romain           ###   ########.fr       */
+/*   Updated: 2024/09/18 14:52:55 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ class	Fixed
 		static const Fixed&	min(const Fixed &a, const Fixed &b);
 		static Fixed&		max(Fixed &a, Fixed &b);
 		static const Fixed&	max(const Fixed &a, const Fixed &b);
+
 	private:
 		int					_rawBits;
 		static const int	_fractionalBits = 8;

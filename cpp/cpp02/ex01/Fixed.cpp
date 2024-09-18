@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 12:41:10 by romain            #+#    #+#             */
-/*   Updated: 2024/09/12 12:14:27 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/09/18 14:56:53 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 Fixed&	Fixed::operator=(const Fixed& obj)
 {
 	std::cout << "Copy assignment operator called" << std::endl;
-	this->_rawBits = obj.getRawBits(void);
+	this->_rawBits = obj.getRawBits();
 	return (*this);
 }
 
