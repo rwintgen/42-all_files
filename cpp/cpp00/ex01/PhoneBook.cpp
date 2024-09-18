@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 12:39:49 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/09/17 11:53:13 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/09/18 16:15:51 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,24 +20,24 @@ PhoneBook::PhoneBook(void)
 void	PhoneBook::addContact(void)
 {
 	std::string	data[5];
-
-	std::cout << "Enter first name: ";
-	std::getline(std::cin, data[0]);
-	std::cout << "Enter surname: ";
-	std::getline(std::cin, data[1]);
-	std::cout << "Enter nickname: ";
-	std::getline(std::cin, data[2]);
-	std::cout << "Enter phone number: ";
-	std::getline(std::cin, data[3]);
-	std::cout << "Enter darkest secret: ";
-	std::getline(std::cin, data[4]);
-
-	if (data[0].empty() || data[1].empty() || data[2].empty() \
-		|| data[3].empty() || data[4].empty())
+	std::string prompts[5] =
 	{
-		std::cout << std::endl << "Error: empty field in contact" << std::endl;
-		return ;
-	}
+		"Enter first name: ",
+		"Enter surname: ",
+		"Enter nickname: ",
+		"Enter phone number: ",
+		"Enter darkest secret: "
+	};
+
+    for (int i = 0; i < 5; i++)
+    {
+        std::cout << prompts[i];
+        if (!std::getline(std::cin, data[i]) || data[i].empty())
+        {
+            std::cout << std::endl << "Error: empty field in contact" << std::endl;
+            return;
+        }
+    }
 	if (this->_index == 8)
 		this->_index = 0;
 
@@ -68,10 +68,14 @@ void	PhoneBook::searchContact(void)
 	}
 }
 
-void	PhoneBook::displayAll(void)
+void PhoneBook::displayAll(void)
 {
 	std::cout << " ___________________________________________ " << std::endl;
-	std::cout << "|Index     |Name      |Surname   |Nickname  |" << std::endl;
+	std::cout << "|" << std::setw(10) << std::right << "Index"
+			  << "|" << std::setw(10) << std::right << "Name"
+			  << "|" << std::setw(10) << std::right << "Surname"
+			  << "|" << std::setw(10) << std::right << "Nickname"
+			  << "|" << std::endl;
 	std::cout << "|‾‾‾‾‾‾‾‾‾‾|‾‾‾‾‾‾‾‾‾‾|‾‾‾‾‾‾‾‾‾‾|‾‾‾‾‾‾‾‾‾‾|" << std::endl;
 	for (int i = 0; i < 8; i++)
 	{
@@ -84,12 +88,11 @@ void	PhoneBook::displayAll(void)
 		surname = surname.length() > 10 ? surname.substr(0, 9) + "." : surname;
 		nickname = nickname.length() > 10 ? nickname.substr(0, 9) + "." : nickname;
 
-		index += std::string(10 - index.length(), ' ');
-		name += std::string(10 - name.length(), ' ');
-        surname += std::string(10 - surname.length(), ' ');
-        nickname += std::string(10 - nickname.length(), ' ');
-
-		std::cout << "|" << index << "|" << name << "|" << surname << "|" << nickname << "|" << std::endl;
+		std::cout << "|" << std::setw(10) << std::right << index
+				  << "|" << std::setw(10) << std::right << name
+				  << "|" << std::setw(10) << std::right << surname
+				  << "|" << std::setw(10) << std::right << nickname
+				  << "|" << std::endl;
 	}
 	std::cout << " ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾ " << std::endl;
 }
