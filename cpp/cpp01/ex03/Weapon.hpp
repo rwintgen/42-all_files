@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 13:12:46 by romain            #+#    #+#             */
-/*   Updated: 2024/09/12 12:07:48 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/09/18 14:14:49 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ class	Weapon
 {
 	public:
 		Weapon(void);
-		Weapon(std::string type);
+		Weapon(const char *type);
 
 		const std::string&	getType(void);
 		void				setType(std::string type);

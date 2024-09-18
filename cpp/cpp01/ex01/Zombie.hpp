@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 23:13:19 by romain            #+#    #+#             */
-/*   Updated: 2024/09/12 12:04:21 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/09/18 13:41:52 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <iostream>
 # include <string>
+# include <sstream>
+# include <stdexcept>
 
 class Zombie
 {

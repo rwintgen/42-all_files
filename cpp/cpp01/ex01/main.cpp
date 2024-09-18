@@ -6,26 +6,55 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 20:34:45 by romain            #+#    #+#             */
-/*   Updated: 2024/09/12 12:04:09 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/09/18 14:23:19 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
-int	main(int argc, char **argv)
+int stringToInt(const std::string &str)
 {
-	if (argc != 3 || std::stoi(argv[1]) < 0)
+	std::stringstream	ss(str);
+	int					num;
+
+	ss >> num;
+	if (ss.fail())
 	{
-		std::cerr << "Usage: " << argv[0] << " [number of zombies]" << "[zombies name]" << std::endl;
+		throw std::invalid_argument("Invalid number format");
+	}
+	return (num);
+}
+
+int main(int argc, char **argv)
+{
+	if (argc != 3)
+	{
+		std::cerr << "Usage: " << argv[0] << " [number of zombies] [zombies name]" << std::endl;
+		return 1;
+	}
+
+	int	zombiesNb;
+	try
+	{
+		zombiesNb = stringToInt(argv[1]);
+		if (zombiesNb < 0)
+		{
+			throw std::invalid_argument("Number of zombies cannot be negative");
+		}
+	}
+	catch (const std::invalid_argument &e)
+	{
+		std::cerr << "Error: " << e.what() << std::endl;
 		return (1);
 	}
-	
-	int	zombiesNb = std::stoi(argv[1]);
-	Zombie	*horde = zombieHorde(zombiesNb, argv[2]);
+
+	Zombie *horde = zombieHorde(zombiesNb, argv[2]);
 
 	for (int i = 0; i < zombiesNb; i++)
+	{
 		horde[i].announce();
+	}
 
-	delete []horde;
+	delete[] horde;
 	return (0);
 }

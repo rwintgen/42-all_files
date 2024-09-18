@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 23:13:17 by romain            #+#    #+#             */
-/*   Updated: 2024/09/12 12:07:47 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/09/18 14:22:08 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ Zombie::Zombie(void)
 {
 }
 
-Zombie::Zombie(std::string name)
+Zombie::Zombie(std::string const name)
 {
 	this->_name = name;
 }

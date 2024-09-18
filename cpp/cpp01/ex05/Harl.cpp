@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Harl.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 18:17:32 by romain            #+#    #+#             */
-/*   Updated: 2024/07/25 18:35:47 by romain           ###   ########.fr       */
+/*   Updated: 2024/09/18 14:40:45 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ void	Harl::complain(const std::string &complaint)
 		if (levels[i] == complaint)
 		{
 			(this->*fooPtr[i])();
-			break ;
+			return ;
 		}
 	}
+	std::cerr << "Harl is a bit lost with this instruction : \"" << complaint << "\"";
 }
