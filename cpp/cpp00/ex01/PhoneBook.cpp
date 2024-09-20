@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 12:39:49 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/09/18 16:15:51 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/09/20 14:41:06 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,15 @@ void	PhoneBook::addContact(void)
 		"Enter darkest secret: "
 	};
 
-    for (int i = 0; i < 5; i++)
-    {
-        std::cout << prompts[i];
-        if (!std::getline(std::cin, data[i]) || data[i].empty())
-        {
-            std::cout << std::endl << "Error: empty field in contact" << std::endl;
-            return;
-        }
-    }
+	for (int i = 0; i < 5; i++)
+	{
+		std::cout << prompts[i];
+		if (!std::getline(std::cin, data[i]) || data[i].empty())
+		{
+			std::cout << std::endl << "Error: empty field in contact" << std::endl;
+			return;
+		}
+	}
 	if (this->_index == 8)
 		this->_index = 0;
 
