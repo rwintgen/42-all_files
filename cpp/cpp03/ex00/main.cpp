@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 12:30:48 by romain            #+#    #+#             */
-/*   Updated: 2024/08/12 14:28:44 by romain           ###   ########.fr       */
+/*   Updated: 2024/09/23 11:06:37 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	main(void)
 	std::cout << std::endl;
 	jack.takeDamage(50);
 	jack.beRepaired(5);
+	jack.attack("Maya");
 
 	std::cout << std::endl;
 

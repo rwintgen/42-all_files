@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FragTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 14:15:23 by romain            #+#    #+#             */
-/*   Updated: 2024/08/15 17:33:56 by romain           ###   ########.fr       */
+/*   Updated: 2024/09/23 11:37:32 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,7 @@ FragTrap::FragTrap(void) : ClapTrap("Salvador")
 
 FragTrap::FragTrap(const FragTrap &obj) : ClapTrap(obj)
 {
-	this->_name = obj._name;
-    this->_hitPoints = obj._hitPoints;
-    this->_energyPoints = obj._energyPoints;
-    this->_attackDamage = obj._attackDamage;
+	*this = obj;
 	std::cout << "Copy constructor of FragTrap called!" << std::endl;
 }
 
@@ -44,11 +41,11 @@ FragTrap::~FragTrap(void)
 
 FragTrap	&FragTrap::operator=(const FragTrap &obj)
 {
-	this->_name = obj._name;
-	this->_hitPoints = obj._hitPoints;
-	this->_energyPoints = obj._energyPoints;
-	this->_attackDamage = obj._attackDamage;
-	std::cout << "Assignment operator of FragTrap called!" << std::endl;
+	if (this != &obj)
+	{
+		ClapTrap::operator=(obj);
+		std::cout << "Assignment operator of FragTrap called!" << std::endl;
+	}
 	return (*this);
 }
 

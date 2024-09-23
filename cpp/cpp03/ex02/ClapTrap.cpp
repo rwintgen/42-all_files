@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 12:30:59 by romain            #+#    #+#             */
-/*   Updated: 2024/08/15 17:34:09 by romain           ###   ########.fr       */
+/*   Updated: 2024/09/23 11:37:31 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,8 @@ ClapTrap::ClapTrap(std::string name) : _name(name), _hitPoints(10), _energyPoint
 
 ClapTrap::ClapTrap(const ClapTrap &obj)
 {
-    this->_name = obj._name;
-    this->_hitPoints = obj._hitPoints;
-    this->_energyPoints = obj._energyPoints;
-    this->_attackDamage = obj._attackDamage;
-    std::cout << "Copy constructor of ClapTrap called!" << std::endl;
+	*this = obj;
+	std::cout << "Copy constructor of ClapTrap called!" << std::endl;
 }
 
 ClapTrap::~ClapTrap(void)
@@ -38,11 +35,14 @@ ClapTrap::~ClapTrap(void)
 
 ClapTrap	&ClapTrap::operator=(const ClapTrap &obj)
 {
-	this->_name = obj._name;
-	this->_hitPoints = obj._hitPoints;
-	this->_energyPoints = obj._energyPoints;
-	this->_attackDamage = obj._attackDamage;
-	std::cout << "Assignment operator of ClapTrap called!" << std::endl;
+	if (this != &obj)
+	{
+		this->_name = obj._name;
+		this->_hitPoints = obj._hitPoints;
+		this->_energyPoints = obj._energyPoints;
+		this->_attackDamage = obj._attackDamage;
+		std::cout << "Assignment operator of ClapTrap called!" << std::endl;
+	}
 	return (*this);
 }
 
@@ -78,11 +78,6 @@ void	ClapTrap::beRepaired(unsigned int amount)
 		std::cout << _name << " gets repaired for " << amount << " points." << std::endl;
 		this->_hitPoints += amount;
 		this->_energyPoints--;
-		if (this->_hitPoints > 10)
-		{
-			this->_hitPoints = 10;
-			std::cout << _name << " is at full life!" << std::endl;
-		}
 	}
 	else
 		std::cout << _name << " can't repair itself right now..." << std::endl;

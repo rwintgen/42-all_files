@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 12:30:48 by romain            #+#    #+#             */
-/*   Updated: 2024/09/12 13:09:55 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/09/23 11:37:35 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,11 @@ int	main(void)
 	jack.beRepaired(5);
 
 	std::cout << std::endl;
-	krieg.guardGate(void);
+	krieg.guardGate();
 	zero.attack("the gate");
 	krieg.takeDamage(20);
-	krieg.guardGate(void);
+	krieg.guardGate();
+	krieg.beRepaired(10);
 
 	std::cout << std::endl;
 

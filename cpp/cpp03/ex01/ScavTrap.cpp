@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScavTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 12:58:40 by romain            #+#    #+#             */
-/*   Updated: 2024/08/15 17:37:33 by romain           ###   ########.fr       */
+/*   Updated: 2024/09/23 11:37:34 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,9 @@ ScavTrap::ScavTrap(void) : ClapTrap("Krieg") , _keeperMode(false)
 	std::cout << "ClapTrap " << this->_name << " just became a ScavTrap!" << std::endl;
 }
 
-ScavTrap::ScavTrap(const ScavTrap &obj)
+ScavTrap::ScavTrap(const ScavTrap &obj) : ClapTrap(obj)
 {
-	this->_name = obj._name;
-	this->_hitPoints = obj._hitPoints;
-	this->_energyPoints = obj._energyPoints;
-	this->_attackDamage = obj._attackDamage;
-	this->_keeperMode = obj._keeperMode;
+	*this = obj;
 	std::cout << "Copy constructor of ScavTrap called!" << std::endl;
 }
 
@@ -45,12 +41,12 @@ ScavTrap::~ScavTrap(void)
 
 ScavTrap	&ScavTrap::operator=(const ScavTrap &obj)
 {
-	this->_name = obj._name;
-	this->_hitPoints = obj._hitPoints;
-	this->_energyPoints = obj._energyPoints;
-	this->_attackDamage = obj._attackDamage;
-	this->_keeperMode = obj._keeperMode;
-	std::cout << "Assignment operator of ScavTrap called!" << std::endl;
+	if (this != &obj)
+	{
+		ClapTrap::operator=(obj);
+		this->_keeperMode = obj._keeperMode;
+		std::cout << "Assignment operator of ScavTrap called!" << std::endl;
+	}
 	return (*this);
 }
 
