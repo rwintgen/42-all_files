@@ -25,7 +25,8 @@ Animal::Animal(std::string type) : _type(type)
 Animal::Animal(const Animal &copy)
 {
 	std::cout << "Animal copy constructor called" << std::endl;
-	_type = copy.getType(void);}
+	_type = copy.getType();
+}
 
 Animal::~Animal(void)
 {
@@ -41,7 +42,7 @@ Animal	&Animal::operator=(const Animal &copy)
 {
 	std::cout << "Animal assignation operator called" << std::endl;
 	if (this != &copy)
-		_type = copy.getType(void);
+		_type = copy.getType();
 	return (*this);
 }
 

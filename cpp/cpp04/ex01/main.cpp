@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 15:41:01 by romain            #+#    #+#             */
-/*   Updated: 2024/09/12 13:16:09 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/09/26 12:21:09 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,22 @@
 
 int main(void)
 {
-	const Animal* randomAnimal = new Animal(void);
-	const Animal* doggo = new Dog(void);
-	const Animal* pussy = new Cat(void);
-	const WrongAnimal* wrongCat = new WrongAnimal(void);
+	const Animal* randomAnimal = new Animal();
+	const Animal* doggo = new Dog();
+	const Animal* pussy = new Cat();
+	const WrongAnimal* wrongCat = new WrongAnimal();
 	
 	std::cout << std::endl;
-	std::cout << randomAnimal->getType(void) << std::endl;
-	std::cout << doggo->getType(void) << std::endl;
-	std::cout << pussy->getType(void) << std::endl;
-	std::cout << wrongCat->getType(void) << std::endl;
+	std::cout << randomAnimal->getType() << std::endl;
+	std::cout << doggo->getType() << std::endl;
+	std::cout << pussy->getType() << std::endl;
+	std::cout << wrongCat->getType() << std::endl;
 	
 	std::cout << std::endl;
-	randomAnimal->makeSound(void);
-	doggo->makeSound(void);
-	pussy->makeSound(void);
-	wrongCat->makeSound(void);
+	randomAnimal->makeSound();
+	doggo->makeSound();
+	pussy->makeSound();
+	wrongCat->makeSound();
 	
 	std::cout << std::endl;
 	delete randomAnimal;
@@ -46,9 +46,9 @@ int main(void)
 	for (int i = 0; i < 100; i++)
 	{
 		if (i % 2 == 0)
-			animals[i] = new Dog(void);
+			animals[i] = new Dog();
 		else
-			animals[i] = new Cat(void);
+			animals[i] = new Cat();
 	}
 	for (int i = 0; i < 100; i++)
 		delete animals[i];
