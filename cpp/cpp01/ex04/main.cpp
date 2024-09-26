@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 15:17:11 by romain            #+#    #+#             */
-/*   Updated: 2024/09/18 14:35:11 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/09/26 15:03:44 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int	main(int argc, char **argv)
 	std::ifstream infile;
 	std::ofstream outfile;
 
-	if (openFile(argv[1], OPEN, infile, outfile) == ERROR || openFile(argv[1], CREATE, infile, outfile) == ERROR)
+	if (openFile(argv[1], OPEN, infile, outfile) == ERROR \
+		|| openFile(argv[1], CREATE, infile, outfile) == ERROR)
 		return (1);
 
 	std::string line;

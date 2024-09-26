@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 20:34:45 by romain            #+#    #+#             */
-/*   Updated: 2024/09/18 14:23:19 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/09/26 15:01:03 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ int main(int argc, char **argv)
 	try
 	{
 		zombiesNb = stringToInt(argv[1]);
-		if (zombiesNb < 0)
+		if (zombiesNb < 1)
 		{
-			throw std::invalid_argument("Number of zombies cannot be negative");
+			throw std::invalid_argument("Number of zombies must be a positive integer");
 		}
 	}
 	catch (const std::invalid_argument &e)
