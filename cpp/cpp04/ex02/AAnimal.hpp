@@ -1,39 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                        :+:      :+:    :+:   */
+/*   AAnimal.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 15:37:43 by romain            #+#    #+#             */
-/*   Updated: 2024/08/13 12:32:33 by romain           ###   ########.fr       */
+/*   Updated: 2024/09/26 13:36:24 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-# define ANIMAL_HPP
+#ifndef AANIMAL_HPP
+#define AANIMAL_HPP
 
-# include <iostream>
-# include <string>
+#include <iostream>
+#include <string>
 
-class	Animal
+class AAnimal
 {
 	public:
-		void	swap(Animal &obj1, Animal &obj2);
-		Animal	&operator=(const Animal &copy);
+		AAnimal(const AAnimal &copy);
+		virtual ~AAnimal(void);
 
-		std::string	getType(void) const;
-		void		setType(std::string type);
+		AAnimal &operator=(const AAnimal &copy);
+		void	swap(AAnimal &obj1, AAnimal &obj2);
 
-		virtual void	makeSound(void) const;
+		std::string getType(void) const;
+		void setType(std::string type);
+
+		virtual void makeSound(void) const = 0;
 
 	protected:
-		Animal(void);
-		Animal(std::string type);
-		Animal(const Animal &copy);
-		virtual ~Animal(void);
+		AAnimal(void);
+		AAnimal(std::string type);
 
-		std::string	_type;
+		std::string _type;
 };
 
 #endif

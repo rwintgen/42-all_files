@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: romain <romain@student.42.fr>              +#+  +:+       +#+         #
+#    By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/12 15:40:45 by romain            #+#    #+#              #
-#    Updated: 2024/08/15 17:16:42 by romain           ###   ########.fr        #
+#    Updated: 2024/09/26 13:42:09 by rwintgen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,11 +16,12 @@ CC			=		c++
 FLAGS		=		-Wall -Wextra -Werror -std=c++98
 
 SRC			=		main.cpp \
-					Animal.cpp \
+					AAnimal.cpp \
 					Brain.cpp \
 					Dog.cpp \
 					Cat.cpp \
-					WrongAnimal.cpp
+					WrongAnimal.cpp \
+					WrongCat.cpp
 
 OBJ			=		$(SRC:.cpp=.o)
 
@@ -33,10 +34,10 @@ $(NAME): $(OBJ)
 	$(CC) $(OBJ) -o $(NAME)
 
 clean:
-	@rm $(OBJ)
+	@rm -f $(OBJ)
 
-fclean:
-	@rm  $(OBJ) $(NAME)
+fclean: clean
+	@rm -f $(NAME)
 
 re: fclean $(NAME)
 

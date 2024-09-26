@@ -6,14 +6,14 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 18:04:48 by romain            #+#    #+#             */
-/*   Updated: 2024/09/12 13:16:06 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/09/26 13:29:34 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BRAIN_HPP
 # define BRAIN_HPP
 
-# include "Animal.hpp"
+# include "AAnimal.hpp"
 
 class	Brain
 {

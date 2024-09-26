@@ -6,22 +6,22 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:06:35 by romain            #+#    #+#             */
-/*   Updated: 2024/09/12 13:15:59 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/09/26 13:35:24 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cat.hpp"
 
-Cat::Cat(void)
+Cat::Cat(void) : AAnimal()
 {
 	std::cout << "Cat default constructor called" << std::endl;
 	this->_type = "Cat";
 }
 
-Cat::Cat(const Cat &copy)
+Cat::Cat(const Cat &copy) : AAnimal(copy)
 {
 	std::cout << "Cat copy constructor called" << std::endl;
-	_type = copy.getType(void);
+	_type = copy.getType();
 }
 
 Cat::~Cat(void)
@@ -39,7 +39,7 @@ Cat	&Cat::operator=(const Cat &copy)
 {
 	std::cout << "Cat assignation operator called" << std::endl;
 	if (this != &copy)
-		_type = copy.getType(void);
+		_type = copy.getType();
 	return (*this);
 }
 

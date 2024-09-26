@@ -6,43 +6,44 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 15:41:01 by romain            #+#    #+#             */
-/*   Updated: 2024/09/26 12:21:09 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/09/26 13:53:13 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Animal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
-#include "WrongAnimal.hpp"
-#include "Brain.hpp"
+#include "WrongCat.hpp"
 
 int main(void)
 {
 	const Animal* randomAnimal = new Animal();
 	const Animal* doggo = new Dog();
 	const Animal* pussy = new Cat();
-	const WrongAnimal* wrongCat = new WrongAnimal();
+	const WrongAnimal* wrongPussy = new WrongCat();
+
 	
 	std::cout << std::endl;
 	std::cout << randomAnimal->getType() << std::endl;
 	std::cout << doggo->getType() << std::endl;
 	std::cout << pussy->getType() << std::endl;
-	std::cout << wrongCat->getType() << std::endl;
+	std::cout << wrongPussy->getType() << std::endl;
+
 	
 	std::cout << std::endl;
 	randomAnimal->makeSound();
 	doggo->makeSound();
 	pussy->makeSound();
-	wrongCat->makeSound();
+	wrongPussy->makeSound();
 	
 	std::cout << std::endl;
 	delete randomAnimal;
 	delete doggo;
 	delete pussy;
-	delete wrongCat;
+	delete wrongPussy;
 
 	std::cout << std::endl;
-	Animal	*animals[100];
+	Animal *animals[100];
 	for (int i = 0; i < 100; i++)
 	{
 		if (i % 2 == 0)

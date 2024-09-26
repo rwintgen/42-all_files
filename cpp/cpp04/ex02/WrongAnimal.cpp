@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 13:43:49 by romain            #+#    #+#             */
-/*   Updated: 2024/09/12 13:16:03 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/09/26 13:36:39 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ WrongAnimal::WrongAnimal(void) : _type("WrongAnimal")
 WrongAnimal::WrongAnimal(const WrongAnimal &copy)
 {
 	std::cout << "WrongAnimal copy constructor called" << std::endl;
-	_type = copy.getType(void);
+	_type = copy.getType();
 }
 
 WrongAnimal::WrongAnimal(std::string type) : _type(type)

@@ -6,14 +6,14 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 13:43:54 by romain            #+#    #+#             */
-/*   Updated: 2024/09/12 13:16:02 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/09/26 13:29:37 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WRONGANIMAL_HPP
 # define WRONGANIMAL_HPP
 
-# include "Animal.hpp"
+# include "AAnimal.hpp"
 
 class	WrongAnimal
 {
