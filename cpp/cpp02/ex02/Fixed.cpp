@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 12:41:10 by romain            #+#    #+#             */
-/*   Updated: 2024/09/18 15:00:21 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/10/05 16:33:09 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,16 @@ bool	Fixed::operator>=(const Fixed &obj) const
 bool	Fixed::operator<=(const Fixed &obj) const
 {
 	return (this->_rawBits <= obj.getRawBits());
+}
+
+bool	Fixed::operator!=(const Fixed &obj) const
+{
+	return (this->_rawBits != obj.getRawBits());
+}
+
+bool	Fixed::operator==(const Fixed &obj) const
+{
+	return (this->_rawBits == obj.getRawBits());
 }
 
 Fixed	Fixed::operator+(const Fixed &obj) const

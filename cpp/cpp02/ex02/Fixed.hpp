@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 12:41:13 by romain            #+#    #+#             */
-/*   Updated: 2024/09/18 14:52:55 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/10/05 16:29:04 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ class	Fixed
 		bool	operator<(const Fixed &obj) const;
 		bool	operator>=(const Fixed &obj) const;
 		bool	operator<=(const Fixed &obj) const;
+		bool	operator!=(const Fixed &obj) const;
+		bool	operator==(const Fixed &obj) const;
 
 		Fixed	operator+(const Fixed &obj) const;
 		Fixed	operator-(const Fixed &obj) const;

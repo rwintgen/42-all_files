@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 12:41:15 by romain            #+#    #+#             */
-/*   Updated: 2024/09/23 10:44:48 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/10/05 16:31:00 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ int	main(void)
 	std::cout << "a <= b: " << (a <= b) << std::endl;
 	std::cout << "a > b: " << (a > b) << std::endl;
 	std::cout << "a >= b: " << (a >= b) << std::endl;
+	std::cout << "a != b: " << (a != b) << std::endl;
+	std::cout << "a == b: " << (a == b) << std::endl;
 
 	// Increment/Decrement Operators
 	std::cout << "\nIncrement/Decrement Operators:" << std::endl;
