@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:06:35 by romain            #+#    #+#             */
-/*   Updated: 2024/09/26 13:35:24 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/10/29 15:35:16 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,30 +16,32 @@ Cat::Cat(void) : AAnimal()
 {
 	std::cout << "Cat default constructor called" << std::endl;
 	this->_type = "Cat";
+	this->_brain = new Brain();
 }
 
 Cat::Cat(const Cat &copy) : AAnimal(copy)
 {
 	std::cout << "Cat copy constructor called" << std::endl;
-	_type = copy.getType();
+	this->_type = copy._type;
+	this->_brain = new Brain(*copy._brain);
 }
 
 Cat::~Cat(void)
 {
 	std::cout << "Cat destructor called" << std::endl;
-}
-
-void	Cat::swap(Cat &obj1, Cat &obj2)
-{
-	std::cout << "Cat swap called" << std::endl;
-	std::swap(obj1._type, obj2._type);
+	delete this->_brain;
 }
 
 Cat	&Cat::operator=(const Cat &copy)
 {
 	std::cout << "Cat assignation operator called" << std::endl;
 	if (this != &copy)
-		_type = copy.getType();
+	{
+		if (this->_brain)
+			delete this->_brain;
+		this->_brain = new Brain(*copy._brain);
+		this->_type = copy._type;
+	}
 	return (*this);
 }
 

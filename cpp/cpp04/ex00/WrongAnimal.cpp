@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 13:43:49 by romain            #+#    #+#             */
-/*   Updated: 2024/09/12 13:13:16 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/10/29 15:03:30 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,6 @@ WrongAnimal::WrongAnimal(std::string type) : _type(type)
 WrongAnimal::~WrongAnimal(void)
 {
 	std::cout << "WrongAnimal destructor called" << std::endl;
-}
-
-void	WrongAnimal::swap(WrongAnimal &obj1, WrongAnimal &obj2)
-{
-	WrongAnimal	tmp = obj1;
-
-	obj1 = obj2;
-	obj2 = tmp;
 }
 
 WrongAnimal	&WrongAnimal::operator=(const WrongAnimal &copy)

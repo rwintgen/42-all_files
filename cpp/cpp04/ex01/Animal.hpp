@@ -24,7 +24,6 @@ class	Animal
 		Animal(const Animal &copy);
 		virtual ~Animal(void);
 
-		void	swap(Animal &obj1, Animal &obj2);
 		Animal	&operator=(const Animal &copy);
 
 		std::string	getType(void) const;

@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:06:07 by romain            #+#    #+#             */
-/*   Updated: 2024/09/26 13:35:03 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/10/29 15:36:35 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,30 +16,32 @@ Dog::Dog(void) : AAnimal()
 {
 	std::cout << "Dog default constructor called" << std::endl;
 	this->_type = "Dog";
+	this->_brain = new Brain();
 }
 
 Dog::Dog(const Dog &copy) : AAnimal(copy)
 {
 	std::cout << "Dog copy constructor called" << std::endl;
-	_type = copy.getType();
+	this->_type = copy._type;
+	this->_brain = new Brain(*copy._brain);
 }
 
 Dog::~Dog(void)
 {
 	std::cout << "Dog destructor called" << std::endl;
-}
-
-void	Dog::swap(Dog &obj1, Dog &obj2)
-{
-	std::cout << "Dog swap called" << std::endl;
-	std::swap(obj1._type, obj2._type);
+	delete this->_brain;
 }
 
 Dog	&Dog::operator=(const Dog &copy)
 {
 	std::cout << "Dog assignation operator called" << std::endl;
 	if (this != &copy)
-		_type = copy.getType();
+	{
+		if (this->_brain)
+			delete this->_brain;
+		this->_brain = new Brain(*copy._brain);
+		this->_type = copy._type;
+	}
 	return (*this);
 }
 

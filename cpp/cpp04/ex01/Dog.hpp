@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:07:19 by romain            #+#    #+#             */
-/*   Updated: 2024/09/12 13:16:09 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/10/29 15:14:02 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ class	Dog : public Animal
 		Dog(const Dog &copy);
 		virtual ~Dog(void);
 
-		void	swap(Dog &obj1, Dog &obj2);
 		Dog		&operator=(const Dog &copy);
 
 		virtual void	makeSound(void) const;

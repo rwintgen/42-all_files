@@ -6,14 +6,13 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 15:41:01 by romain            #+#    #+#             */
-/*   Updated: 2024/10/29 14:55:59 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/10/29 15:38:21 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Animal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
-#include "WrongAnimal.hpp"
 #include "WrongCat.hpp"
 
 int main(void)

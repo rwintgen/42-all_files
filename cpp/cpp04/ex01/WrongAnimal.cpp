@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 13:43:49 by romain            #+#    #+#             */
-/*   Updated: 2024/09/26 12:23:00 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/10/29 15:03:26 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ WrongAnimal::WrongAnimal(void) : _type("WrongAnimal")
 WrongAnimal::WrongAnimal(const WrongAnimal &copy)
 {
 	std::cout << "WrongAnimal copy constructor called" << std::endl;
-	_type = copy.getType();
+	*this = copy;
 }
 
 WrongAnimal::WrongAnimal(std::string type) : _type(type)
@@ -34,16 +34,11 @@ WrongAnimal::~WrongAnimal(void)
 	std::cout << "WrongAnimal destructor called" << std::endl;
 }
 
-WrongAnimal &WrongAnimal::operator=(WrongAnimal other)
+WrongAnimal &WrongAnimal::operator=(const WrongAnimal& other)
 {
 	std::cout << "WrongAnimal assignation operator called" << std::endl;
-	swap(*this, other);
+	this->_type = other._type;
 	return (*this);
-}
-
-void	WrongAnimal::swap(WrongAnimal &first, WrongAnimal &second)
-{
-	std::swap(first._type, second._type);
 }
 
 std::string	WrongAnimal::getType(void) const
