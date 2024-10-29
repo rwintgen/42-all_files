@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 15:41:01 by romain            #+#    #+#             */
-/*   Updated: 2024/10/29 14:53:59 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/10/29 14:55:59 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int main(void)
 	std::cout << doggo->getType() << std::endl;
 	std::cout << pussy->getType() << std::endl;
 	std::cout << wrongPussy->getType() << std::endl;
-	std::cout << wrongPussy->getType() << std::endl;
+	std::cout << realWrongCat->getType() << std::endl;
 	
 	std::cout << std::endl;
 	randomAnimal->makeSound();
