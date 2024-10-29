@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:06:21 by romain            #+#    #+#             */
-/*   Updated: 2024/08/13 17:57:36 by romain           ###   ########.fr       */
+/*   Updated: 2024/10/29 16:28:09 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,11 @@ class	Cat : public Animal
 	public:
 		Cat(void);
 		Cat(const Cat &copy);
-		virtual ~Cat(void);
+		~Cat(void);
 
-		void	swap(Cat &obj1, Cat &obj2);
 		Cat		&operator=(const Cat &copy);
 	
-		virtual void	makeSound(void) const;	
+		void	makeSound(void) const;	
 };
 
 #endif

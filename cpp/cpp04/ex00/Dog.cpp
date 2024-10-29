@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:06:07 by romain            #+#    #+#             */
-/*   Updated: 2024/09/26 12:17:46 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/10/29 16:14:39 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,7 @@ Dog::~Dog(void)
 	std::cout << "Dog destructor called" << std::endl;
 }
 
-void	Dog::swap(Dog &obj1, Dog &obj2)
-{
-	std::cout << "Dog swap called" << std::endl;
-	std::swap(obj1._type, obj2._type);
-}
+
 
 Dog	&Dog::operator=(const Dog &copy)
 {

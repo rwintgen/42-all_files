@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 18:04:48 by romain            #+#    #+#             */
-/*   Updated: 2024/09/12 13:16:11 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/10/29 16:14:55 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ class	Brain
 		Brain(const Brain &copy);
 		~Brain(void);
 
-		void	swap(Brain &obj1, Brain &obj2);
 		Brain	&operator=(Brain copy);
 
 		std::string	getIdea(unsigned int index) const;

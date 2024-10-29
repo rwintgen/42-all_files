@@ -6,16 +6,15 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:06:35 by romain            #+#    #+#             */
-/*   Updated: 2024/09/26 12:18:25 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/10/29 16:14:31 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cat.hpp"
 
-Cat::Cat(void) : Animal()
+Cat::Cat(void) : Animal("Cat")
 {
 	std::cout << "Cat default constructor called" << std::endl;
-	this->_type = "Cat";
 }
 
 Cat::Cat(const Cat &copy) : Animal(copy)
@@ -27,12 +26,6 @@ Cat::Cat(const Cat &copy) : Animal(copy)
 Cat::~Cat(void)
 {
 	std::cout << "Cat destructor called" << std::endl;
-}
-
-void	Cat::swap(Cat &obj1, Cat &obj2)
-{
-	std::cout << "Cat swap called" << std::endl;
-	std::swap(obj1._type, obj2._type);
 }
 
 Cat	&Cat::operator=(const Cat &copy)

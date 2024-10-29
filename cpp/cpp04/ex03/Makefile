@@ -6,7 +6,7 @@
 #    By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/16 14:18:25 by rwintgen          #+#    #+#              #
-#    Updated: 2024/09/16 15:44:02 by rwintgen         ###   ########.fr        #
+#    Updated: 2024/10/29 16:31:21 by rwintgen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,10 +33,10 @@ $(NAME): $(OBJ)
 	$(CC) $(OBJ) -o $(NAME)
 
 clean:
-	@rm $(OBJ)
+	@rm -f $(OBJ)
 
 fclean:
-	@rm  $(OBJ) $(NAME)
+	@rm -f $(OBJ) $(NAME)
 
 re: fclean $(NAME)
 

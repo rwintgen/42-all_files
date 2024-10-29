@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 15:37:43 by romain            #+#    #+#             */
-/*   Updated: 2024/09/26 13:36:24 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/10/29 16:15:02 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ class AAnimal
 		virtual ~AAnimal(void);
 
 		AAnimal &operator=(const AAnimal &copy);
-		void	swap(AAnimal &obj1, AAnimal &obj2);
 
 		std::string getType(void) const;
 		void setType(std::string type);

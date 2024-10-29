@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 13:43:54 by romain            #+#    #+#             */
-/*   Updated: 2024/10/29 14:58:07 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/10/29 16:14:44 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ class	WrongAnimal
 		WrongAnimal(std::string type);
 		~WrongAnimal(void);
 
-		void		swap(WrongAnimal &obj1, WrongAnimal &obj2);
 		WrongAnimal	&operator=(const WrongAnimal &copy);
 
 		std::string	getType(void) const;

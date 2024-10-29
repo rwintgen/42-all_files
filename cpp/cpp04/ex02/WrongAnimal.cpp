@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 13:43:49 by romain            #+#    #+#             */
-/*   Updated: 2024/09/26 13:36:39 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/10/29 16:27:17 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,8 @@ WrongAnimal::~WrongAnimal(void)
 WrongAnimal &WrongAnimal::operator=(WrongAnimal other)
 {
 	std::cout << "WrongAnimal assignation operator called" << std::endl;
-	swap(*this, other);
+	this->_type = other._type;
 	return (*this);
-}
-
-void	WrongAnimal::swap(WrongAnimal &first, WrongAnimal &second)
-{
-	std::swap(first._type, second._type);
 }
 
 std::string	WrongAnimal::getType(void) const

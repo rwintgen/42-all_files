@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 18:04:46 by romain            #+#    #+#             */
-/*   Updated: 2024/09/12 13:16:06 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/10/29 16:26:58 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,16 @@ Brain::~Brain(void)
 		delete [] this->_ideas;
 }
 
-void	Brain::swap(Brain &obj1, Brain &obj2)
-{
-	std::swap(obj1._ideas, obj2._ideas);
-}
-
 Brain	&Brain::operator=(Brain copy)
 {
 	std::cout << "Brain assignation operator called" << std::endl;
-	Brain::swap(*this, copy);
+	if (this != &copy)
+	{
+		for (unsigned int i = 0; i < 100; i++)
+		{
+			this->_ideas[i] = copy._ideas[i];
+		}
+	}
 	return (*this);
 }
 

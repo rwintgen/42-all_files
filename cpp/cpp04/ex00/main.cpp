@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 15:41:01 by romain            #+#    #+#             */
-/*   Updated: 2024/10/29 15:38:21 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/10/29 15:51:55 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ int main(void)
 	const Animal* pussy = new Cat();
 	const WrongAnimal* wrongPussy = new WrongCat();
 	const WrongCat*	realWrongCat = new WrongCat();
-	
+	Dog i;
+	Dog ii;
+
+	ii = i;
 	std::cout << std::endl;
 	std::cout << randomAnimal->getType() << std::endl;
 	std::cout << doggo->getType() << std::endl;

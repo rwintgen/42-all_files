@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 13:27:31 by rwintgen          #+#    #+#             */
-/*   Updated: 2024/09/26 13:35:44 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/10/29 16:14:59 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,6 @@ AAnimal::AAnimal(const AAnimal &copy)
 AAnimal::~AAnimal(void)
 {
 	std::cout << "AAnimal destructor called" << std::endl;
-}
-
-void	AAnimal::swap(AAnimal &obj1, AAnimal &obj2)
-{
-	std::cout << "AAnimal swap called" << std::endl;
-	std::swap(obj1._type, obj2._type);
 }
 
 AAnimal	&AAnimal::operator=(const AAnimal &copy)
