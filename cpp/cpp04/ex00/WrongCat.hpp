@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   WrongCat.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 13:44:01 by romain            #+#    #+#             */
-/*   Updated: 2024/08/15 17:25:34 by romain           ###   ########.fr       */
+/*   Updated: 2024/10/29 14:49:19 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ class	WrongCat : public WrongAnimal
 
 		WrongCat	&operator=(const WrongCat &copy);
 	
-		virtual void	makeSound(void) const;	
+		void	makeSound(void) const;	
 };
 
 #endif

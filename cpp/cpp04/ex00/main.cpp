@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 15:41:01 by romain            #+#    #+#             */
-/*   Updated: 2024/09/26 13:53:12 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/10/29 14:53:59 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,13 @@ int main(void)
 	const Animal* doggo = new Dog();
 	const Animal* pussy = new Cat();
 	const WrongAnimal* wrongPussy = new WrongCat();
+	const WrongCat*	realWrongCat = new WrongCat();
 	
 	std::cout << std::endl;
 	std::cout << randomAnimal->getType() << std::endl;
 	std::cout << doggo->getType() << std::endl;
 	std::cout << pussy->getType() << std::endl;
+	std::cout << wrongPussy->getType() << std::endl;
 	std::cout << wrongPussy->getType() << std::endl;
 	
 	std::cout << std::endl;
@@ -34,12 +36,14 @@ int main(void)
 	doggo->makeSound();
 	pussy->makeSound();
 	wrongPussy->makeSound();
+	realWrongCat->makeSound();
 	
 	std::cout << std::endl;
 	delete randomAnimal;
 	delete doggo;
 	delete pussy;
 	delete wrongPussy;
+	delete realWrongCat;
 	
 	std::cout << std::endl;
 	
