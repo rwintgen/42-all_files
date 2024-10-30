@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:06:21 by romain            #+#    #+#             */
-/*   Updated: 2024/10/29 16:28:36 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/10/30 15:14:24 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ class	Cat : public AAnimal
 		Cat		&operator=(const Cat &copy);
 	
 		void	makeSound(void) const;
-		void			addIdea(std::string newIdea);
-		void			printAllIdeas(void) const;
+		void	addIdea(std::string newIdea);
+		void	printAllIdeas(void) const;
 
 	private:
 		Brain	*_brain;
