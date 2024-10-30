@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ScavTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 12:58:40 by romain            #+#    #+#             */
-/*   Updated: 2024/10/18 12:27:37 by romain           ###   ########.fr       */
+/*   Updated: 2024/10/30 12:54:37 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
 
-// TODO in this exo and next, initialize attributes in initializer list
 ScavTrap::ScavTrap(void) : ClapTrap("Krieg") , _keeperMode(false)
 {
 	this->_hitPoints = 100;
