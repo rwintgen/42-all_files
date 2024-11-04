@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 19:57:16 by romain            #+#    #+#             */
-/*   Updated: 2024/09/12 13:18:40 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/10/30 16:06:03 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 Bureaucrat::Bureaucrat(std::string const &name, int grade) : _name(name)
 {
 	if (grade < 1)
-		throw Bureaucrat::GradeTooLowException();
-	if (grade > 150)
 		throw Bureaucrat::GradeTooHighException();
+	if (grade > 150)
+		throw Bureaucrat::GradeTooLowException();
 	if (name.empty())
 		throw Bureaucrat::EmptyNameException();
 	this->_grade = grade;

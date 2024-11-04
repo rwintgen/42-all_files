@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 19:57:12 by romain            #+#    #+#             */
-/*   Updated: 2024/09/12 13:24:52 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/10/30 16:49:58 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,9 @@ int	main(void)
 		ShrubberyCreationForm	scf("DeathNote");
 		RobotomyRequestForm		rrf("A public service agent");
 		PresidentialPardonForm	ppf("A CROUS machine hacker");
+
 		try
 		{
-			std::cout << std::endl << "========= Bureaucrat ========" << std::endl;
-			std::cout << arnold << std::endl;
-			arnold.incrementGrade(void);
-			std::cout << arnold << std::endl;
-			arnold.decrementGrade(void);
-			std::cout << arnold << std::endl;
-
 			std::cout << std::endl << "=== ShrubberyCreationForm ===" << std::endl;
 			std::cout << scf << std::endl;
             arnold.signForm(scf);

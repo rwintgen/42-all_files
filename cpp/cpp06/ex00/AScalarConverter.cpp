@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 10:22:34 by romain            #+#    #+#             */
-/*   Updated: 2024/09/12 13:29:14 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/11/03 12:01:05 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,15 @@
 
 AScalarConverter::AScalarConverter(void)
 {
-
 }
 
 AScalarConverter::AScalarConverter(AScalarConverter const &src)
 {
-	*this = src;
+	(void) src;
 }
 
 AScalarConverter::~AScalarConverter(void)
 {
-
 }
 
 void	AScalarConverter::convert(std::string const &str)
@@ -43,8 +41,9 @@ void	toChar(std::string const &str)
 	if (!(str == "nan" || str == "nanf" || str == "+inf" \
 		|| str == "+inff" || str == "-inf" || str == "-inff"))
 	{
-		char	*str_end;
-		int		c = std::strtol(str.c_str(), &str_end, BASE);
+		char*	str_end;
+		int		c = strtol(str.c_str(), &str_end, BASE);
+
 		if (*str_end == '\0' || (*str_end == '.' && str.length() != 1))
 		{
 			if (c >= 32 && c <= 126)
@@ -64,6 +63,7 @@ void	toInt(std::string const &str)
 	{
 		char	*str_end;
 		int		i = std::strtol(str.c_str(), &str_end, BASE);
+
 		if (*str_end == '\0' || (*str_end == '.' && str.length() != 1))
 		{
 			std::cout << "int: " << i << std::endl;
@@ -81,8 +81,10 @@ void	toFloat(std::string const &str)
 		std::cout << "float: " << str << "f" << std::endl;
 		return ;
 	}
-	char	*str_end;
+
+	char*	str_end;
 	float	f = std::strtof(str.c_str(), &str_end);
+
 	if (*str_end == '\0' || std::isdigit(*(str_end - 1)))
 	{
 		std::cout << "float: ";
@@ -101,8 +103,10 @@ void	toDouble(std::string const &str)
 		std::cout << "double: " << str << std::endl;
 		return ;
 	}
-	char	*str_end;
+
+	char*	str_end;
 	double	d = std::strtod(str.c_str(), &str_end);
+
 	if (*str_end == '\0' || std::isdigit(*(str_end - 1)))
 	{
 		std::cout << "double: ";

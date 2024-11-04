@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 16:12:15 by romain            #+#    #+#             */
-/*   Updated: 2024/09/12 13:24:50 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/10/30 16:45:44 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 ShrubberyCreationForm::ShrubberyCreationForm(std::string const &target) \
 : AForm("SCF", 145, 137), _target(target)
 {
-	std::cout << "ShrubberyCreationForm " << AForm::getName(void) << " created"  << std::endl;
+	std::cout << "ShrubberyCreationForm " << AForm::getName() << " created"  << std::endl;
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const &copy) \
@@ -26,7 +26,7 @@ ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const &copy) 
 
 ShrubberyCreationForm::~ShrubberyCreationForm(void)
 {
-	std::cout << "ShrubberyCreationForm " << AForm::getName(void) << " destroyed"  << std::endl;
+	std::cout << "ShrubberyCreationForm " << AForm::getName() << " destroyed"  << std::endl;
 }
 
 ShrubberyCreationForm	&ShrubberyCreationForm::operator=(ShrubberyCreationForm const &src)
@@ -46,11 +46,11 @@ std::string	ShrubberyCreationForm::getTarget(void) const
 
 void	ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 {
-	if (this->isSigned(void) == false)
+	if (this->isSigned() == false)
 		throw AForm::FormNotSignedException();
-	if (executor.getGrade(void) > this->getExecGrade(void))
+	if (executor.getGrade() > this->getExecGrade())
 		throw AForm::GradeTooLowException();
-	std::ofstream	file(this->_target + "_shrubbery");
+	std::ofstream	file((this->_target + "_shrubbery").c_str());
 	if (file.is_open() == false)
 		throw AForm::FileNotOpenException();
 	else

@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 10:59:08 by romain            #+#    #+#             */
-/*   Updated: 2024/09/12 13:29:14 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/11/03 11:56:58 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 template <typename T>
 void printDecimals(T value, unsigned int type)
 {
-	T number = type ? static_cast<double>(value) : static_cast<float>(value);
-	int integer = static_cast<int>(number);
+	T	number = type ? static_cast<double>(value) : static_cast<float>(value);
+	int	integer = static_cast<int>(number);
 	int decimals = static_cast<int>((number - integer) * 10 + 0.5);
+
 	std::cout << integer << "." << decimals;
 }

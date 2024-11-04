@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 10:14:22 by romain            #+#    #+#             */
-/*   Updated: 2024/09/12 13:29:36 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/11/03 12:08:10 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int main(void)
 	Data		*deserializedValue;
 	
 	data.content = 42;
-	
+
 	std::cout << "Ptr value: " << &data << std::endl;
 	
 	rawValue = ASerializer::serialize(&data);
@@ -28,7 +28,6 @@ int main(void)
 	
 	deserializedValue = ASerializer::deserialize(rawValue);
 	std::cout << "Deserialized value: " << deserializedValue << std::endl;
-
 	std::cout << "Deserialized value content: " << deserializedValue->content << std::endl;
 
 	return (0);

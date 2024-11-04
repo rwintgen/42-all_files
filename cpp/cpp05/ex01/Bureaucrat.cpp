@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 19:57:16 by romain            #+#    #+#             */
-/*   Updated: 2024/09/12 13:20:37 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/10/30 16:30:24 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,22 +67,29 @@ void	Bureaucrat::decrementGrade(void)
 
 std::ostream	&operator<<(std::ostream &out, Bureaucrat const &bureaucrat)
 {
-	out << bureaucrat.getName(void) << ", bureaucrat grade " << bureaucrat.getGrade(void);
+	out << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade();
 	return (out);
 }
 
 void	Bureaucrat::signForm(Form &form)
 {
-	if (this->_grade > form.getSignGrade(void))
+	try
 	{
-		std::cout << this->getName(void) << " couldn't sign " << form.getName(void) << " because ";
-		throw Bureaucrat::GradeTooLowException();
+		if (this->_grade > form.getSignGrade())
+		{
+			std::cout << this->getName() << " couldn't sign " << form.getName() << " because grade is too low." << std::endl;
+			throw Bureaucrat::GradeTooLowException();
+		}
+		if (form.isSigned())
+		{
+			std::cout << this->getName() << " couldn't sign " << form.getName() << " because form is already signed." << std::endl;
+			throw Form::FormSignedException();
+		}
+		form.beSigned(*this);
+		std::cout << this->getName() << " signed " << form.getName() << std::endl;
 	}
-	if (form.isSigned(void))
+	catch (const std::exception &e)
 	{
-		std::cout << this->getName(void) << " couldn't sign " << form.getName(void) << " because ";
-		throw Form::FormSignedException();
+		std::cerr << e.what() << std::endl;
 	}
-	std::cout << this->getName(void) << " signed " << form.getName(void) << std::endl; 
-	form.beSigned(*this);
 }

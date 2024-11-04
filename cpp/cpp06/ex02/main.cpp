@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:25:16 by romain            #+#    #+#             */
-/*   Updated: 2024/09/12 13:30:00 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/11/03 12:10:13 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	main(void)
 {
 	srand(static_cast<unsigned int>(time(0)));
 
-	Base	*obj = generate(void);
+	Base	*obj = generate();
 
 	identifyPtr(obj);
 	identifyRef(*obj);

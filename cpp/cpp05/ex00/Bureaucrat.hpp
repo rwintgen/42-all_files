@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 19:57:20 by romain            #+#    #+#             */
-/*   Updated: 2024/09/12 13:18:42 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/10/30 16:34:03 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ class	Bureaucrat
 		};
 
 	private:
+		Bureaucrat();
+		
 		std::string const	_name;
 		int					_grade;
 };

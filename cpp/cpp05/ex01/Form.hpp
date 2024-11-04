@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:36:08 by romain            #+#    #+#             */
-/*   Updated: 2024/09/12 13:20:54 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/10/30 16:33:58 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,11 @@ class	Form
 				{
 					return ("Form is already signed");
 				}
-		};	
+		};
+
 	private:
+		Form();
+		
 		std::string const	_name;
 		int const			_signGrade;
 		int const			_execGrade;

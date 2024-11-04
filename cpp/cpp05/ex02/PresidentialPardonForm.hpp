@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 11:56:06 by romain            #+#    #+#             */
-/*   Updated: 2024/09/12 13:24:51 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/10/30 16:37:56 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ class	PresidentialPardonForm : public AForm
 		void		execute(Bureaucrat const &executor) const;
 
 	private:
+		PresidentialPardonForm();
+
 		std::string	_target;
 };
 

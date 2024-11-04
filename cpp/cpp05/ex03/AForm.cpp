@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:36:14 by romain            #+#    #+#             */
-/*   Updated: 2024/09/12 13:27:58 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/10/30 16:53:28 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ bool	AForm::isSigned(void) const
 
 void	AForm::beSigned(Bureaucrat const &bureaucrat)
 {
-	if (bureaucrat.getGrade(void) > _signGrade)
+	if (bureaucrat.getGrade() > _signGrade)
 		throw AForm::GradeTooLowException();
 	if (this->_signed)
 		throw AForm::FormSignedException();
@@ -73,7 +73,7 @@ void	AForm::beSigned(Bureaucrat const &bureaucrat)
 
 std::ostream	&operator<<(std::ostream &out, AForm const &form)
 {
-	out << "Form " << form.getName(void) << " is " \
-		<< (form.isSigned(void) ? "" : "not ") << "signed";
+	out << "Form " << form.getName() << " is " \
+		<< (form.isSigned() ? "" : "not ") << "signed";
 	return (out);
 }

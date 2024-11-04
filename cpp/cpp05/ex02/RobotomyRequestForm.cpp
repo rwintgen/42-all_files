@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 11:32:21 by romain            #+#    #+#             */
-/*   Updated: 2024/09/12 13:24:51 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/10/30 16:47:46 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 RobotomyRequestForm::RobotomyRequestForm(std::string const &target) \
 : AForm("RRF", 72, 45), _target(target)
 {
-	std::cout << "RobotomyRequestForm " << AForm::getName(void) << " created"  << std::endl;
+	std::cout << "RobotomyRequestForm " << AForm::getName() << " created"  << std::endl;
 }
 
 RobotomyRequestForm::RobotomyRequestForm(RobotomyRequestForm const &copy) \
@@ -26,7 +26,7 @@ RobotomyRequestForm::RobotomyRequestForm(RobotomyRequestForm const &copy) \
 
 RobotomyRequestForm::~RobotomyRequestForm(void)
 {
-	std::cout << "RobotomyRequestForm " << AForm::getName(void) << " destroyed"  << std::endl;
+	std::cout << "RobotomyRequestForm " << AForm::getName() << " destroyed"  << std::endl;
 }
 
 RobotomyRequestForm	&RobotomyRequestForm::operator=(RobotomyRequestForm const &src)
@@ -46,9 +46,9 @@ std::string	RobotomyRequestForm::getTarget(void) const
 
 void	RobotomyRequestForm::execute(Bureaucrat const &executor) const
 {
-	if (this->isSigned(void) == false)
+	if (this->isSigned() == false)
 		throw AForm::FormNotSignedException();
-	if (executor.getGrade(void) > this->getExecGrade(void))
+	if (executor.getGrade() > this->getExecGrade())
 		throw AForm::GradeTooLowException();
 	std::srand(std::time(NULL));
 	if (std::rand() % 2 == 0)

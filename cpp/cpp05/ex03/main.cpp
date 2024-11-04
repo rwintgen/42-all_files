@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 19:57:12 by romain            #+#    #+#             */
-/*   Updated: 2024/09/12 13:27:55 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/10/30 16:53:16 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ int	main(void)
 		{
 			std::cout << std::endl << "========= Bureaucrat ========" << std::endl;
 			std::cout << arnold << std::endl;
-			arnold.incrementGrade(void);
+			arnold.incrementGrade();
 			std::cout << arnold << std::endl;
-			arnold.decrementGrade(void);
+			arnold.decrementGrade();
 			std::cout << arnold << std::endl;
 
 			std::cout << std::endl << "=== ShrubberyCreationForm ===" << std::endl;

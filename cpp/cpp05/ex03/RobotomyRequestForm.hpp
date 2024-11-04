@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 11:32:09 by romain            #+#    #+#             */
-/*   Updated: 2024/09/12 13:27:53 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/10/30 16:56:07 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define ROBOTOMYREQUESTFORM_HPP
 
 # include "AForm.hpp"
+# include <cstdlib>
+# include <ctime>
 
 class	RobotomyRequestForm : public AForm
 {

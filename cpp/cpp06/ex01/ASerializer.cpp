@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 14:29:45 by romain            #+#    #+#             */
-/*   Updated: 2024/09/12 13:29:26 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/11/03 12:06:23 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,15 @@
 
 ASerializer::ASerializer(void)
 {
-	std::cout << "ASerializer constructor called" << std::endl;
 }
 
 ASerializer::ASerializer(ASerializer const &src)
 {
-	std::cout << "ASerializer copy constructor called" << std::endl;
-	*this = src;
+	(void) src;
 }
 
 ASerializer::~ASerializer(void)
 {
-	std::cout << "ASerializer destructor called" << std::endl;
 }
 
 uintptr_t ASerializer::serialize(Data* ptr)

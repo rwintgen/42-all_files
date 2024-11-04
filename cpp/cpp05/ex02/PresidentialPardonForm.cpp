@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 11:57:20 by romain            #+#    #+#             */
-/*   Updated: 2024/09/12 13:24:52 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/10/30 16:43:17 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 PresidentialPardonForm::PresidentialPardonForm(std::string const &target) \
 : AForm("PPF", 25, 5), _target(target)
 {
-	std::cout << "PresidentialPardonForm " << AForm::getName(void) << " created"  << std::endl;
+	std::cout << "PresidentialPardonForm " << AForm::getName() << " created"  << std::endl;
 }
 
 PresidentialPardonForm::PresidentialPardonForm(PresidentialPardonForm const &copy) \
@@ -26,7 +26,7 @@ PresidentialPardonForm::PresidentialPardonForm(PresidentialPardonForm const &cop
 
 PresidentialPardonForm::~PresidentialPardonForm(void)
 {
-	std::cout << "PresidentialPardonForm " << AForm::getName(void) << " destroyed"  << std::endl;
+	std::cout << "PresidentialPardonForm " << AForm::getName() << " destroyed"  << std::endl;
 }
 
 PresidentialPardonForm	&PresidentialPardonForm::operator=(PresidentialPardonForm const &src)
@@ -46,9 +46,9 @@ std::string	PresidentialPardonForm::getTarget(void) const
 
 void	PresidentialPardonForm::execute(Bureaucrat const &executor) const
 {
-	if (this->isSigned(void) == false)
+	if (this->isSigned() == false)
 		throw AForm::FormNotSignedException();
-	if (executor.getGrade(void) > this->getExecGrade(void))
+	if (executor.getGrade() > this->getExecGrade())
 		throw AForm::GradeTooLowException();
 	std::cout << this->_target << " has been pardoned by Zafod Beeblebrox" << std::endl;
 }

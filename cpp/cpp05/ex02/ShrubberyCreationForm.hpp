@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 16:12:18 by romain            #+#    #+#             */
-/*   Updated: 2024/09/12 13:24:49 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/10/30 16:38:26 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ class	ShrubberyCreationForm : public AForm
 		void		execute(Bureaucrat const &executor) const;
 
 	private:
+		ShrubberyCreationForm();
+		
 		std::string	_target;
 };
 

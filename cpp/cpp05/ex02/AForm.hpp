@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:36:08 by romain            #+#    #+#             */
-/*   Updated: 2024/09/12 13:24:54 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/10/30 16:36:56 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ class	AForm
 		};
 
 	private:
+		AForm();
+		
 		std::string const	_name;
 		int const			_signGrade;
 		int const			_execGrade;

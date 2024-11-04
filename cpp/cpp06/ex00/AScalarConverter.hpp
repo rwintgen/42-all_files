@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 10:22:32 by romain            #+#    #+#             */
-/*   Updated: 2024/09/12 13:29:15 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/11/03 11:58:16 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <iostream>
 # include <string>
+# include <cstdlib>
 
 # define BASE 10
 # define FLOAT 0
