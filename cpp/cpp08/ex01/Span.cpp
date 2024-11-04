@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 10:47:04 by romain            #+#    #+#             */
-/*   Updated: 2024/11/04 15:17:36 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/11/04 16:33:07 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ Span::Span(void)
 
 Span::Span(unsigned int n) : _id(0)
 {
-	std::cout << "Default ccleaonstructor called" << std::endl;
+	std::cout << "Default constructor called" << std::endl;
 	if (n == 0 || n > INT_MAX)
 		throw std::invalid_argument("Invalid size");
 	this->_size = n;

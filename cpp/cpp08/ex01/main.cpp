@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 10:47:08 by romain            #+#    #+#             */
-/*   Updated: 2024/11/04 15:21:01 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/11/04 16:32:22 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ int main(void)
 
 	try
 	{
-		Span sp = Span(10000);
+		Span sp = Span(100);
 		try
 		{
-			sp.addRandomNumbers(10000);
+			sp.addRandomNumbers(100);
 			std::cout << std::endl;
 			std::cout << "Shortest span: " << sp.shortestSpan() << std::endl;
 			std::cout << "Longest span: " << sp.longestSpan() << std::endl;
