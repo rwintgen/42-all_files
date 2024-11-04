@@ -6,11 +6,15 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 10:47:04 by romain            #+#    #+#             */
-/*   Updated: 2024/09/12 13:34:22 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/11/04 15:17:36 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
+
+Span::Span(void)
+{
+}
 
 Span::Span(unsigned int n) : _id(0)
 {
@@ -50,6 +54,7 @@ void	Span::addNumber(int n)
 {
 	if (this->_id >= this->_size)
 		throw std::invalid_argument("No more space");
+
 	this->_numbers[this->_id++] = n;
 }
 
@@ -57,10 +62,14 @@ long	Span::shortestSpan(void)
 {
 	if (this->_id < 2)
 		throw std::invalid_argument("Not enough numbers");
+
 	std::sort(this->_numbers, this->_numbers + this->_id);
+
 	long min = LONG_MAX;
+
 	for (unsigned int i = 1; i < this->_id; i++)
 		min = std::min(min, this->_numbers[i] - this->_numbers[i - 1]);
+
 	return (min);
 }
 
@@ -68,7 +77,9 @@ long	Span::longestSpan(void)
 {
 	if (this->_id < 2)
 		throw std::invalid_argument("Not enough numbers");
+
 	std::sort(this->_numbers, this->_numbers + this->_id);
+
 	return (this->_numbers[this->_id - 1] - this->_numbers[0]);
 }
 
@@ -76,10 +87,12 @@ void Span::addRandomNumbers(unsigned int span)
 {
 	if (this->_id + span > this->_size)
 		throw std::invalid_argument("No more space");
+
 	std::srand(std::time(0));
+
 	for (unsigned int i = 0; i < span; i++)
 		this->_numbers[this->_id++] = std::rand();
+
 	for (unsigned int i = 0; i < this->_id; i++)
 		std::cout << this->_numbers[i] << " ";
-
 }

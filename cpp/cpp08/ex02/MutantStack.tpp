@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 11:41:12 by romain            #+#    #+#             */
-/*   Updated: 2024/09/12 13:36:09 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/11/04 15:26:49 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "MutantStack.hpp"
 
 template <typename T>
-MutantStack<T>::MutantStack(void) : std::stack<T>(void)
+MutantStack<T>::MutantStack(void) : std::stack<T>()
 {
 	std::cout << "Default contructor called" << std::endl;
 }
@@ -43,15 +43,15 @@ MutantStack<T> & MutantStack<T>::operator=(MutantStack const &src)
 }
 
 template <typename T>
-typename std::stack<T>::container_type::iterator MutantStack<T>::begin(void)
+typename std::stack<T>::container_type::iterator MutantStack<T>::begin()
 {
-    return (std::stack<T>::c.begin(void));
+    return (std::stack<T>::c.begin());
 }
 
 template <typename T>
-typename std::stack<T>::container_type::iterator MutantStack<T>::end(void)
+typename std::stack<T>::container_type::iterator MutantStack<T>::end()
 {
-    return (std::stack<T>::c.end(void));
+    return (std::stack<T>::c.end());
 }
 
 #endif

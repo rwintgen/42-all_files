@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 11:30:22 by romain            #+#    #+#             */
-/*   Updated: 2024/09/12 13:36:10 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/11/04 15:26:18 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ static void	testMutantStack(void)
     mstack.push(737);
     mstack.push(0);
     
-    MutantStack<int>::iterator it = mstack.begin(void);
-    MutantStack<int>::iterator ite = mstack.end(void);
+    MutantStack<int>::iterator it = mstack.begin();
+    MutantStack<int>::iterator ite = mstack.end();
     
     ++it;
     --it;
@@ -63,8 +63,8 @@ static void	testList(void)
     lst.push_back(737);
     lst.push_back(0);
     
-    std::list<int>::iterator it = lst.begin(void);
-    std::list<int>::iterator ite = lst.end(void);
+    std::list<int>::iterator it = lst.begin();
+    std::list<int>::iterator ite = lst.end();
     
     ++it;
     --it;
@@ -80,10 +80,10 @@ static void	testList(void)
 int main(void)
 {
     std::cout << "Testing MutantStack:" << std::endl;
-    testMutantStack(void);
+    testMutantStack();
 	std::cout << std::endl;
     std::cout << "Testing std::list:" << std::endl;
-    testList(void);
+    testList();
     
     return 0;
 }
