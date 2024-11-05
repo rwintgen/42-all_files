@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/01 13:09:16 by romain            #+#    #+#             */
-/*   Updated: 2024/09/12 13:38:23 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/11/05 15:19:16 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,33 +21,33 @@ RPN::RPN(std::string const &expression)
 	{
 		if (token == "+")
 		{
-			int a = _stack.top();
+			int	a = _stack.top();
 			_stack.pop();
-			int b = _stack.top();
+			int	b = _stack.top();
 			_stack.pop();
 			_stack.push(b + a);
 		}
 		else if (token == "-")
 		{
-			int a = _stack.top();
+			int	a = _stack.top();
 			_stack.pop();
-			int b = _stack.top();
+			int	b = _stack.top();
 			_stack.pop();
 			_stack.push(b - a);
 		}
 		else if (token == "*")
 		{
-			int a = _stack.top();
+			int	a = _stack.top();
 			_stack.pop();
-			int b = _stack.top();
+			int	b = _stack.top();
 			_stack.pop();
 			_stack.push(b * a);
 		}
 		else if (token == "/")
 		{
-			int a = _stack.top();
+			int	a = _stack.top();
 			_stack.pop();
-			int b = _stack.top();
+			int	b = _stack.top();
 			_stack.pop();
 			if (a == 0)
 			{
@@ -58,8 +58,9 @@ RPN::RPN(std::string const &expression)
 		}
 		else
 		{
-			std::istringstream iss(token);
-			int value;
+			std::istringstream	iss(token);
+			int					value;
+
 			iss >> value;
 			_stack.push(value);
 		}

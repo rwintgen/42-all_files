@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 18:38:51 by romain            #+#    #+#             */
-/*   Updated: 2024/11/05 12:35:48 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/11/05 15:11:41 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,14 @@ int main(int argc, char **argv)
 	{
 		PmergeMe	pm(strInput);
 
-		pm.printVector(void);
-		pm.printDeque(void);
+		pm.printVector();
+		pm.printDeque();
 		
-		pm.sortVector(void);
-		pm.sortDeque(void);
+		pm.sortVector();
+		pm.sortDeque();
 
-		pm.printVector(void);
-		pm.printDeque(void);
+		pm.printVector();
+		pm.printDeque();
 	}
 	catch (const std::exception &e)
 	{

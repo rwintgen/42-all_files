@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 18:40:16 by romain            #+#    #+#             */
-/*   Updated: 2024/09/12 13:38:58 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/11/05 15:12:28 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ PmergeMe::PmergeMe(std::string const &str)
 		throw std::invalid_argument("Invalid input");
 	this->_vec.clear();
 	this->_deq.clear();
-	convertToVector(void);
-	convertToDeque(void);
+	convertToVector();
+	convertToDeque();
 }
 
 PmergeMe::PmergeMe(PmergeMe const &src)
