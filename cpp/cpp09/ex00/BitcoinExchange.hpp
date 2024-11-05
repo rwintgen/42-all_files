@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 16:56:19 by romain            #+#    #+#             */
-/*   Updated: 2024/09/12 13:37:51 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/11/05 13:08:00 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define BITCOINEXCHANGE_HPP
 
 # include <iostream>
+# include <iomanip>
 # include <string>
 # include <regex>
 # include <map>
@@ -37,10 +38,11 @@ class	BitcoinExchange
 	private:
 		std::map<std::string, double>	_data;
 
+		void	printHeader(void);
+		void	printLine(const std::string &date, const std::string &value);
 		void	trimWhitespaces(std::string &str);
 		bool	isValidDate(std::string const &date);
 		bool	isValidAmount(std::string const &amount);
-		void	printLine(std::map<std::string, double> &data, std::string const &date, std::string const &value);		
 };
 
 #endif

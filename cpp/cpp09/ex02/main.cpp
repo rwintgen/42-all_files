@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 18:38:51 by romain            #+#    #+#             */
-/*   Updated: 2024/09/09 12:38:29 by romain           ###   ########.fr       */
+/*   Updated: 2024/11/05 12:35:48 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,14 @@ int main(int argc, char **argv)
 	{
 		PmergeMe	pm(strInput);
 
-		pm.printVector();
-		pm.printDeque();
+		pm.printVector(void);
+		pm.printDeque(void);
 		
-		pm.sortVector();
-		pm.sortDeque();
+		pm.sortVector(void);
+		pm.sortDeque(void);
 
-		pm.printVector();
-		pm.printDeque();
+		pm.printVector(void);
+		pm.printDeque(void);
 	}
 	catch (const std::exception &e)
 	{

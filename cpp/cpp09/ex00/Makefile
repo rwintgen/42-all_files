@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: romain <romain@student.42.fr>              +#+  +:+       +#+         #
+#    By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/28 16:58:45 by romain            #+#    #+#              #
-#    Updated: 2024/08/28 17:54:07 by romain           ###   ########.fr        #
+#    Updated: 2024/11/05 12:46:43 by rwintgen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=		btc
 
 CC			=		c++
-FLAGS		=		-Wall -Wextra -Werror -std=c++98
+FLAGS		=		-Wall -Wextra -Werror #-std=c++98
 
 SRC			=		main.cpp \
 					BitcoinExchange.cpp
@@ -29,10 +29,10 @@ $(NAME): $(OBJ)
 	$(CC) $(OBJ) -o $(NAME)
 
 clean:
-	@rm $(OBJ)
+	@rm -f $(OBJ)
 
 fclean:
-	@rm  $(OBJ) $(NAME)
+	@rm -f $(OBJ) $(NAME)
 
 re: fclean $(NAME)
 

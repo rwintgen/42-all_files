@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: romain <romain@student.42.fr>              +#+  +:+       +#+         #
+#    By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/01 13:09:08 by romain            #+#    #+#              #
-#    Updated: 2024/09/01 15:11:36 by romain           ###   ########.fr        #
+#    Updated: 2024/11/05 12:36:52 by rwintgen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,10 +29,10 @@ $(NAME): $(OBJ)
 	$(CC) $(OBJ) -o $(NAME)
 
 clean:
-	@rm $(OBJ)
+	@rm -f $(OBJ)
 
 fclean:
-	@rm  $(OBJ) $(NAME)
+	@rm -f $(OBJ) $(NAME)
 
 re: fclean $(NAME)
 
