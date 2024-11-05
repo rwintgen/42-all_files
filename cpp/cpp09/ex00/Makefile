@@ -6,14 +6,14 @@
 #    By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/28 16:58:45 by romain            #+#    #+#              #
-#    Updated: 2024/11/05 12:46:43 by rwintgen         ###   ########.fr        #
+#    Updated: 2024/11/05 13:28:12 by rwintgen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=		btc
 
 CC			=		c++
-FLAGS		=		-Wall -Wextra -Werror #-std=c++98
+FLAGS		=		-Wall -Wextra -Werror -std=c++98
 
 SRC			=		main.cpp \
 					BitcoinExchange.cpp

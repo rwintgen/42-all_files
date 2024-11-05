@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 16:56:19 by romain            #+#    #+#             */
-/*   Updated: 2024/11/05 13:08:00 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/11/05 13:42:55 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@
 # include <iostream>
 # include <iomanip>
 # include <string>
-# include <regex>
 # include <map>
 # include <fstream>
 # include <sstream>
+# include <stdexcept>
+# include <regex.h>
 
 # define WHITESPACES " \t\n\r\f\v"
-# define OUTPUT_HEADER "date\t\t|\tqty\t|\tprice\t->\tresult"
 
 class	BitcoinExchange
 {
@@ -44,5 +44,7 @@ class	BitcoinExchange
 		bool	isValidDate(std::string const &date);
 		bool	isValidAmount(std::string const &amount);
 };
+
+#include "BitcoinExchange.tpp"
 
 #endif
