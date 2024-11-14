@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 18:40:16 by romain            #+#    #+#             */
-/*   Updated: 2024/11/05 15:12:28 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/11/14 15:32:09 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,11 @@ bool	PmergeMe::isValidInput(std::string const &str)
 {
 	if (str.empty())
 		return (false);
+
 	for (size_t i = 0; i < str.size(); i++)
 		if (!std::isdigit(str[i]) && !std::isspace(str[i]))
 			return (false);
+
 	this->_input = str;
 	return (true);
 }
@@ -63,30 +65,47 @@ void	PmergeMe::convertToDeque(void)
 	convertToContainer(this->_input, this->_deq);
 }
 
-void PmergeMe::sortVector(void)
+double	PmergeMe::sortVector(void)
 {
 	clock_t start = clock();
+
 	fordJohnsonSort(this->_vec);
+
 	clock_t end = clock();
-	double elapsed_secs = double(end - start) / CLOCKS_PER_SEC;
-	std::cout << "Time taken to sort vector: " << elapsed_secs << " seconds" << std::endl;
+	double elapsed = double(end - start) / CLOCKS_PER_SEC;
+
+	return (elapsed);
 }
 
-void PmergeMe::sortDeque(void)
+double	PmergeMe::sortDeque(void)
 {
 	clock_t start = clock();
+
 	fordJohnsonSort(this->_deq);
+
 	clock_t end = clock();
-	double elapsed_secs = double(end - start) / CLOCKS_PER_SEC;
-	std::cout << "Time taken to sort deque: " << elapsed_secs << " seconds" << std::endl;
+	double elapsed = double(end - start) / CLOCKS_PER_SEC;
+
+	return (elapsed);
 }
 
-void PmergeMe::printVector(void) const
+void PmergeMe::printVector() const
 {
 	printContainer(this->_vec);
 }
 
-void PmergeMe::printDeque(void) const
+void PmergeMe::printDeque() const
 {
 	printContainer(this->_deq);
+}
+
+int PmergeMe::stringToInt(const std::string &str)
+{
+    char	*end;
+    long	number = std::strtol(str.c_str(), &end, 10);
+
+    if (*end != '\0' || number > INT_MAX || number < INT_MIN)
+        throw std::runtime_error("Invalid input");
+
+    return (static_cast<int>(number));
 }

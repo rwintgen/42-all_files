@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 18:38:51 by romain            #+#    #+#             */
-/*   Updated: 2024/11/05 15:11:41 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/11/14 17:29:05 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,33 +22,38 @@ int main(int argc, char **argv)
 		return (1);
 	}
 
-	std::string	strInput;
+	std::string	input;
 	
 	for (int i = 1; i < argc; i++)
 	{
-		strInput += argv[i];
+		input += argv[i];
 		if (i < argc - 1)
-			strInput += " ";
+			input += " ";
 	}
 
 	try
 	{
-		PmergeMe	pm(strInput);
-
-		pm.printVector();
-		pm.printDeque();
+		PmergeMe	pm(input);
 		
-		pm.sortVector();
-		pm.sortDeque();
+		pm.printVector();
+		// pm.printDeque();
+
+		double	timeVector = pm.sortVector();
+		double	timeDeque = pm.sortDeque();
 
 		pm.printVector();
-		pm.printDeque();
+		// pm.printDeque();
+
+		std::cout << "Time to process a range of " << (argc - 1) 
+				  << " elements with std::vector: " << timeVector << "s" << std::endl;
+		std::cout << "Time to process a range of " << (argc - 1) 
+				  << " elements with std::deque: " << timeDeque << "s" << std::endl;
 	}
 	catch (const std::exception &e)
 	{
 		std::cerr << e.what() << std::endl;
-		return 1;
+		return (1);
 	}
 
-	return 0;
+	return (0);
 }

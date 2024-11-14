@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 10:42:55 by romain            #+#    #+#             */
-/*   Updated: 2024/09/09 12:41:09 by romain           ###   ########.fr       */
+/*   Updated: 2024/11/14 17:21:24 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PMERGE_ME_HPP
 
 # include <iostream>
+# include <iomanip>
 # include <vector>
 # include <algorithm>
 # include <string>
@@ -21,6 +22,7 @@
 # include <deque>
 # include <sstream>
 # include <cctype>
+# include <climits>
 
 class PmergeMe
 {
@@ -31,11 +33,13 @@ class PmergeMe
 
 		PmergeMe	&operator=(PmergeMe const &src);
 
-		void	sortVector(void);
-		void	sortDeque(void);
+		double	sortVector(void);
+		double	sortDeque(void);
 
-		void	printVector(void) const;
-		void	printDeque(void) const;
+		void	printVector() const;
+		void	printDeque() const;
+
+		static int	stringToInt(const std::string &str);
 
 	private:
 		std::string			_input;
@@ -47,14 +51,36 @@ class PmergeMe
 		void	convertToDeque(void);
 };
 
+
 template <typename Container>
 void convertToContainer(const std::string &input, Container &container);
 
 template <typename Container>
-void fordJohnsonSort(Container &container);
+void printContainer(const Container &container);
 
 template <typename Container>
-void printContainer(const Container &container);
+std::vector<Container> createPairs(Container &nums);
+
+template <typename Container>
+std::vector<Container> sortPairs(std::vector<Container> &splitArray);
+
+template <typename Container>
+void insert(Container pair, std::vector<Container> &pairsArray, int len);
+
+template <typename Container>
+void insertionSortPairs(std::vector<Container> &A, int len);
+
+template <typename Container>
+void sortByBiggestElem(std::vector<Container> &sortedArray);
+
+template <typename Container>
+Container getJacobSequence(const Container &array);
+
+template <typename Container>
+Container createJacobSeq(std::vector<Container> &SPA, int straggler);
+
+template <typename Container>
+void fordJohnsonSort(Container &nums);
 
 # include "PmergeMe.tpp"
 
