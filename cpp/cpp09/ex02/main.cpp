@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 18:38:51 by romain            #+#    #+#             */
-/*   Updated: 2024/11/15 12:33:31 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/11/15 13:29:33 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,14 @@ int main(int argc, char **argv)
 	{
 		PmergeMe	pm(input);
 		
-		pm.printVector();
-		// pm.printDeque();
+		pm.printVector(true);
+		// pm.printDeque(true);
 
 		double	timeVector = pm.sortVector();
 		double	timeDeque = pm.sortDeque();
 
-		pm.printVector();
-		// pm.printDeque();
+		pm.printVector(false);
+		// pm.printDeque(false);
 
 		std::cout << "Time to process a range of " << (argc - 1) 
 				  << " elements with std::vector: " << timeVector << "s" << std::endl;

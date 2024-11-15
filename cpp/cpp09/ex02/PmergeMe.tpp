@@ -6,12 +6,12 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:26:29 by romain            #+#    #+#             */
-/*   Updated: 2024/11/15 13:04:20 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/11/15 13:33:15 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 template <typename Container>
-void convertToContainer(const std::string &input, Container &container)
+void	convertToContainer(const std::string &input, Container &container)
 {
 	std::istringstream	iss(input);
 	std::string			c;
@@ -24,16 +24,17 @@ void convertToContainer(const std::string &input, Container &container)
 }
 
 template <typename Container>
-void printContainer(const Container &container)
+void	printContainer(const Container &container)
 {
 	typename Container::const_iterator	it;
+
 	for (it = container.begin(); it != container.end(); ++it)
 		std::cout << *it << " ";
 	std::cout << std::endl;
 }
 
 template <typename Container>
-std::vector<Container> createPairs(Container &numbersArray)
+std::vector<Container>	createPairs(Container &numbersArray)
 {
 	std::vector<Container>	pairsArray;
 	Container				tmpArray;
@@ -62,7 +63,7 @@ std::vector<Container> createPairs(Container &numbersArray)
 }
 
 template <typename Container>
-std::vector<Container> sortPairs(std::vector<Container> &pairsArray)
+std::vector<Container>	sortPairs(std::vector<Container> &pairsArray)
 {
 	for (typename std::vector<Container>::iterator it = pairsArray.begin(); it != pairsArray.end(); ++it)
 	{
@@ -75,7 +76,7 @@ std::vector<Container> sortPairs(std::vector<Container> &pairsArray)
 }
 
 template <typename Container>
-void insert(Container pair, std::vector<Container> &pairsArray, int len)
+void	insert(Container pair, std::vector<Container> &pairsArray, int len)
 {
 	if (len < 0)
 		pairsArray[0] = pair;
@@ -99,7 +100,7 @@ void insert(Container pair, std::vector<Container> &pairsArray, int len)
 }
 
 template <typename Container>
-void insertionSortPairs(std::vector<Container> &pairsArray, int len)
+void	insertionSortPairs(std::vector<Container> &pairsArray, int len)
 {
 	if (len < 1)
 		return ;
@@ -109,13 +110,14 @@ void insertionSortPairs(std::vector<Container> &pairsArray, int len)
 }
 
 template <typename Container>
-void sortByBiggestElem(std::vector<Container> &sortedPairsArray)
+void	sortByBiggestElem(std::vector<Container> &sortedPairsArray)
 {
 	size_t	len = sortedPairsArray.size();
+
 	insertionSortPairs(sortedPairsArray, len - 1);
 }
 
-static int jacobsthal(int n)
+static int	jacobsthal(int n)
 {
 	if (n == 0 || n == 1)
 		return (n);
@@ -123,7 +125,7 @@ static int jacobsthal(int n)
 }
 
 template <typename Container>
-Container getJacobSequence(const Container &array)
+Container	getJacobSequence(const Container &array)
 {
 	int			len = array.size();
 	Container	resultSeq;
@@ -139,7 +141,7 @@ Container getJacobSequence(const Container &array)
 }
 
 template <typename Container>
-Container createJacobSeq(std::vector<Container> &SPA, int straggler)
+Container	createJacobSeq(std::vector<Container> &SPA, int straggler)
 {
 	Container	seq;
 	Container	pend;
@@ -148,22 +150,22 @@ Container createJacobSeq(std::vector<Container> &SPA, int straggler)
 	{
 		Container	&pair = *it;
 
-		if (pair.size() < 2)
-		{
-			// DEBUG
-			std::cerr << "Error: Pair does not contain enough elements." << std::endl;
-			continue ;
-		}
+		// if (pair.size() < 2)
+		// {
+		// 	// DEBUG
+		// 	std::cerr << "Error: Pair does not contain enough elements." << std::endl;
+		// 	continue ;
+		// }
 
 		seq.push_back(pair[1]);
 		pend.push_back(pair[0]);
 	}
 
-	// DEBUG
-	if (pend.empty()) {
-		std::cerr << "Error: Pend is empty." << std::endl;
-		return seq;
-	}
+	// // DEBUG
+	// if (pend.empty()) {
+	// 	std::cerr << "Error: Pend is empty." << std::endl;
+	// 	return seq;
+	// }
 
 	seq.insert(seq.begin(), pend[0]);
 
@@ -178,12 +180,12 @@ Container createJacobSeq(std::vector<Container> &SPA, int straggler)
 
 		if (!jacobSeq.empty() && last != 1)
 		{
-			if (jacobSeq[0] - 1 >= static_cast<int>(pend.size()) || jacobSeq[0] - 1 < 0)
-			{
-				// DEBUG
-				std::cerr << "Error: JacobSeq index out of bounds." << std::endl;
-				break ;
-			}
+			// if (jacobSeq[0] - 1 >= static_cast<int>(pend.size()) || jacobSeq[0] - 1 < 0)
+			// {
+			// 	// DEBUG
+			// 	std::cerr << "Error: JacobSeq index out of bounds." << std::endl;
+			// 	break ;
+			// }
 			indexSequence.push_back(jacobSeq[0]);
 			item = pend[jacobSeq[0] - 1];
 			jacobSeq.erase(jacobSeq.begin());
@@ -196,12 +198,12 @@ Container createJacobSeq(std::vector<Container> &SPA, int straggler)
 				i++;
 				continue ;
 			}
-			if (i - 1 >= static_cast<int>(pend.size()) || i - 1 < 0)
-			{
-				// DEBUG
-				std::cerr << "Error: Index out of bounds." << std::endl;
-				break ;
-			}
+			// if (i - 1 >= static_cast<int>(pend.size()) || i - 1 < 0)
+			// {
+			// 	// DEBUG
+			// 	std::cerr << "Error: Index out of bounds." << std::endl;
+			// 	break ;
+			// }
 			item = pend[i - 1];
 			indexSequence.push_back(i);
 			last = -1;
@@ -222,7 +224,7 @@ Container createJacobSeq(std::vector<Container> &SPA, int straggler)
 }
 
 template <typename Container>
-void fordJohnsonSort(Container &numbersArray)
+void	fordJohnsonSort(Container &numbersArray)
 {
 	int	straggler = -1;
 
@@ -232,12 +234,12 @@ void fordJohnsonSort(Container &numbersArray)
 		numbersArray.pop_back();
 	}
 
-	if (numbersArray.empty())
-	{
-		// DEBUG
-		std::cerr << "Error: numbersArray is empty after removing straggler." << std::endl;
-		return ;
-	}
+	// if (numbersArray.empty())
+	// {
+	// 	// DEBUG
+	// 	std::cerr << "Error: numbersArray is empty after removing straggler." << std::endl;
+	// 	return ;
+	// }
 
 	std::vector<Container> pairsArray = createPairs(numbersArray);
 	std::vector<Container> sortedPairsArray = sortPairs(pairsArray);

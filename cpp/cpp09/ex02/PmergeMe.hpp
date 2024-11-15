@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 10:42:55 by romain            #+#    #+#             */
-/*   Updated: 2024/11/14 17:21:24 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/11/15 13:28:28 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ class PmergeMe
 		double	sortVector(void);
 		double	sortDeque(void);
 
-		void	printVector() const;
-		void	printDeque() const;
+		void	printVector(bool before) const;
+		void	printDeque(bool before) const;
 
 		static int	stringToInt(const std::string &str);
 

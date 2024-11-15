@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 18:40:16 by romain            #+#    #+#             */
-/*   Updated: 2024/11/14 15:32:09 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/11/15 13:28:21 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,13 +89,15 @@ double	PmergeMe::sortDeque(void)
 	return (elapsed);
 }
 
-void PmergeMe::printVector() const
+void PmergeMe::printVector(bool before) const
 {
+	std::cout << (before ? "Before: " : "Afetr: ");
 	printContainer(this->_vec);
 }
 
-void PmergeMe::printDeque() const
+void PmergeMe::printDeque(bool before) const
 {
+	std::cout << (before ? "Before: " : "Afetr: ");
 	printContainer(this->_deq);
 }
 
