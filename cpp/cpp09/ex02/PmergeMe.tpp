@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:26:29 by romain            #+#    #+#             */
-/*   Updated: 2024/11/14 17:28:07 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/11/15 13:04:20 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void convertToContainer(const std::string &input, Container &container)
 
 	while (iss >> c)
 	{
-		int	number = PmergeMe::stringToInt(c);
+		int number = PmergeMe::stringToInt(c);
 		container.push_back(number);
 	}
 }
@@ -28,9 +28,7 @@ void printContainer(const Container &container)
 {
 	typename Container::const_iterator	it;
 	for (it = container.begin(); it != container.end(); ++it)
-	{
 		std::cout << *it << " ";
-	}
 	std::cout << std::endl;
 }
 
@@ -40,7 +38,7 @@ std::vector<Container> createPairs(Container &numbersArray)
 	std::vector<Container>	pairsArray;
 	Container				tmpArray;
 
-	for (typename Container::iterator it = numbersArray.begin(); it < numbersArray.end(); it++)
+	for (typename Container::iterator it = numbersArray.begin(); it != numbersArray.end(); ++it)
 	{
 		int		value = *it;
 		size_t	tmpLen = tmpArray.size();
@@ -55,7 +53,7 @@ std::vector<Container> createPairs(Container &numbersArray)
 		}
 		else if (pairsArray.size() * 2 == numbersArray.size() - 1)
 		{
-			Container	soloValue(1, value);
+			Container soloValue(1, value);
 			pairsArray.push_back(soloValue);
 		}
 	}
@@ -66,9 +64,9 @@ std::vector<Container> createPairs(Container &numbersArray)
 template <typename Container>
 std::vector<Container> sortPairs(std::vector<Container> &pairsArray)
 {
-	for (typename std::vector<Container>::iterator it = pairsArray.begin(); it != pairsArray.end(); it++)
+	for (typename std::vector<Container>::iterator it = pairsArray.begin(); it != pairsArray.end(); ++it)
 	{
-		Container	currentPair = *it;
+		Container	&currentPair = *it;
 
 		if (currentPair.size() == 2 && currentPair[0] > currentPair[1])
 			std::swap(currentPair[0], currentPair[1]);
@@ -83,14 +81,14 @@ void insert(Container pair, std::vector<Container> &pairsArray, int len)
 		pairsArray[0] = pair;
 	else if (pair[1] >= pairsArray[len][1])
 	{
-		if (len == pairsArray.size() - 1)
+		if (len == static_cast<int>(pairsArray.size()) - 1)
 			pairsArray.push_back(pair);
 		else
 			pairsArray[len + 1] = pair;
 	}
 	else
 	{
-		if (len == pairsArray.size() - 1)
+		if (len == static_cast<int>(pairsArray.size()) - 1)
 			pairsArray.push_back(pairsArray[len]);
 		else
 		{
@@ -103,104 +101,125 @@ void insert(Container pair, std::vector<Container> &pairsArray, int len)
 template <typename Container>
 void insertionSortPairs(std::vector<Container> &pairsArray, int len)
 {
-    if (len < 1)
-        return;
-    else
-	{
-        insertionSortPairs(pairsArray, len - 1);
-        insert(pairsArray[len], pairsArray, len - 1);
-    }
+	if (len < 1)
+		return ;
+
+	insertionSortPairs(pairsArray, len - 1);
+	insert(pairsArray[len], pairsArray, len - 1);
 }
 
 template <typename Container>
 void sortByBiggestElem(std::vector<Container> &sortedPairsArray)
 {
-    size_t	len = sortedPairsArray.size();
-	
-	// start of recursive mayhem!
-    insertionSortPairs(sortedPairsArray, len - 1);
+	size_t	len = sortedPairsArray.size();
+	insertionSortPairs(sortedPairsArray, len - 1);
 }
 
 static int jacobsthal(int n)
 {
-    if (n == 0 || n == 1)
-        return (n);
-    return (jacobsthal(n - 1) + 2 * jacobsthal(n - 2));
+	if (n == 0 || n == 1)
+		return (n);
+	return (jacobsthal(n - 1) + 2 * jacobsthal(n - 2));
 }
 
 template <typename Container>
 Container getJacobSequence(const Container &array)
 {
-    int			array_len = array.size();
-    Container	end_sequence;
-    int			jacob_index = 3;
+	int			len = array.size();
+	Container	resultSeq;
+	int			jacob_index = 3;
 
-    while (jacobsthal(jacob_index) < array_len - 1)
+	while (jacobsthal(jacob_index) < len - 1)
 	{
-        end_sequence.push_back(jacobsthal(jacob_index));
-        jacob_index++;
-    }
+		resultSeq.push_back(jacobsthal(jacob_index));
+		jacob_index++;
+	}
 
-    return (end_sequence);
+	return (resultSeq);
 }
 
 template <typename Container>
 Container createJacobSeq(std::vector<Container> &SPA, int straggler)
 {
-    Container	Seq;
-    Container	pend;
+	Container	seq;
+	Container	pend;
 
-    for (typename std::vector<Container>::iterator it = SPA.begin(); it != SPA.end(); ++it)
-    {
-        Container &pair = *it;
-
-        Seq.push_back(pair[1]);
-        pend.push_back(pair[0]);
-    }
-
-    Seq.insert(Seq.begin(), pend[0]);
-
-    Container	indexSequence(1, 1);
-    Container	jacobSeq = getJacobSequence(pend);
-    int			jacobindex = 3;
-    int			last = 0;
-    int			i = 0;
-
-    while (i <= pend.size())
+	for (typename std::vector<Container>::iterator it = SPA.begin(); it != SPA.end(); ++it)
 	{
-        int	item;
+		Container	&pair = *it;
 
-        if (!jacobSeq.empty() && last != 1)
+		if (pair.size() < 2)
 		{
-            indexSequence.push_back(jacobSeq[0]);
-            item = pend[jacobSeq[0] - 1];
-            jacobSeq.erase(jacobSeq.begin());
-            last = 1;
-        }
+			// DEBUG
+			std::cerr << "Error: Pair does not contain enough elements." << std::endl;
+			continue ;
+		}
+
+		seq.push_back(pair[1]);
+		pend.push_back(pair[0]);
+	}
+
+	// DEBUG
+	if (pend.empty()) {
+		std::cerr << "Error: Pend is empty." << std::endl;
+		return seq;
+	}
+
+	seq.insert(seq.begin(), pend[0]);
+
+	Container	indexSequence(1, 1);
+	Container	jacobSeq = getJacobSequence(pend);
+	int			last = 0;
+	int			i = 1;
+
+	while (i <= static_cast<int>(pend.size()))
+	{
+		int	item;
+
+		if (!jacobSeq.empty() && last != 1)
+		{
+			if (jacobSeq[0] - 1 >= static_cast<int>(pend.size()) || jacobSeq[0] - 1 < 0)
+			{
+				// DEBUG
+				std::cerr << "Error: JacobSeq index out of bounds." << std::endl;
+				break ;
+			}
+			indexSequence.push_back(jacobSeq[0]);
+			item = pend[jacobSeq[0] - 1];
+			jacobSeq.erase(jacobSeq.begin());
+			last = 1;
+		}
 		else
 		{
-            if (std::find(indexSequence.begin(), indexSequence.end(), i) != indexSequence.end())
-                i++;
-            item = pend[i - 1];
-            indexSequence.push_back(i);
-            last = -1;
-            i++;
-            jacobindex++;
-        }
+			if (std::find(indexSequence.begin(), indexSequence.end(), i) != indexSequence.end())
+			{
+				i++;
+				continue ;
+			}
+			if (i - 1 >= static_cast<int>(pend.size()) || i - 1 < 0)
+			{
+				// DEBUG
+				std::cerr << "Error: Index out of bounds." << std::endl;
+				break ;
+			}
+			item = pend[i - 1];
+			indexSequence.push_back(i);
+			last = -1;
+			i++;
+		}
 
-        typename Container::iterator	insert = std::upper_bound(Seq.begin(), Seq.end(), item);
-        Seq.insert(insert, item);
-    }
+		typename Container::iterator insert = std::upper_bound(seq.begin(), seq.end(), item);
+		seq.insert(insert, item);
+	}
 
-    if (straggler != -1)
+	if (straggler != -1)
 	{
-        typename Container::iterator	insert = std::upper_bound(Seq.begin(), Seq.end(), straggler);
-        Seq.insert(insert, straggler);
-    }
+		typename Container::iterator insert = std::upper_bound(seq.begin(), seq.end(), straggler);
+		seq.insert(insert, straggler);
+	}
 
-    return (Seq);
+	return (seq);
 }
-
 
 template <typename Container>
 void fordJohnsonSort(Container &numbersArray)
@@ -213,8 +232,15 @@ void fordJohnsonSort(Container &numbersArray)
 		numbersArray.pop_back();
 	}
 
-	std::vector<Container>	pairsArray = createPairs(numbersArray);
-	std::vector<Container>	sortedPairsArray = sortPairs(pairsArray);
+	if (numbersArray.empty())
+	{
+		// DEBUG
+		std::cerr << "Error: numbersArray is empty after removing straggler." << std::endl;
+		return ;
+	}
+
+	std::vector<Container> pairsArray = createPairs(numbersArray);
+	std::vector<Container> sortedPairsArray = sortPairs(pairsArray);
 
 	sortByBiggestElem(sortedPairsArray);
 	numbersArray = createJacobSeq(sortedPairsArray, straggler);

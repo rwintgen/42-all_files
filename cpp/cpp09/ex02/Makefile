@@ -6,14 +6,14 @@
 #    By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/02 18:38:48 by romain            #+#    #+#              #
-#    Updated: 2024/11/14 15:33:00 by rwintgen         ###   ########.fr        #
+#    Updated: 2024/11/15 12:16:03 by rwintgen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=		PmergeMe
 
 CC			=		c++
-FLAGS		=		#-Wall -Wextra -Werror -std=c++98
+FLAGS		=		-Wall -Wextra -Werror -std=c++98 -g
 
 SRC			=		main.cpp \
 					PmergeMe.cpp
