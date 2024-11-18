@@ -6,10 +6,12 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:26:29 by romain            #+#    #+#             */
-/*   Updated: 2024/11/15 13:33:15 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/11/18 12:56:15 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+// converts integers from a std::string to an instance of
+// the templated container passed as parameter
 template <typename Container>
 void	convertToContainer(const std::string &input, Container &container)
 {
@@ -23,6 +25,8 @@ void	convertToContainer(const std::string &input, Container &container)
 	}
 }
 
+// prints all the elements of the instance passed 
+// as parameter in the console
 template <typename Container>
 void	printContainer(const Container &container)
 {
@@ -33,6 +37,8 @@ void	printContainer(const Container &container)
 	std::cout << std::endl;
 }
 
+// creates an populates an array of templated containers,
+// each conatining 2 elements ("pairs")
 template <typename Container>
 std::vector<Container>	createPairs(Container &numbersArray)
 {
@@ -62,6 +68,8 @@ std::vector<Container>	createPairs(Container &numbersArray)
 	return (pairsArray);
 }
 
+// for each pair int the pair array pairsArray,
+// sets the biggest element of each pair in position [1]
 template <typename Container>
 std::vector<Container>	sortPairs(std::vector<Container> &pairsArray)
 {
@@ -75,6 +83,9 @@ std::vector<Container>	sortPairs(std::vector<Container> &pairsArray)
 	return (pairsArray);
 }
 
+// nserts a pair into the array of sorted pairs at 
+// the correct position by comparing the biggest element
+// of the pair we want to insert VS the one of each pair
 template <typename Container>
 void	insert(Container pair, std::vector<Container> &pairsArray, int len)
 {
@@ -99,6 +110,8 @@ void	insert(Container pair, std::vector<Container> &pairsArray, int len)
 	}
 }
 
+// sorts the array of pairs using insertion sort
+// based on the largest element of each pair
 template <typename Container>
 void	insertionSortPairs(std::vector<Container> &pairsArray, int len)
 {
@@ -109,6 +122,7 @@ void	insertionSortPairs(std::vector<Container> &pairsArray, int len)
 	insert(pairsArray[len], pairsArray, len - 1);
 }
 
+// sorts the vector of pairs by the largest element of each pair
 template <typename Container>
 void	sortByBiggestElem(std::vector<Container> &sortedPairsArray)
 {
@@ -117,6 +131,7 @@ void	sortByBiggestElem(std::vector<Container> &sortedPairsArray)
 	insertionSortPairs(sortedPairsArray, len - 1);
 }
 
+// returns the nth Jacobsthal number
 static int	jacobsthal(int n)
 {
 	if (n == 0 || n == 1)
@@ -124,6 +139,8 @@ static int	jacobsthal(int n)
 	return (jacobsthal(n - 1) + 2 * jacobsthal(n - 2));
 }
 
+// returns a sequence of Jacobsthal numbers
+// up to the length (size) of the input container,
 template <typename Container>
 Container	getJacobSequence(const Container &array)
 {
@@ -140,12 +157,15 @@ Container	getJacobSequence(const Container &array)
 	return (resultSeq);
 }
 
+// returns a sequence of elements from the 
+// sorted pairs array using the Jacobsthal sequence
 template <typename Container>
 Container	createJacobSeq(std::vector<Container> &SPA, int straggler)
 {
 	Container	seq;
 	Container	pend;
 
+	// separates the integers of each pair into seq (largest) and pend(smallest)
 	for (typename std::vector<Container>::iterator it = SPA.begin(); it != SPA.end(); ++it)
 	{
 		Container	&pair = *it;
@@ -210,19 +230,20 @@ Container	createJacobSeq(std::vector<Container> &SPA, int straggler)
 			i++;
 		}
 
-		typename Container::iterator insert = std::upper_bound(seq.begin(), seq.end(), item);
+		typename Container::iterator	insert = std::upper_bound(seq.begin(), seq.end(), item);
 		seq.insert(insert, item);
 	}
 
 	if (straggler != -1)
 	{
-		typename Container::iterator insert = std::upper_bound(seq.begin(), seq.end(), straggler);
+		typename Container::iterator	insert = std::upper_bound(seq.begin(), seq.end(), straggler);
 		seq.insert(insert, straggler);
 	}
 
 	return (seq);
 }
 
+// sorts the input container using the Ford-Johnson sorting algorithm
 template <typename Container>
 void	fordJohnsonSort(Container &numbersArray)
 {

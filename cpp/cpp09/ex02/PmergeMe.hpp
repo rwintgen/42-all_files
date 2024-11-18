@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 10:42:55 by romain            #+#    #+#             */
-/*   Updated: 2024/11/15 13:28:28 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/11/15 14:02:11 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ class PmergeMe
 		void	convertToVector(void);
 		void	convertToDeque(void);
 };
-
 
 template <typename Container>
 void convertToContainer(const std::string &input, Container &container);
