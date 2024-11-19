@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 16:56:11 by romain            #+#    #+#             */
-/*   Updated: 2024/11/05 13:41:36 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/11/19 13:37:05 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,14 @@ bool	BitcoinExchange::isValidDate(std::string const &date)
 	if (regcomp(&regex, "^[0-9]{4}-[0-9]{2}-[0-9]{2}$", REG_EXTENDED))
 		return (false);
 
+	if (regexec(&regex, date.c_str(), 0, NULL, 0) != 0)
+	{
+		regfree(&regex);
+		return (false);
+	}
+
+    regfree(&regex);
+
 	int	year = fromString<int>(date.substr(0, 4));
 	int	month = fromString<int>(date.substr(5, 2));
 	int	day = fromString<int>(date.substr(8, 2));
@@ -180,19 +188,28 @@ bool	BitcoinExchange::isValidAmount(std::string const &amount)
 	regex_t	regex;
 
 	if (regcomp(&regex, "^\\d+(\\.\\d+)?$", REG_EXTENDED))
+	{
+		regfree(&regex);
 		return (false);
+	}
 	
 	try
 	{
 		double	value = fromString<double>(amount);
 
 		if (value < 0 || value > 1000)
+		{
+			regfree(&regex);
 			return (false);
+		}
 	}
 	catch (std::exception &e)
 	{
+		regfree(&regex);
 		return (false);
 	}
+
+	regfree(&regex);
 	return (true);
 }
 
