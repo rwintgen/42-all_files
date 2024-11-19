@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:26:29 by romain            #+#    #+#             */
-/*   Updated: 2024/11/18 12:56:15 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/11/19 13:40:59 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,12 +113,12 @@ void	insert(Container pair, std::vector<Container> &pairsArray, int len)
 // sorts the array of pairs using insertion sort
 // based on the largest element of each pair
 template <typename Container>
-void	insertionSortPairs(std::vector<Container> &pairsArray, int len)
+void	insertSortPairs(std::vector<Container> &pairsArray, int len)
 {
 	if (len < 1)
 		return ;
 
-	insertionSortPairs(pairsArray, len - 1);
+	insertSortPairs(pairsArray, len - 1);
 	insert(pairsArray[len], pairsArray, len - 1);
 }
 
@@ -128,7 +128,7 @@ void	sortByBiggestElem(std::vector<Container> &sortedPairsArray)
 {
 	size_t	len = sortedPairsArray.size();
 
-	insertionSortPairs(sortedPairsArray, len - 1);
+	insertSortPairs(sortedPairsArray, len - 1);
 }
 
 // returns the nth Jacobsthal number
