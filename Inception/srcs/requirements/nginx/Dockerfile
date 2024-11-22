@@ -3,7 +3,7 @@ FROM debian:bullseye
 # update and upgrade package manager
 # install nginx && openssl
 RUN apt-get update -y && apt-get upgrade -y && \
-	apt install -y nginx OpenSSL
+	apt install -y nginx openssl
 
 # create dir to store nginx files
 RUN mkdir -p /var/run/nginx

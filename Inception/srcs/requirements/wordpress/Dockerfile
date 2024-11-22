@@ -1,7 +1,7 @@
 FROM debian:bullseye
 
 # update and upgrade package manager
-RUN apt-get update -y && apt-get upgrade -y && \
+RUN apt-get update -y && apt-get upgrade -y
 
 # download packages required by wp
 RUN apt-get install -y php7.3 \
