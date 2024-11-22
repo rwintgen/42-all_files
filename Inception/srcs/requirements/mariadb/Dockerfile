@@ -2,7 +2,7 @@ FROM debian:bullseye
 
 # update and upgrade package manager
 # install mariadb
-RUN RUN apt-get update -y && apt-get upgrade -y && \
+RUN apt-get update -y && apt-get upgrade -y && \
 	apt-get install -y mariadb-server
 
 # copy mariadb conf file
