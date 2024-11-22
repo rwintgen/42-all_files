@@ -25,5 +25,8 @@ COPY conf/nginx.conf /etc/nginx/nginx.conf
 RUN chmod 755 /var/www/html && \
 	chown -R www-data:www-data /var/www/html
 
+# open port 433
+EXPOSE 433
+
 # start nginx
 CMD [ "nginx", "-g", "daemon off;" ]
