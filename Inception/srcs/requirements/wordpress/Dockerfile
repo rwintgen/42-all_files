@@ -4,20 +4,16 @@ FROM debian:bullseye
 RUN apt-get update -y && apt-get upgrade -y
 
 # download packages required by wp
-RUN apt-get install -y php7.3 \
+RUN apt-get install -y php \
 	php-fpm \
 	php-mysql \
-	mariadb-client
+	mariadb-client \
+	wget
 
-# download wp
-RUN apt-get install -y wget && \
-	wget https://fr.wordpress.org/wordpress-6.0-fr_FR.tar.gz -P /var/www
+# copy wp conf file
+COPY ./conf/www.conf /etc/php/7.4/fpm/pool.d/
 
-# unzip wp files
-RUN cd /var/www && tar -xzf wordpress-6.0-fr_FR.tar.gz && rm wordpress-6.0-fr_FR.tar.gz
-
-# upgrade perms on wp dir
-RUN chown -R root:root /var/www/wordpress
+RUN mkdir -p /run/php
 
 # download wp command interpreter
 # move it to /bin

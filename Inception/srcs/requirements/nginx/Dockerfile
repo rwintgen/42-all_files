@@ -5,8 +5,12 @@ FROM debian:bullseye
 RUN apt-get update -y && apt-get upgrade -y && \
 	apt install -y nginx openssl
 
-# create dir to store nginx certificate
-RUN mkdir -p /etc/nginx/ssl
+# create dir to store nginx certificate & data
+RUN mkdir -p /etc/nginx/ssl /run/nginx
+
+# copy nginx conf file
+COPY ./conf/nginx.conf /etc/nginx/conf.d
+RUN chmod -R 755 /etc/nginx /var/www/html
 
 # create a self-signed cert
 # do not set a passphrase
@@ -18,15 +22,12 @@ RUN openssl req -x509 \
 	-keyout /etc/nginx/ssl/inception.key \
 	-subj "/C=FR/ST=IDF/L=Paris/O=42/OU=42/CN=rwintgen.42.fr/UID=rwintgen"
 
-# copy nginx conf file
-COPY conf/nginx.conf /etc/nginx/nginx.conf
-
 # upgrade perms on dirs needed by conf file
 RUN chmod 755 /var/www/html && \
 	chown -R www-data:www-data /var/www/html
 
-# open port 433
-EXPOSE 433
+# open port 443
+EXPOSE 443
 
 # start nginx
 CMD [ "nginx", "-g", "daemon off;" ]

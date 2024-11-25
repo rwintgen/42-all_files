@@ -10,10 +10,5 @@ wp config create	--allow-root \
 					--dbpass=$SQL_PASSWORD \
 					--dbhost=mariadb:3306 --path='/var/www/wordpress'
 
-# create run/php dir if not exist
-if [ ! -d /run/php ]; then
-    mkdir ./run/php
-fi
-
 #launch php-fpm
-/usr/sbin/php-fpm7.3 -F
+/usr/sbin/php-fpm7.4 -F
