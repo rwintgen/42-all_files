@@ -24,7 +24,7 @@ services:
     depends_on:
       - mariadb
     ports:
-      - "8010:8010"
+      - "9000:9000"
     volumes:
       - volume_wordpress:/var/www/html
     networks:

@@ -22,7 +22,7 @@ RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.ph
 	mv wp-cli.phar /usr/local/bin/wp
 
 # open port req by subj
-EXPOSE 8010
+EXPOSE 9000
 
 # copy setup script to /bin
 COPY ./wp_init.sh /usr/local/bin/wp_init.sh
