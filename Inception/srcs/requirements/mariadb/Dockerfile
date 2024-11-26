@@ -10,7 +10,7 @@ COPY conf/mariadb.conf /etc/mysql/mariadb.conf.d/50-server.cnf
 
 # copy the script
 COPY mdb_init.sh /usr/local/bin/mdb_init.sh
-RUN chmod +x /usr/local/bin/mdb_init.sh
+RUN chmod 755 /usr/local/bin/mdb_init.sh
 
 # open port req by subj
 EXPOSE 3306
