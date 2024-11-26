@@ -1,6 +1,7 @@
 services:
 
   nginx:
+    image: nginx
     build:
       context: ./requirements/nginx
     container_name: nginx
@@ -9,13 +10,14 @@ services:
     ports:
       - "443:443"
     volumes:
-      - volume_wordpress:/var/www/html
+      - volume_nginx:/var/www/html
     networks:
       - intra_network
     restart: always
     env_file: .env
 
   wordpress:  
+    image: wordpress
     build:
       context: ./requirements/wordpress
     container_name: wordpress
@@ -31,6 +33,7 @@ services:
     env_file: .env
 
   mariadb:
+    image: mariadb
     build:
       context: ./requirements/mariadb
     container_name: mariadb
@@ -44,8 +47,24 @@ services:
     env_file: .env
 
 volumes:
+  volume_nginx:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/rwintgen/data/nginx
   volume_wordpress:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/rwintgen/data/wordpress
   volume_mariadb:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/rwintgen/data/mariadb
 
 networks:
   intra_network:
