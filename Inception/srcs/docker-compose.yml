@@ -16,7 +16,7 @@ services:
     restart: always
     env_file: .env
 
-  wordpress:  
+  wordpress:
     image: wordpress
     build:
       context: ./requirements/wordpress
