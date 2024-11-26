@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:26:29 by romain            #+#    #+#             */
-/*   Updated: 2024/11/19 13:40:59 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/11/26 12:45:29 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ void	sortByBiggestElem(std::vector<Container> &sortedPairsArray)
 }
 
 // returns the nth Jacobsthal number
-static int	jacobsthal(int n)
+static inline int	jacobsthal(int n)
 {
 	if (n == 0 || n == 1)
 		return (n);
