@@ -6,13 +6,13 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/01 13:09:16 by romain            #+#    #+#             */
-/*   Updated: 2024/11/05 15:19:16 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/11/26 12:57:54 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RPN.hpp"
 
-RPN::RPN(std::string const &expression)
+RPN::RPN(std::string const &expression) : _error(false)
 {
 	std::istringstream	iss(expression);
 	std::string			token;
@@ -52,6 +52,7 @@ RPN::RPN(std::string const &expression)
 			if (a == 0)
 			{
 				std::cerr << "Error, division by zero" << std::endl;
+				_error = true;
 				return ;
 			}
 			_stack.push(b / a);
@@ -109,5 +110,6 @@ bool RPN::isValidInput(std::string const &input)
 
 void	RPN::printResult(void) const
 {
-	std::cout << "Result: " << _stack.top() << std::endl;
+	if (!_error)
+		std::cout << "Result: " << _stack.top() << std::endl;
 }

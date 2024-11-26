@@ -6,7 +6,7 @@
 /*   By: rwintgen <rwintgen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/01 13:09:18 by romain            #+#    #+#             */
-/*   Updated: 2024/09/12 13:38:24 by rwintgen         ###   ########.fr       */
+/*   Updated: 2024/11/26 12:54:54 by rwintgen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ class	RPN
 		
 	private:
 		std::stack<int>	_stack;
+		bool			_error;
 };
 
 #endif
