@@ -17,7 +17,7 @@ clean:
 	@docker volume rm -f `docker volume ls`
 	@sudo rm -rf /home/rwintgen/data
 
-fclean:
+fclean: clean
 	@docker system prune -af
 
 .PHONY: all re down clean fclean

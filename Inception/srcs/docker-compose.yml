@@ -10,7 +10,7 @@ services:
     ports:
       - "443:443"
     volumes:
-      - volume_nginx:/var/www/html
+      - volume_wordpress:/var/www/html
     networks:
       - intra_network
     restart: always
@@ -47,12 +47,6 @@ services:
     env_file: .env
 
 volumes:
-  volume_nginx:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: /home/rwintgen/data/nginx
   volume_wordpress:
     driver: local
     driver_opts:
