@@ -2,6 +2,7 @@
 
 # start service
 mysqld_safe &
+sleep 5
 
 # create and setup db
 mysql -u root << eof
